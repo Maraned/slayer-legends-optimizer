@@ -6,6 +6,14 @@ export type {
 } from './appearance';
 
 export type {
+  ElementalDamageSource,
+  ElementAccessory,
+  ElementalAmpBonuses,
+  AmpCalculation,
+  BlackOrbState,
+} from './black-orb';
+
+export type {
   TOMResourceType,
   TOMNodeCategory,
   TOMEffectType,
