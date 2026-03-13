@@ -1,6 +1,1 @@
-export type {
-  BonusType,
-  ClothingItem,
-  AppearanceBonusTotals,
-  AppearanceState,
-} from './appearance';
+export type { BonusType, ClothingItem, AppearanceBonusTotals, AppearanceState } from './appearance';
