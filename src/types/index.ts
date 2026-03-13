@@ -1,4 +1,3 @@
-export type { BonusType, ClothingItem, AppearanceBonusTotals, AppearanceState } from './appearance';
 export type {
   BonusType,
   ClothingItem,
@@ -46,3 +45,18 @@ export type {
   GrowingKnowledge,
   CharacterState,
 } from './character';
+
+export type {
+  SkillTier,
+  SkillDamageType,
+  SkillData,
+  SkillSlot,
+  ElementalMultipliers,
+  Proficiency,
+  SkillsState,
+  SkillMasteryPageIndex,
+  SkillMasteryNodeData,
+  SkillMasteryNodeState,
+  SkillMasteryPage,
+  SkillMasteryState,
+} from './skills';
