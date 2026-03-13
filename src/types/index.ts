@@ -7,6 +7,15 @@ export type {
 } from './appearance';
 
 export type {
+  ZodiacConstellation,
+  ConstellationBuffType,
+  FarmingMode,
+  StarNode,
+  ConstellationBuffTotals,
+  ConstellationState,
+  ConstellationSheetState,
+} from './constellation';
+export type {
   AreaId,
   ZoneId,
   Element,
@@ -22,6 +31,7 @@ export type {
   StageIndex,
   StageSummaryIndex,
 } from './stage';
+export type {
   CompanionName,
   Element,
   BuffType,
