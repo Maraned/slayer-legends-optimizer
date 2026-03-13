@@ -14,3 +14,19 @@ export type {
   AccessoryCategory,
   EquipmentState,
 } from './equipment';
+
+export type {
+  EnhanceableStatKey,
+  EnhanceLevelEntry,
+  EnhanceableStats,
+  GrowthStatEntry,
+  GrowthStats,
+  LatentPowerStatKey,
+  LatentPowerPageEntry,
+  LatentPower,
+  PromotionAbility,
+  Promotion,
+  SlayerLevel,
+  GrowingKnowledge,
+  CharacterState,
+} from './character';
