@@ -6,6 +6,18 @@ export type {
 } from './appearance';
 
 export type {
+  TOMResourceType,
+  TOMNodeCategory,
+  TOMEffectType,
+  TOMNodeCost,
+  TOMNodeLevel,
+  TOMNode,
+  TOMDependency,
+  TOMCostSummary,
+  TOMState,
+} from './tom';
+
+export type {
   EnhanceableStatKey,
   EnhanceLevelEntry,
   EnhanceableStats,
@@ -21,6 +33,7 @@ export type {
   CharacterState,
 } from './character';
 
+export type {
   ZodiacConstellation,
   ConstellationBuffType,
   FarmingMode,
