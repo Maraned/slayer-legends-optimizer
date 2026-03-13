@@ -6,6 +6,21 @@ export type {
 } from './appearance';
 
 export type {
+  EnhanceableStatKey,
+  EnhanceLevelEntry,
+  EnhanceableStats,
+  GrowthStatEntry,
+  GrowthStats,
+  LatentPowerStatKey,
+  LatentPowerPageEntry,
+  LatentPower,
+  PromotionAbility,
+  Promotion,
+  SlayerLevel,
+  GrowingKnowledge,
+  CharacterState,
+} from './character';
+
   ZodiacConstellation,
   ConstellationBuffType,
   FarmingMode,
@@ -14,6 +29,7 @@ export type {
   ConstellationState,
   ConstellationSheetState,
 } from './constellation';
+
 export type {
   AreaId,
   ZoneId,
@@ -30,9 +46,10 @@ export type {
   StageIndex,
   StageSummaryIndex,
 } from './stage';
+
 export type {
   CompanionName,
-  Element,
+  Element as CompanionElement,
   BuffType,
   AdvancementStepOrdinal,
   AdvancementStep,
@@ -46,6 +63,7 @@ export type {
 } from './companions';
 
 export { WeaponTier } from './equipment';
+
 export type {
   Weapon,
   SoulWeapon,
@@ -54,6 +72,32 @@ export type {
   AccessoryCategory,
   EquipmentState,
 } from './equipment';
+
+export type {
+  AreaId,
+  ZoneId,
+  Element as StageElement,
+  MobStats,
+  MobDrop,
+  Mob,
+  StageBonusType,
+  StageBonus,
+  Stage,
+  StageSummary,
+  Area,
+  Zone,
+  StageIndex,
+  StageSummaryIndex,
+} from './stage';
+
+export type {
+  SkillsState,
+  MemoryTreeState,
+  ConstellationState,
+  BlackOrbState,
+  StageSelectionState,
+  UserSaveState,
+} from './save-state';
 
 export type {
   EnhanceableStatKey,
