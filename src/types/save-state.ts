@@ -3,6 +3,9 @@ import type { CharacterState } from './character';
 import type { CompanionsState } from './companions';
 import type { EquipmentState } from './equipment';
 import type { Stage } from './stage';
+import type { MemoryTreeState } from './tom';
+
+export type { MemoryTreeState };
 
 // ---------------------------------------------------------------------------
 // Forward-reference placeholders for types defined in parallel tasks.
@@ -34,16 +37,6 @@ export interface SkillsState {
   ];
   /** Overall proficiency level */
   proficiency: number;
-}
-
-/**
- * Player's Tree of Memory (TOM) node progression.
- * Placeholder for MAR-21 (1.2.6 Define types for memory tree nodes).
- * Shape: current level for each of the 370 nodes, keyed by node ID.
- */
-export interface MemoryTreeState {
-  /** Current level of each TOM node, keyed by node ID (0 = locked) */
-  nodeLevels: Record<string, number>;
 }
 
 /**

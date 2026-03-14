@@ -122,3 +122,13 @@ export interface TOMState {
   /** Total resources spent across all currently unlocked nodes */
   totalSpent: TOMCostSummary;
 }
+
+/**
+ * Player's Tree of Memory (TOM) node progression saved to UserSaveState.
+ * Tracks the current upgrade level for each of the 370 nodes.
+ * Source: TOM sheet, player-specific data.
+ */
+export interface MemoryTreeState {
+  /** Current level of each TOM node, keyed by node ID (0 = locked) */
+  nodeLevels: Record<string, number>;
+}
