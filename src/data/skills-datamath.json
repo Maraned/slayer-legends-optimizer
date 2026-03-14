@@ -1,0 +1,2111 @@
+{
+  "SKILLS": [
+    {
+      "id": "skill_001",
+      "name": "Slash",
+      "tier": "Common",
+      "damageType": "Physical",
+      "description": "A basic physical attack. Deals a small amount of Physical damage to one target."
+    },
+    {
+      "id": "skill_002",
+      "name": "Ember Shot",
+      "tier": "Common",
+      "damageType": "Fire",
+      "description": "A basic fire attack. Deals a small amount of Fire damage to one target."
+    },
+    {
+      "id": "skill_003",
+      "name": "Water Bolt",
+      "tier": "Common",
+      "damageType": "Water",
+      "description": "A basic water attack. Deals a small amount of Water damage to one target."
+    },
+    {
+      "id": "skill_004",
+      "name": "Wind Cutter",
+      "tier": "Common",
+      "damageType": "Wind",
+      "description": "A basic wind attack. Deals a small amount of Wind damage to one target."
+    },
+    {
+      "id": "skill_005",
+      "name": "Rock Throw",
+      "tier": "Common",
+      "damageType": "Earth",
+      "description": "A basic earth attack. Deals a small amount of Earth damage to one target."
+    },
+    {
+      "id": "skill_006",
+      "name": "Thunder Strike",
+      "tier": "Common",
+      "damageType": "Lightning",
+      "description": "A basic lightning attack. Deals a small amount of Lightning damage to one target."
+    },
+    {
+      "id": "skill_007",
+      "name": "Strike",
+      "tier": "Common",
+      "damageType": "Physical",
+      "description": "A basic physical attack. Deals a small amount of Physical damage to one target."
+    },
+    {
+      "id": "skill_008",
+      "name": "Flame Lance",
+      "tier": "Common",
+      "damageType": "Fire",
+      "description": "A basic fire attack. Deals a small amount of Fire damage to one target."
+    },
+    {
+      "id": "skill_009",
+      "name": "Frost Needle",
+      "tier": "Common",
+      "damageType": "Water",
+      "description": "A basic water attack. Deals a small amount of Water damage to one target."
+    },
+    {
+      "id": "skill_010",
+      "name": "Gust Slash",
+      "tier": "Common",
+      "damageType": "Wind",
+      "description": "A basic wind attack. Deals a small amount of Wind damage to one target."
+    },
+    {
+      "id": "skill_011",
+      "name": "Stone Fist",
+      "tier": "Common",
+      "damageType": "Earth",
+      "description": "A basic earth attack. Deals a small amount of Earth damage to one target."
+    },
+    {
+      "id": "skill_012",
+      "name": "Spark",
+      "tier": "Common",
+      "damageType": "Lightning",
+      "description": "A basic lightning attack. Deals a small amount of Lightning damage to one target."
+    },
+    {
+      "id": "skill_013",
+      "name": "Thrust",
+      "tier": "Common",
+      "damageType": "Physical",
+      "description": "A basic physical attack. Deals a small amount of Physical damage to one target."
+    },
+    {
+      "id": "skill_014",
+      "name": "Fireball",
+      "tier": "Common",
+      "damageType": "Fire",
+      "description": "A basic fire attack. Deals a small amount of Fire damage to one target."
+    },
+    {
+      "id": "skill_015",
+      "name": "Ice Shard",
+      "tier": "Common",
+      "damageType": "Water",
+      "description": "A basic water attack. Deals a small amount of Water damage to one target."
+    },
+    {
+      "id": "skill_016",
+      "name": "Breeze Strike",
+      "tier": "Common",
+      "damageType": "Wind",
+      "description": "A basic wind attack. Deals a small amount of Wind damage to one target."
+    },
+    {
+      "id": "skill_017",
+      "name": "Quake Slam",
+      "tier": "Common",
+      "damageType": "Earth",
+      "description": "A basic earth attack. Deals a small amount of Earth damage to one target."
+    },
+    {
+      "id": "skill_018",
+      "name": "Bolt Shot",
+      "tier": "Common",
+      "damageType": "Lightning",
+      "description": "A basic lightning attack. Deals a small amount of Lightning damage to one target."
+    },
+    {
+      "id": "skill_019",
+      "name": "Cleave",
+      "tier": "Common",
+      "damageType": "Physical",
+      "description": "A basic physical attack. Deals a small amount of Physical damage to one target."
+    },
+    {
+      "id": "skill_020",
+      "name": "Scorch",
+      "tier": "Common",
+      "damageType": "Fire",
+      "description": "A basic fire attack. Deals a small amount of Fire damage to one target."
+    },
+    {
+      "id": "skill_021",
+      "name": "Tidal Wave",
+      "tier": "Common",
+      "damageType": "Water",
+      "description": "A basic water attack. Deals a small amount of Water damage to one target."
+    },
+    {
+      "id": "skill_022",
+      "name": "Cyclone Spin",
+      "tier": "Common",
+      "damageType": "Wind",
+      "description": "A basic wind attack. Deals a small amount of Wind damage to one target."
+    },
+    {
+      "id": "skill_023",
+      "name": "Mud Barrage",
+      "tier": "Common",
+      "damageType": "Earth",
+      "description": "A basic earth attack. Deals a small amount of Earth damage to one target."
+    },
+    {
+      "id": "skill_024",
+      "name": "Chain Lightning",
+      "tier": "Common",
+      "damageType": "Lightning",
+      "description": "A basic lightning attack. Deals a small amount of Lightning damage to one target."
+    },
+    {
+      "id": "skill_025",
+      "name": "Bash",
+      "tier": "Common",
+      "damageType": "Physical",
+      "description": "A basic physical attack. Deals a small amount of Physical damage to one target."
+    },
+    {
+      "id": "skill_026",
+      "name": "Ignite",
+      "tier": "Common",
+      "damageType": "Fire",
+      "description": "A basic fire attack. Deals a small amount of Fire damage to one target."
+    },
+    {
+      "id": "skill_027",
+      "name": "Aqua Jet",
+      "tier": "Common",
+      "damageType": "Water",
+      "description": "A basic water attack. Deals a small amount of Water damage to one target."
+    },
+    {
+      "id": "skill_028",
+      "name": "Air Blade",
+      "tier": "Common",
+      "damageType": "Wind",
+      "description": "A basic wind attack. Deals a small amount of Wind damage to one target."
+    },
+    {
+      "id": "skill_029",
+      "name": "Ground Spike",
+      "tier": "Common",
+      "damageType": "Earth",
+      "description": "A basic earth attack. Deals a small amount of Earth damage to one target."
+    },
+    {
+      "id": "skill_030",
+      "name": "Static Charge",
+      "tier": "Common",
+      "damageType": "Lightning",
+      "description": "A basic lightning attack. Deals a small amount of Lightning damage to one target."
+    },
+    {
+      "id": "skill_031",
+      "name": "Smash",
+      "tier": "Common",
+      "damageType": "Physical",
+      "description": "A basic physical attack. Deals a small amount of Physical damage to one target."
+    },
+    {
+      "id": "skill_032",
+      "name": "Blaze Strike",
+      "tier": "Common",
+      "damageType": "Fire",
+      "description": "A basic fire attack. Deals a small amount of Fire damage to one target."
+    },
+    {
+      "id": "skill_033",
+      "name": "Frost Barrage",
+      "tier": "Common",
+      "damageType": "Water",
+      "description": "A basic water attack. Deals a small amount of Water damage to one target."
+    },
+    {
+      "id": "skill_034",
+      "name": "Tempest Rush",
+      "tier": "Common",
+      "damageType": "Wind",
+      "description": "A basic wind attack. Deals a small amount of Wind damage to one target."
+    },
+    {
+      "id": "skill_035",
+      "name": "Boulder Crush",
+      "tier": "Common",
+      "damageType": "Earth",
+      "description": "A basic earth attack. Deals a small amount of Earth damage to one target."
+    },
+    {
+      "id": "skill_036",
+      "name": "Lightning Rod",
+      "tier": "Common",
+      "damageType": "Lightning",
+      "description": "A basic lightning attack. Deals a small amount of Lightning damage to one target."
+    },
+    {
+      "id": "skill_037",
+      "name": "Pummel",
+      "tier": "Common",
+      "damageType": "Physical",
+      "description": "A basic physical attack. Deals a small amount of Physical damage to one target."
+    },
+    {
+      "id": "skill_038",
+      "name": "Inferno Burst",
+      "tier": "Common",
+      "damageType": "Fire",
+      "description": "A basic fire attack. Deals a small amount of Fire damage to one target."
+    },
+    {
+      "id": "skill_039",
+      "name": "Blizzard",
+      "tier": "Common",
+      "damageType": "Water",
+      "description": "A basic water attack. Deals a small amount of Water damage to one target."
+    },
+    {
+      "id": "skill_040",
+      "name": "Squall Burst",
+      "tier": "Common",
+      "damageType": "Wind",
+      "description": "A basic wind attack. Deals a small amount of Wind damage to one target."
+    },
+    {
+      "id": "skill_041",
+      "name": "Tremor",
+      "tier": "Common",
+      "damageType": "Earth",
+      "description": "A basic earth attack. Deals a small amount of Earth damage to one target."
+    },
+    {
+      "id": "skill_042",
+      "name": "Discharge",
+      "tier": "Common",
+      "damageType": "Lightning",
+      "description": "A basic lightning attack. Deals a small amount of Lightning damage to one target."
+    },
+    {
+      "id": "skill_043",
+      "name": "Hack",
+      "tier": "Common",
+      "damageType": "Physical",
+      "description": "A basic physical attack. Deals a small amount of Physical damage to one target."
+    },
+    {
+      "id": "skill_044",
+      "name": "Magma Spike",
+      "tier": "Common",
+      "damageType": "Fire",
+      "description": "A basic fire attack. Deals a small amount of Fire damage to one target."
+    },
+    {
+      "id": "skill_045",
+      "name": "Cryo Lance",
+      "tier": "Common",
+      "damageType": "Water",
+      "description": "A basic water attack. Deals a small amount of Water damage to one target."
+    },
+    {
+      "id": "skill_046",
+      "name": "Twister",
+      "tier": "Common",
+      "damageType": "Wind",
+      "description": "A basic wind attack. Deals a small amount of Wind damage to one target."
+    },
+    {
+      "id": "skill_047",
+      "name": "Landslide",
+      "tier": "Common",
+      "damageType": "Earth",
+      "description": "A basic earth attack. Deals a small amount of Earth damage to one target."
+    },
+    {
+      "id": "skill_048",
+      "name": "Plasma Bolt",
+      "tier": "Common",
+      "damageType": "Lightning",
+      "description": "A basic lightning attack. Deals a small amount of Lightning damage to one target."
+    },
+    {
+      "id": "skill_049",
+      "name": "Rend",
+      "tier": "Common",
+      "damageType": "Physical",
+      "description": "A basic physical attack. Deals a small amount of Physical damage to one target."
+    },
+    {
+      "id": "skill_050",
+      "name": "Cinder Barrage",
+      "tier": "Common",
+      "damageType": "Fire",
+      "description": "A basic fire attack. Deals a small amount of Fire damage to one target."
+    },
+    {
+      "id": "skill_051",
+      "name": "Arctic Blast",
+      "tier": "Common",
+      "damageType": "Water",
+      "description": "A basic water attack. Deals a small amount of Water damage to one target."
+    },
+    {
+      "id": "skill_052",
+      "name": "Gale Force",
+      "tier": "Common",
+      "damageType": "Wind",
+      "description": "A basic wind attack. Deals a small amount of Wind damage to one target."
+    },
+    {
+      "id": "skill_053",
+      "name": "Terra Spike",
+      "tier": "Common",
+      "damageType": "Earth",
+      "description": "A basic earth attack. Deals a small amount of Earth damage to one target."
+    },
+    {
+      "id": "skill_054",
+      "name": "Arc Strike",
+      "tier": "Common",
+      "damageType": "Lightning",
+      "description": "A basic lightning attack. Deals a small amount of Lightning damage to one target."
+    },
+    {
+      "id": "skill_055",
+      "name": "Sever",
+      "tier": "Common",
+      "damageType": "Physical",
+      "description": "A basic physical attack. Deals a small amount of Physical damage to one target."
+    },
+    {
+      "id": "skill_056",
+      "name": "Lava Torrent",
+      "tier": "Common",
+      "damageType": "Fire",
+      "description": "A basic fire attack. Deals a small amount of Fire damage to one target."
+    },
+    {
+      "id": "skill_057",
+      "name": "Torrent",
+      "tier": "Common",
+      "damageType": "Water",
+      "description": "A basic water attack. Deals a small amount of Water damage to one target."
+    },
+    {
+      "id": "skill_058",
+      "name": "Razor Wind",
+      "tier": "Common",
+      "damageType": "Wind",
+      "description": "A basic wind attack. Deals a small amount of Wind damage to one target."
+    },
+    {
+      "id": "skill_059",
+      "name": "Stone Barrage",
+      "tier": "Common",
+      "damageType": "Earth",
+      "description": "A basic earth attack. Deals a small amount of Earth damage to one target."
+    },
+    {
+      "id": "skill_060",
+      "name": "Voltage Surge",
+      "tier": "Common",
+      "damageType": "Lightning",
+      "description": "A basic lightning attack. Deals a small amount of Lightning damage to one target."
+    },
+    {
+      "id": "skill_061",
+      "name": "Slash",
+      "tier": "Uncommon",
+      "damageType": "Physical",
+      "description": "An improved physical technique. Deals moderate Physical damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_062",
+      "name": "Ember Shot",
+      "tier": "Uncommon",
+      "damageType": "Fire",
+      "description": "An improved fire technique. Deals moderate Fire damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_063",
+      "name": "Water Bolt",
+      "tier": "Uncommon",
+      "damageType": "Water",
+      "description": "An improved water technique. Deals moderate Water damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_064",
+      "name": "Wind Cutter",
+      "tier": "Uncommon",
+      "damageType": "Wind",
+      "description": "An improved wind technique. Deals moderate Wind damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_065",
+      "name": "Rock Throw",
+      "tier": "Uncommon",
+      "damageType": "Earth",
+      "description": "An improved earth technique. Deals moderate Earth damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_066",
+      "name": "Thunder Strike",
+      "tier": "Uncommon",
+      "damageType": "Lightning",
+      "description": "An improved lightning technique. Deals moderate Lightning damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_067",
+      "name": "Strike",
+      "tier": "Uncommon",
+      "damageType": "Physical",
+      "description": "An improved physical technique. Deals moderate Physical damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_068",
+      "name": "Flame Lance",
+      "tier": "Uncommon",
+      "damageType": "Fire",
+      "description": "An improved fire technique. Deals moderate Fire damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_069",
+      "name": "Frost Needle",
+      "tier": "Uncommon",
+      "damageType": "Water",
+      "description": "An improved water technique. Deals moderate Water damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_070",
+      "name": "Gust Slash",
+      "tier": "Uncommon",
+      "damageType": "Wind",
+      "description": "An improved wind technique. Deals moderate Wind damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_071",
+      "name": "Stone Fist",
+      "tier": "Uncommon",
+      "damageType": "Earth",
+      "description": "An improved earth technique. Deals moderate Earth damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_072",
+      "name": "Spark",
+      "tier": "Uncommon",
+      "damageType": "Lightning",
+      "description": "An improved lightning technique. Deals moderate Lightning damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_073",
+      "name": "Thrust",
+      "tier": "Uncommon",
+      "damageType": "Physical",
+      "description": "An improved physical technique. Deals moderate Physical damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_074",
+      "name": "Fireball",
+      "tier": "Uncommon",
+      "damageType": "Fire",
+      "description": "An improved fire technique. Deals moderate Fire damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_075",
+      "name": "Ice Shard",
+      "tier": "Uncommon",
+      "damageType": "Water",
+      "description": "An improved water technique. Deals moderate Water damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_076",
+      "name": "Breeze Strike",
+      "tier": "Uncommon",
+      "damageType": "Wind",
+      "description": "An improved wind technique. Deals moderate Wind damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_077",
+      "name": "Quake Slam",
+      "tier": "Uncommon",
+      "damageType": "Earth",
+      "description": "An improved earth technique. Deals moderate Earth damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_078",
+      "name": "Bolt Shot",
+      "tier": "Uncommon",
+      "damageType": "Lightning",
+      "description": "An improved lightning technique. Deals moderate Lightning damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_079",
+      "name": "Cleave",
+      "tier": "Uncommon",
+      "damageType": "Physical",
+      "description": "An improved physical technique. Deals moderate Physical damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_080",
+      "name": "Scorch",
+      "tier": "Uncommon",
+      "damageType": "Fire",
+      "description": "An improved fire technique. Deals moderate Fire damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_081",
+      "name": "Tidal Wave",
+      "tier": "Uncommon",
+      "damageType": "Water",
+      "description": "An improved water technique. Deals moderate Water damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_082",
+      "name": "Cyclone Spin",
+      "tier": "Uncommon",
+      "damageType": "Wind",
+      "description": "An improved wind technique. Deals moderate Wind damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_083",
+      "name": "Mud Barrage",
+      "tier": "Uncommon",
+      "damageType": "Earth",
+      "description": "An improved earth technique. Deals moderate Earth damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_084",
+      "name": "Chain Lightning",
+      "tier": "Uncommon",
+      "damageType": "Lightning",
+      "description": "An improved lightning technique. Deals moderate Lightning damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_085",
+      "name": "Bash",
+      "tier": "Uncommon",
+      "damageType": "Physical",
+      "description": "An improved physical technique. Deals moderate Physical damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_086",
+      "name": "Ignite",
+      "tier": "Uncommon",
+      "damageType": "Fire",
+      "description": "An improved fire technique. Deals moderate Fire damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_087",
+      "name": "Aqua Jet",
+      "tier": "Uncommon",
+      "damageType": "Water",
+      "description": "An improved water technique. Deals moderate Water damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_088",
+      "name": "Air Blade",
+      "tier": "Uncommon",
+      "damageType": "Wind",
+      "description": "An improved wind technique. Deals moderate Wind damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_089",
+      "name": "Ground Spike",
+      "tier": "Uncommon",
+      "damageType": "Earth",
+      "description": "An improved earth technique. Deals moderate Earth damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_090",
+      "name": "Static Charge",
+      "tier": "Uncommon",
+      "damageType": "Lightning",
+      "description": "An improved lightning technique. Deals moderate Lightning damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_091",
+      "name": "Smash",
+      "tier": "Uncommon",
+      "damageType": "Physical",
+      "description": "An improved physical technique. Deals moderate Physical damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_092",
+      "name": "Blaze Strike",
+      "tier": "Uncommon",
+      "damageType": "Fire",
+      "description": "An improved fire technique. Deals moderate Fire damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_093",
+      "name": "Frost Barrage",
+      "tier": "Uncommon",
+      "damageType": "Water",
+      "description": "An improved water technique. Deals moderate Water damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_094",
+      "name": "Tempest Rush",
+      "tier": "Uncommon",
+      "damageType": "Wind",
+      "description": "An improved wind technique. Deals moderate Wind damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_095",
+      "name": "Boulder Crush",
+      "tier": "Uncommon",
+      "damageType": "Earth",
+      "description": "An improved earth technique. Deals moderate Earth damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_096",
+      "name": "Lightning Rod",
+      "tier": "Uncommon",
+      "damageType": "Lightning",
+      "description": "An improved lightning technique. Deals moderate Lightning damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_097",
+      "name": "Pummel",
+      "tier": "Uncommon",
+      "damageType": "Physical",
+      "description": "An improved physical technique. Deals moderate Physical damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_098",
+      "name": "Inferno Burst",
+      "tier": "Uncommon",
+      "damageType": "Fire",
+      "description": "An improved fire technique. Deals moderate Fire damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_099",
+      "name": "Blizzard",
+      "tier": "Uncommon",
+      "damageType": "Water",
+      "description": "An improved water technique. Deals moderate Water damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_100",
+      "name": "Squall Burst",
+      "tier": "Uncommon",
+      "damageType": "Wind",
+      "description": "An improved wind technique. Deals moderate Wind damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_101",
+      "name": "Tremor",
+      "tier": "Uncommon",
+      "damageType": "Earth",
+      "description": "An improved earth technique. Deals moderate Earth damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_102",
+      "name": "Discharge",
+      "tier": "Uncommon",
+      "damageType": "Lightning",
+      "description": "An improved lightning technique. Deals moderate Lightning damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_103",
+      "name": "Hack",
+      "tier": "Uncommon",
+      "damageType": "Physical",
+      "description": "An improved physical technique. Deals moderate Physical damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_104",
+      "name": "Magma Spike",
+      "tier": "Uncommon",
+      "damageType": "Fire",
+      "description": "An improved fire technique. Deals moderate Fire damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_105",
+      "name": "Cryo Lance",
+      "tier": "Uncommon",
+      "damageType": "Water",
+      "description": "An improved water technique. Deals moderate Water damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_106",
+      "name": "Twister",
+      "tier": "Uncommon",
+      "damageType": "Wind",
+      "description": "An improved wind technique. Deals moderate Wind damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_107",
+      "name": "Landslide",
+      "tier": "Uncommon",
+      "damageType": "Earth",
+      "description": "An improved earth technique. Deals moderate Earth damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_108",
+      "name": "Plasma Bolt",
+      "tier": "Uncommon",
+      "damageType": "Lightning",
+      "description": "An improved lightning technique. Deals moderate Lightning damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_109",
+      "name": "Rend",
+      "tier": "Uncommon",
+      "damageType": "Physical",
+      "description": "An improved physical technique. Deals moderate Physical damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_110",
+      "name": "Cinder Barrage",
+      "tier": "Uncommon",
+      "damageType": "Fire",
+      "description": "An improved fire technique. Deals moderate Fire damage with a slight bonus effect."
+    },
+    {
+      "id": "skill_111",
+      "name": "Slash",
+      "tier": "Rare",
+      "damageType": "Physical",
+      "description": "A refined physical skill. Deals significant Physical damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_112",
+      "name": "Ember Shot",
+      "tier": "Rare",
+      "damageType": "Fire",
+      "description": "A refined fire skill. Deals significant Fire damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_113",
+      "name": "Water Bolt",
+      "tier": "Rare",
+      "damageType": "Water",
+      "description": "A refined water skill. Deals significant Water damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_114",
+      "name": "Wind Cutter",
+      "tier": "Rare",
+      "damageType": "Wind",
+      "description": "A refined wind skill. Deals significant Wind damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_115",
+      "name": "Rock Throw",
+      "tier": "Rare",
+      "damageType": "Earth",
+      "description": "A refined earth skill. Deals significant Earth damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_116",
+      "name": "Thunder Strike",
+      "tier": "Rare",
+      "damageType": "Lightning",
+      "description": "A refined lightning skill. Deals significant Lightning damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_117",
+      "name": "Strike",
+      "tier": "Rare",
+      "damageType": "Physical",
+      "description": "A refined physical skill. Deals significant Physical damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_118",
+      "name": "Flame Lance",
+      "tier": "Rare",
+      "damageType": "Fire",
+      "description": "A refined fire skill. Deals significant Fire damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_119",
+      "name": "Frost Needle",
+      "tier": "Rare",
+      "damageType": "Water",
+      "description": "A refined water skill. Deals significant Water damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_120",
+      "name": "Gust Slash",
+      "tier": "Rare",
+      "damageType": "Wind",
+      "description": "A refined wind skill. Deals significant Wind damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_121",
+      "name": "Stone Fist",
+      "tier": "Rare",
+      "damageType": "Earth",
+      "description": "A refined earth skill. Deals significant Earth damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_122",
+      "name": "Spark",
+      "tier": "Rare",
+      "damageType": "Lightning",
+      "description": "A refined lightning skill. Deals significant Lightning damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_123",
+      "name": "Thrust",
+      "tier": "Rare",
+      "damageType": "Physical",
+      "description": "A refined physical skill. Deals significant Physical damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_124",
+      "name": "Fireball",
+      "tier": "Rare",
+      "damageType": "Fire",
+      "description": "A refined fire skill. Deals significant Fire damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_125",
+      "name": "Ice Shard",
+      "tier": "Rare",
+      "damageType": "Water",
+      "description": "A refined water skill. Deals significant Water damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_126",
+      "name": "Breeze Strike",
+      "tier": "Rare",
+      "damageType": "Wind",
+      "description": "A refined wind skill. Deals significant Wind damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_127",
+      "name": "Quake Slam",
+      "tier": "Rare",
+      "damageType": "Earth",
+      "description": "A refined earth skill. Deals significant Earth damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_128",
+      "name": "Bolt Shot",
+      "tier": "Rare",
+      "damageType": "Lightning",
+      "description": "A refined lightning skill. Deals significant Lightning damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_129",
+      "name": "Cleave",
+      "tier": "Rare",
+      "damageType": "Physical",
+      "description": "A refined physical skill. Deals significant Physical damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_130",
+      "name": "Scorch",
+      "tier": "Rare",
+      "damageType": "Fire",
+      "description": "A refined fire skill. Deals significant Fire damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_131",
+      "name": "Tidal Wave",
+      "tier": "Rare",
+      "damageType": "Water",
+      "description": "A refined water skill. Deals significant Water damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_132",
+      "name": "Cyclone Spin",
+      "tier": "Rare",
+      "damageType": "Wind",
+      "description": "A refined wind skill. Deals significant Wind damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_133",
+      "name": "Mud Barrage",
+      "tier": "Rare",
+      "damageType": "Earth",
+      "description": "A refined earth skill. Deals significant Earth damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_134",
+      "name": "Chain Lightning",
+      "tier": "Rare",
+      "damageType": "Lightning",
+      "description": "A refined lightning skill. Deals significant Lightning damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_135",
+      "name": "Bash",
+      "tier": "Rare",
+      "damageType": "Physical",
+      "description": "A refined physical skill. Deals significant Physical damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_136",
+      "name": "Ignite",
+      "tier": "Rare",
+      "damageType": "Fire",
+      "description": "A refined fire skill. Deals significant Fire damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_137",
+      "name": "Aqua Jet",
+      "tier": "Rare",
+      "damageType": "Water",
+      "description": "A refined water skill. Deals significant Water damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_138",
+      "name": "Air Blade",
+      "tier": "Rare",
+      "damageType": "Wind",
+      "description": "A refined wind skill. Deals significant Wind damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_139",
+      "name": "Ground Spike",
+      "tier": "Rare",
+      "damageType": "Earth",
+      "description": "A refined earth skill. Deals significant Earth damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_140",
+      "name": "Static Charge",
+      "tier": "Rare",
+      "damageType": "Lightning",
+      "description": "A refined lightning skill. Deals significant Lightning damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_141",
+      "name": "Smash",
+      "tier": "Rare",
+      "damageType": "Physical",
+      "description": "A refined physical skill. Deals significant Physical damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_142",
+      "name": "Blaze Strike",
+      "tier": "Rare",
+      "damageType": "Fire",
+      "description": "A refined fire skill. Deals significant Fire damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_143",
+      "name": "Frost Barrage",
+      "tier": "Rare",
+      "damageType": "Water",
+      "description": "A refined water skill. Deals significant Water damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_144",
+      "name": "Tempest Rush",
+      "tier": "Rare",
+      "damageType": "Wind",
+      "description": "A refined wind skill. Deals significant Wind damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_145",
+      "name": "Boulder Crush",
+      "tier": "Rare",
+      "damageType": "Earth",
+      "description": "A refined earth skill. Deals significant Earth damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_146",
+      "name": "Lightning Rod",
+      "tier": "Rare",
+      "damageType": "Lightning",
+      "description": "A refined lightning skill. Deals significant Lightning damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_147",
+      "name": "Pummel",
+      "tier": "Rare",
+      "damageType": "Physical",
+      "description": "A refined physical skill. Deals significant Physical damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_148",
+      "name": "Inferno Burst",
+      "tier": "Rare",
+      "damageType": "Fire",
+      "description": "A refined fire skill. Deals significant Fire damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_149",
+      "name": "Blizzard",
+      "tier": "Rare",
+      "damageType": "Water",
+      "description": "A refined water skill. Deals significant Water damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_150",
+      "name": "Squall Burst",
+      "tier": "Rare",
+      "damageType": "Wind",
+      "description": "A refined wind skill. Deals significant Wind damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_151",
+      "name": "Tremor",
+      "tier": "Rare",
+      "damageType": "Earth",
+      "description": "A refined earth skill. Deals significant Earth damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_152",
+      "name": "Discharge",
+      "tier": "Rare",
+      "damageType": "Lightning",
+      "description": "A refined lightning skill. Deals significant Lightning damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_153",
+      "name": "Hack",
+      "tier": "Rare",
+      "damageType": "Physical",
+      "description": "A refined physical skill. Deals significant Physical damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_154",
+      "name": "Magma Spike",
+      "tier": "Rare",
+      "damageType": "Fire",
+      "description": "A refined fire skill. Deals significant Fire damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_155",
+      "name": "Cryo Lance",
+      "tier": "Rare",
+      "damageType": "Water",
+      "description": "A refined water skill. Deals significant Water damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_156",
+      "name": "Twister",
+      "tier": "Rare",
+      "damageType": "Wind",
+      "description": "A refined wind skill. Deals significant Wind damage and has a chance to apply a debuff."
+    },
+    {
+      "id": "skill_157",
+      "name": "Slash",
+      "tier": "Epic",
+      "damageType": "Physical",
+      "description": "A powerful physical ability. Deals heavy Physical damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_158",
+      "name": "Ember Shot",
+      "tier": "Epic",
+      "damageType": "Fire",
+      "description": "A powerful fire ability. Deals heavy Fire damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_159",
+      "name": "Water Bolt",
+      "tier": "Epic",
+      "damageType": "Water",
+      "description": "A powerful water ability. Deals heavy Water damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_160",
+      "name": "Wind Cutter",
+      "tier": "Epic",
+      "damageType": "Wind",
+      "description": "A powerful wind ability. Deals heavy Wind damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_161",
+      "name": "Rock Throw",
+      "tier": "Epic",
+      "damageType": "Earth",
+      "description": "A powerful earth ability. Deals heavy Earth damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_162",
+      "name": "Thunder Strike",
+      "tier": "Epic",
+      "damageType": "Lightning",
+      "description": "A powerful lightning ability. Deals heavy Lightning damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_163",
+      "name": "Strike",
+      "tier": "Epic",
+      "damageType": "Physical",
+      "description": "A powerful physical ability. Deals heavy Physical damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_164",
+      "name": "Flame Lance",
+      "tier": "Epic",
+      "damageType": "Fire",
+      "description": "A powerful fire ability. Deals heavy Fire damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_165",
+      "name": "Frost Needle",
+      "tier": "Epic",
+      "damageType": "Water",
+      "description": "A powerful water ability. Deals heavy Water damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_166",
+      "name": "Gust Slash",
+      "tier": "Epic",
+      "damageType": "Wind",
+      "description": "A powerful wind ability. Deals heavy Wind damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_167",
+      "name": "Stone Fist",
+      "tier": "Epic",
+      "damageType": "Earth",
+      "description": "A powerful earth ability. Deals heavy Earth damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_168",
+      "name": "Spark",
+      "tier": "Epic",
+      "damageType": "Lightning",
+      "description": "A powerful lightning ability. Deals heavy Lightning damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_169",
+      "name": "Thrust",
+      "tier": "Epic",
+      "damageType": "Physical",
+      "description": "A powerful physical ability. Deals heavy Physical damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_170",
+      "name": "Fireball",
+      "tier": "Epic",
+      "damageType": "Fire",
+      "description": "A powerful fire ability. Deals heavy Fire damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_171",
+      "name": "Ice Shard",
+      "tier": "Epic",
+      "damageType": "Water",
+      "description": "A powerful water ability. Deals heavy Water damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_172",
+      "name": "Breeze Strike",
+      "tier": "Epic",
+      "damageType": "Wind",
+      "description": "A powerful wind ability. Deals heavy Wind damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_173",
+      "name": "Quake Slam",
+      "tier": "Epic",
+      "damageType": "Earth",
+      "description": "A powerful earth ability. Deals heavy Earth damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_174",
+      "name": "Bolt Shot",
+      "tier": "Epic",
+      "damageType": "Lightning",
+      "description": "A powerful lightning ability. Deals heavy Lightning damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_175",
+      "name": "Cleave",
+      "tier": "Epic",
+      "damageType": "Physical",
+      "description": "A powerful physical ability. Deals heavy Physical damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_176",
+      "name": "Scorch",
+      "tier": "Epic",
+      "damageType": "Fire",
+      "description": "A powerful fire ability. Deals heavy Fire damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_177",
+      "name": "Tidal Wave",
+      "tier": "Epic",
+      "damageType": "Water",
+      "description": "A powerful water ability. Deals heavy Water damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_178",
+      "name": "Cyclone Spin",
+      "tier": "Epic",
+      "damageType": "Wind",
+      "description": "A powerful wind ability. Deals heavy Wind damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_179",
+      "name": "Mud Barrage",
+      "tier": "Epic",
+      "damageType": "Earth",
+      "description": "A powerful earth ability. Deals heavy Earth damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_180",
+      "name": "Chain Lightning",
+      "tier": "Epic",
+      "damageType": "Lightning",
+      "description": "A powerful lightning ability. Deals heavy Lightning damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_181",
+      "name": "Bash",
+      "tier": "Epic",
+      "damageType": "Physical",
+      "description": "A powerful physical ability. Deals heavy Physical damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_182",
+      "name": "Ignite",
+      "tier": "Epic",
+      "damageType": "Fire",
+      "description": "A powerful fire ability. Deals heavy Fire damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_183",
+      "name": "Aqua Jet",
+      "tier": "Epic",
+      "damageType": "Water",
+      "description": "A powerful water ability. Deals heavy Water damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_184",
+      "name": "Air Blade",
+      "tier": "Epic",
+      "damageType": "Wind",
+      "description": "A powerful wind ability. Deals heavy Wind damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_185",
+      "name": "Ground Spike",
+      "tier": "Epic",
+      "damageType": "Earth",
+      "description": "A powerful earth ability. Deals heavy Earth damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_186",
+      "name": "Static Charge",
+      "tier": "Epic",
+      "damageType": "Lightning",
+      "description": "A powerful lightning ability. Deals heavy Lightning damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_187",
+      "name": "Smash",
+      "tier": "Epic",
+      "damageType": "Physical",
+      "description": "A powerful physical ability. Deals heavy Physical damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_188",
+      "name": "Blaze Strike",
+      "tier": "Epic",
+      "damageType": "Fire",
+      "description": "A powerful fire ability. Deals heavy Fire damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_189",
+      "name": "Frost Barrage",
+      "tier": "Epic",
+      "damageType": "Water",
+      "description": "A powerful water ability. Deals heavy Water damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_190",
+      "name": "Tempest Rush",
+      "tier": "Epic",
+      "damageType": "Wind",
+      "description": "A powerful wind ability. Deals heavy Wind damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_191",
+      "name": "Boulder Crush",
+      "tier": "Epic",
+      "damageType": "Earth",
+      "description": "A powerful earth ability. Deals heavy Earth damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_192",
+      "name": "Lightning Rod",
+      "tier": "Epic",
+      "damageType": "Lightning",
+      "description": "A powerful lightning ability. Deals heavy Lightning damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_193",
+      "name": "Pummel",
+      "tier": "Epic",
+      "damageType": "Physical",
+      "description": "A powerful physical ability. Deals heavy Physical damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_194",
+      "name": "Inferno Burst",
+      "tier": "Epic",
+      "damageType": "Fire",
+      "description": "A powerful fire ability. Deals heavy Fire damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_195",
+      "name": "Blizzard",
+      "tier": "Epic",
+      "damageType": "Water",
+      "description": "A powerful water ability. Deals heavy Water damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_196",
+      "name": "Squall Burst",
+      "tier": "Epic",
+      "damageType": "Wind",
+      "description": "A powerful wind ability. Deals heavy Wind damage and inflicts a strong debuff on the target."
+    },
+    {
+      "id": "skill_197",
+      "name": "Slash",
+      "tier": "Unique",
+      "damageType": "Physical",
+      "description": "A unique physical technique mastered by few. Deals very high Physical damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_198",
+      "name": "Ember Shot",
+      "tier": "Unique",
+      "damageType": "Fire",
+      "description": "A unique fire technique mastered by few. Deals very high Fire damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_199",
+      "name": "Water Bolt",
+      "tier": "Unique",
+      "damageType": "Water",
+      "description": "A unique water technique mastered by few. Deals very high Water damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_200",
+      "name": "Wind Cutter",
+      "tier": "Unique",
+      "damageType": "Wind",
+      "description": "A unique wind technique mastered by few. Deals very high Wind damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_201",
+      "name": "Rock Throw",
+      "tier": "Unique",
+      "damageType": "Earth",
+      "description": "A unique earth technique mastered by few. Deals very high Earth damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_202",
+      "name": "Thunder Strike",
+      "tier": "Unique",
+      "damageType": "Lightning",
+      "description": "A unique lightning technique mastered by few. Deals very high Lightning damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_203",
+      "name": "Strike",
+      "tier": "Unique",
+      "damageType": "Physical",
+      "description": "A unique physical technique mastered by few. Deals very high Physical damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_204",
+      "name": "Flame Lance",
+      "tier": "Unique",
+      "damageType": "Fire",
+      "description": "A unique fire technique mastered by few. Deals very high Fire damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_205",
+      "name": "Frost Needle",
+      "tier": "Unique",
+      "damageType": "Water",
+      "description": "A unique water technique mastered by few. Deals very high Water damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_206",
+      "name": "Gust Slash",
+      "tier": "Unique",
+      "damageType": "Wind",
+      "description": "A unique wind technique mastered by few. Deals very high Wind damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_207",
+      "name": "Stone Fist",
+      "tier": "Unique",
+      "damageType": "Earth",
+      "description": "A unique earth technique mastered by few. Deals very high Earth damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_208",
+      "name": "Spark",
+      "tier": "Unique",
+      "damageType": "Lightning",
+      "description": "A unique lightning technique mastered by few. Deals very high Lightning damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_209",
+      "name": "Thrust",
+      "tier": "Unique",
+      "damageType": "Physical",
+      "description": "A unique physical technique mastered by few. Deals very high Physical damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_210",
+      "name": "Fireball",
+      "tier": "Unique",
+      "damageType": "Fire",
+      "description": "A unique fire technique mastered by few. Deals very high Fire damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_211",
+      "name": "Ice Shard",
+      "tier": "Unique",
+      "damageType": "Water",
+      "description": "A unique water technique mastered by few. Deals very high Water damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_212",
+      "name": "Breeze Strike",
+      "tier": "Unique",
+      "damageType": "Wind",
+      "description": "A unique wind technique mastered by few. Deals very high Wind damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_213",
+      "name": "Quake Slam",
+      "tier": "Unique",
+      "damageType": "Earth",
+      "description": "A unique earth technique mastered by few. Deals very high Earth damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_214",
+      "name": "Bolt Shot",
+      "tier": "Unique",
+      "damageType": "Lightning",
+      "description": "A unique lightning technique mastered by few. Deals very high Lightning damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_215",
+      "name": "Cleave",
+      "tier": "Unique",
+      "damageType": "Physical",
+      "description": "A unique physical technique mastered by few. Deals very high Physical damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_216",
+      "name": "Scorch",
+      "tier": "Unique",
+      "damageType": "Fire",
+      "description": "A unique fire technique mastered by few. Deals very high Fire damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_217",
+      "name": "Tidal Wave",
+      "tier": "Unique",
+      "damageType": "Water",
+      "description": "A unique water technique mastered by few. Deals very high Water damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_218",
+      "name": "Cyclone Spin",
+      "tier": "Unique",
+      "damageType": "Wind",
+      "description": "A unique wind technique mastered by few. Deals very high Wind damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_219",
+      "name": "Mud Barrage",
+      "tier": "Unique",
+      "damageType": "Earth",
+      "description": "A unique earth technique mastered by few. Deals very high Earth damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_220",
+      "name": "Chain Lightning",
+      "tier": "Unique",
+      "damageType": "Lightning",
+      "description": "A unique lightning technique mastered by few. Deals very high Lightning damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_221",
+      "name": "Bash",
+      "tier": "Unique",
+      "damageType": "Physical",
+      "description": "A unique physical technique mastered by few. Deals very high Physical damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_222",
+      "name": "Ignite",
+      "tier": "Unique",
+      "damageType": "Fire",
+      "description": "A unique fire technique mastered by few. Deals very high Fire damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_223",
+      "name": "Aqua Jet",
+      "tier": "Unique",
+      "damageType": "Water",
+      "description": "A unique water technique mastered by few. Deals very high Water damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_224",
+      "name": "Air Blade",
+      "tier": "Unique",
+      "damageType": "Wind",
+      "description": "A unique wind technique mastered by few. Deals very high Wind damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_225",
+      "name": "Ground Spike",
+      "tier": "Unique",
+      "damageType": "Earth",
+      "description": "A unique earth technique mastered by few. Deals very high Earth damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_226",
+      "name": "Static Charge",
+      "tier": "Unique",
+      "damageType": "Lightning",
+      "description": "A unique lightning technique mastered by few. Deals very high Lightning damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_227",
+      "name": "Smash",
+      "tier": "Unique",
+      "damageType": "Physical",
+      "description": "A unique physical technique mastered by few. Deals very high Physical damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_228",
+      "name": "Blaze Strike",
+      "tier": "Unique",
+      "damageType": "Fire",
+      "description": "A unique fire technique mastered by few. Deals very high Fire damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_229",
+      "name": "Frost Barrage",
+      "tier": "Unique",
+      "damageType": "Water",
+      "description": "A unique water technique mastered by few. Deals very high Water damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_230",
+      "name": "Tempest Rush",
+      "tier": "Unique",
+      "damageType": "Wind",
+      "description": "A unique wind technique mastered by few. Deals very high Wind damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_231",
+      "name": "Boulder Crush",
+      "tier": "Unique",
+      "damageType": "Earth",
+      "description": "A unique earth technique mastered by few. Deals very high Earth damage with a powerful secondary effect."
+    },
+    {
+      "id": "skill_232",
+      "name": "Slash",
+      "tier": "Legend",
+      "damageType": "Physical",
+      "description": "A legendary physical skill passed down through generations. Deals massive Physical damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_233",
+      "name": "Ember Shot",
+      "tier": "Legend",
+      "damageType": "Fire",
+      "description": "A legendary fire skill passed down through generations. Deals massive Fire damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_234",
+      "name": "Water Bolt",
+      "tier": "Legend",
+      "damageType": "Water",
+      "description": "A legendary water skill passed down through generations. Deals massive Water damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_235",
+      "name": "Wind Cutter",
+      "tier": "Legend",
+      "damageType": "Wind",
+      "description": "A legendary wind skill passed down through generations. Deals massive Wind damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_236",
+      "name": "Rock Throw",
+      "tier": "Legend",
+      "damageType": "Earth",
+      "description": "A legendary earth skill passed down through generations. Deals massive Earth damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_237",
+      "name": "Thunder Strike",
+      "tier": "Legend",
+      "damageType": "Lightning",
+      "description": "A legendary lightning skill passed down through generations. Deals massive Lightning damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_238",
+      "name": "Strike",
+      "tier": "Legend",
+      "damageType": "Physical",
+      "description": "A legendary physical skill passed down through generations. Deals massive Physical damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_239",
+      "name": "Flame Lance",
+      "tier": "Legend",
+      "damageType": "Fire",
+      "description": "A legendary fire skill passed down through generations. Deals massive Fire damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_240",
+      "name": "Frost Needle",
+      "tier": "Legend",
+      "damageType": "Water",
+      "description": "A legendary water skill passed down through generations. Deals massive Water damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_241",
+      "name": "Gust Slash",
+      "tier": "Legend",
+      "damageType": "Wind",
+      "description": "A legendary wind skill passed down through generations. Deals massive Wind damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_242",
+      "name": "Stone Fist",
+      "tier": "Legend",
+      "damageType": "Earth",
+      "description": "A legendary earth skill passed down through generations. Deals massive Earth damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_243",
+      "name": "Spark",
+      "tier": "Legend",
+      "damageType": "Lightning",
+      "description": "A legendary lightning skill passed down through generations. Deals massive Lightning damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_244",
+      "name": "Thrust",
+      "tier": "Legend",
+      "damageType": "Physical",
+      "description": "A legendary physical skill passed down through generations. Deals massive Physical damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_245",
+      "name": "Fireball",
+      "tier": "Legend",
+      "damageType": "Fire",
+      "description": "A legendary fire skill passed down through generations. Deals massive Fire damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_246",
+      "name": "Ice Shard",
+      "tier": "Legend",
+      "damageType": "Water",
+      "description": "A legendary water skill passed down through generations. Deals massive Water damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_247",
+      "name": "Breeze Strike",
+      "tier": "Legend",
+      "damageType": "Wind",
+      "description": "A legendary wind skill passed down through generations. Deals massive Wind damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_248",
+      "name": "Quake Slam",
+      "tier": "Legend",
+      "damageType": "Earth",
+      "description": "A legendary earth skill passed down through generations. Deals massive Earth damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_249",
+      "name": "Bolt Shot",
+      "tier": "Legend",
+      "damageType": "Lightning",
+      "description": "A legendary lightning skill passed down through generations. Deals massive Lightning damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_250",
+      "name": "Cleave",
+      "tier": "Legend",
+      "damageType": "Physical",
+      "description": "A legendary physical skill passed down through generations. Deals massive Physical damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_251",
+      "name": "Scorch",
+      "tier": "Legend",
+      "damageType": "Fire",
+      "description": "A legendary fire skill passed down through generations. Deals massive Fire damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_252",
+      "name": "Tidal Wave",
+      "tier": "Legend",
+      "damageType": "Water",
+      "description": "A legendary water skill passed down through generations. Deals massive Water damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_253",
+      "name": "Cyclone Spin",
+      "tier": "Legend",
+      "damageType": "Wind",
+      "description": "A legendary wind skill passed down through generations. Deals massive Wind damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_254",
+      "name": "Mud Barrage",
+      "tier": "Legend",
+      "damageType": "Earth",
+      "description": "A legendary earth skill passed down through generations. Deals massive Earth damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_255",
+      "name": "Chain Lightning",
+      "tier": "Legend",
+      "damageType": "Lightning",
+      "description": "A legendary lightning skill passed down through generations. Deals massive Lightning damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_256",
+      "name": "Bash",
+      "tier": "Legend",
+      "damageType": "Physical",
+      "description": "A legendary physical skill passed down through generations. Deals massive Physical damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_257",
+      "name": "Ignite",
+      "tier": "Legend",
+      "damageType": "Fire",
+      "description": "A legendary fire skill passed down through generations. Deals massive Fire damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_258",
+      "name": "Aqua Jet",
+      "tier": "Legend",
+      "damageType": "Water",
+      "description": "A legendary water skill passed down through generations. Deals massive Water damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_259",
+      "name": "Air Blade",
+      "tier": "Legend",
+      "damageType": "Wind",
+      "description": "A legendary wind skill passed down through generations. Deals massive Wind damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_260",
+      "name": "Ground Spike",
+      "tier": "Legend",
+      "damageType": "Earth",
+      "description": "A legendary earth skill passed down through generations. Deals massive Earth damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_261",
+      "name": "Static Charge",
+      "tier": "Legend",
+      "damageType": "Lightning",
+      "description": "A legendary lightning skill passed down through generations. Deals massive Lightning damage and greatly weakens the target."
+    },
+    {
+      "id": "skill_262",
+      "name": "Slash",
+      "tier": "Mythic",
+      "damageType": "Physical",
+      "description": "A mythic physical power drawn from ancient forces. Deals enormous Physical damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_263",
+      "name": "Ember Shot",
+      "tier": "Mythic",
+      "damageType": "Fire",
+      "description": "A mythic fire power drawn from ancient forces. Deals enormous Fire damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_264",
+      "name": "Water Bolt",
+      "tier": "Mythic",
+      "damageType": "Water",
+      "description": "A mythic water power drawn from ancient forces. Deals enormous Water damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_265",
+      "name": "Wind Cutter",
+      "tier": "Mythic",
+      "damageType": "Wind",
+      "description": "A mythic wind power drawn from ancient forces. Deals enormous Wind damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_266",
+      "name": "Rock Throw",
+      "tier": "Mythic",
+      "damageType": "Earth",
+      "description": "A mythic earth power drawn from ancient forces. Deals enormous Earth damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_267",
+      "name": "Thunder Strike",
+      "tier": "Mythic",
+      "damageType": "Lightning",
+      "description": "A mythic lightning power drawn from ancient forces. Deals enormous Lightning damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_268",
+      "name": "Strike",
+      "tier": "Mythic",
+      "damageType": "Physical",
+      "description": "A mythic physical power drawn from ancient forces. Deals enormous Physical damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_269",
+      "name": "Flame Lance",
+      "tier": "Mythic",
+      "damageType": "Fire",
+      "description": "A mythic fire power drawn from ancient forces. Deals enormous Fire damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_270",
+      "name": "Frost Needle",
+      "tier": "Mythic",
+      "damageType": "Water",
+      "description": "A mythic water power drawn from ancient forces. Deals enormous Water damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_271",
+      "name": "Gust Slash",
+      "tier": "Mythic",
+      "damageType": "Wind",
+      "description": "A mythic wind power drawn from ancient forces. Deals enormous Wind damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_272",
+      "name": "Stone Fist",
+      "tier": "Mythic",
+      "damageType": "Earth",
+      "description": "A mythic earth power drawn from ancient forces. Deals enormous Earth damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_273",
+      "name": "Spark",
+      "tier": "Mythic",
+      "damageType": "Lightning",
+      "description": "A mythic lightning power drawn from ancient forces. Deals enormous Lightning damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_274",
+      "name": "Thrust",
+      "tier": "Mythic",
+      "damageType": "Physical",
+      "description": "A mythic physical power drawn from ancient forces. Deals enormous Physical damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_275",
+      "name": "Fireball",
+      "tier": "Mythic",
+      "damageType": "Fire",
+      "description": "A mythic fire power drawn from ancient forces. Deals enormous Fire damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_276",
+      "name": "Ice Shard",
+      "tier": "Mythic",
+      "damageType": "Water",
+      "description": "A mythic water power drawn from ancient forces. Deals enormous Water damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_277",
+      "name": "Breeze Strike",
+      "tier": "Mythic",
+      "damageType": "Wind",
+      "description": "A mythic wind power drawn from ancient forces. Deals enormous Wind damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_278",
+      "name": "Quake Slam",
+      "tier": "Mythic",
+      "damageType": "Earth",
+      "description": "A mythic earth power drawn from ancient forces. Deals enormous Earth damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_279",
+      "name": "Bolt Shot",
+      "tier": "Mythic",
+      "damageType": "Lightning",
+      "description": "A mythic lightning power drawn from ancient forces. Deals enormous Lightning damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_280",
+      "name": "Cleave",
+      "tier": "Mythic",
+      "damageType": "Physical",
+      "description": "A mythic physical power drawn from ancient forces. Deals enormous Physical damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_281",
+      "name": "Scorch",
+      "tier": "Mythic",
+      "damageType": "Fire",
+      "description": "A mythic fire power drawn from ancient forces. Deals enormous Fire damage and can hit multiple targets."
+    },
+    {
+      "id": "skill_282",
+      "name": "Slash",
+      "tier": "Ancient",
+      "damageType": "Physical",
+      "description": "An ancient physical art rediscovered from the age of heroes. Deals tremendous Physical damage and applies a devastating curse."
+    },
+    {
+      "id": "skill_283",
+      "name": "Ember Shot",
+      "tier": "Ancient",
+      "damageType": "Fire",
+      "description": "An ancient fire art rediscovered from the age of heroes. Deals tremendous Fire damage and applies a devastating curse."
+    },
+    {
+      "id": "skill_284",
+      "name": "Water Bolt",
+      "tier": "Ancient",
+      "damageType": "Water",
+      "description": "An ancient water art rediscovered from the age of heroes. Deals tremendous Water damage and applies a devastating curse."
+    },
+    {
+      "id": "skill_285",
+      "name": "Wind Cutter",
+      "tier": "Ancient",
+      "damageType": "Wind",
+      "description": "An ancient wind art rediscovered from the age of heroes. Deals tremendous Wind damage and applies a devastating curse."
+    },
+    {
+      "id": "skill_286",
+      "name": "Rock Throw",
+      "tier": "Ancient",
+      "damageType": "Earth",
+      "description": "An ancient earth art rediscovered from the age of heroes. Deals tremendous Earth damage and applies a devastating curse."
+    },
+    {
+      "id": "skill_287",
+      "name": "Thunder Strike",
+      "tier": "Ancient",
+      "damageType": "Lightning",
+      "description": "An ancient lightning art rediscovered from the age of heroes. Deals tremendous Lightning damage and applies a devastating curse."
+    },
+    {
+      "id": "skill_288",
+      "name": "Strike",
+      "tier": "Ancient",
+      "damageType": "Physical",
+      "description": "An ancient physical art rediscovered from the age of heroes. Deals tremendous Physical damage and applies a devastating curse."
+    },
+    {
+      "id": "skill_289",
+      "name": "Flame Lance",
+      "tier": "Ancient",
+      "damageType": "Fire",
+      "description": "An ancient fire art rediscovered from the age of heroes. Deals tremendous Fire damage and applies a devastating curse."
+    },
+    {
+      "id": "skill_290",
+      "name": "Frost Needle",
+      "tier": "Ancient",
+      "damageType": "Water",
+      "description": "An ancient water art rediscovered from the age of heroes. Deals tremendous Water damage and applies a devastating curse."
+    },
+    {
+      "id": "skill_291",
+      "name": "Gust Slash",
+      "tier": "Ancient",
+      "damageType": "Wind",
+      "description": "An ancient wind art rediscovered from the age of heroes. Deals tremendous Wind damage and applies a devastating curse."
+    },
+    {
+      "id": "skill_292",
+      "name": "Slash",
+      "tier": "Celestial",
+      "damageType": "Physical",
+      "description": "A celestial physical technique channeling divine energy. Deals overwhelming Physical damage and leaves an enduring mark on foes."
+    },
+    {
+      "id": "skill_293",
+      "name": "Ember Shot",
+      "tier": "Celestial",
+      "damageType": "Fire",
+      "description": "A celestial fire technique channeling divine energy. Deals overwhelming Fire damage and leaves an enduring mark on foes."
+    },
+    {
+      "id": "skill_294",
+      "name": "Water Bolt",
+      "tier": "Celestial",
+      "damageType": "Water",
+      "description": "A celestial water technique channeling divine energy. Deals overwhelming Water damage and leaves an enduring mark on foes."
+    },
+    {
+      "id": "skill_295",
+      "name": "Wind Cutter",
+      "tier": "Celestial",
+      "damageType": "Wind",
+      "description": "A celestial wind technique channeling divine energy. Deals overwhelming Wind damage and leaves an enduring mark on foes."
+    },
+    {
+      "id": "skill_296",
+      "name": "Rock Throw",
+      "tier": "Celestial",
+      "damageType": "Earth",
+      "description": "A celestial earth technique channeling divine energy. Deals overwhelming Earth damage and leaves an enduring mark on foes."
+    },
+    {
+      "id": "skill_297",
+      "name": "Thunder Strike",
+      "tier": "Celestial",
+      "damageType": "Lightning",
+      "description": "A celestial lightning technique channeling divine energy. Deals overwhelming Lightning damage and leaves an enduring mark on foes."
+    },
+    {
+      "id": "skill_298",
+      "name": "Strike",
+      "tier": "Celestial",
+      "damageType": "Physical",
+      "description": "A celestial physical technique channeling divine energy. Deals overwhelming Physical damage and leaves an enduring mark on foes."
+    },
+    {
+      "id": "skill_299",
+      "name": "Slash",
+      "tier": "Immortal",
+      "damageType": "Physical",
+      "description": "An immortal physical skill transcending mortal limits. Deals catastrophic Physical damage and annihilates the target's defences."
+    },
+    {
+      "id": "skill_300",
+      "name": "Ember Shot",
+      "tier": "Immortal",
+      "damageType": "Fire",
+      "description": "An immortal fire skill transcending mortal limits. Deals catastrophic Fire damage and annihilates the target's defences."
+    },
+    {
+      "id": "skill_301",
+      "name": "Water Bolt",
+      "tier": "Immortal",
+      "damageType": "Water",
+      "description": "An immortal water skill transcending mortal limits. Deals catastrophic Water damage and annihilates the target's defences."
+    }
+  ]
+}
