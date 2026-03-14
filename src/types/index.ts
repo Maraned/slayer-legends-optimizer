@@ -90,9 +90,16 @@ export type {
   Weapon,
   SoulWeapon,
   SoulWeaponEffect,
+  SoulElement,
   Accessory,
   AccessoryCategory,
+  AccessorySlot,
+  AccessoryBonusType,
+  LevelMultiplier,
+  CostThreshold,
+  CostFactors,
   EquipmentState,
+  EquipmentData,
 } from './equipment';
 
 export type {

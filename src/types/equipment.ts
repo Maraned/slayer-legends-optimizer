@@ -55,11 +55,18 @@ export interface SoulWeaponEffect {
 }
 
 /**
+ * Elemental affinity of a soul weapon.
+ */
+export type SoulElement = 'Fire' | 'Water' | 'Earth' | 'Wind' | 'Light' | 'Dark';
+
+/**
  * The Soul Weapon section of the EQUIPMENT sheet.
  */
 export interface SoulWeapon {
   /** Soul Weapon name */
   name: string;
+  /** Elemental affinity */
+  element?: SoulElement;
   /** Engraving progress toward the next effect unlock (0–100 or raw count) */
   engravingProgress: number;
   /** Unlocked effects from engraving */
@@ -70,6 +77,25 @@ export interface SoulWeapon {
  * The three top-level groupings of accessories in the EQUIPMENT sheet.
  */
 export type AccessoryCategory = 'class' | 'relic' | 'accessory';
+
+/**
+ * Equipment slot an accessory occupies.
+ */
+export type AccessorySlot = 'Ring' | 'Necklace' | 'Belt' | 'Earring' | 'Bracelet';
+
+/**
+ * Stat type boosted by an accessory.
+ */
+export type AccessoryBonusType =
+  | 'ATK'
+  | 'HP'
+  | 'DEF'
+  | 'Crit%'
+  | 'CritDMG'
+  | 'Gold'
+  | 'EXP'
+  | 'Dodge'
+  | 'Accuracy';
 
 /**
  * A single accessory row from the EQUIPMENT sheet.
@@ -83,12 +109,53 @@ export interface Accessory {
   owned: boolean;
   /** Current upgrade/enhancement level */
   level: number;
+  /** Stat this accessory boosts */
+  bonusType?: AccessoryBonusType;
   /** Stat bonus or description granted by this accessory */
   effect: string;
 }
 
 /**
- * Full equipment state corresponding to the EQUIPMENT sheet.
+ * One row of the level multiplier table (1,400 rows, levels 1–1400).
+ * Multipliers are applied to base stats at each enhancement level.
+ */
+export interface LevelMultiplier {
+  /** Enhancement level (1–1400) */
+  level: number;
+  /** Attack multiplier at this level (e.g. 2.5 = 2.5× base ATK) */
+  atkMultiplier: number;
+  /** HP multiplier at this level */
+  hpMultiplier: number;
+  /** Gold required to enhance from (level − 1) to this level */
+  goldCost: number;
+}
+
+/**
+ * Threshold band inside the cost-factor table.
+ */
+export interface CostThreshold {
+  /** First enhancement level in this band (inclusive) */
+  fromLevel: number;
+  /** Last enhancement level in this band (inclusive) */
+  toLevel: number;
+  /** Extra gold multiplier applied within this band */
+  goldMultiplier: number;
+}
+
+/**
+ * Global scaling parameters from EQUIPMENT DATA cost factor table.
+ */
+export interface CostFactors {
+  /** Gold cost at enhancement level 1 */
+  baseGoldCost: number;
+  /** Per-level multiplicative growth rate for gold (e.g. 1.05 = +5% / level) */
+  goldGrowthRate: number;
+  /** Level bands where cost scaling steps up */
+  thresholds: CostThreshold[];
+}
+
+/**
+ * Full equipment state corresponding to the EQUIPMENT sheet (user data).
  */
 export interface EquipmentState {
   /** All weapons (owned and unowned) */
@@ -99,4 +166,13 @@ export interface EquipmentState {
   accessories: Accessory[];
   /** Current Awakened Orr enhancement level */
   awakenedOrrLevel: number;
+}
+
+/**
+ * Root shape of the EQUIPMENT_DATA JSON file (game data).
+ */
+export interface EquipmentData {
+  /** Sorted ascending by level; contains entries for levels 1–1400 */
+  levelMultipliers: LevelMultiplier[];
+  costFactors: CostFactors;
 }
