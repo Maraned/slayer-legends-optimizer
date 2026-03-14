@@ -6,6 +6,52 @@ export type {
 } from './appearance';
 
 export type {
+  ElementalDamageSource,
+  ElementAccessory,
+  ElementalAmpBonuses,
+  AmpCalculation,
+  BlackOrbState,
+} from './black-orb';
+
+export type {
+  TOMResourceType,
+  TOMNodeCategory,
+  TOMEffectType,
+  TOMNodeCost,
+  TOMNodeLevel,
+  TOMNode,
+  TOMDependency,
+  TOMCostSummary,
+  TOMState,
+} from './tom';
+
+export type {
+  EnhanceableStatKey,
+  EnhanceLevelEntry,
+  EnhanceableStats,
+  GrowthStatEntry,
+  GrowthStats,
+  LatentPowerStatKey,
+  LatentPowerPageEntry,
+  LatentPower,
+  PromotionAbility,
+  Promotion,
+  SlayerLevel,
+  GrowingKnowledge,
+  CharacterState,
+} from './character';
+
+export type {
+  ZodiacConstellation,
+  ConstellationBuffType,
+  FarmingMode,
+  StarNode,
+  ConstellationBuffTotals,
+  ConstellationState,
+  ConstellationSheetState,
+} from './constellation';
+
+export type {
   AreaId,
   ZoneId,
   Element,
@@ -22,3 +68,52 @@ export type {
   StageIndex,
   StageSummaryIndex,
 } from './stage';
+
+export type {
+  CompanionName,
+  Element as CompanionElement,
+  BuffType,
+  AdvancementStepOrdinal,
+  AdvancementStep,
+  EllieSpecialBuffs,
+  ZekeSpecialBuffs,
+  MihoSpecialBuffs,
+  LunaSpecialBuffs,
+  SpecialBuffs,
+  Companion,
+  CompanionsState,
+} from './companions';
+
+export { WeaponTier } from './equipment';
+
+export type {
+  Weapon,
+  SoulWeapon,
+  SoulWeaponEffect,
+  Accessory,
+  AccessoryCategory,
+  EquipmentState,
+} from './equipment';
+
+export type {
+  SkillsState,
+  MemoryTreeState,
+  ConstellationState,
+  BlackOrbState,
+  StageSelectionState,
+  UserSaveState,
+} from './save-state';
+
+export type {
+  SkillTier,
+  SkillDamageType,
+  SkillData,
+  SkillSlot,
+  ElementalMultipliers,
+  Proficiency,
+  SkillMasteryPageIndex,
+  SkillMasteryNodeData,
+  SkillMasteryNodeState,
+  SkillMasteryPage,
+  SkillMasteryState,
+} from './skills';
