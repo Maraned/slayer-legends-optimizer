@@ -23,6 +23,7 @@ export type {
   TOMDependency,
   TOMCostSummary,
   TOMState,
+  MemoryTreeState,
 } from './tom';
 
 export type {
@@ -104,9 +105,6 @@ export type {
 
 export type {
   SkillsState,
-  MemoryTreeState,
-  ConstellationState,
-  BlackOrbState,
   StageSelectionState,
   UserSaveState,
 } from './save-state';
