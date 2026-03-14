@@ -1,0 +1,746 @@
+{
+  "CONSTELLATIONS": [
+    {
+      "zodiac": "Aries",
+      "starsSpent": 0,
+      "nodes": [
+        {
+          "id": "aries-1",
+          "name": "Ram's Charge",
+          "constellation": "Aries",
+          "buffType": "ATK",
+          "valuePerLevel": 0.5,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "aries-2",
+          "name": "Blazing Horn",
+          "constellation": "Aries",
+          "buffType": "Crit %",
+          "valuePerLevel": 0.3,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "aries-3",
+          "name": "Warrior's Fury",
+          "constellation": "Aries",
+          "buffType": "Crit DMG",
+          "valuePerLevel": 0.5,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "aries-4",
+          "name": "Headstrong Strike",
+          "constellation": "Aries",
+          "buffType": "ATK",
+          "valuePerLevel": 1.0,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 3
+        },
+        {
+          "id": "aries-5",
+          "name": "Pioneer's Resolve",
+          "constellation": "Aries",
+          "buffType": "All Stats",
+          "valuePerLevel": 0.2,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 4
+        }
+      ]
+    },
+    {
+      "zodiac": "Taurus",
+      "starsSpent": 0,
+      "nodes": [
+        {
+          "id": "taurus-1",
+          "name": "Ironhide",
+          "constellation": "Taurus",
+          "buffType": "HP",
+          "valuePerLevel": 1.0,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "taurus-2",
+          "name": "Stone Skin",
+          "constellation": "Taurus",
+          "buffType": "DEF",
+          "valuePerLevel": 0.5,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "taurus-3",
+          "name": "Bull's Endurance",
+          "constellation": "Taurus",
+          "buffType": "HP Recovery",
+          "valuePerLevel": 0.3,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "taurus-4",
+          "name": "Earthbound Fortitude",
+          "constellation": "Taurus",
+          "buffType": "HP",
+          "valuePerLevel": 2.0,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 3
+        },
+        {
+          "id": "taurus-5",
+          "name": "Immovable Wall",
+          "constellation": "Taurus",
+          "buffType": "DEF",
+          "valuePerLevel": 1.0,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 4
+        },
+        {
+          "id": "taurus-6",
+          "name": "Verdant Vigor",
+          "constellation": "Taurus",
+          "buffType": "All Stats",
+          "valuePerLevel": 0.2,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 5
+        }
+      ]
+    },
+    {
+      "zodiac": "Gemini",
+      "starsSpent": 0,
+      "nodes": [
+        {
+          "id": "gemini-1",
+          "name": "Twin Edge",
+          "constellation": "Gemini",
+          "buffType": "Crit %",
+          "valuePerLevel": 0.4,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "gemini-2",
+          "name": "Dual Strike",
+          "constellation": "Gemini",
+          "buffType": "Crit DMG",
+          "valuePerLevel": 0.6,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "gemini-3",
+          "name": "Swift Mind",
+          "constellation": "Gemini",
+          "buffType": "Accuracy",
+          "valuePerLevel": 0.3,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "gemini-4",
+          "name": "Mirror Image",
+          "constellation": "Gemini",
+          "buffType": "Crit %",
+          "valuePerLevel": 0.8,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 3
+        },
+        {
+          "id": "gemini-5",
+          "name": "Duality Surge",
+          "constellation": "Gemini",
+          "buffType": "Crit DMG",
+          "valuePerLevel": 1.0,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 4
+        }
+      ]
+    },
+    {
+      "zodiac": "Cancer",
+      "starsSpent": 0,
+      "nodes": [
+        {
+          "id": "cancer-1",
+          "name": "Shell Guard",
+          "constellation": "Cancer",
+          "buffType": "DEF",
+          "valuePerLevel": 0.5,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "cancer-2",
+          "name": "Tidal Mending",
+          "constellation": "Cancer",
+          "buffType": "HP Recovery",
+          "valuePerLevel": 0.4,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "cancer-3",
+          "name": "Moonlit Carapace",
+          "constellation": "Cancer",
+          "buffType": "HP",
+          "valuePerLevel": 1.0,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "cancer-4",
+          "name": "Regenerative Shell",
+          "constellation": "Cancer",
+          "buffType": "HP Recovery",
+          "valuePerLevel": 0.8,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 3
+        },
+        {
+          "id": "cancer-5",
+          "name": "Protective Instinct",
+          "constellation": "Cancer",
+          "buffType": "All Stats",
+          "valuePerLevel": 0.2,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 5
+        }
+      ]
+    },
+    {
+      "zodiac": "Leo",
+      "starsSpent": 0,
+      "nodes": [
+        {
+          "id": "leo-1",
+          "name": "Lion's Roar",
+          "constellation": "Leo",
+          "buffType": "ATK",
+          "valuePerLevel": 0.6,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "leo-2",
+          "name": "Solar Mane",
+          "constellation": "Leo",
+          "buffType": "Crit DMG",
+          "valuePerLevel": 0.5,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "leo-3",
+          "name": "Royal Presence",
+          "constellation": "Leo",
+          "buffType": "All Stats",
+          "valuePerLevel": 0.3,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 3
+        },
+        {
+          "id": "leo-4",
+          "name": "Pride of the Pride",
+          "constellation": "Leo",
+          "buffType": "ATK",
+          "valuePerLevel": 1.2,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 3
+        },
+        {
+          "id": "leo-5",
+          "name": "Blazing Sovereignty",
+          "constellation": "Leo",
+          "buffType": "Death Strike %",
+          "valuePerLevel": 0.4,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 4
+        },
+        {
+          "id": "leo-6",
+          "name": "Apex Predator",
+          "constellation": "Leo",
+          "buffType": "All Stats",
+          "valuePerLevel": 0.4,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 5
+        }
+      ]
+    },
+    {
+      "zodiac": "Virgo",
+      "starsSpent": 0,
+      "nodes": [
+        {
+          "id": "virgo-1",
+          "name": "Harvest Mind",
+          "constellation": "Virgo",
+          "buffType": "Extra EXP",
+          "valuePerLevel": 0.5,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "virgo-2",
+          "name": "Precise Eye",
+          "constellation": "Virgo",
+          "buffType": "Accuracy",
+          "valuePerLevel": 0.4,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "virgo-3",
+          "name": "Analytical Strike",
+          "constellation": "Virgo",
+          "buffType": "ATK",
+          "valuePerLevel": 0.4,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "virgo-4",
+          "name": "Scholar's Diligence",
+          "constellation": "Virgo",
+          "buffType": "Extra EXP",
+          "valuePerLevel": 1.0,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 3
+        },
+        {
+          "id": "virgo-5",
+          "name": "Perfect Efficiency",
+          "constellation": "Virgo",
+          "buffType": "Monster Gold",
+          "valuePerLevel": 0.5,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 4
+        }
+      ]
+    },
+    {
+      "zodiac": "Libra",
+      "starsSpent": 0,
+      "nodes": [
+        {
+          "id": "libra-1",
+          "name": "Balanced Scales",
+          "constellation": "Libra",
+          "buffType": "All Stats",
+          "valuePerLevel": 0.3,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "libra-2",
+          "name": "Evasive Grace",
+          "constellation": "Libra",
+          "buffType": "Dodge",
+          "valuePerLevel": 0.3,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "libra-3",
+          "name": "Harmony Strike",
+          "constellation": "Libra",
+          "buffType": "ATK",
+          "valuePerLevel": 0.4,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "libra-4",
+          "name": "Justice Veil",
+          "constellation": "Libra",
+          "buffType": "DEF",
+          "valuePerLevel": 0.5,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "libra-5",
+          "name": "Equilibrium Surge",
+          "constellation": "Libra",
+          "buffType": "All Stats",
+          "valuePerLevel": 0.5,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 4
+        },
+        {
+          "id": "libra-6",
+          "name": "Weightless Step",
+          "constellation": "Libra",
+          "buffType": "Dodge",
+          "valuePerLevel": 0.6,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 3
+        }
+      ]
+    },
+    {
+      "zodiac": "Scorpio",
+      "starsSpent": 0,
+      "nodes": [
+        {
+          "id": "scorpio-1",
+          "name": "Venom Sting",
+          "constellation": "Scorpio",
+          "buffType": "Death Strike",
+          "valuePerLevel": 0.1,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "scorpio-2",
+          "name": "Lethal Precision",
+          "constellation": "Scorpio",
+          "buffType": "Crit %",
+          "valuePerLevel": 0.4,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "scorpio-3",
+          "name": "Shadow Fangs",
+          "constellation": "Scorpio",
+          "buffType": "Death Strike %",
+          "valuePerLevel": 0.5,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "scorpio-4",
+          "name": "Dark Obsession",
+          "constellation": "Scorpio",
+          "buffType": "Crit DMG",
+          "valuePerLevel": 0.6,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 3
+        },
+        {
+          "id": "scorpio-5",
+          "name": "Deathmark",
+          "constellation": "Scorpio",
+          "buffType": "Death Strike",
+          "valuePerLevel": 0.2,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 4
+        },
+        {
+          "id": "scorpio-6",
+          "name": "Scorpion's Curse",
+          "constellation": "Scorpio",
+          "buffType": "Death Strike %",
+          "valuePerLevel": 1.0,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 5
+        }
+      ]
+    },
+    {
+      "zodiac": "Sagittarius",
+      "starsSpent": 0,
+      "nodes": [
+        {
+          "id": "sagittarius-1",
+          "name": "Hunter's Bounty",
+          "constellation": "Sagittarius",
+          "buffType": "Monster Gold",
+          "valuePerLevel": 0.6,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "sagittarius-2",
+          "name": "Far Shot",
+          "constellation": "Sagittarius",
+          "buffType": "Accuracy",
+          "valuePerLevel": 0.4,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "sagittarius-3",
+          "name": "Wanderer's Gain",
+          "constellation": "Sagittarius",
+          "buffType": "Extra EXP",
+          "valuePerLevel": 0.5,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "sagittarius-4",
+          "name": "Arrow of Fortune",
+          "constellation": "Sagittarius",
+          "buffType": "Monster Gold",
+          "valuePerLevel": 1.2,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 3
+        },
+        {
+          "id": "sagittarius-5",
+          "name": "Centaur's Wisdom",
+          "constellation": "Sagittarius",
+          "buffType": "Extra EXP",
+          "valuePerLevel": 1.0,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 4
+        },
+        {
+          "id": "sagittarius-6",
+          "name": "Wanderlust",
+          "constellation": "Sagittarius",
+          "buffType": "All Stats",
+          "valuePerLevel": 0.2,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 5
+        }
+      ]
+    },
+    {
+      "zodiac": "Capricorn",
+      "starsSpent": 0,
+      "nodes": [
+        {
+          "id": "capricorn-1",
+          "name": "Mountain Stance",
+          "constellation": "Capricorn",
+          "buffType": "DEF",
+          "valuePerLevel": 0.6,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "capricorn-2",
+          "name": "Granite Will",
+          "constellation": "Capricorn",
+          "buffType": "HP",
+          "valuePerLevel": 1.0,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "capricorn-3",
+          "name": "Steadfast March",
+          "constellation": "Capricorn",
+          "buffType": "HP Recovery",
+          "valuePerLevel": 0.3,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "capricorn-4",
+          "name": "Sea-Goat Resilience",
+          "constellation": "Capricorn",
+          "buffType": "DEF",
+          "valuePerLevel": 1.2,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 3
+        },
+        {
+          "id": "capricorn-5",
+          "name": "Unyielding Peak",
+          "constellation": "Capricorn",
+          "buffType": "HP",
+          "valuePerLevel": 2.0,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 4
+        }
+      ]
+    },
+    {
+      "zodiac": "Aquarius",
+      "starsSpent": 0,
+      "nodes": [
+        {
+          "id": "aquarius-1",
+          "name": "Knowledge Flow",
+          "constellation": "Aquarius",
+          "buffType": "Extra EXP",
+          "valuePerLevel": 0.6,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "aquarius-2",
+          "name": "Stargazer's Focus",
+          "constellation": "Aquarius",
+          "buffType": "Accuracy",
+          "valuePerLevel": 0.4,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "aquarius-3",
+          "name": "Electric Current",
+          "constellation": "Aquarius",
+          "buffType": "ATK",
+          "valuePerLevel": 0.4,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "aquarius-4",
+          "name": "Water Bearer's Gift",
+          "constellation": "Aquarius",
+          "buffType": "Extra EXP",
+          "valuePerLevel": 1.2,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 3
+        },
+        {
+          "id": "aquarius-5",
+          "name": "Innovation Spark",
+          "constellation": "Aquarius",
+          "buffType": "Monster Gold",
+          "valuePerLevel": 0.6,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 4
+        },
+        {
+          "id": "aquarius-6",
+          "name": "Humanitarian Wave",
+          "constellation": "Aquarius",
+          "buffType": "All Stats",
+          "valuePerLevel": 0.3,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 5
+        }
+      ]
+    },
+    {
+      "zodiac": "Pisces",
+      "starsSpent": 0,
+      "nodes": [
+        {
+          "id": "pisces-1",
+          "name": "Tidal Flow",
+          "constellation": "Pisces",
+          "buffType": "HP Recovery",
+          "valuePerLevel": 0.4,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "pisces-2",
+          "name": "Phantom Step",
+          "constellation": "Pisces",
+          "buffType": "Dodge",
+          "valuePerLevel": 0.4,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 1
+        },
+        {
+          "id": "pisces-3",
+          "name": "Dreamer's Veil",
+          "constellation": "Pisces",
+          "buffType": "HP",
+          "valuePerLevel": 1.0,
+          "level": 0,
+          "maxLevel": 10,
+          "starCost": 2
+        },
+        {
+          "id": "pisces-4",
+          "name": "Dual Fish Tide",
+          "constellation": "Pisces",
+          "buffType": "HP Recovery",
+          "valuePerLevel": 0.8,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 3
+        },
+        {
+          "id": "pisces-5",
+          "name": "Mystic Escape",
+          "constellation": "Pisces",
+          "buffType": "Dodge",
+          "valuePerLevel": 0.8,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 3
+        },
+        {
+          "id": "pisces-6",
+          "name": "Deep Sea Blessing",
+          "constellation": "Pisces",
+          "buffType": "All Stats",
+          "valuePerLevel": 0.3,
+          "level": 0,
+          "maxLevel": 5,
+          "starCost": 5
+        }
+      ]
+    }
+  ]
+}
