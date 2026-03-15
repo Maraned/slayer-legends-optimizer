@@ -112,6 +112,14 @@ export type {
 } from './save-state';
 
 export type {
+  SlayerLevelEntry,
+  PromotionEntry,
+  PromotionBonusEntry,
+  GrowthKnowledgeEntry,
+  CharacterMathsData,
+} from './character-data';
+
+export type {
   SkillTier,
   SkillDamageType,
   SkillData,
