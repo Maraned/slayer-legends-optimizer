@@ -1,55 +1,262 @@
 {
+  "dataVersion": "1.0.0",
   "ELEMENTAL_DAMAGE_SOURCES": [
-    { "name": "Ember Core",       "element": "Fire",      "damagePercent": 0.05, "active": false },
-    { "name": "Inferno Rune",     "element": "Fire",      "damagePercent": 0.08, "active": false },
-    { "name": "Blaze Passive",    "element": "Fire",      "damagePercent": 0.10, "active": false },
-    { "name": "Volcanic Strike",  "element": "Fire",      "damagePercent": 0.12, "active": false },
-    { "name": "Flame Seal",       "element": "Fire",      "damagePercent": 0.15, "active": false },
-
-    { "name": "Tidal Core",       "element": "Water",     "damagePercent": 0.05, "active": false },
-    { "name": "Ocean Rune",       "element": "Water",     "damagePercent": 0.08, "active": false },
-    { "name": "Frost Passive",    "element": "Water",     "damagePercent": 0.10, "active": false },
-    { "name": "Glacial Strike",   "element": "Water",     "damagePercent": 0.12, "active": false },
-    { "name": "Water Seal",       "element": "Water",     "damagePercent": 0.15, "active": false },
-
-    { "name": "Gale Core",        "element": "Wind",      "damagePercent": 0.05, "active": false },
-    { "name": "Tornado Rune",     "element": "Wind",      "damagePercent": 0.08, "active": false },
-    { "name": "Wind's Song",      "element": "Wind",      "damagePercent": 0.10, "active": false },
-    { "name": "Tempest Strike",   "element": "Wind",      "damagePercent": 0.12, "active": false },
-    { "name": "Wind Seal",        "element": "Wind",      "damagePercent": 0.15, "active": false },
-
-    { "name": "Terra Core",       "element": "Earth",     "damagePercent": 0.05, "active": false },
-    { "name": "Stone Rune",       "element": "Earth",     "damagePercent": 0.08, "active": false },
-    { "name": "Quake Passive",    "element": "Earth",     "damagePercent": 0.10, "active": false },
-    { "name": "Mountain Strike",  "element": "Earth",     "damagePercent": 0.12, "active": false },
-    { "name": "Earth Seal",       "element": "Earth",     "damagePercent": 0.15, "active": false },
-
-    { "name": "Thunder Core",     "element": "Lightning", "damagePercent": 0.05, "active": false },
-    { "name": "Storm Rune",       "element": "Lightning", "damagePercent": 0.08, "active": false },
-    { "name": "Static Passive",   "element": "Lightning", "damagePercent": 0.10, "active": false },
-    { "name": "Volt Strike",      "element": "Lightning", "damagePercent": 0.12, "active": false },
-    { "name": "Lightning Seal",   "element": "Lightning", "damagePercent": 0.15, "active": false }
+    {
+      "name": "Ember Core",
+      "element": "Fire",
+      "damagePercent": 0.05,
+      "active": false
+    },
+    {
+      "name": "Inferno Rune",
+      "element": "Fire",
+      "damagePercent": 0.08,
+      "active": false
+    },
+    {
+      "name": "Blaze Passive",
+      "element": "Fire",
+      "damagePercent": 0.1,
+      "active": false
+    },
+    {
+      "name": "Volcanic Strike",
+      "element": "Fire",
+      "damagePercent": 0.12,
+      "active": false
+    },
+    {
+      "name": "Flame Seal",
+      "element": "Fire",
+      "damagePercent": 0.15,
+      "active": false
+    },
+    {
+      "name": "Tidal Core",
+      "element": "Water",
+      "damagePercent": 0.05,
+      "active": false
+    },
+    {
+      "name": "Ocean Rune",
+      "element": "Water",
+      "damagePercent": 0.08,
+      "active": false
+    },
+    {
+      "name": "Frost Passive",
+      "element": "Water",
+      "damagePercent": 0.1,
+      "active": false
+    },
+    {
+      "name": "Glacial Strike",
+      "element": "Water",
+      "damagePercent": 0.12,
+      "active": false
+    },
+    {
+      "name": "Water Seal",
+      "element": "Water",
+      "damagePercent": 0.15,
+      "active": false
+    },
+    {
+      "name": "Gale Core",
+      "element": "Wind",
+      "damagePercent": 0.05,
+      "active": false
+    },
+    {
+      "name": "Tornado Rune",
+      "element": "Wind",
+      "damagePercent": 0.08,
+      "active": false
+    },
+    {
+      "name": "Wind's Song",
+      "element": "Wind",
+      "damagePercent": 0.1,
+      "active": false
+    },
+    {
+      "name": "Tempest Strike",
+      "element": "Wind",
+      "damagePercent": 0.12,
+      "active": false
+    },
+    {
+      "name": "Wind Seal",
+      "element": "Wind",
+      "damagePercent": 0.15,
+      "active": false
+    },
+    {
+      "name": "Terra Core",
+      "element": "Earth",
+      "damagePercent": 0.05,
+      "active": false
+    },
+    {
+      "name": "Stone Rune",
+      "element": "Earth",
+      "damagePercent": 0.08,
+      "active": false
+    },
+    {
+      "name": "Quake Passive",
+      "element": "Earth",
+      "damagePercent": 0.1,
+      "active": false
+    },
+    {
+      "name": "Mountain Strike",
+      "element": "Earth",
+      "damagePercent": 0.12,
+      "active": false
+    },
+    {
+      "name": "Earth Seal",
+      "element": "Earth",
+      "damagePercent": 0.15,
+      "active": false
+    },
+    {
+      "name": "Thunder Core",
+      "element": "Lightning",
+      "damagePercent": 0.05,
+      "active": false
+    },
+    {
+      "name": "Storm Rune",
+      "element": "Lightning",
+      "damagePercent": 0.08,
+      "active": false
+    },
+    {
+      "name": "Static Passive",
+      "element": "Lightning",
+      "damagePercent": 0.1,
+      "active": false
+    },
+    {
+      "name": "Volt Strike",
+      "element": "Lightning",
+      "damagePercent": 0.12,
+      "active": false
+    },
+    {
+      "name": "Lightning Seal",
+      "element": "Lightning",
+      "damagePercent": 0.15,
+      "active": false
+    }
   ],
-
   "ELEMENT_ACCESSORIES": [
-    { "name": "Fire Ring",         "element": "Fire",      "level": 1, "bonusValue": 0.05, "owned": false },
-    { "name": "Inferno Amulet",    "element": "Fire",      "level": 1, "bonusValue": 0.08, "owned": false },
-    { "name": "Flame Pendant",     "element": "Fire",      "level": 1, "bonusValue": 0.10, "owned": false },
-
-    { "name": "Water Ring",        "element": "Water",     "level": 1, "bonusValue": 0.05, "owned": false },
-    { "name": "Ocean Amulet",      "element": "Water",     "level": 1, "bonusValue": 0.08, "owned": false },
-    { "name": "Frost Pendant",     "element": "Water",     "level": 1, "bonusValue": 0.10, "owned": false },
-
-    { "name": "Wind Ring",         "element": "Wind",      "level": 1, "bonusValue": 0.05, "owned": false },
-    { "name": "Gale Amulet",       "element": "Wind",      "level": 1, "bonusValue": 0.08, "owned": false },
-    { "name": "Sky Pendant",       "element": "Wind",      "level": 1, "bonusValue": 0.10, "owned": false },
-
-    { "name": "Earth Ring",        "element": "Earth",     "level": 1, "bonusValue": 0.05, "owned": false },
-    { "name": "Stone Amulet",      "element": "Earth",     "level": 1, "bonusValue": 0.08, "owned": false },
-    { "name": "Terra Pendant",     "element": "Earth",     "level": 1, "bonusValue": 0.10, "owned": false },
-
-    { "name": "Lightning Ring",    "element": "Lightning", "level": 1, "bonusValue": 0.05, "owned": false },
-    { "name": "Thunder Amulet",    "element": "Lightning", "level": 1, "bonusValue": 0.08, "owned": false },
-    { "name": "Volt Pendant",      "element": "Lightning", "level": 1, "bonusValue": 0.10, "owned": false }
+    {
+      "name": "Fire Ring",
+      "element": "Fire",
+      "level": 1,
+      "bonusValue": 0.05,
+      "owned": false
+    },
+    {
+      "name": "Inferno Amulet",
+      "element": "Fire",
+      "level": 1,
+      "bonusValue": 0.08,
+      "owned": false
+    },
+    {
+      "name": "Flame Pendant",
+      "element": "Fire",
+      "level": 1,
+      "bonusValue": 0.1,
+      "owned": false
+    },
+    {
+      "name": "Water Ring",
+      "element": "Water",
+      "level": 1,
+      "bonusValue": 0.05,
+      "owned": false
+    },
+    {
+      "name": "Ocean Amulet",
+      "element": "Water",
+      "level": 1,
+      "bonusValue": 0.08,
+      "owned": false
+    },
+    {
+      "name": "Frost Pendant",
+      "element": "Water",
+      "level": 1,
+      "bonusValue": 0.1,
+      "owned": false
+    },
+    {
+      "name": "Wind Ring",
+      "element": "Wind",
+      "level": 1,
+      "bonusValue": 0.05,
+      "owned": false
+    },
+    {
+      "name": "Gale Amulet",
+      "element": "Wind",
+      "level": 1,
+      "bonusValue": 0.08,
+      "owned": false
+    },
+    {
+      "name": "Sky Pendant",
+      "element": "Wind",
+      "level": 1,
+      "bonusValue": 0.1,
+      "owned": false
+    },
+    {
+      "name": "Earth Ring",
+      "element": "Earth",
+      "level": 1,
+      "bonusValue": 0.05,
+      "owned": false
+    },
+    {
+      "name": "Stone Amulet",
+      "element": "Earth",
+      "level": 1,
+      "bonusValue": 0.08,
+      "owned": false
+    },
+    {
+      "name": "Terra Pendant",
+      "element": "Earth",
+      "level": 1,
+      "bonusValue": 0.1,
+      "owned": false
+    },
+    {
+      "name": "Lightning Ring",
+      "element": "Lightning",
+      "level": 1,
+      "bonusValue": 0.05,
+      "owned": false
+    },
+    {
+      "name": "Thunder Amulet",
+      "element": "Lightning",
+      "level": 1,
+      "bonusValue": 0.08,
+      "owned": false
+    },
+    {
+      "name": "Volt Pendant",
+      "element": "Lightning",
+      "level": 1,
+      "bonusValue": 0.1,
+      "owned": false
+    }
   ]
 }

@@ -94,3 +94,13 @@ export interface ConstellationSheetState {
   /** The farming mode currently selected, used to highlight recommended nodes */
   farmingMode: FarmingMode;
 }
+
+/**
+ * Root shape of constellation-data.json.
+ */
+export interface ConstellationData {
+  /** Semantic version of this data file (e.g. "1.0.0"). */
+  dataVersion: string;
+  /** All 12 constellation definitions with their star nodes */
+  CONSTELLATIONS: ConstellationState[];
+}

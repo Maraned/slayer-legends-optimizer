@@ -172,6 +172,8 @@ export interface EquipmentState {
  * Root shape of the EQUIPMENT_DATA JSON file (game data).
  */
 export interface EquipmentData {
+  /** Semantic version of this data file (e.g. "1.0.0"). */
+  dataVersion: string;
   /** Sorted ascending by level; contains entries for levels 1–1400 */
   levelMultipliers: LevelMultiplier[];
   costFactors: CostFactors;

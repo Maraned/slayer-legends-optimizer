@@ -153,3 +153,13 @@ export interface SkillMasteryState {
     SkillMasteryPage,
   ];
 }
+
+/**
+ * Root shape of skills-datamath.json.
+ */
+export interface SkillsMathsData {
+  /** Semantic version of this data file (e.g. "1.0.0"). */
+  dataVersion: string;
+  /** All 301 skill definitions */
+  SKILLS: SkillData[];
+}

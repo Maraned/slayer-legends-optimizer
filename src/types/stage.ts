@@ -190,6 +190,8 @@ export interface Zone {
  * Root shape of stage-data.json.
  */
 export interface StageData {
+  /** Semantic version of this data file (e.g. "1.0.0"). */
+  dataVersion: string;
   /** All 2000 stage entries ordered by id */
   STAGES: Stage[];
   /** All 20 area definitions (each contains its zones) */
