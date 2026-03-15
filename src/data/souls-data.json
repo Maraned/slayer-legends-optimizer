@@ -1,0 +1,3254 @@
+{
+  "SOUL_DUNGEON": [
+    {
+      "stage": 1,
+      "name": "Shadow Lair I",
+      "tier": "Novice",
+      "element": "Fire",
+      "recommendedPower": 500,
+      "energyCost": 3,
+      "soulsReward": {
+        "min": 10,
+        "max": 20
+      },
+      "goldReward": {
+        "min": 500,
+        "max": 1000
+      },
+      "expReward": 100,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Inferno Wraith",
+        "element": "Fire",
+        "hp": 10000,
+        "atk": 500,
+        "def": 200
+      }
+    },
+    {
+      "stage": 2,
+      "name": "Shadow Lair II",
+      "tier": "Novice",
+      "element": "Fire",
+      "recommendedPower": 533,
+      "energyCost": 3,
+      "soulsReward": {
+        "min": 11,
+        "max": 21
+      },
+      "goldReward": {
+        "min": 528,
+        "max": 1055
+      },
+      "expReward": 106,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Flame Reaper",
+        "element": "Fire",
+        "hp": 10600,
+        "atk": 530,
+        "def": 212
+      }
+    },
+    {
+      "stage": 3,
+      "name": "Shadow Lair III",
+      "tier": "Novice",
+      "element": "Fire",
+      "recommendedPower": 567,
+      "energyCost": 3,
+      "soulsReward": {
+        "min": 11,
+        "max": 22
+      },
+      "goldReward": {
+        "min": 557,
+        "max": 1113
+      },
+      "expReward": 111,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Cinder Spectre",
+        "element": "Fire",
+        "hp": 11236,
+        "atk": 562,
+        "def": 225
+      }
+    },
+    {
+      "stage": 4,
+      "name": "Shadow Lair IV",
+      "tier": "Novice",
+      "element": "Fire",
+      "recommendedPower": 604,
+      "energyCost": 3,
+      "soulsReward": {
+        "min": 12,
+        "max": 23
+      },
+      "goldReward": {
+        "min": 587,
+        "max": 1174
+      },
+      "expReward": 117,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Blaze Phantom",
+        "element": "Fire",
+        "hp": 11910,
+        "atk": 596,
+        "def": 238
+      }
+    },
+    {
+      "stage": 5,
+      "name": "Shadow Lair V",
+      "tier": "Novice",
+      "element": "Fire",
+      "recommendedPower": 643,
+      "energyCost": 3,
+      "soulsReward": {
+        "min": 12,
+        "max": 25
+      },
+      "goldReward": {
+        "min": 619,
+        "max": 1239
+      },
+      "expReward": 124,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Pyre Shade",
+        "element": "Fire",
+        "hp": 12625,
+        "atk": 631,
+        "def": 252
+      }
+    },
+    {
+      "stage": 6,
+      "name": "Shadow Lair VI",
+      "tier": "Novice",
+      "element": "Water",
+      "recommendedPower": 685,
+      "energyCost": 3,
+      "soulsReward": {
+        "min": 13,
+        "max": 26
+      },
+      "goldReward": {
+        "min": 653,
+        "max": 1307
+      },
+      "expReward": 131,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Frost Specter",
+        "element": "Water",
+        "hp": 13382,
+        "atk": 669,
+        "def": 268
+      }
+    },
+    {
+      "stage": 7,
+      "name": "Shadow Lair VII",
+      "tier": "Novice",
+      "element": "Water",
+      "recommendedPower": 730,
+      "energyCost": 3,
+      "soulsReward": {
+        "min": 14,
+        "max": 28
+      },
+      "goldReward": {
+        "min": 689,
+        "max": 1379
+      },
+      "expReward": 138,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Glacial Wraith",
+        "element": "Water",
+        "hp": 14185,
+        "atk": 709,
+        "def": 284
+      }
+    },
+    {
+      "stage": 8,
+      "name": "Shadow Lair VIII",
+      "tier": "Novice",
+      "element": "Water",
+      "recommendedPower": 777,
+      "energyCost": 3,
+      "soulsReward": {
+        "min": 15,
+        "max": 29
+      },
+      "goldReward": {
+        "min": 727,
+        "max": 1455
+      },
+      "expReward": 145,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Tide Phantom",
+        "element": "Water",
+        "hp": 15036,
+        "atk": 752,
+        "def": 301
+      }
+    },
+    {
+      "stage": 9,
+      "name": "Shadow Lair IX",
+      "tier": "Novice",
+      "element": "Water",
+      "recommendedPower": 827,
+      "energyCost": 3,
+      "soulsReward": {
+        "min": 15,
+        "max": 31
+      },
+      "goldReward": {
+        "min": 767,
+        "max": 1535
+      },
+      "expReward": 153,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Cryo Reaper",
+        "element": "Water",
+        "hp": 15938,
+        "atk": 797,
+        "def": 319
+      }
+    },
+    {
+      "stage": 10,
+      "name": "Shadow Lair X",
+      "tier": "Novice",
+      "element": "Water",
+      "recommendedPower": 881,
+      "energyCost": 3,
+      "soulsReward": {
+        "min": 16,
+        "max": 32
+      },
+      "goldReward": {
+        "min": 810,
+        "max": 1619
+      },
+      "expReward": 162,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Abyssal Shade",
+        "element": "Water",
+        "hp": 16895,
+        "atk": 845,
+        "def": 338
+      }
+    },
+    {
+      "stage": 11,
+      "name": "Cursed Depths I",
+      "tier": "Apprentice",
+      "element": "Earth",
+      "recommendedPower": 2000,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 17,
+        "max": 34
+      },
+      "goldReward": {
+        "min": 854,
+        "max": 1708
+      },
+      "expReward": 171,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Stone Specter",
+        "element": "Earth",
+        "hp": 17908,
+        "atk": 895,
+        "def": 358
+      }
+    },
+    {
+      "stage": 12,
+      "name": "Cursed Depths II",
+      "tier": "Apprentice",
+      "element": "Earth",
+      "recommendedPower": 2130,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 18,
+        "max": 36
+      },
+      "goldReward": {
+        "min": 901,
+        "max": 1802
+      },
+      "expReward": 180,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Granite Phantom",
+        "element": "Earth",
+        "hp": 18983,
+        "atk": 949,
+        "def": 380
+      }
+    },
+    {
+      "stage": 13,
+      "name": "Cursed Depths III",
+      "tier": "Apprentice",
+      "element": "Earth",
+      "recommendedPower": 2268,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 19,
+        "max": 38
+      },
+      "goldReward": {
+        "min": 951,
+        "max": 1901
+      },
+      "expReward": 190,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Boulder Wraith",
+        "element": "Earth",
+        "hp": 20122,
+        "atk": 1006,
+        "def": 402
+      }
+    },
+    {
+      "stage": 14,
+      "name": "Cursed Depths IV",
+      "tier": "Apprentice",
+      "element": "Earth",
+      "recommendedPower": 2416,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 20,
+        "max": 40
+      },
+      "goldReward": {
+        "min": 1003,
+        "max": 2006
+      },
+      "expReward": 201,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Tectonic Reaper",
+        "element": "Earth",
+        "hp": 21329,
+        "atk": 1066,
+        "def": 427
+      }
+    },
+    {
+      "stage": 15,
+      "name": "Cursed Depths V",
+      "tier": "Apprentice",
+      "element": "Earth",
+      "recommendedPower": 2573,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 21,
+        "max": 42
+      },
+      "goldReward": {
+        "min": 1058,
+        "max": 2116
+      },
+      "expReward": 212,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Earthen Shade",
+        "element": "Earth",
+        "hp": 22609,
+        "atk": 1130,
+        "def": 452
+      }
+    },
+    {
+      "stage": 16,
+      "name": "Cursed Depths VI",
+      "tier": "Apprentice",
+      "element": "Wind",
+      "recommendedPower": 2740,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 22,
+        "max": 45
+      },
+      "goldReward": {
+        "min": 1116,
+        "max": 2232
+      },
+      "expReward": 223,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Gale Specter",
+        "element": "Wind",
+        "hp": 23966,
+        "atk": 1198,
+        "def": 479
+      }
+    },
+    {
+      "stage": 17,
+      "name": "Cursed Depths VII",
+      "tier": "Apprentice",
+      "element": "Wind",
+      "recommendedPower": 2918,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 24,
+        "max": 47
+      },
+      "goldReward": {
+        "min": 1178,
+        "max": 2355
+      },
+      "expReward": 236,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Storm Phantom",
+        "element": "Wind",
+        "hp": 25404,
+        "atk": 1270,
+        "def": 508
+      }
+    },
+    {
+      "stage": 18,
+      "name": "Cursed Depths VIII",
+      "tier": "Apprentice",
+      "element": "Wind",
+      "recommendedPower": 3108,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 25,
+        "max": 50
+      },
+      "goldReward": {
+        "min": 1242,
+        "max": 2485
+      },
+      "expReward": 248,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Cyclone Wraith",
+        "element": "Wind",
+        "hp": 26928,
+        "atk": 1346,
+        "def": 539
+      }
+    },
+    {
+      "stage": 19,
+      "name": "Cursed Depths IX",
+      "tier": "Apprentice",
+      "element": "Wind",
+      "recommendedPower": 3310,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 26,
+        "max": 52
+      },
+      "goldReward": {
+        "min": 1311,
+        "max": 2621
+      },
+      "expReward": 262,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Thunder Reaper",
+        "element": "Wind",
+        "hp": 28543,
+        "atk": 1427,
+        "def": 571
+      }
+    },
+    {
+      "stage": 20,
+      "name": "Cursed Depths X",
+      "tier": "Apprentice",
+      "element": "Wind",
+      "recommendedPower": 3525,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 28,
+        "max": 55
+      },
+      "goldReward": {
+        "min": 1383,
+        "max": 2766
+      },
+      "expReward": 277,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Sky Shade",
+        "element": "Wind",
+        "hp": 30256,
+        "atk": 1513,
+        "def": 605
+      }
+    },
+    {
+      "stage": 21,
+      "name": "Cursed Depths XI",
+      "tier": "Apprentice",
+      "element": "Light",
+      "recommendedPower": 3754,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 29,
+        "max": 58
+      },
+      "goldReward": {
+        "min": 1459,
+        "max": 2918
+      },
+      "expReward": 292,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Radiant Specter",
+        "element": "Light",
+        "hp": 32071,
+        "atk": 1604,
+        "def": 641
+      }
+    },
+    {
+      "stage": 22,
+      "name": "Cursed Depths XII",
+      "tier": "Apprentice",
+      "element": "Light",
+      "recommendedPower": 3998,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 31,
+        "max": 62
+      },
+      "goldReward": {
+        "min": 1539,
+        "max": 3078
+      },
+      "expReward": 308,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Holy Phantom",
+        "element": "Light",
+        "hp": 33996,
+        "atk": 1700,
+        "def": 680
+      }
+    },
+    {
+      "stage": 23,
+      "name": "Cursed Depths XIII",
+      "tier": "Apprentice",
+      "element": "Light",
+      "recommendedPower": 4258,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 32,
+        "max": 65
+      },
+      "goldReward": {
+        "min": 1624,
+        "max": 3248
+      },
+      "expReward": 325,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Divine Wraith",
+        "element": "Light",
+        "hp": 36035,
+        "atk": 1802,
+        "def": 721
+      }
+    },
+    {
+      "stage": 24,
+      "name": "Cursed Depths XIV",
+      "tier": "Apprentice",
+      "element": "Light",
+      "recommendedPower": 4535,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 34,
+        "max": 69
+      },
+      "goldReward": {
+        "min": 1713,
+        "max": 3426
+      },
+      "expReward": 343,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Sacred Reaper",
+        "element": "Light",
+        "hp": 38197,
+        "atk": 1910,
+        "def": 764
+      }
+    },
+    {
+      "stage": 25,
+      "name": "Cursed Depths XV",
+      "tier": "Apprentice",
+      "element": "Light",
+      "recommendedPower": 4830,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 36,
+        "max": 72
+      },
+      "goldReward": {
+        "min": 1807,
+        "max": 3615
+      },
+      "expReward": 361,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Celestial Shade",
+        "element": "Light",
+        "hp": 40489,
+        "atk": 2024,
+        "def": 810
+      }
+    },
+    {
+      "stage": 26,
+      "name": "Cursed Depths XVI",
+      "tier": "Apprentice",
+      "element": "Dark",
+      "recommendedPower": 5144,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 38,
+        "max": 76
+      },
+      "goldReward": {
+        "min": 1907,
+        "max": 3813
+      },
+      "expReward": 381,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Shadow Specter",
+        "element": "Dark",
+        "hp": 42919,
+        "atk": 2146,
+        "def": 858
+      }
+    },
+    {
+      "stage": 27,
+      "name": "Cursed Depths XVII",
+      "tier": "Apprentice",
+      "element": "Dark",
+      "recommendedPower": 5478,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 40,
+        "max": 80
+      },
+      "goldReward": {
+        "min": 2012,
+        "max": 4023
+      },
+      "expReward": 402,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Void Phantom",
+        "element": "Dark",
+        "hp": 45494,
+        "atk": 2275,
+        "def": 910
+      }
+    },
+    {
+      "stage": 28,
+      "name": "Cursed Depths XVIII",
+      "tier": "Apprentice",
+      "element": "Dark",
+      "recommendedPower": 5834,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 42,
+        "max": 85
+      },
+      "goldReward": {
+        "min": 2122,
+        "max": 4244
+      },
+      "expReward": 424,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Nightmare Wraith",
+        "element": "Dark",
+        "hp": 48223,
+        "atk": 2411,
+        "def": 964
+      }
+    },
+    {
+      "stage": 29,
+      "name": "Cursed Depths XIX",
+      "tier": "Apprentice",
+      "element": "Dark",
+      "recommendedPower": 6213,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 45,
+        "max": 90
+      },
+      "goldReward": {
+        "min": 2239,
+        "max": 4478
+      },
+      "expReward": 448,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Chaos Reaper",
+        "element": "Dark",
+        "hp": 51117,
+        "atk": 2556,
+        "def": 1022
+      }
+    },
+    {
+      "stage": 30,
+      "name": "Cursed Depths XX",
+      "tier": "Apprentice",
+      "element": "Fire",
+      "recommendedPower": 6617,
+      "energyCost": 4,
+      "soulsReward": {
+        "min": 47,
+        "max": 94
+      },
+      "goldReward": {
+        "min": 2362,
+        "max": 4724
+      },
+      "expReward": 472,
+      "soulWeaponId": "fire_blade",
+      "boss": {
+        "name": "Pyre Shade",
+        "element": "Fire",
+        "hp": 54184,
+        "atk": 2709,
+        "def": 1084
+      }
+    },
+    {
+      "stage": 31,
+      "name": "Phantom Halls I",
+      "tier": "Intermediate",
+      "element": "Fire",
+      "recommendedPower": 8000,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 50,
+        "max": 100
+      },
+      "goldReward": {
+        "min": 2492,
+        "max": 4984
+      },
+      "expReward": 498,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Inferno Wraith",
+        "element": "Fire",
+        "hp": 57435,
+        "atk": 2872,
+        "def": 1149
+      }
+    },
+    {
+      "stage": 32,
+      "name": "Phantom Halls II",
+      "tier": "Intermediate",
+      "element": "Fire",
+      "recommendedPower": 8520,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 53,
+        "max": 105
+      },
+      "goldReward": {
+        "min": 2629,
+        "max": 5258
+      },
+      "expReward": 526,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Flame Reaper",
+        "element": "Fire",
+        "hp": 60881,
+        "atk": 3044,
+        "def": 1218
+      }
+    },
+    {
+      "stage": 33,
+      "name": "Phantom Halls III",
+      "tier": "Intermediate",
+      "element": "Fire",
+      "recommendedPower": 9074,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 55,
+        "max": 111
+      },
+      "goldReward": {
+        "min": 2774,
+        "max": 5547
+      },
+      "expReward": 555,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Cinder Spectre",
+        "element": "Fire",
+        "hp": 64534,
+        "atk": 3227,
+        "def": 1291
+      }
+    },
+    {
+      "stage": 34,
+      "name": "Phantom Halls IV",
+      "tier": "Intermediate",
+      "element": "Fire",
+      "recommendedPower": 9664,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 59,
+        "max": 117
+      },
+      "goldReward": {
+        "min": 2926,
+        "max": 5852
+      },
+      "expReward": 585,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Blaze Phantom",
+        "element": "Fire",
+        "hp": 68406,
+        "atk": 3420,
+        "def": 1368
+      }
+    },
+    {
+      "stage": 35,
+      "name": "Phantom Halls V",
+      "tier": "Intermediate",
+      "element": "Water",
+      "recommendedPower": 10292,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 62,
+        "max": 123
+      },
+      "goldReward": {
+        "min": 3087,
+        "max": 6174
+      },
+      "expReward": 617,
+      "soulWeaponId": "water_trident",
+      "boss": {
+        "name": "Abyssal Shade",
+        "element": "Water",
+        "hp": 72510,
+        "atk": 3626,
+        "def": 1450
+      }
+    },
+    {
+      "stage": 36,
+      "name": "Phantom Halls VI",
+      "tier": "Intermediate",
+      "element": "Water",
+      "recommendedPower": 10961,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 65,
+        "max": 130
+      },
+      "goldReward": {
+        "min": 3257,
+        "max": 6514
+      },
+      "expReward": 651,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Frost Specter",
+        "element": "Water",
+        "hp": 76861,
+        "atk": 3843,
+        "def": 1537
+      }
+    },
+    {
+      "stage": 37,
+      "name": "Phantom Halls VII",
+      "tier": "Intermediate",
+      "element": "Water",
+      "recommendedPower": 11673,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 69,
+        "max": 137
+      },
+      "goldReward": {
+        "min": 3436,
+        "max": 6872
+      },
+      "expReward": 687,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Glacial Wraith",
+        "element": "Water",
+        "hp": 81473,
+        "atk": 4074,
+        "def": 1629
+      }
+    },
+    {
+      "stage": 38,
+      "name": "Phantom Halls VIII",
+      "tier": "Intermediate",
+      "element": "Water",
+      "recommendedPower": 12432,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 73,
+        "max": 145
+      },
+      "goldReward": {
+        "min": 3625,
+        "max": 7250
+      },
+      "expReward": 725,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Tide Phantom",
+        "element": "Water",
+        "hp": 86361,
+        "atk": 4318,
+        "def": 1727
+      }
+    },
+    {
+      "stage": 39,
+      "name": "Phantom Halls IX",
+      "tier": "Intermediate",
+      "element": "Water",
+      "recommendedPower": 13240,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 76,
+        "max": 153
+      },
+      "goldReward": {
+        "min": 3824,
+        "max": 7649
+      },
+      "expReward": 765,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Cryo Reaper",
+        "element": "Water",
+        "hp": 91543,
+        "atk": 4577,
+        "def": 1831
+      }
+    },
+    {
+      "stage": 40,
+      "name": "Phantom Halls X",
+      "tier": "Intermediate",
+      "element": "Earth",
+      "recommendedPower": 14101,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 81,
+        "max": 161
+      },
+      "goldReward": {
+        "min": 4035,
+        "max": 8069
+      },
+      "expReward": 807,
+      "soulWeaponId": "earth_hammer",
+      "boss": {
+        "name": "Earthen Shade",
+        "element": "Earth",
+        "hp": 97035,
+        "atk": 4852,
+        "def": 1941
+      }
+    },
+    {
+      "stage": 41,
+      "name": "Phantom Halls XI",
+      "tier": "Intermediate",
+      "element": "Earth",
+      "recommendedPower": 15017,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 85,
+        "max": 170
+      },
+      "goldReward": {
+        "min": 4257,
+        "max": 8513
+      },
+      "expReward": 851,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Stone Specter",
+        "element": "Earth",
+        "hp": 102857,
+        "atk": 5143,
+        "def": 2057
+      }
+    },
+    {
+      "stage": 42,
+      "name": "Phantom Halls XII",
+      "tier": "Intermediate",
+      "element": "Earth",
+      "recommendedPower": 15993,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 90,
+        "max": 180
+      },
+      "goldReward": {
+        "min": 4491,
+        "max": 8982
+      },
+      "expReward": 898,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Granite Phantom",
+        "element": "Earth",
+        "hp": 109029,
+        "atk": 5451,
+        "def": 2181
+      }
+    },
+    {
+      "stage": 43,
+      "name": "Phantom Halls XIII",
+      "tier": "Intermediate",
+      "element": "Earth",
+      "recommendedPower": 17033,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 95,
+        "max": 190
+      },
+      "goldReward": {
+        "min": 4738,
+        "max": 9476
+      },
+      "expReward": 948,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Boulder Wraith",
+        "element": "Earth",
+        "hp": 115570,
+        "atk": 5779,
+        "def": 2311
+      }
+    },
+    {
+      "stage": 44,
+      "name": "Phantom Halls XIV",
+      "tier": "Intermediate",
+      "element": "Earth",
+      "recommendedPower": 18140,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 100,
+        "max": 200
+      },
+      "goldReward": {
+        "min": 4998,
+        "max": 9997
+      },
+      "expReward": 1000,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Tectonic Reaper",
+        "element": "Earth",
+        "hp": 122505,
+        "atk": 6125,
+        "def": 2450
+      }
+    },
+    {
+      "stage": 45,
+      "name": "Phantom Halls XV",
+      "tier": "Intermediate",
+      "element": "Wind",
+      "recommendedPower": 19319,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 105,
+        "max": 211
+      },
+      "goldReward": {
+        "min": 5273,
+        "max": 10546
+      },
+      "expReward": 1055,
+      "soulWeaponId": "wind_daggers",
+      "boss": {
+        "name": "Sky Shade",
+        "element": "Wind",
+        "hp": 129855,
+        "atk": 6493,
+        "def": 2597
+      }
+    },
+    {
+      "stage": 46,
+      "name": "Phantom Halls XVI",
+      "tier": "Intermediate",
+      "element": "Wind",
+      "recommendedPower": 20575,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 111,
+        "max": 223
+      },
+      "goldReward": {
+        "min": 5563,
+        "max": 11127
+      },
+      "expReward": 1113,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Gale Specter",
+        "element": "Wind",
+        "hp": 137646,
+        "atk": 6882,
+        "def": 2753
+      }
+    },
+    {
+      "stage": 47,
+      "name": "Phantom Halls XVII",
+      "tier": "Intermediate",
+      "element": "Wind",
+      "recommendedPower": 21912,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 117,
+        "max": 235
+      },
+      "goldReward": {
+        "min": 5869,
+        "max": 11739
+      },
+      "expReward": 1174,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Storm Phantom",
+        "element": "Wind",
+        "hp": 145905,
+        "atk": 7295,
+        "def": 2918
+      }
+    },
+    {
+      "stage": 48,
+      "name": "Phantom Halls XVIII",
+      "tier": "Intermediate",
+      "element": "Wind",
+      "recommendedPower": 23336,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 124,
+        "max": 248
+      },
+      "goldReward": {
+        "min": 6192,
+        "max": 12384
+      },
+      "expReward": 1238,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Cyclone Wraith",
+        "element": "Wind",
+        "hp": 154659,
+        "atk": 7733,
+        "def": 3093
+      }
+    },
+    {
+      "stage": 49,
+      "name": "Phantom Halls XIX",
+      "tier": "Intermediate",
+      "element": "Wind",
+      "recommendedPower": 24853,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 131,
+        "max": 261
+      },
+      "goldReward": {
+        "min": 6533,
+        "max": 13065
+      },
+      "expReward": 1307,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Thunder Reaper",
+        "element": "Wind",
+        "hp": 163939,
+        "atk": 8197,
+        "def": 3279
+      }
+    },
+    {
+      "stage": 50,
+      "name": "Phantom Halls XX",
+      "tier": "Intermediate",
+      "element": "Wind",
+      "recommendedPower": 26469,
+      "energyCost": 5,
+      "soulsReward": {
+        "min": 138,
+        "max": 276
+      },
+      "goldReward": {
+        "min": 6892,
+        "max": 13784
+      },
+      "expReward": 1378,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Sky Shade",
+        "element": "Wind",
+        "hp": 173775,
+        "atk": 8689,
+        "def": 3476
+      }
+    },
+    {
+      "stage": 51,
+      "name": "Void Chambers I",
+      "tier": "Advanced",
+      "element": "Light",
+      "recommendedPower": 25000,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 145,
+        "max": 291
+      },
+      "goldReward": {
+        "min": 7271,
+        "max": 14542
+      },
+      "expReward": 1454,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Radiant Specter",
+        "element": "Light",
+        "hp": 184202,
+        "atk": 9210,
+        "def": 3684
+      }
+    },
+    {
+      "stage": 52,
+      "name": "Void Chambers II",
+      "tier": "Advanced",
+      "element": "Light",
+      "recommendedPower": 26625,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 153,
+        "max": 307
+      },
+      "goldReward": {
+        "min": 7671,
+        "max": 15342
+      },
+      "expReward": 1534,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Holy Phantom",
+        "element": "Light",
+        "hp": 195254,
+        "atk": 9763,
+        "def": 3905
+      }
+    },
+    {
+      "stage": 53,
+      "name": "Void Chambers III",
+      "tier": "Advanced",
+      "element": "Light",
+      "recommendedPower": 28356,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 162,
+        "max": 324
+      },
+      "goldReward": {
+        "min": 8093,
+        "max": 16186
+      },
+      "expReward": 1619,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Divine Wraith",
+        "element": "Light",
+        "hp": 206969,
+        "atk": 10348,
+        "def": 4139
+      }
+    },
+    {
+      "stage": 54,
+      "name": "Void Chambers IV",
+      "tier": "Advanced",
+      "element": "Light",
+      "recommendedPower": 30199,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 171,
+        "max": 342
+      },
+      "goldReward": {
+        "min": 8538,
+        "max": 17076
+      },
+      "expReward": 1708,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Sacred Reaper",
+        "element": "Light",
+        "hp": 219387,
+        "atk": 10969,
+        "def": 4388
+      }
+    },
+    {
+      "stage": 55,
+      "name": "Void Chambers V",
+      "tier": "Advanced",
+      "element": "Light",
+      "recommendedPower": 32162,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 180,
+        "max": 360
+      },
+      "goldReward": {
+        "min": 9007,
+        "max": 18015
+      },
+      "expReward": 1801,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Celestial Shade",
+        "element": "Light",
+        "hp": 232550,
+        "atk": 11628,
+        "def": 4651
+      }
+    },
+    {
+      "stage": 56,
+      "name": "Void Chambers VI",
+      "tier": "Advanced",
+      "element": "Dark",
+      "recommendedPower": 34252,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 190,
+        "max": 380
+      },
+      "goldReward": {
+        "min": 9503,
+        "max": 19006
+      },
+      "expReward": 1901,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Shadow Specter",
+        "element": "Dark",
+        "hp": 246503,
+        "atk": 12325,
+        "def": 4930
+      }
+    },
+    {
+      "stage": 57,
+      "name": "Void Chambers VII",
+      "tier": "Advanced",
+      "element": "Dark",
+      "recommendedPower": 36479,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 201,
+        "max": 401
+      },
+      "goldReward": {
+        "min": 10026,
+        "max": 20051
+      },
+      "expReward": 2005,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Void Phantom",
+        "element": "Dark",
+        "hp": 261293,
+        "atk": 13065,
+        "def": 5226
+      }
+    },
+    {
+      "stage": 58,
+      "name": "Void Chambers VIII",
+      "tier": "Advanced",
+      "element": "Dark",
+      "recommendedPower": 38850,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 212,
+        "max": 423
+      },
+      "goldReward": {
+        "min": 10577,
+        "max": 21154
+      },
+      "expReward": 2115,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Nightmare Wraith",
+        "element": "Dark",
+        "hp": 276971,
+        "atk": 13849,
+        "def": 5539
+      }
+    },
+    {
+      "stage": 59,
+      "name": "Void Chambers IX",
+      "tier": "Advanced",
+      "element": "Dark",
+      "recommendedPower": 41375,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 223,
+        "max": 446
+      },
+      "goldReward": {
+        "min": 11159,
+        "max": 22317
+      },
+      "expReward": 2232,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Chaos Reaper",
+        "element": "Dark",
+        "hp": 293589,
+        "atk": 14679,
+        "def": 5872
+      }
+    },
+    {
+      "stage": 60,
+      "name": "Void Chambers X",
+      "tier": "Advanced",
+      "element": "Dark",
+      "recommendedPower": 44064,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 235,
+        "max": 471
+      },
+      "goldReward": {
+        "min": 11772,
+        "max": 23545
+      },
+      "expReward": 2354,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Soul Shade",
+        "element": "Dark",
+        "hp": 311205,
+        "atk": 15560,
+        "def": 6224
+      }
+    },
+    {
+      "stage": 61,
+      "name": "Void Chambers XI",
+      "tier": "Advanced",
+      "element": "Fire",
+      "recommendedPower": 46928,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 248,
+        "max": 497
+      },
+      "goldReward": {
+        "min": 12420,
+        "max": 24840
+      },
+      "expReward": 2484,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Inferno Wraith",
+        "element": "Fire",
+        "hp": 329877,
+        "atk": 16494,
+        "def": 6598
+      }
+    },
+    {
+      "stage": 62,
+      "name": "Void Chambers XII",
+      "tier": "Advanced",
+      "element": "Fire",
+      "recommendedPower": 49979,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 262,
+        "max": 524
+      },
+      "goldReward": {
+        "min": 13103,
+        "max": 26206
+      },
+      "expReward": 2621,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Flame Reaper",
+        "element": "Fire",
+        "hp": 349670,
+        "atk": 17483,
+        "def": 6993
+      }
+    },
+    {
+      "stage": 63,
+      "name": "Void Chambers XIII",
+      "tier": "Advanced",
+      "element": "Fire",
+      "recommendedPower": 53227,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 276,
+        "max": 553
+      },
+      "goldReward": {
+        "min": 13824,
+        "max": 27647
+      },
+      "expReward": 2765,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Cinder Spectre",
+        "element": "Fire",
+        "hp": 370650,
+        "atk": 18532,
+        "def": 7413
+      }
+    },
+    {
+      "stage": 64,
+      "name": "Void Chambers XIV",
+      "tier": "Advanced",
+      "element": "Fire",
+      "recommendedPower": 56687,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 292,
+        "max": 583
+      },
+      "goldReward": {
+        "min": 14584,
+        "max": 29168
+      },
+      "expReward": 2917,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Blaze Phantom",
+        "element": "Fire",
+        "hp": 392889,
+        "atk": 19644,
+        "def": 7858
+      }
+    },
+    {
+      "stage": 65,
+      "name": "Void Chambers XV",
+      "tier": "Advanced",
+      "element": "Fire",
+      "recommendedPower": 60372,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 308,
+        "max": 615
+      },
+      "goldReward": {
+        "min": 15386,
+        "max": 30772
+      },
+      "expReward": 3077,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Pyre Shade",
+        "element": "Fire",
+        "hp": 416462,
+        "atk": 20823,
+        "def": 8329
+      }
+    },
+    {
+      "stage": 66,
+      "name": "Void Chambers XVI",
+      "tier": "Advanced",
+      "element": "Water",
+      "recommendedPower": 64296,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 325,
+        "max": 649
+      },
+      "goldReward": {
+        "min": 16232,
+        "max": 32465
+      },
+      "expReward": 3246,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Frost Specter",
+        "element": "Water",
+        "hp": 441450,
+        "atk": 22072,
+        "def": 8829
+      }
+    },
+    {
+      "stage": 67,
+      "name": "Void Chambers XVII",
+      "tier": "Advanced",
+      "element": "Water",
+      "recommendedPower": 68475,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 343,
+        "max": 685
+      },
+      "goldReward": {
+        "min": 17125,
+        "max": 34250
+      },
+      "expReward": 3425,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Glacial Wraith",
+        "element": "Water",
+        "hp": 467937,
+        "atk": 23397,
+        "def": 9359
+      }
+    },
+    {
+      "stage": 68,
+      "name": "Void Chambers XVIII",
+      "tier": "Advanced",
+      "element": "Water",
+      "recommendedPower": 72926,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 361,
+        "max": 723
+      },
+      "goldReward": {
+        "min": 18067,
+        "max": 36134
+      },
+      "expReward": 3613,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Tide Phantom",
+        "element": "Water",
+        "hp": 496013,
+        "atk": 24801,
+        "def": 9920
+      }
+    },
+    {
+      "stage": 69,
+      "name": "Void Chambers XIX",
+      "tier": "Advanced",
+      "element": "Water",
+      "recommendedPower": 77666,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 381,
+        "max": 762
+      },
+      "goldReward": {
+        "min": 19061,
+        "max": 38121
+      },
+      "expReward": 3812,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Cryo Reaper",
+        "element": "Water",
+        "hp": 525774,
+        "atk": 26289,
+        "def": 10515
+      }
+    },
+    {
+      "stage": 70,
+      "name": "Void Chambers XX",
+      "tier": "Advanced",
+      "element": "Fire",
+      "recommendedPower": 82715,
+      "energyCost": 6,
+      "soulsReward": {
+        "min": 402,
+        "max": 804
+      },
+      "goldReward": {
+        "min": 20109,
+        "max": 40218
+      },
+      "expReward": 4022,
+      "soulWeaponId": "fire_greatsword",
+      "boss": {
+        "name": "Pyre Shade",
+        "element": "Fire",
+        "hp": 557320,
+        "atk": 27866,
+        "def": 11146
+      }
+    },
+    {
+      "stage": 71,
+      "name": "Abyss Gate I",
+      "tier": "Expert",
+      "element": "Earth",
+      "recommendedPower": 80000,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 424,
+        "max": 849
+      },
+      "goldReward": {
+        "min": 21215,
+        "max": 42430
+      },
+      "expReward": 4243,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Stone Specter",
+        "element": "Earth",
+        "hp": 590759,
+        "atk": 29538,
+        "def": 11815
+      }
+    },
+    {
+      "stage": 72,
+      "name": "Abyss Gate II",
+      "tier": "Expert",
+      "element": "Earth",
+      "recommendedPower": 85200,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 448,
+        "max": 895
+      },
+      "goldReward": {
+        "min": 22382,
+        "max": 44764
+      },
+      "expReward": 4476,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Granite Phantom",
+        "element": "Earth",
+        "hp": 626205,
+        "atk": 31310,
+        "def": 12524
+      }
+    },
+    {
+      "stage": 73,
+      "name": "Abyss Gate III",
+      "tier": "Expert",
+      "element": "Earth",
+      "recommendedPower": 90738,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 472,
+        "max": 945
+      },
+      "goldReward": {
+        "min": 23613,
+        "max": 47226
+      },
+      "expReward": 4723,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Boulder Wraith",
+        "element": "Earth",
+        "hp": 663777,
+        "atk": 33189,
+        "def": 13276
+      }
+    },
+    {
+      "stage": 74,
+      "name": "Abyss Gate IV",
+      "tier": "Expert",
+      "element": "Earth",
+      "recommendedPower": 96636,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 498,
+        "max": 996
+      },
+      "goldReward": {
+        "min": 24911,
+        "max": 49823
+      },
+      "expReward": 4982,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Tectonic Reaper",
+        "element": "Earth",
+        "hp": 703604,
+        "atk": 35180,
+        "def": 14072
+      }
+    },
+    {
+      "stage": 75,
+      "name": "Abyss Gate V",
+      "tier": "Expert",
+      "element": "Water",
+      "recommendedPower": 102917,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 526,
+        "max": 1051
+      },
+      "goldReward": {
+        "min": 26282,
+        "max": 52563
+      },
+      "expReward": 5256,
+      "soulWeaponId": "water_bow",
+      "boss": {
+        "name": "Abyssal Shade",
+        "element": "Water",
+        "hp": 745820,
+        "atk": 37291,
+        "def": 14916
+      }
+    },
+    {
+      "stage": 76,
+      "name": "Abyss Gate VI",
+      "tier": "Expert",
+      "element": "Wind",
+      "recommendedPower": 109607,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 555,
+        "max": 1109
+      },
+      "goldReward": {
+        "min": 27727,
+        "max": 55454
+      },
+      "expReward": 5545,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Gale Specter",
+        "element": "Wind",
+        "hp": 790569,
+        "atk": 39528,
+        "def": 15811
+      }
+    },
+    {
+      "stage": 77,
+      "name": "Abyss Gate VII",
+      "tier": "Expert",
+      "element": "Wind",
+      "recommendedPower": 116731,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 585,
+        "max": 1170
+      },
+      "goldReward": {
+        "min": 29252,
+        "max": 58504
+      },
+      "expReward": 5850,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Storm Phantom",
+        "element": "Wind",
+        "hp": 838003,
+        "atk": 41900,
+        "def": 16760
+      }
+    },
+    {
+      "stage": 78,
+      "name": "Abyss Gate VIII",
+      "tier": "Expert",
+      "element": "Wind",
+      "recommendedPower": 124319,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 617,
+        "max": 1234
+      },
+      "goldReward": {
+        "min": 30861,
+        "max": 61722
+      },
+      "expReward": 6172,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Cyclone Wraith",
+        "element": "Wind",
+        "hp": 888284,
+        "atk": 44414,
+        "def": 17766
+      }
+    },
+    {
+      "stage": 79,
+      "name": "Abyss Gate IX",
+      "tier": "Expert",
+      "element": "Wind",
+      "recommendedPower": 132400,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 651,
+        "max": 1302
+      },
+      "goldReward": {
+        "min": 32558,
+        "max": 65117
+      },
+      "expReward": 6512,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Thunder Reaper",
+        "element": "Wind",
+        "hp": 941581,
+        "atk": 47079,
+        "def": 18832
+      }
+    },
+    {
+      "stage": 80,
+      "name": "Abyss Gate X",
+      "tier": "Expert",
+      "element": "Earth",
+      "recommendedPower": 141006,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 687,
+        "max": 1374
+      },
+      "goldReward": {
+        "min": 34349,
+        "max": 68698
+      },
+      "expReward": 6870,
+      "soulWeaponId": "earth_axe",
+      "boss": {
+        "name": "Earthen Shade",
+        "element": "Earth",
+        "hp": 998075,
+        "atk": 49904,
+        "def": 19962
+      }
+    },
+    {
+      "stage": 81,
+      "name": "Abyss Gate XI",
+      "tier": "Expert",
+      "element": "Light",
+      "recommendedPower": 150171,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 725,
+        "max": 1450
+      },
+      "goldReward": {
+        "min": 36238,
+        "max": 72476
+      },
+      "expReward": 7248,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Radiant Specter",
+        "element": "Light",
+        "hp": 1057960,
+        "atk": 52898,
+        "def": 21159
+      }
+    },
+    {
+      "stage": 82,
+      "name": "Abyss Gate XII",
+      "tier": "Expert",
+      "element": "Light",
+      "recommendedPower": 159932,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 765,
+        "max": 1529
+      },
+      "goldReward": {
+        "min": 38231,
+        "max": 76463
+      },
+      "expReward": 7646,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Holy Phantom",
+        "element": "Light",
+        "hp": 1121438,
+        "atk": 56072,
+        "def": 22429
+      }
+    },
+    {
+      "stage": 83,
+      "name": "Abyss Gate XIII",
+      "tier": "Expert",
+      "element": "Light",
+      "recommendedPower": 170328,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 807,
+        "max": 1613
+      },
+      "goldReward": {
+        "min": 40334,
+        "max": 80668
+      },
+      "expReward": 8067,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Divine Wraith",
+        "element": "Light",
+        "hp": 1188724,
+        "atk": 59436,
+        "def": 23774
+      }
+    },
+    {
+      "stage": 84,
+      "name": "Abyss Gate XIV",
+      "tier": "Expert",
+      "element": "Light",
+      "recommendedPower": 181399,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 851,
+        "max": 1702
+      },
+      "goldReward": {
+        "min": 42552,
+        "max": 85105
+      },
+      "expReward": 8510,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Sacred Reaper",
+        "element": "Light",
+        "hp": 1260047,
+        "atk": 63002,
+        "def": 25201
+      }
+    },
+    {
+      "stage": 85,
+      "name": "Abyss Gate XV",
+      "tier": "Expert",
+      "element": "Wind",
+      "recommendedPower": 193190,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 898,
+        "max": 1796
+      },
+      "goldReward": {
+        "min": 44893,
+        "max": 89786
+      },
+      "expReward": 8979,
+      "soulWeaponId": "wind_scythe",
+      "boss": {
+        "name": "Sky Shade",
+        "element": "Wind",
+        "hp": 1335650,
+        "atk": 66783,
+        "def": 26713
+      }
+    },
+    {
+      "stage": 86,
+      "name": "Abyss Gate XVI",
+      "tier": "Expert",
+      "element": "Dark",
+      "recommendedPower": 205747,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 947,
+        "max": 1894
+      },
+      "goldReward": {
+        "min": 47362,
+        "max": 94724
+      },
+      "expReward": 9472,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Shadow Specter",
+        "element": "Dark",
+        "hp": 1415789,
+        "atk": 70789,
+        "def": 28316
+      }
+    },
+    {
+      "stage": 87,
+      "name": "Abyss Gate XVII",
+      "tier": "Expert",
+      "element": "Dark",
+      "recommendedPower": 219121,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 999,
+        "max": 1999
+      },
+      "goldReward": {
+        "min": 49967,
+        "max": 99934
+      },
+      "expReward": 9993,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Void Phantom",
+        "element": "Dark",
+        "hp": 1500736,
+        "atk": 75037,
+        "def": 30015
+      }
+    },
+    {
+      "stage": 88,
+      "name": "Abyss Gate XVIII",
+      "tier": "Expert",
+      "element": "Dark",
+      "recommendedPower": 233364,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 1054,
+        "max": 2109
+      },
+      "goldReward": {
+        "min": 52715,
+        "max": 105430
+      },
+      "expReward": 10543,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Nightmare Wraith",
+        "element": "Dark",
+        "hp": 1590781,
+        "atk": 79539,
+        "def": 31816
+      }
+    },
+    {
+      "stage": 89,
+      "name": "Abyss Gate XIX",
+      "tier": "Expert",
+      "element": "Dark",
+      "recommendedPower": 248532,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 1112,
+        "max": 2225
+      },
+      "goldReward": {
+        "min": 55614,
+        "max": 111229
+      },
+      "expReward": 11123,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Chaos Reaper",
+        "element": "Dark",
+        "hp": 1686227,
+        "atk": 84311,
+        "def": 33725
+      }
+    },
+    {
+      "stage": 90,
+      "name": "Abyss Gate XX",
+      "tier": "Expert",
+      "element": "Light",
+      "recommendedPower": 264687,
+      "energyCost": 7,
+      "soulsReward": {
+        "min": 1173,
+        "max": 2347
+      },
+      "goldReward": {
+        "min": 58673,
+        "max": 117346
+      },
+      "expReward": 11735,
+      "soulWeaponId": "light_sword",
+      "boss": {
+        "name": "Celestial Shade",
+        "element": "Light",
+        "hp": 1787401,
+        "atk": 89370,
+        "def": 35748
+      }
+    },
+    {
+      "stage": 91,
+      "name": "Soul Throne I",
+      "tier": "Master",
+      "element": "Fire",
+      "recommendedPower": 200000,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 1238,
+        "max": 2476
+      },
+      "goldReward": {
+        "min": 61900,
+        "max": 123800
+      },
+      "expReward": 12380,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Inferno Wraith",
+        "element": "Fire",
+        "hp": 1894645,
+        "atk": 94732,
+        "def": 37893
+      }
+    },
+    {
+      "stage": 92,
+      "name": "Soul Throne II",
+      "tier": "Master",
+      "element": "Fire",
+      "recommendedPower": 213000,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 1306,
+        "max": 2612
+      },
+      "goldReward": {
+        "min": 65305,
+        "max": 130609
+      },
+      "expReward": 13061,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Flame Reaper",
+        "element": "Fire",
+        "hp": 2008324,
+        "atk": 100416,
+        "def": 40166
+      }
+    },
+    {
+      "stage": 93,
+      "name": "Soul Throne III",
+      "tier": "Master",
+      "element": "Fire",
+      "recommendedPower": 226845,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 1378,
+        "max": 2756
+      },
+      "goldReward": {
+        "min": 68896,
+        "max": 137793
+      },
+      "expReward": 13779,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Cinder Spectre",
+        "element": "Fire",
+        "hp": 2128823,
+        "atk": 106441,
+        "def": 42576
+      }
+    },
+    {
+      "stage": 94,
+      "name": "Soul Throne IV",
+      "tier": "Master",
+      "element": "Fire",
+      "recommendedPower": 241590,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 1454,
+        "max": 2907
+      },
+      "goldReward": {
+        "min": 72686,
+        "max": 145371
+      },
+      "expReward": 14537,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Blaze Phantom",
+        "element": "Fire",
+        "hp": 2256553,
+        "atk": 112828,
+        "def": 45131
+      }
+    },
+    {
+      "stage": 95,
+      "name": "Soul Throne V",
+      "tier": "Master",
+      "element": "Dark",
+      "recommendedPower": 257293,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 1534,
+        "max": 3067
+      },
+      "goldReward": {
+        "min": 76683,
+        "max": 153367
+      },
+      "expReward": 15337,
+      "soulWeaponId": "dark_staff",
+      "boss": {
+        "name": "Soul Shade",
+        "element": "Dark",
+        "hp": 2391946,
+        "atk": 119597,
+        "def": 47839
+      }
+    },
+    {
+      "stage": 96,
+      "name": "Soul Throne VI",
+      "tier": "Master",
+      "element": "Water",
+      "recommendedPower": 274017,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 1618,
+        "max": 3236
+      },
+      "goldReward": {
+        "min": 80901,
+        "max": 161802
+      },
+      "expReward": 16180,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Frost Specter",
+        "element": "Water",
+        "hp": 2535463,
+        "atk": 126773,
+        "def": 50709
+      }
+    },
+    {
+      "stage": 97,
+      "name": "Soul Throne VII",
+      "tier": "Master",
+      "element": "Water",
+      "recommendedPower": 291828,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 1707,
+        "max": 3414
+      },
+      "goldReward": {
+        "min": 85351,
+        "max": 170701
+      },
+      "expReward": 17070,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Glacial Wraith",
+        "element": "Water",
+        "hp": 2687590,
+        "atk": 134380,
+        "def": 53752
+      }
+    },
+    {
+      "stage": 98,
+      "name": "Soul Throne VIII",
+      "tier": "Master",
+      "element": "Water",
+      "recommendedPower": 310797,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 1801,
+        "max": 3602
+      },
+      "goldReward": {
+        "min": 90045,
+        "max": 180090
+      },
+      "expReward": 18009,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Tide Phantom",
+        "element": "Water",
+        "hp": 2848846,
+        "atk": 142442,
+        "def": 56977
+      }
+    },
+    {
+      "stage": 99,
+      "name": "Soul Throne IX",
+      "tier": "Master",
+      "element": "Water",
+      "recommendedPower": 330999,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 1900,
+        "max": 3800
+      },
+      "goldReward": {
+        "min": 94997,
+        "max": 189995
+      },
+      "expReward": 18999,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Cryo Reaper",
+        "element": "Water",
+        "hp": 3019776,
+        "atk": 150989,
+        "def": 60396
+      }
+    },
+    {
+      "stage": 100,
+      "name": "Soul Throne X",
+      "tier": "Master",
+      "element": "Water",
+      "recommendedPower": 352514,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 2004,
+        "max": 4009
+      },
+      "goldReward": {
+        "min": 100222,
+        "max": 200444
+      },
+      "expReward": 20044,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Abyssal Shade",
+        "element": "Water",
+        "hp": 3200963,
+        "atk": 160048,
+        "def": 64019
+      }
+    },
+    {
+      "stage": 101,
+      "name": "Soul Throne XI",
+      "tier": "Master",
+      "element": "Earth",
+      "recommendedPower": 375427,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 2115,
+        "max": 4229
+      },
+      "goldReward": {
+        "min": 105734,
+        "max": 211469
+      },
+      "expReward": 21147,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Stone Specter",
+        "element": "Earth",
+        "hp": 3393021,
+        "atk": 169651,
+        "def": 67860
+      }
+    },
+    {
+      "stage": 102,
+      "name": "Soul Throne XII",
+      "tier": "Master",
+      "element": "Earth",
+      "recommendedPower": 399830,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 2231,
+        "max": 4462
+      },
+      "goldReward": {
+        "min": 111550,
+        "max": 223099
+      },
+      "expReward": 22310,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Granite Phantom",
+        "element": "Earth",
+        "hp": 3596602,
+        "atk": 179830,
+        "def": 71932
+      }
+    },
+    {
+      "stage": 103,
+      "name": "Soul Throne XIII",
+      "tier": "Master",
+      "element": "Earth",
+      "recommendedPower": 425819,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 2354,
+        "max": 4707
+      },
+      "goldReward": {
+        "min": 117685,
+        "max": 235370
+      },
+      "expReward": 23537,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Boulder Wraith",
+        "element": "Earth",
+        "hp": 3812398,
+        "atk": 190620,
+        "def": 76248
+      }
+    },
+    {
+      "stage": 104,
+      "name": "Soul Throne XIV",
+      "tier": "Master",
+      "element": "Earth",
+      "recommendedPower": 453497,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 2483,
+        "max": 4966
+      },
+      "goldReward": {
+        "min": 124158,
+        "max": 248315
+      },
+      "expReward": 24832,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Tectonic Reaper",
+        "element": "Earth",
+        "hp": 4041142,
+        "atk": 202057,
+        "def": 80823
+      }
+    },
+    {
+      "stage": 105,
+      "name": "Soul Throne XV",
+      "tier": "Master",
+      "element": "Earth",
+      "recommendedPower": 482975,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 2620,
+        "max": 5239
+      },
+      "goldReward": {
+        "min": 130986,
+        "max": 261973
+      },
+      "expReward": 26197,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Earthen Shade",
+        "element": "Earth",
+        "hp": 4283611,
+        "atk": 214181,
+        "def": 85672
+      }
+    },
+    {
+      "stage": 106,
+      "name": "Soul Throne XVI",
+      "tier": "Master",
+      "element": "Wind",
+      "recommendedPower": 514368,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 2764,
+        "max": 5528
+      },
+      "goldReward": {
+        "min": 138191,
+        "max": 276381
+      },
+      "expReward": 27638,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Gale Specter",
+        "element": "Wind",
+        "hp": 4540627,
+        "atk": 227031,
+        "def": 90813
+      }
+    },
+    {
+      "stage": 107,
+      "name": "Soul Throne XVII",
+      "tier": "Master",
+      "element": "Wind",
+      "recommendedPower": 547802,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 2916,
+        "max": 5832
+      },
+      "goldReward": {
+        "min": 145791,
+        "max": 291582
+      },
+      "expReward": 29158,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Storm Phantom",
+        "element": "Wind",
+        "hp": 4813065,
+        "atk": 240653,
+        "def": 96261
+      }
+    },
+    {
+      "stage": 108,
+      "name": "Soul Throne XVIII",
+      "tier": "Master",
+      "element": "Wind",
+      "recommendedPower": 583409,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 3076,
+        "max": 6152
+      },
+      "goldReward": {
+        "min": 153810,
+        "max": 307619
+      },
+      "expReward": 30762,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Cyclone Wraith",
+        "element": "Wind",
+        "hp": 5101849,
+        "atk": 255092,
+        "def": 102037
+      }
+    },
+    {
+      "stage": 109,
+      "name": "Soul Throne XIX",
+      "tier": "Master",
+      "element": "Wind",
+      "recommendedPower": 621331,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 3245,
+        "max": 6491
+      },
+      "goldReward": {
+        "min": 162269,
+        "max": 324538
+      },
+      "expReward": 32454,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Thunder Reaper",
+        "element": "Wind",
+        "hp": 5407960,
+        "atk": 270398,
+        "def": 108159
+      }
+    },
+    {
+      "stage": 110,
+      "name": "Soul Throne XX",
+      "tier": "Master",
+      "element": "Wind",
+      "recommendedPower": 661717,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 3424,
+        "max": 6848
+      },
+      "goldReward": {
+        "min": 171194,
+        "max": 342388
+      },
+      "expReward": 34239,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Sky Shade",
+        "element": "Wind",
+        "hp": 5732437,
+        "atk": 286622,
+        "def": 114649
+      }
+    },
+    {
+      "stage": 111,
+      "name": "Soul Throne XXI",
+      "tier": "Master",
+      "element": "Light",
+      "recommendedPower": 704729,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 3612,
+        "max": 7224
+      },
+      "goldReward": {
+        "min": 180609,
+        "max": 361219
+      },
+      "expReward": 36122,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Radiant Specter",
+        "element": "Light",
+        "hp": 6076384,
+        "atk": 303819,
+        "def": 121528
+      }
+    },
+    {
+      "stage": 112,
+      "name": "Soul Throne XXII",
+      "tier": "Master",
+      "element": "Light",
+      "recommendedPower": 750536,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 3811,
+        "max": 7622
+      },
+      "goldReward": {
+        "min": 190543,
+        "max": 381086
+      },
+      "expReward": 38109,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Holy Phantom",
+        "element": "Light",
+        "hp": 6440967,
+        "atk": 322048,
+        "def": 128819
+      }
+    },
+    {
+      "stage": 113,
+      "name": "Soul Throne XXIII",
+      "tier": "Master",
+      "element": "Light",
+      "recommendedPower": 799321,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 4020,
+        "max": 8041
+      },
+      "goldReward": {
+        "min": 201023,
+        "max": 402046
+      },
+      "expReward": 40205,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Divine Wraith",
+        "element": "Light",
+        "hp": 6827425,
+        "atk": 341371,
+        "def": 136548
+      }
+    },
+    {
+      "stage": 114,
+      "name": "Soul Throne XXIV",
+      "tier": "Master",
+      "element": "Light",
+      "recommendedPower": 851277,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 4242,
+        "max": 8483
+      },
+      "goldReward": {
+        "min": 212079,
+        "max": 424158
+      },
+      "expReward": 42416,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Sacred Reaper",
+        "element": "Light",
+        "hp": 7237070,
+        "atk": 361854,
+        "def": 144741
+      }
+    },
+    {
+      "stage": 115,
+      "name": "Soul Throne XXV",
+      "tier": "Master",
+      "element": "Light",
+      "recommendedPower": 906610,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 4475,
+        "max": 8950
+      },
+      "goldReward": {
+        "min": 223743,
+        "max": 447487
+      },
+      "expReward": 44749,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Celestial Shade",
+        "element": "Light",
+        "hp": 7671294,
+        "atk": 383565,
+        "def": 153426
+      }
+    },
+    {
+      "stage": 116,
+      "name": "Soul Throne XXVI",
+      "tier": "Master",
+      "element": "Dark",
+      "recommendedPower": 965540,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 4721,
+        "max": 9442
+      },
+      "goldReward": {
+        "min": 236049,
+        "max": 472099
+      },
+      "expReward": 47210,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Shadow Specter",
+        "element": "Dark",
+        "hp": 8131572,
+        "atk": 406579,
+        "def": 162631
+      }
+    },
+    {
+      "stage": 117,
+      "name": "Soul Throne XXVII",
+      "tier": "Master",
+      "element": "Dark",
+      "recommendedPower": 1028300,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 4981,
+        "max": 9961
+      },
+      "goldReward": {
+        "min": 249032,
+        "max": 498064
+      },
+      "expReward": 49806,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Void Phantom",
+        "element": "Dark",
+        "hp": 8619466,
+        "atk": 430973,
+        "def": 172389
+      }
+    },
+    {
+      "stage": 118,
+      "name": "Soul Throne XXVIII",
+      "tier": "Master",
+      "element": "Dark",
+      "recommendedPower": 1095139,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 5255,
+        "max": 10509
+      },
+      "goldReward": {
+        "min": 262729,
+        "max": 525458
+      },
+      "expReward": 52546,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Nightmare Wraith",
+        "element": "Dark",
+        "hp": 9136634,
+        "atk": 456832,
+        "def": 182733
+      }
+    },
+    {
+      "stage": 119,
+      "name": "Soul Throne XXIX",
+      "tier": "Master",
+      "element": "Dark",
+      "recommendedPower": 1166323,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 5544,
+        "max": 11087
+      },
+      "goldReward": {
+        "min": 277179,
+        "max": 554358
+      },
+      "expReward": 55436,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Chaos Reaper",
+        "element": "Dark",
+        "hp": 9684832,
+        "atk": 484242,
+        "def": 193697
+      }
+    },
+    {
+      "stage": 120,
+      "name": "Soul Throne XXX",
+      "tier": "Master",
+      "element": "Light",
+      "recommendedPower": 1242134,
+      "energyCost": 8,
+      "soulsReward": {
+        "min": 5848,
+        "max": 11697
+      },
+      "goldReward": {
+        "min": 292424,
+        "max": 584848
+      },
+      "expReward": 58485,
+      "soulWeaponId": "light_spear",
+      "boss": {
+        "name": "Celestial Shade",
+        "element": "Light",
+        "hp": 10265922,
+        "atk": 513296,
+        "def": 205318
+      }
+    },
+    {
+      "stage": 121,
+      "name": "Eternal Darkness I",
+      "tier": "Grandmaster",
+      "element": "Fire",
+      "recommendedPower": 600000,
+      "energyCost": 10,
+      "soulsReward": {
+        "min": 6170,
+        "max": 12340
+      },
+      "goldReward": {
+        "min": 308507,
+        "max": 617014
+      },
+      "expReward": 61701,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Inferno Wraith",
+        "element": "Fire",
+        "hp": 10881877,
+        "atk": 544094,
+        "def": 217638
+      }
+    },
+    {
+      "stage": 122,
+      "name": "Eternal Darkness II",
+      "tier": "Grandmaster",
+      "element": "Fire",
+      "recommendedPower": 639000,
+      "energyCost": 10,
+      "soulsReward": {
+        "min": 6509,
+        "max": 13019
+      },
+      "goldReward": {
+        "min": 325475,
+        "max": 650950
+      },
+      "expReward": 65095,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Flame Reaper",
+        "element": "Fire",
+        "hp": 11534790,
+        "atk": 576740,
+        "def": 230696
+      }
+    },
+    {
+      "stage": 123,
+      "name": "Eternal Darkness III",
+      "tier": "Grandmaster",
+      "element": "Fire",
+      "recommendedPower": 680535,
+      "energyCost": 10,
+      "soulsReward": {
+        "min": 6868,
+        "max": 13735
+      },
+      "goldReward": {
+        "min": 343376,
+        "max": 686752
+      },
+      "expReward": 68675,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Cinder Spectre",
+        "element": "Fire",
+        "hp": 12226878,
+        "atk": 611344,
+        "def": 244538
+      }
+    },
+    {
+      "stage": 124,
+      "name": "Eternal Darkness IV",
+      "tier": "Grandmaster",
+      "element": "Fire",
+      "recommendedPower": 724770,
+      "energyCost": 10,
+      "soulsReward": {
+        "min": 7245,
+        "max": 14490
+      },
+      "goldReward": {
+        "min": 362262,
+        "max": 724524
+      },
+      "expReward": 72452,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Blaze Phantom",
+        "element": "Fire",
+        "hp": 12960490,
+        "atk": 648025,
+        "def": 259210
+      }
+    },
+    {
+      "stage": 125,
+      "name": "Eternal Darkness V",
+      "tier": "Grandmaster",
+      "element": "Fire",
+      "recommendedPower": 771880,
+      "energyCost": 10,
+      "soulsReward": {
+        "min": 7644,
+        "max": 15287
+      },
+      "goldReward": {
+        "min": 382186,
+        "max": 764372
+      },
+      "expReward": 76437,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Pyre Shade",
+        "element": "Fire",
+        "hp": 13738120,
+        "atk": 686906,
+        "def": 274762
+      }
+    },
+    {
+      "stage": 126,
+      "name": "Eternal Darkness VI",
+      "tier": "Grandmaster",
+      "element": "Water",
+      "recommendedPower": 822052,
+      "energyCost": 10,
+      "soulsReward": {
+        "min": 8064,
+        "max": 16128
+      },
+      "goldReward": {
+        "min": 403206,
+        "max": 806413
+      },
+      "expReward": 80641,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Frost Specter",
+        "element": "Water",
+        "hp": 14562407,
+        "atk": 728120,
+        "def": 291248
+      }
+    },
+    {
+      "stage": 127,
+      "name": "Eternal Darkness VII",
+      "tier": "Grandmaster",
+      "element": "Water",
+      "recommendedPower": 875485,
+      "energyCost": 10,
+      "soulsReward": {
+        "min": 8508,
+        "max": 17015
+      },
+      "goldReward": {
+        "min": 425383,
+        "max": 850766
+      },
+      "expReward": 85077,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Glacial Wraith",
+        "element": "Water",
+        "hp": 15436151,
+        "atk": 771808,
+        "def": 308723
+      }
+    },
+    {
+      "stage": 128,
+      "name": "Eternal Darkness VIII",
+      "tier": "Grandmaster",
+      "element": "Water",
+      "recommendedPower": 932392,
+      "energyCost": 10,
+      "soulsReward": {
+        "min": 8976,
+        "max": 17951
+      },
+      "goldReward": {
+        "min": 448779,
+        "max": 897558
+      },
+      "expReward": 89756,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Tide Phantom",
+        "element": "Water",
+        "hp": 16362320,
+        "atk": 818116,
+        "def": 327246
+      }
+    },
+    {
+      "stage": 129,
+      "name": "Eternal Darkness IX",
+      "tier": "Grandmaster",
+      "element": "Water",
+      "recommendedPower": 992997,
+      "energyCost": 10,
+      "soulsReward": {
+        "min": 9469,
+        "max": 18938
+      },
+      "goldReward": {
+        "min": 473462,
+        "max": 946923
+      },
+      "expReward": 94692,
+      "soulWeaponId": null,
+      "boss": {
+        "name": "Cryo Reaper",
+        "element": "Water",
+        "hp": 17344059,
+        "atk": 867203,
+        "def": 346881
+      }
+    },
+    {
+      "stage": 130,
+      "name": "Eternal Darkness X",
+      "tier": "Grandmaster",
+      "element": "Dark",
+      "recommendedPower": 1057542,
+      "energyCost": 10,
+      "soulsReward": {
+        "min": 9990,
+        "max": 19980
+      },
+      "goldReward": {
+        "min": 499502,
+        "max": 999004
+      },
+      "expReward": 99900,
+      "soulWeaponId": "dark_scythe",
+      "boss": {
+        "name": "Soul Shade",
+        "element": "Dark",
+        "hp": 18384703,
+        "atk": 919235,
+        "def": 367694
+      }
+    }
+  ]
+}

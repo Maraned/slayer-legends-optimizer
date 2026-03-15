@@ -139,3 +139,11 @@ export type {
   RankingReward,
   SpritesData,
 } from './sprites';
+
+export type {
+  SoulDungeonTier,
+  SoulRewardRange,
+  SoulDungeonBoss,
+  SoulDungeonStage,
+  SoulsData,
+} from './souls';
