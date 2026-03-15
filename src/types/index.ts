@@ -130,3 +130,12 @@ export type {
   DemonSanctuaryEntry,
   FamiliarsMathsData,
 } from './familiars';
+
+export type {
+  CompanionSkin,
+  DropIconType,
+  DropIcon,
+  BossSprite,
+  RankingReward,
+  SpritesData,
+} from './sprites';
