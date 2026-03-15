@@ -122,3 +122,11 @@ export type {
   SkillMasteryPage,
   SkillMasteryState,
 } from './skills';
+
+export type {
+  DemonAltarEntry,
+  DemonSkillGrade,
+  DemonSkillEntry,
+  DemonSanctuaryEntry,
+  FamiliarsMathsData,
+} from './familiars';
