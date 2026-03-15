@@ -166,3 +166,10 @@ export type {
   GoldEnhancementTargets,
   CalculatorInputsState,
 } from './calculator-inputs';
+
+export type {
+  FarmingBonuses,
+  ItemDropRate,
+  StageResourceRates,
+  CompanionAdvancementSlice,
+} from './stage-rates';
