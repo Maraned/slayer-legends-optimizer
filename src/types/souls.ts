@@ -84,6 +84,8 @@ export interface SoulDungeonStage {
  * Root shape of souls-data.json (SOULSDATA).
  */
 export interface SoulsData {
+  /** Semantic version of this data file (e.g. "1.0.0"). */
+  dataVersion: string;
   /** All 130 Soul Dungeon stages, sorted ascending by stage number */
   SOUL_DUNGEON: SoulDungeonStage[];
 }

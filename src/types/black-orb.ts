@@ -65,3 +65,15 @@ export interface BlackOrbState {
   /** Computed AMP values derived from active sources and owned accessories */
   ampCalculation: AmpCalculation;
 }
+
+/**
+ * Root shape of black-orb-maths-data.json.
+ */
+export interface BlackOrbMathsData {
+  /** Semantic version of this data file (e.g. "1.0.0"). */
+  dataVersion: string;
+  /** All elemental damage sources defined in the game */
+  ELEMENTAL_DAMAGE_SOURCES: ElementalDamageSource[];
+  /** All element accessories available in the game */
+  ELEMENT_ACCESSORIES: ElementAccessory[];
+}

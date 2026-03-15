@@ -58,6 +58,8 @@ export interface GrowthKnowledgeEntry {
 
 /** Root shape of character-maths-data.json. */
 export interface CharacterMathsData {
+  /** Semantic version of this data file (e.g. "1.0.0"). */
+  dataVersion: string;
   SLAYER_LEVEL: SlayerLevelEntry[];
   PROMOTION: PromotionEntry[];
   PROMOTION_BONUS: PromotionBonusEntry[];

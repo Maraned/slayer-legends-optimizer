@@ -1,4 +1,5 @@
 {
+  "dataVersion": "1.0.0",
   "COMPANIONS": [
     {
       "name": "Ellie",
@@ -6,24 +7,80 @@
       "element": "Wind",
       "level": 1,
       "advancementSteps": [
-        { "step": "1st",  "buffType": "Extra ATK",    "buffValue": 0.02 },
-        { "step": "2nd",  "buffType": "Extra EXP",    "buffValue": 0.02 },
-        { "step": "3rd",  "buffType": "Extra ATK",    "buffValue": 0.03 },
-        { "step": "4th",  "buffType": "Extra HP",     "buffValue": 0.02 },
-        { "step": "5th",  "buffType": "Extra EXP",    "buffValue": 0.03 },
-        { "step": "6th",  "buffType": "Extra ATK",    "buffValue": 0.04 },
-        { "step": "7th",  "buffType": "Monster Gold", "buffValue": 0.02 },
-        { "step": "8th",  "buffType": "Extra EXP",    "buffValue": 0.04 },
-        { "step": "9th",  "buffType": "Extra ATK",    "buffValue": 0.05 },
-        { "step": "10th", "buffType": "Extra HP",     "buffValue": 0.03 },
-        { "step": "11th", "buffType": "Extra EXP",    "buffValue": 0.05 },
-        { "step": "12th", "buffType": "Monster Gold", "buffValue": 0.03 },
-        { "step": "13th", "buffType": "Extra ATK",    "buffValue": 0.07 },
-        { "step": "14th", "buffType": "Extra EXP",    "buffValue": 0.07 }
+        {
+          "step": "1st",
+          "buffType": "Extra ATK",
+          "buffValue": 0.02
+        },
+        {
+          "step": "2nd",
+          "buffType": "Extra EXP",
+          "buffValue": 0.02
+        },
+        {
+          "step": "3rd",
+          "buffType": "Extra ATK",
+          "buffValue": 0.03
+        },
+        {
+          "step": "4th",
+          "buffType": "Extra HP",
+          "buffValue": 0.02
+        },
+        {
+          "step": "5th",
+          "buffType": "Extra EXP",
+          "buffValue": 0.03
+        },
+        {
+          "step": "6th",
+          "buffType": "Extra ATK",
+          "buffValue": 0.04
+        },
+        {
+          "step": "7th",
+          "buffType": "Monster Gold",
+          "buffValue": 0.02
+        },
+        {
+          "step": "8th",
+          "buffType": "Extra EXP",
+          "buffValue": 0.04
+        },
+        {
+          "step": "9th",
+          "buffType": "Extra ATK",
+          "buffValue": 0.05
+        },
+        {
+          "step": "10th",
+          "buffType": "Extra HP",
+          "buffValue": 0.03
+        },
+        {
+          "step": "11th",
+          "buffType": "Extra EXP",
+          "buffValue": 0.05
+        },
+        {
+          "step": "12th",
+          "buffType": "Monster Gold",
+          "buffValue": 0.03
+        },
+        {
+          "step": "13th",
+          "buffType": "Extra ATK",
+          "buffValue": 0.07
+        },
+        {
+          "step": "14th",
+          "buffType": "Extra EXP",
+          "buffValue": 0.07
+        }
       ],
       "specialBuffs": {
         "companion": "Ellie",
-        "windsSong": 0.10
+        "windsSong": 0.1
       }
     },
     {
@@ -32,20 +89,76 @@
       "element": "Fire",
       "level": 1,
       "advancementSteps": [
-        { "step": "1st",  "buffType": "Extra ATK",    "buffValue": 0.03 },
-        { "step": "2nd",  "buffType": "Monster Gold", "buffValue": 0.02 },
-        { "step": "3rd",  "buffType": "Extra ATK",    "buffValue": 0.04 },
-        { "step": "4th",  "buffType": "Extra EXP",    "buffValue": 0.02 },
-        { "step": "5th",  "buffType": "Extra ATK",    "buffValue": 0.05 },
-        { "step": "6th",  "buffType": "Monster Gold", "buffValue": 0.03 },
-        { "step": "7th",  "buffType": "Extra HP",     "buffValue": 0.02 },
-        { "step": "8th",  "buffType": "Extra ATK",    "buffValue": 0.06 },
-        { "step": "9th",  "buffType": "Monster Gold", "buffValue": 0.04 },
-        { "step": "10th", "buffType": "Extra ATK",    "buffValue": 0.07 },
-        { "step": "11th", "buffType": "Extra EXP",    "buffValue": 0.03 },
-        { "step": "12th", "buffType": "Extra ATK",    "buffValue": 0.08 },
-        { "step": "13th", "buffType": "Monster Gold", "buffValue": 0.05 },
-        { "step": "14th", "buffType": "Extra ATK",    "buffValue": 0.10 }
+        {
+          "step": "1st",
+          "buffType": "Extra ATK",
+          "buffValue": 0.03
+        },
+        {
+          "step": "2nd",
+          "buffType": "Monster Gold",
+          "buffValue": 0.02
+        },
+        {
+          "step": "3rd",
+          "buffType": "Extra ATK",
+          "buffValue": 0.04
+        },
+        {
+          "step": "4th",
+          "buffType": "Extra EXP",
+          "buffValue": 0.02
+        },
+        {
+          "step": "5th",
+          "buffType": "Extra ATK",
+          "buffValue": 0.05
+        },
+        {
+          "step": "6th",
+          "buffType": "Monster Gold",
+          "buffValue": 0.03
+        },
+        {
+          "step": "7th",
+          "buffType": "Extra HP",
+          "buffValue": 0.02
+        },
+        {
+          "step": "8th",
+          "buffType": "Extra ATK",
+          "buffValue": 0.06
+        },
+        {
+          "step": "9th",
+          "buffType": "Monster Gold",
+          "buffValue": 0.04
+        },
+        {
+          "step": "10th",
+          "buffType": "Extra ATK",
+          "buffValue": 0.07
+        },
+        {
+          "step": "11th",
+          "buffType": "Extra EXP",
+          "buffValue": 0.03
+        },
+        {
+          "step": "12th",
+          "buffType": "Extra ATK",
+          "buffValue": 0.08
+        },
+        {
+          "step": "13th",
+          "buffType": "Monster Gold",
+          "buffValue": 0.05
+        },
+        {
+          "step": "14th",
+          "buffType": "Extra ATK",
+          "buffValue": 0.1
+        }
       ],
       "specialBuffs": {
         "companion": "Zeke",
@@ -60,20 +173,76 @@
       "element": "Earth",
       "level": 1,
       "advancementSteps": [
-        { "step": "1st",  "buffType": "Monster Gold", "buffValue": 0.03 },
-        { "step": "2nd",  "buffType": "Extra HP",     "buffValue": 0.02 },
-        { "step": "3rd",  "buffType": "Monster Gold", "buffValue": 0.04 },
-        { "step": "4th",  "buffType": "Extra ATK",    "buffValue": 0.02 },
-        { "step": "5th",  "buffType": "Extra HP",     "buffValue": 0.03 },
-        { "step": "6th",  "buffType": "Monster Gold", "buffValue": 0.05 },
-        { "step": "7th",  "buffType": "Extra EXP",    "buffValue": 0.02 },
-        { "step": "8th",  "buffType": "Extra HP",     "buffValue": 0.04 },
-        { "step": "9th",  "buffType": "Monster Gold", "buffValue": 0.06 },
-        { "step": "10th", "buffType": "Extra ATK",    "buffValue": 0.03 },
-        { "step": "11th", "buffType": "Extra HP",     "buffValue": 0.05 },
-        { "step": "12th", "buffType": "Monster Gold", "buffValue": 0.07 },
-        { "step": "13th", "buffType": "Extra EXP",    "buffValue": 0.03 },
-        { "step": "14th", "buffType": "Monster Gold", "buffValue": 0.10 }
+        {
+          "step": "1st",
+          "buffType": "Monster Gold",
+          "buffValue": 0.03
+        },
+        {
+          "step": "2nd",
+          "buffType": "Extra HP",
+          "buffValue": 0.02
+        },
+        {
+          "step": "3rd",
+          "buffType": "Monster Gold",
+          "buffValue": 0.04
+        },
+        {
+          "step": "4th",
+          "buffType": "Extra ATK",
+          "buffValue": 0.02
+        },
+        {
+          "step": "5th",
+          "buffType": "Extra HP",
+          "buffValue": 0.03
+        },
+        {
+          "step": "6th",
+          "buffType": "Monster Gold",
+          "buffValue": 0.05
+        },
+        {
+          "step": "7th",
+          "buffType": "Extra EXP",
+          "buffValue": 0.02
+        },
+        {
+          "step": "8th",
+          "buffType": "Extra HP",
+          "buffValue": 0.04
+        },
+        {
+          "step": "9th",
+          "buffType": "Monster Gold",
+          "buffValue": 0.06
+        },
+        {
+          "step": "10th",
+          "buffType": "Extra ATK",
+          "buffValue": 0.03
+        },
+        {
+          "step": "11th",
+          "buffType": "Extra HP",
+          "buffValue": 0.05
+        },
+        {
+          "step": "12th",
+          "buffType": "Monster Gold",
+          "buffValue": 0.07
+        },
+        {
+          "step": "13th",
+          "buffType": "Extra EXP",
+          "buffValue": 0.03
+        },
+        {
+          "step": "14th",
+          "buffType": "Monster Gold",
+          "buffValue": 0.1
+        }
       ],
       "specialBuffs": {
         "companion": "Miho",
@@ -86,20 +255,76 @@
       "element": "Water",
       "level": 1,
       "advancementSteps": [
-        { "step": "1st",  "buffType": "Extra HP",     "buffValue": 0.03 },
-        { "step": "2nd",  "buffType": "Extra EXP",    "buffValue": 0.02 },
-        { "step": "3rd",  "buffType": "Extra HP",     "buffValue": 0.04 },
-        { "step": "4th",  "buffType": "Monster Gold", "buffValue": 0.02 },
-        { "step": "5th",  "buffType": "Extra EXP",    "buffValue": 0.03 },
-        { "step": "6th",  "buffType": "Extra HP",     "buffValue": 0.05 },
-        { "step": "7th",  "buffType": "Extra ATK",    "buffValue": 0.02 },
-        { "step": "8th",  "buffType": "Extra EXP",    "buffValue": 0.04 },
-        { "step": "9th",  "buffType": "Extra HP",     "buffValue": 0.06 },
-        { "step": "10th", "buffType": "Monster Gold", "buffValue": 0.03 },
-        { "step": "11th", "buffType": "Extra EXP",    "buffValue": 0.05 },
-        { "step": "12th", "buffType": "Extra HP",     "buffValue": 0.07 },
-        { "step": "13th", "buffType": "Extra ATK",    "buffValue": 0.03 },
-        { "step": "14th", "buffType": "Extra HP",     "buffValue": 0.10 }
+        {
+          "step": "1st",
+          "buffType": "Extra HP",
+          "buffValue": 0.03
+        },
+        {
+          "step": "2nd",
+          "buffType": "Extra EXP",
+          "buffValue": 0.02
+        },
+        {
+          "step": "3rd",
+          "buffType": "Extra HP",
+          "buffValue": 0.04
+        },
+        {
+          "step": "4th",
+          "buffType": "Monster Gold",
+          "buffValue": 0.02
+        },
+        {
+          "step": "5th",
+          "buffType": "Extra EXP",
+          "buffValue": 0.03
+        },
+        {
+          "step": "6th",
+          "buffType": "Extra HP",
+          "buffValue": 0.05
+        },
+        {
+          "step": "7th",
+          "buffType": "Extra ATK",
+          "buffValue": 0.02
+        },
+        {
+          "step": "8th",
+          "buffType": "Extra EXP",
+          "buffValue": 0.04
+        },
+        {
+          "step": "9th",
+          "buffType": "Extra HP",
+          "buffValue": 0.06
+        },
+        {
+          "step": "10th",
+          "buffType": "Monster Gold",
+          "buffValue": 0.03
+        },
+        {
+          "step": "11th",
+          "buffType": "Extra EXP",
+          "buffValue": 0.05
+        },
+        {
+          "step": "12th",
+          "buffType": "Extra HP",
+          "buffValue": 0.07
+        },
+        {
+          "step": "13th",
+          "buffType": "Extra ATK",
+          "buffValue": 0.03
+        },
+        {
+          "step": "14th",
+          "buffType": "Extra HP",
+          "buffValue": 0.1
+        }
       ],
       "specialBuffs": {
         "companion": "Luna",

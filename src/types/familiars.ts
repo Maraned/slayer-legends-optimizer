@@ -49,6 +49,8 @@ export interface DemonSanctuaryEntry {
 
 /** Root shape of familiars-maths-data.json. */
 export interface FamiliarsMathsData {
+  /** Semantic version of this data file (e.g. "1.0.0"). */
+  dataVersion: string;
   DEMON_ALTAR: DemonAltarEntry[];
   DEMON_SKILL: DemonSkillEntry[];
   DEMON_SANCTUARY: DemonSanctuaryEntry[];

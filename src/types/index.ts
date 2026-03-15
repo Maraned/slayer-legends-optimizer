@@ -11,6 +11,7 @@ export type {
   ElementalAmpBonuses,
   AmpCalculation,
   BlackOrbState,
+  BlackOrbMathsData,
 } from './black-orb';
 
 export type {
@@ -50,6 +51,7 @@ export type {
   ConstellationBuffTotals,
   ConstellationState,
   ConstellationSheetState,
+  ConstellationData,
 } from './constellation';
 
 export type {
@@ -83,6 +85,7 @@ export type {
   SpecialBuffs,
   Companion,
   CompanionsState,
+  CompanionsData,
 } from './companions';
 
 export { WeaponTier } from './equipment';
@@ -129,6 +132,7 @@ export type {
   SkillMasteryNodeState,
   SkillMasteryPage,
   SkillMasteryState,
+  SkillsMathsData,
 } from './skills';
 
 export type {
@@ -155,3 +159,5 @@ export type {
   SoulDungeonStage,
   SoulsData,
 } from './souls';
+
+export type { CubeWeapon, CubeClass, CubeOptimizerData } from './cube-optimizer';

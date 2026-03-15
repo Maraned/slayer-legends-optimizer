@@ -110,8 +110,11 @@ export type TOMCostSummary = Partial<Record<TOMResourceType, number>>;
 
 /**
  * Full Tree of Memory state: all 370 nodes and precomputed relationships.
+ * Root shape of tom-data.json.
  */
 export interface TOMState {
+  /** Semantic version of this data file (e.g. "1.0.0"). */
+  dataVersion: string;
   /** All TOM nodes (owned and not yet unlocked) */
   nodes: TOMNode[];
   /**

@@ -303,6 +303,7 @@ function parseStageSheet(
   }
 
   return {
+    dataVersion: '1.0.0',
     STAGES: stages,
     AREAS: Array.from(areaMap.values()),
     ZONES: Array.from(zoneMap.values()),
@@ -649,7 +650,7 @@ export function parseXlsxBuffer(buffer: ArrayBuffer): XlsxParseResult {
       warnings.push('EquipmentData: CostFactors sheet not found; equipment data is incomplete');
     }
     if (levelMultipliers && costFactors) {
-      equipmentData = { levelMultipliers, costFactors };
+      equipmentData = { dataVersion: '1.0.0', levelMultipliers, costFactors };
     }
   }
 

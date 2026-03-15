@@ -81,6 +81,8 @@ export interface RankingReward {
  * Contains all sprite lookup tables used throughout the optimizer UI.
  */
 export interface SpritesData {
+  /** Semantic version of this data file (e.g. "1.0.0"). */
+  dataVersion: string;
   /**
    * All companion skins grouped by companion name.
    * Key: CompanionName ('Ellie' | 'Zeke' | 'Miho' | 'Luna')

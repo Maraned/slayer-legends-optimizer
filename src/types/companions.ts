@@ -137,3 +137,13 @@ export interface Companion {
  * Source: COMPANIONS sheet (four companion blocks).
  */
 export type CompanionsState = [Companion, Companion, Companion, Companion];
+
+/**
+ * Root shape of companions-data.json.
+ */
+export interface CompanionsData {
+  /** Semantic version of this data file (e.g. "1.0.0"). */
+  dataVersion: string;
+  /** All four companion definitions (Ellie, Zeke, Miho, Luna) */
+  COMPANIONS: Companion[];
+}
