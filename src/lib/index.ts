@@ -19,3 +19,11 @@ export {
 export { buildLevelMultiplierIndex } from './equipment-lookups';
 
 export { cumulativeCost, segmentCost, costForRange, SEGMENT_SIZE } from './gold-calculator';
+
+export {
+  calculateStageResourceRates,
+  rankStagesByResource,
+  bonusesFromAppearance,
+  bonusesFromCompanions,
+  mergeFarmingBonuses,
+} from './stage-calculator';
