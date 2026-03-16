@@ -93,3 +93,26 @@ export function segmentCost(fromLevel: number, toLevel: number): number {
 
   return total;
 }
+
+/**
+ * Calculates the total gold cost to enhance a stat across a fully-inclusive
+ * level range [fromLevel, toLevel].
+ *
+ * Unlike `segmentCost`, both `fromLevel` and `toLevel` are treated as
+ * inclusive: the cost of reaching `fromLevel` itself is included in the
+ * total.  This makes the function suitable for "how much gold does it cost
+ * to enhance levels A through B?" queries (e.g. a user who wants to pre-pay
+ * for a block of levels or compare the cost of two level bands).
+ *
+ * Internally delegates to `segmentCost(fromLevel - 1, toLevel)` so that the
+ * full enhancement step at `fromLevel` is counted.
+ *
+ * @param fromLevel - First level of the range (inclusive, ≥ 1).
+ * @param toLevel   - Last level of the range (inclusive, ≥ fromLevel).
+ * @returns Total gold cost for all levels in [fromLevel, toLevel], or 0 for
+ *          invalid/empty ranges.
+ */
+export function costForRange(fromLevel: number, toLevel: number): number {
+  if (fromLevel <= 0 || toLevel < fromLevel) return 0;
+  return segmentCost(fromLevel - 1, toLevel);
+}
