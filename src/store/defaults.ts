@@ -1,4 +1,5 @@
 import type { UserSaveState } from '@/types/save-state';
+import { DEFAULT_CONSTELLATION_STATE } from './constellation-slice';
 
 import { DEFAULT_BLACK_ORB } from './blackOrbSlice';
 
@@ -107,10 +108,7 @@ export const DEFAULT_STATE: UserSaveState = {
     nodeLevels: {},
   },
 
-  constellation: {
-    unlockedStars: {},
-    farmingMode: '',
-  },
+  constellation: DEFAULT_CONSTELLATION_STATE,
 
   blackOrb: DEFAULT_BLACK_ORB,
 
