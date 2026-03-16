@@ -4,7 +4,6 @@ import { persist } from 'zustand/middleware';
 import type { AppearanceState } from '@/types/appearance';
 import type { CharacterState } from '@/types/character';
 import type { CompanionsState } from '@/types/companions';
-import type { EquipmentState } from '@/types/equipment';
 import type {
   ConstellationState,
   SkillsState,
@@ -15,11 +14,11 @@ import type { MemoryTreeState } from '@/types/tom';
 
 import { createBlackOrbSlice, type BlackOrbSlice } from './blackOrbSlice';
 import { DEFAULT_STATE } from './defaults';
+import { createEquipmentSlice, type EquipmentSliceActions } from './equipmentSlice';
 
-export interface UserSaveActions {
+export interface UserSaveActions extends EquipmentSliceActions {
   setAppearance: (appearance: AppearanceState) => void;
   setCharacter: (character: CharacterState) => void;
-  setEquipment: (equipment: EquipmentState) => void;
   setCompanions: (companions: CompanionsState) => void;
   setSkills: (skills: SkillsState) => void;
   setMemoryTree: (memoryTree: MemoryTreeState) => void;
@@ -35,25 +34,22 @@ export type UserSaveStore = UserSaveState & UserSaveActions & BlackOrbSlice;
 
 export const useUserSaveStore = create<UserSaveStore>()(
   persist(
-    (...a) => {
-      const [set] = a;
-      return {
-        ...DEFAULT_STATE,
-        ...createBlackOrbSlice(...a),
+    (set, get, store) => ({
+      ...DEFAULT_STATE,
+      ...createBlackOrbSlice(set, get, store),
+      ...createEquipmentSlice(set, get, store),
 
-        setAppearance: (appearance) => set({ appearance }),
-        setCharacter: (character) => set({ character }),
-        setEquipment: (equipment) => set({ equipment }),
-        setCompanions: (companions) => set({ companions }),
-        setSkills: (skills) => set({ skills }),
-        setMemoryTree: (memoryTree) => set({ memoryTree }),
-        setConstellation: (constellation) => set({ constellation }),
-        setStageSelection: (stageSelection) => set({ stageSelection }),
+      setAppearance: (appearance) => set({ appearance }),
+      setCharacter: (character) => set({ character }),
+      setCompanions: (companions) => set({ companions }),
+      setSkills: (skills) => set({ skills }),
+      setMemoryTree: (memoryTree) => set({ memoryTree }),
+      setConstellation: (constellation) => set({ constellation }),
+      setStageSelection: (stageSelection) => set({ stageSelection }),
 
-        loadState: (state) => set({ ...state }),
-        reset: () => set({ ...DEFAULT_STATE }),
-      };
-    },
+      loadState: (state) => set({ ...state }),
+      reset: () => set({ ...DEFAULT_STATE }),
+    }),
     {
       name: 'slayer-legends-save',
     },
