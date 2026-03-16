@@ -244,3 +244,85 @@ export function critDmgFromTOM(nodes: TOMNode[]): number {
     return total + activeEffects.reduce((s, l) => s + l.effectValue, 0);
   }, 0);
 }
+
+// ---------------------------------------------------------------------------
+// Additive aggregation (MAR-51 / 3.3.2)
+// ---------------------------------------------------------------------------
+
+/** Parameters required to build a full CRIT DMG breakdown. */
+export interface CritDmgParams {
+  /** Current CRIT_DMG enhancement level */
+  enhancementLevel: number;
+  /** CRIT DMG percentage points added per enhancement level */
+  enhancementBonusPerLevel: number;
+  /** Current class level */
+  classLevel: number;
+  /** Per-level CRIT DMG bonus for the current class (from cube-optimizer-data) */
+  classGrowthBonusPerLevel: number;
+  /** Flat CRIT DMG bonus for the equipped weapon tier (from cube-optimizer-data) */
+  weaponTierCritDmgBonusPct: number;
+  /** Unlocked Soul Weapon engraving effects */
+  soulWeaponEffects: SoulWeaponEffect[];
+  /** All 8 Skill Mastery pages with per-node unlock states */
+  skillMasteryPages: SkillMasteryPage[];
+  /** Pre-aggregated constellation buff totals */
+  constellationBuffTotals: ConstellationBuffTotals;
+  /** All player accessories (owned and unowned) */
+  accessories: Accessory[];
+  /** Pre-aggregated appearance bonus totals */
+  appearanceBonusTotals: AppearanceBonusTotals;
+  /** All TOM nodes with current levels and per-level definitions */
+  tomNodes: TOMNode[];
+}
+
+/**
+ * Build a per-source CRIT DMG breakdown from all game sources.
+ *
+ * Each field maps to one of the nine source functions. All values are additive
+ * percentage points (e.g. 5 = +5% CRIT DMG).
+ *
+ * @param params - All inputs required to compute every CRIT DMG source
+ * @returns Breakdown of CRIT DMG contributions by source
+ */
+export function aggregateCritDmg(params: CritDmgParams): CritDmgBreakdown {
+  return {
+    enhancement: critDmgFromEnhancement(
+      params.enhancementLevel,
+      params.enhancementBonusPerLevel,
+    ),
+    classGrowth: critDmgFromClassGrowth(
+      params.classLevel,
+      params.classGrowthBonusPerLevel,
+    ),
+    weaponTier: critDmgFromWeaponTier(params.weaponTierCritDmgBonusPct),
+    soulWeapon: critDmgFromSoulWeapon(params.soulWeaponEffects),
+    skillMastery: critDmgFromSkillMastery(params.skillMasteryPages),
+    constellation: critDmgFromConstellation(params.constellationBuffTotals),
+    accessories: critDmgFromAccessories(params.accessories),
+    appearance: critDmgFromAppearance(params.appearanceBonusTotals),
+    treeOfMemory: critDmgFromTOM(params.tomNodes),
+  };
+}
+
+/**
+ * Sum all source contributions in a CRIT DMG breakdown into a single total.
+ *
+ * The result is the total additive CRIT DMG percentage across all sources
+ * (e.g. 150 = +150% CRIT DMG).
+ *
+ * @param breakdown - Per-source breakdown produced by `aggregateCritDmg`
+ * @returns Total CRIT DMG percentage points
+ */
+export function calculateTotalCritDmg(breakdown: CritDmgBreakdown): number {
+  return (
+    breakdown.enhancement +
+    breakdown.classGrowth +
+    breakdown.weaponTier +
+    breakdown.soulWeapon +
+    breakdown.skillMastery +
+    breakdown.constellation +
+    breakdown.accessories +
+    breakdown.appearance +
+    breakdown.treeOfMemory
+  );
+}
