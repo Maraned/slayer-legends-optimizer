@@ -173,3 +173,9 @@ export type {
   StageResourceRates,
   CompanionAdvancementSlice,
 } from './stage-rates';
+
+export type {
+  ExtraExpBreakdown,
+  MonsterGoldBreakdown,
+  FarmingBonusBreakdown,
+} from './farming-bonuses';
