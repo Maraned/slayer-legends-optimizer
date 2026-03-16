@@ -27,3 +27,20 @@ export {
   bonusesFromCompanions,
   mergeFarmingBonuses,
 } from './stage-calculator';
+
+export {
+  calcWeaponAtk,
+  calcGrowthStrAtk,
+  calcPromotionAtkPct,
+  calcPromotionBonusAtkPct,
+  calcGrowingKnowledgeMultiplier,
+  calcCompanionAtkBuff,
+  calcAllCompanionsAtkBuff,
+  calcTomAtkBonus,
+  calcAppearanceAtkBonus,
+  calcConstellationAtkBonus,
+  calcSanctuaryAtkBonus,
+} from './atk-sources';
+
+export type { AtkSources } from './atk-aggregation';
+export { aggregateAtk, aggregateAtkDetailed } from './atk-aggregation';
