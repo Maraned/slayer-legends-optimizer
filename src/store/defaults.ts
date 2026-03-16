@@ -1,5 +1,7 @@
 import type { UserSaveState } from '@/types/save-state';
 
+import { DEFAULT_BLACK_ORB } from './blackOrbSlice';
+
 export const DEFAULT_STATE: UserSaveState = {
   version: 1,
 
@@ -109,11 +111,7 @@ export const DEFAULT_STATE: UserSaveState = {
     farmingMode: '',
   },
 
-  blackOrb: {
-    enabledSources: {},
-    elementAccessories: {},
-    ampValues: {},
-  },
+  blackOrb: DEFAULT_BLACK_ORB,
 
   stageSelection: {
     selectedStageId: 1,

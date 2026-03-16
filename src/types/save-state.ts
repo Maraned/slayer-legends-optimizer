@@ -1,11 +1,12 @@
 import type { AppearanceState } from './appearance';
+import type { BlackOrbState } from './black-orb';
 import type { CharacterState } from './character';
 import type { CompanionsState } from './companions';
 import type { EquipmentState } from './equipment';
 import type { Stage } from './stage';
 import type { MemoryTreeState } from './tom';
 
-export type { MemoryTreeState };
+export type { BlackOrbState, MemoryTreeState };
 
 // ---------------------------------------------------------------------------
 // Forward-reference placeholders for types defined in parallel tasks.
@@ -52,21 +53,6 @@ export interface ConstellationState {
   unlockedStars: Record<string, number>;
   /** Selected farming mode for constellation calculations */
   farmingMode: string;
-}
-
-/**
- * Player's Black Orb / elemental power configuration.
- * Placeholder for MAR-23 (1.2.8 Define types for black orb data).
- * Shape: elemental damage sources enabled/disabled, element accessory selections,
- * and AMP (Amplification) values per element.
- */
-export interface BlackOrbState {
-  /** Enabled elemental damage sources, keyed by source ID */
-  enabledSources: Record<string, boolean>;
-  /** Selected element accessory ID per slot, keyed by slot ID */
-  elementAccessories: Record<string, string>;
-  /** AMP value per element */
-  ampValues: Record<string, number>;
 }
 
 /**
