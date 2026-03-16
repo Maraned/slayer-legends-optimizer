@@ -18,4 +18,4 @@ export {
 
 export { buildLevelMultiplierIndex } from './equipment-lookups';
 
-export { cumulativeCost, segmentCost, SEGMENT_SIZE } from './gold-calculator';
+export { cumulativeCost, segmentCost, costForRange, SEGMENT_SIZE } from './gold-calculator';
