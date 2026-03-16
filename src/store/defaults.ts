@@ -2,6 +2,7 @@ import type { UserSaveState } from '@/types/save-state';
 import { DEFAULT_CONSTELLATION_STATE } from './constellation-slice';
 
 import { DEFAULT_BLACK_ORB } from './blackOrbSlice';
+import { DEFAULT_CHARACTER } from './characterSlice';
 
 
 export const DEFAULT_STATE: UserSaveState = {
@@ -12,45 +13,7 @@ export const DEFAULT_STATE: UserSaveState = {
     bonusTotals: {},
   },
 
-  character: {
-    enhanceableStats: {
-      ATK: { currentLevel: 0, maxLevel: 0 },
-      CRIT_DMG: { currentLevel: 0, maxLevel: 0 },
-      CRIT_PCT: { currentLevel: 0, maxLevel: 0 },
-      DEATH_STRIKE: { currentLevel: 0, maxLevel: 0 },
-      DEATH_STRIKE_PCT: { currentLevel: 0, maxLevel: 0 },
-      HP: { currentLevel: 0, maxLevel: 0 },
-      HP_RECOVERY: { currentLevel: 0, maxLevel: 0 },
-    },
-    growthStats: {
-      STR: { level: 0, bonus: 0 },
-      HP: { level: 0, bonus: 0 },
-      VIT: { level: 0, bonus: 0 },
-    },
-    latentPower: {
-      pages: [
-        { STR: 0, HP: 0, CRI: 0, LUK: 0, VIT: 0 },
-        { STR: 0, HP: 0, CRI: 0, LUK: 0, VIT: 0 },
-        { STR: 0, HP: 0, CRI: 0, LUK: 0, VIT: 0 },
-        { STR: 0, HP: 0, CRI: 0, LUK: 0, VIT: 0 },
-        { STR: 0, HP: 0, CRI: 0, LUK: 0, VIT: 0 },
-      ],
-    },
-    promotion: {
-      tier: 0,
-      atkBonusPct: 0,
-      monsterGoldBonusPct: 0,
-      abilities: [],
-    },
-    slayerLevel: {
-      level: 1,
-      expRequiredForNext: 0,
-    },
-    growingKnowledge: {
-      grade: 1,
-      atkEffectPct: 0,
-    },
-  },
+  character: DEFAULT_CHARACTER,
 
   equipment: {
     weapons: [],
