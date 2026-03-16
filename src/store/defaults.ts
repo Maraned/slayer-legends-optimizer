@@ -5,6 +5,8 @@ import { DEFAULT_BLACK_ORB } from './blackOrbSlice';
 import { DEFAULT_CHARACTER } from './characterSlice';
 
 
+import { DEFAULT_COMPANIONS } from './companionsSlice';
+
 export const DEFAULT_STATE: UserSaveState = {
   version: 1,
 
@@ -26,40 +28,7 @@ export const DEFAULT_STATE: UserSaveState = {
     awakenedOrrLevel: 0,
   },
 
-  companions: [
-    {
-      name: 'Ellie',
-      skin: '',
-      element: 'Wind',
-      level: 1,
-      advancementSteps: [],
-      specialBuffs: { companion: 'Ellie', windsSong: 0 },
-    },
-    {
-      name: 'Zeke',
-      skin: '',
-      element: 'Fire',
-      level: 1,
-      advancementSteps: [],
-      specialBuffs: { companion: 'Zeke', bladeDance: 0, wisdom: 0, soulCatch: 0 },
-    },
-    {
-      name: 'Miho',
-      skin: '',
-      element: 'Earth',
-      level: 1,
-      advancementSteps: [],
-      specialBuffs: { companion: 'Miho', redGreed: 0 },
-    },
-    {
-      name: 'Luna',
-      skin: '',
-      element: 'Water',
-      level: 1,
-      advancementSteps: [],
-      specialBuffs: { companion: 'Luna', deepSeaSong: 0 },
-    },
-  ],
+  companions: DEFAULT_COMPANIONS,
 
   skills: {
     skillLevels: {},

@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-import type { CompanionsState } from '@/types/companions';
 import type {
   BlackOrbState,
   SkillsState,
@@ -14,11 +13,11 @@ import { createBlackOrbSlice, type BlackOrbSlice } from './blackOrbSlice';
 import { type AppearanceSlice, createAppearanceSlice } from './appearanceSlice';
 import { createConstellationSlice, type ConstellationSlice } from './constellation-slice';
 import { type CharacterSlice, createCharacterSlice } from './characterSlice';
+import { type CompanionsSlice, createCompanionsSlice } from './companionsSlice';
 import { DEFAULT_STATE } from './defaults';
 import { createEquipmentSlice, type EquipmentSliceActions } from './equipmentSlice';
 
 export interface UserSaveActions extends EquipmentSliceActions {
-  setCompanions: (companions: CompanionsState) => void;
   setSkills: (skills: SkillsState) => void;
   setMemoryTree: (memoryTree: MemoryTreeState) => void;
   setBlackOrb: (blackOrb: BlackOrbState) => void;
@@ -29,7 +28,7 @@ export interface UserSaveActions extends EquipmentSliceActions {
   reset: () => void;
 }
 
-export type UserSaveStore = Omit<UserSaveState, 'appearance' | 'character'> & AppearanceSlice & CharacterSlice & BlackOrbSlice & UserSaveActions & ConstellationSlice;
+export type UserSaveStore = Omit<UserSaveState, 'appearance' | 'character' | 'companions'> & AppearanceSlice & CharacterSlice & BlackOrbSlice & CompanionsSlice & UserSaveActions & ConstellationSlice;
 
 export const useUserSaveStore = create<UserSaveStore>()(
   persist(
@@ -48,8 +47,9 @@ export const useUserSaveStore = create<UserSaveStore>()(
       ...createEquipmentSlice(set as any, get as any, api as any),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ...createConstellationSlice(set as any, get as any, api as any),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ...createCompanionsSlice(set as any, get as any, api as any),
 
-      setCompanions: (companions) => set({ companions }),
       setSkills: (skills) => set({ skills }),
       setMemoryTree: (memoryTree) => set({ memoryTree }),
       setStageSelection: (stageSelection) => set({ stageSelection }),
