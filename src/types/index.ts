@@ -161,3 +161,8 @@ export type {
 } from './souls';
 
 export type { CubeWeapon, CubeClass, CubeOptimizerData } from './cube-optimizer';
+
+export type {
+  GoldEnhancementTargets,
+  CalculatorInputsState,
+} from './calculator-inputs';
