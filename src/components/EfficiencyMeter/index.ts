@@ -1,3 +1,2 @@
-export { NumberInput } from './NumberInput';
 export { EfficiencyMeter } from './EfficiencyMeter';
 export type { EfficiencyMeterProps, EfficiencyVariant } from './EfficiencyMeter';
