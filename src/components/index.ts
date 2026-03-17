@@ -1,3 +1,5 @@
 export { NumberInput } from './NumberInput';
 export { EfficiencyMeter } from './EfficiencyMeter';
 export type { EfficiencyMeterProps, EfficiencyVariant } from './EfficiencyMeter';
+export { CostDisplay, CURRENCY_COLORS, CURRENCY_SYMBOLS } from './CostDisplay';
+export type { CostDisplayProps, CostCurrency, CostVariant } from './CostDisplay';
