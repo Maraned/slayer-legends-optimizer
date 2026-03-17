@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-import type { AppearanceState } from '@/types/appearance';
 import type { CharacterState } from '@/types/character';
 import type { CompanionsState } from '@/types/companions';
 import type {
@@ -13,11 +12,11 @@ import type {
 import type { MemoryTreeState } from '@/types/tom';
 
 import { createBlackOrbSlice, type BlackOrbSlice } from './blackOrbSlice';
+import { type AppearanceSlice, createAppearanceSlice } from './appearanceSlice';
 import { DEFAULT_STATE } from './defaults';
 import { createEquipmentSlice, type EquipmentSliceActions } from './equipmentSlice';
 
 export interface UserSaveActions extends EquipmentSliceActions {
-  setAppearance: (appearance: AppearanceState) => void;
   setCharacter: (character: CharacterState) => void;
   setCompanions: (companions: CompanionsState) => void;
   setSkills: (skills: SkillsState) => void;
@@ -30,16 +29,21 @@ export interface UserSaveActions extends EquipmentSliceActions {
   reset: () => void;
 }
 
-export type UserSaveStore = UserSaveState & UserSaveActions & BlackOrbSlice;
+export type UserSaveStore = Omit<UserSaveState, 'appearance'> & AppearanceSlice & BlackOrbSlice & UserSaveActions;
 
 export const useUserSaveStore = create<UserSaveStore>()(
   persist(
-    (set, get, store) => ({
+    (set, get, api) => ({
       ...DEFAULT_STATE,
-      ...createBlackOrbSlice(set, get, store),
-      ...createEquipmentSlice(set, get, store),
+      // Appearance slice — provides appearance state, setAppearance,
+      // setAppearanceItems, and toggleItemOwned.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ...createAppearanceSlice(set as any, get as any, api as any),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ...createBlackOrbSlice(set as any, get as any, api as any),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ...createEquipmentSlice(set as any, get as any, api as any),
 
-      setAppearance: (appearance) => set({ appearance }),
       setCharacter: (character) => set({ character }),
       setCompanions: (companions) => set({ companions }),
       setSkills: (skills) => set({ skills }),
