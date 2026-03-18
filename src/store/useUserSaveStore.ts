@@ -8,6 +8,7 @@ import type {
   UserSaveState,
 } from '@/types/save-state';
 import type { MemoryTreeState } from '@/types/tom';
+import { CURRENT_SAVE_VERSION, migrateSaveState } from '@/lib/save-migrations';
 
 import { createBlackOrbSlice, type BlackOrbSlice } from './blackOrbSlice';
 import { type AppearanceSlice, createAppearanceSlice } from './appearanceSlice';
@@ -59,6 +60,9 @@ export const useUserSaveStore = create<UserSaveStore>()(
     }),
     {
       name: 'slayer-legends-save',
+      version: CURRENT_SAVE_VERSION,
+      migrate: (persistedState, fromVersion) =>
+        migrateSaveState(persistedState as Record<string, unknown>, fromVersion),
     },
   ),
 );
