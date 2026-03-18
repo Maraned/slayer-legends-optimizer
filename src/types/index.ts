@@ -175,6 +175,8 @@ export type {
   NormalizedItemScore,
   RankedStage,
   CompanionAdvancementSlice,
+  BestItemStage,
+  BestStagePerResource,
 } from './stage-rates';
 
 export type {
