@@ -74,3 +74,6 @@ export {
   DEMON_SANCTUARY_MAX_LEVEL,
   SOUL_DUNGEON_MAX_STAGE,
 } from './souls';
+
+export type { AtkStateInputs, AtkGameTables } from './atk-state';
+export { atkSourcesFromState } from './atk-state';
