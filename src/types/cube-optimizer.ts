@@ -12,7 +12,7 @@ export interface CubeWeapon {
   critDmgBonusPct: number;
   cubeCostBase: number;
   cubeCostGrowthRate: number;
-  cubeCostPerLevel: number;
+  cubeCostPerLevel: number[];
 }
 
 /** A single class entry in the cube optimizer data. */
@@ -26,7 +26,7 @@ export interface CubeClass {
   critDmgBonusPctPerLevel: number;
   cubeCostBase: number;
   cubeCostGrowthRate: number;
-  cubeCostPerLevel: number;
+  cubeCostPerLevel: number[];
 }
 
 /** Root shape of cube-optimizer-data.json. */

@@ -18,6 +18,7 @@
  */
 
 import type { Accessory, SoulWeaponEffect } from '../types/equipment';
+import type { CubeWeapon } from '../types/cube-optimizer';
 import type { AppearanceBonusTotals } from '../types/appearance';
 import type { ConstellationBuffTotals } from '../types/constellation';
 import type { SkillMasteryPage } from '../types/skills';
@@ -325,4 +326,65 @@ export function calculateTotalCritDmg(breakdown: CritDmgBreakdown): number {
     breakdown.appearance +
     breakdown.treeOfMemory
   );
+}
+
+// ---------------------------------------------------------------------------
+// CRIT DMG efficiency per weapon tier (3.8.1)
+// ---------------------------------------------------------------------------
+
+/**
+ * CRIT DMG efficiency metrics for a single weapon tier.
+ */
+export interface WeaponTierCritDmgEfficiency {
+  /** Weapon tier identifier (e.g. "Common4") */
+  tierId: string;
+  /** Human-readable weapon tier name (e.g. "Common 4") */
+  tierName: string;
+  /** Flat CRIT DMG bonus percentage granted by this weapon tier */
+  critDmgBonusPct: number;
+  /** Total cubes required to enhance this weapon to its maximum level */
+  totalCubes: number;
+  /**
+   * CRIT DMG percentage points gained per cube invested in this weapon tier.
+   * Zero when `totalCubes` is zero (no investment required).
+   */
+  critDmgPerCube: number;
+}
+
+/**
+ * Compute CRIT DMG efficiency metrics for a single weapon tier.
+ *
+ * Efficiency is defined as the flat CRIT DMG bonus provided by the weapon tier
+ * divided by the total cubes required to enhance that weapon to its maximum
+ * level. A higher value means more CRIT DMG return per cube invested.
+ *
+ * @param weapon - Weapon tier entry from the cube-optimizer data
+ * @returns Efficiency metrics for the given weapon tier
+ */
+export function critDmgEfficiencyForWeaponTier(
+  weapon: CubeWeapon,
+): WeaponTierCritDmgEfficiency {
+  const totalCubes = weapon.cubeCostPerLevel.reduce((sum, cost) => sum + cost, 0);
+  const critDmgPerCube = totalCubes > 0 ? weapon.critDmgBonusPct / totalCubes : 0;
+
+  return {
+    tierId: weapon.id,
+    tierName: weapon.name,
+    critDmgBonusPct: weapon.critDmgBonusPct,
+    totalCubes,
+    critDmgPerCube,
+  };
+}
+
+/**
+ * Compute CRIT DMG efficiency metrics for every weapon tier in the provided
+ * list, preserving the original order.
+ *
+ * @param weapons - All weapon tier entries from the cube-optimizer data
+ * @returns One efficiency entry per weapon tier, in the same order as input
+ */
+export function critDmgEfficiencyPerWeaponTier(
+  weapons: CubeWeapon[],
+): WeaponTierCritDmgEfficiency[] {
+  return weapons.map(critDmgEfficiencyForWeaponTier);
 }

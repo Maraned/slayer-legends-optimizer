@@ -45,6 +45,27 @@ export {
 export type { AtkSources } from './atk-aggregation';
 export { aggregateAtk, aggregateAtkDetailed } from './atk-aggregation';
 
+export type {
+  CritDmgBreakdown,
+  CritDmgParams,
+  WeaponTierCritDmgEfficiency,
+} from './critDmgCalculator';
+export {
+  critDmgFromEnhancement,
+  critDmgFromClassGrowth,
+  critDmgFromWeaponTier,
+  critDmgFromSoulWeapon,
+  critDmgFromSkillMastery,
+  critDmgFromConstellation,
+  critDmgFromAccessories,
+  critDmgFromAppearance,
+  critDmgFromTOM,
+  aggregateCritDmg,
+  calculateTotalCritDmg,
+  critDmgEfficiencyForWeaponTier,
+  critDmgEfficiencyPerWeaponTier,
+} from './critDmgCalculator';
+
 export {
   expBonusFromAppearance,
   goldBonusFromAppearance,
