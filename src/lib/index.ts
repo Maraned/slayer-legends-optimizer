@@ -111,3 +111,11 @@ export {
 
 export type { AtkStateInputs, AtkGameTables } from './atk-state';
 export { atkSourcesFromState } from './atk-state';
+
+export type { BaseDamageInputs } from './base-damage-calculator';
+export {
+  calcBaseDamageAtk,
+  calcProficiencyMultiplier,
+  calculateBaseDamage,
+  calculateBaseDamageDetailed,
+} from './base-damage-calculator';
