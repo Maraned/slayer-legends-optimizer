@@ -23,6 +23,7 @@ export { cumulativeCost, segmentCost, costForRange, SEGMENT_SIZE } from './gold-
 export {
   calculateStageResourceRates,
   rankStagesByResource,
+  normalizeStageRankings,
   bonusesFromAppearance,
   bonusesFromCompanions,
   mergeFarmingBonuses,
