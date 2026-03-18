@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
+import { SaveActions } from '@/components/SaveActions/SaveActions';
+
 interface NavItem {
   label: string;
   href: string;
@@ -201,11 +203,12 @@ export function Sidebar() {
         </nav>
 
         {/* Footer */}
-        {!collapsed && (
-          <div className="px-4 py-3 border-t border-gray-700">
-            <p className="text-xs text-gray-500">Optimizer v1.0</p>
-          </div>
-        )}
+        <div className={`border-t border-gray-700 ${collapsed ? 'px-2 py-3' : 'px-2 py-3'}`}>
+          <SaveActions collapsed={collapsed} />
+          {!collapsed && (
+            <p className="text-xs text-gray-500 px-3 pt-1">Optimizer v1.0</p>
+          )}
+        </div>
       </aside>
 
       {/* Mobile toggle button (visible when sidebar is closed on mobile) */}
