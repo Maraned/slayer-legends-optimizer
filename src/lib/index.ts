@@ -37,6 +37,7 @@ export {
   calculateStageResourceRates,
   rankStagesByResource,
   normalizeStageRankings,
+  findBestStagePerResource,
   bonusesFromAppearance,
   bonusesFromCompanions,
   mergeFarmingBonuses,

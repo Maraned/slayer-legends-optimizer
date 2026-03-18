@@ -191,6 +191,47 @@ export interface RankedStage extends StageResourceRates {
 }
 
 // ---------------------------------------------------------------------------
+// Best stage per resource type
+// ---------------------------------------------------------------------------
+
+/**
+ * The best stage found for a single item resource.
+ */
+export interface BestItemStage {
+  /** Canonical item identifier */
+  itemId: string;
+  /** Display name of the item */
+  itemName: string;
+  /** The stage with the highest expectedQtyPerEnergy for this item */
+  stage: StageResourceRates;
+}
+
+/**
+ * The best stage found for each resource type across an evaluated set of stages.
+ *
+ * Produced by `findBestStagePerResource()`.
+ * `exp` and `gold` are null when no stages are provided or all have zero yield.
+ * `items` contains one entry per distinct item that drops in at least one stage,
+ * keyed by itemId.
+ */
+export interface BestStagePerResource {
+  /**
+   * Stage with the highest expPerEnergy, or null if no stages were evaluated.
+   */
+  exp: StageResourceRates | null;
+  /**
+   * Stage with the highest goldPerEnergy, or null if no stages were evaluated.
+   */
+  gold: StageResourceRates | null;
+  /**
+   * Best stage for each distinct item that drops in the evaluated stage set.
+   * Keyed by itemId; value contains itemName and the StageResourceRates for
+   * the stage where expectedQtyPerEnergy is highest for that item.
+   */
+  items: Record<string, BestItemStage>;
+}
+
+// ---------------------------------------------------------------------------
 // Bonus aggregation helpers (input shape from save state)
 // ---------------------------------------------------------------------------
 

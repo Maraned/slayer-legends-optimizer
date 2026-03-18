@@ -25,6 +25,8 @@ import type {
   NormalizedItemScore,
   RankedStage,
   CompanionAdvancementSlice,
+  BestStagePerResource,
+  BestItemStage,
 } from '../types/stage-rates';
 
 // ---------------------------------------------------------------------------
@@ -324,6 +326,79 @@ export function normalizeStageRankings(
   });
 
   return ranked;
+}
+
+/**
+ * Finds the single best stage for each resource type across a set of stages.
+ *
+ * For each resource metric the stage with the highest per-energy yield wins:
+ *   - EXP  → highest expPerEnergy
+ *   - Gold → highest goldPerEnergy
+ *   - Each item (by itemId) → highest expectedQtyPerEnergy for that item
+ *
+ * @param stages  - Array of Stage objects to evaluate.
+ * @param bonuses - Aggregated player farming bonuses.
+ * @returns BestStagePerResource with the top stage per resource type.
+ *          exp and gold are null when stages is empty.
+ *          items contains one entry per distinct item that drops in the set.
+ */
+export function findBestStagePerResource(
+  stages: Stage[],
+  bonuses: FarmingBonuses,
+): BestStagePerResource {
+  if (stages.length === 0) {
+    return { exp: null, gold: null, items: {} };
+  }
+
+  const rates = stages.map((stage) =>
+    calculateStageResourceRates(stage, bonuses),
+  );
+
+  let bestExp: StageResourceRates = rates[0];
+  let bestGold: StageResourceRates = rates[0];
+
+  // keyed by itemId → { best rate entry, best qty value }
+  const bestItemMap = new Map<
+    string,
+    { entry: BestItemStage; bestQtyPerEnergy: number }
+  >();
+
+  for (const rate of rates) {
+    // EXP
+    if (rate.expPerEnergy > bestExp.expPerEnergy) {
+      bestExp = rate;
+    }
+
+    // Gold
+    if (rate.goldPerEnergy > bestGold.goldPerEnergy) {
+      bestGold = rate;
+    }
+
+    // Items
+    for (const drop of rate.itemDrops) {
+      const existing = bestItemMap.get(drop.itemId);
+      if (
+        !existing ||
+        drop.expectedQtyPerEnergy > existing.bestQtyPerEnergy
+      ) {
+        bestItemMap.set(drop.itemId, {
+          entry: {
+            itemId: drop.itemId,
+            itemName: drop.itemName,
+            stage: rate,
+          },
+          bestQtyPerEnergy: drop.expectedQtyPerEnergy,
+        });
+      }
+    }
+  }
+
+  const items: Record<string, BestItemStage> = {};
+  for (const [itemId, { entry }] of bestItemMap) {
+    items[itemId] = entry;
+  }
+
+  return { exp: bestExp, gold: bestGold, items };
 }
 
 // ---------------------------------------------------------------------------
