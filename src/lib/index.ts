@@ -21,6 +21,19 @@ export { buildLevelMultiplierIndex } from './equipment-lookups';
 export { cumulativeCost, segmentCost, costForRange, SEGMENT_SIZE } from './gold-calculator';
 
 export {
+  getDemonAltarSoulCost,
+  getDemonSanctuarySoulCost,
+  getAvgSoulsPerRun,
+  getRunsNeeded,
+  getTimeToCraft,
+  getAllDungeonStages,
+  DEMON_ALTAR_MAX_LEVEL,
+  DEMON_SANCTUARY_MAX_LEVEL,
+  SOUL_DUNGEON_MAX_STAGE,
+} from './souls';
+export type { TimeToCraft } from './souls';
+
+export {
   calculateStageResourceRates,
   rankStagesByResource,
   normalizeStageRankings,
