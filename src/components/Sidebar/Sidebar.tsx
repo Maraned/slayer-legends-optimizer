@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { version } from '../../../package.json';
 
 import { SaveLoadControls } from '@/components/SaveLoadControls';
 
@@ -215,7 +216,7 @@ export function Sidebar() {
         <div className="px-2 py-3 border-t border-gray-700">
           <SaveLoadControls collapsed={collapsed} />
           {!collapsed && (
-            <p className="mt-2 px-1 text-xs text-gray-500">Optimizer v1.0</p>
+            <p className="mt-2 px-1 text-xs text-gray-500">Optimizer v{version}</p>
           )}
         </div>
       </aside>
