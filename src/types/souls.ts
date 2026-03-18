@@ -81,6 +81,36 @@ export interface SoulDungeonStage {
 }
 
 /**
+ * Soul conversion ratios for a single Soul Dungeon stage.
+ *
+ * Captures how efficiently a stage converts energy into souls, expressed as
+ * souls per run and souls per energy (stamina) spent.  The min/max variants
+ * bound the range while avg uses the midpoint of the reward range.
+ */
+export interface SoulConversionRatio {
+  /** Stage number (1–130) */
+  stageNumber: number;
+  /** Display name for this stage */
+  stageName: string;
+  /** Difficulty tier this stage belongs to */
+  tier: SoulDungeonTier;
+  /** Energy (stamina) cost per run */
+  energyCost: number;
+  /** Minimum souls earned per run */
+  minSoulsPerRun: number;
+  /** Maximum souls earned per run */
+  maxSoulsPerRun: number;
+  /** Average souls earned per run: (min + max) / 2 */
+  avgSoulsPerRun: number;
+  /** Minimum souls per energy spent: minSoulsPerRun / energyCost */
+  minSoulsPerEnergy: number;
+  /** Maximum souls per energy spent: maxSoulsPerRun / energyCost */
+  maxSoulsPerEnergy: number;
+  /** Average souls per energy spent: avgSoulsPerRun / energyCost */
+  avgSoulsPerEnergy: number;
+}
+
+/**
  * Root shape of souls-data.json (SOULSDATA).
  */
 export interface SoulsData {
