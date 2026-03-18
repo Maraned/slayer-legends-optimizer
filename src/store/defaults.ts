@@ -1,4 +1,5 @@
 import type { UserSaveState } from '@/types/save-state';
+import { CURRENT_SAVE_VERSION } from '@/lib/save-migrations';
 import { DEFAULT_CONSTELLATION_STATE } from './constellation-slice';
 
 import { DEFAULT_BLACK_ORB } from './blackOrbSlice';
@@ -8,7 +9,7 @@ import { DEFAULT_CHARACTER } from './characterSlice';
 import { DEFAULT_COMPANIONS } from './companionsSlice';
 
 export const DEFAULT_STATE: UserSaveState = {
-  version: 1,
+  version: CURRENT_SAVE_VERSION,
 
   appearance: {
     items: [],

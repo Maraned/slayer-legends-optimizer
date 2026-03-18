@@ -5,6 +5,7 @@ import { useCallback } from 'react';
 import type { UserSaveState } from '@/types/save-state';
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
 import { DEFAULT_STATE } from '@/store/defaults';
+import { migrateSaveState } from '@/lib/save-migrations';
 
 const EXPORT_FILE_NAME = 'slayer-legends-save.json';
 
@@ -52,8 +53,10 @@ export function useSaveLoad() {
         const reader = new FileReader();
         reader.onload = (e) => {
           try {
-            const parsed = JSON.parse(e.target?.result as string) as UserSaveState;
-            loadState({ ...DEFAULT_STATE, ...parsed });
+            const parsed = JSON.parse(e.target?.result as string) as Record<string, unknown>;
+            const fromVersion = typeof parsed.version === 'number' ? parsed.version : 0;
+            const migrated = migrateSaveState(parsed, fromVersion) as unknown as UserSaveState;
+            loadState({ ...DEFAULT_STATE, ...migrated });
             resolve();
           } catch {
             reject(new Error('Invalid save file: could not parse JSON.'));
