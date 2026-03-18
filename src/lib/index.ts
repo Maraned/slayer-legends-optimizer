@@ -119,3 +119,10 @@ export {
   calculateBaseDamage,
   calculateBaseDamageDetailed,
 } from './base-damage-calculator';
+
+export type { DamageFormulaInputs } from './damage-formula';
+export {
+  calcAmpMultiplier,
+  calculateDamage,
+  calculateDamageDetailed,
+} from './damage-formula';
