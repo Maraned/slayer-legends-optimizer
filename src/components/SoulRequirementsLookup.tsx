@@ -5,6 +5,7 @@ import {
   getDemonAltarSoulCost,
   getDemonSanctuarySoulCost,
   getRunsNeeded,
+  getTimeToCraft,
   getAllDungeonStages,
   DEMON_ALTAR_MAX_LEVEL,
   DEMON_SANCTUARY_MAX_LEVEL,
@@ -22,6 +23,7 @@ export default function SoulRequirementsLookup() {
   const [fromLevel, setFromLevel] = useState(0);
   const [toLevel, setToLevel] = useState(10);
   const [farmStage, setFarmStage] = useState(1);
+  const [runsPerDay, setRunsPerDay] = useState(10);
 
   const maxLevel = target === 'altar' ? DEMON_ALTAR_MAX_LEVEL : DEMON_SANCTUARY_MAX_LEVEL;
 
@@ -31,6 +33,7 @@ export default function SoulRequirementsLookup() {
       : getDemonSanctuarySoulCost(fromLevel, toLevel);
 
   const runsNeeded = getRunsNeeded(farmStage, totalSouls);
+  const timeToCraft = getTimeToCraft(farmStage, totalSouls, runsPerDay);
   const stages = getAllDungeonStages();
 
   function handleTargetChange(newTarget: UpgradeTarget) {
@@ -144,8 +147,24 @@ export default function SoulRequirementsLookup() {
         </select>
       </label>
 
+      {/* Runs per day input */}
+      <label className="mb-5 flex flex-col gap-1">
+        <span className="text-xs font-medium text-gray-600 uppercase tracking-wide">
+          Runs per Day
+        </span>
+        <input
+          type="number"
+          min={1}
+          max={999}
+          value={runsPerDay}
+          onChange={(e) => setRunsPerDay(Math.max(1, Number(e.target.value)))}
+          className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
+        />
+        <span className="text-xs text-gray-400">How many Soul Dungeon runs you do daily</span>
+      </label>
+
       {/* Runs needed result */}
-      <div className="rounded-lg bg-gray-50 px-4 py-3">
+      <div className="mb-3 rounded-lg bg-gray-50 px-4 py-3">
         <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-1">
           Runs Needed
         </p>
@@ -168,6 +187,29 @@ export default function SoulRequirementsLookup() {
             )}{' '}
             souls/run)
           </p>
+        )}
+      </div>
+
+      {/* Time to craft result */}
+      <div className="rounded-lg bg-amber-50 px-4 py-3">
+        <p className="text-xs font-medium text-amber-700 uppercase tracking-wide mb-1">
+          Time to Craft
+        </p>
+        {totalSouls > 0 && timeToCraft !== null ? (
+          <>
+            <p className="text-2xl font-bold text-amber-900">
+              {timeToCraft.days > 0
+                ? `${timeToCraft.days}d ${timeToCraft.hours}h ${timeToCraft.minutes}m`
+                : timeToCraft.hours > 0
+                  ? `${timeToCraft.hours}h ${timeToCraft.minutes}m`
+                  : `${timeToCraft.minutes}m`}
+            </p>
+            <p className="text-xs text-amber-600 mt-0.5">
+              at {runsPerDay} runs/day ({timeToCraft.totalHours.toFixed(1)} hours total)
+            </p>
+          </>
+        ) : (
+          <p className="text-2xl font-bold text-gray-400">—</p>
         )}
       </div>
     </div>

@@ -172,3 +172,54 @@ export function rankStagesBySoulsPerEnergy(): SoulConversionRatio[] {
     (a, b) => b.avgSoulsPerEnergy - a.avgSoulsPerEnergy,
   );
 }
+
+// ---------------------------------------------------------------------------
+// Time-to-craft calculation
+// ---------------------------------------------------------------------------
+
+/**
+ * Result of a time-to-craft calculation.
+ */
+export interface TimeToCraft {
+  /** Total time expressed in whole days */
+  days: number;
+  /** Remaining hours after subtracting whole days (0–23) */
+  hours: number;
+  /** Remaining minutes after subtracting whole days and hours (0–59) */
+  minutes: number;
+  /** Total time in decimal hours */
+  totalHours: number;
+}
+
+/**
+ * Calculates the time needed to farm enough souls to craft/upgrade a target,
+ * given the player's current Soul Dungeon farming stage and daily run count.
+ *
+ * Formula: totalHours = runsNeeded / (runsPerDay / 24)
+ *        = (runsNeeded * 24) / runsPerDay
+ *
+ * @param stageNumber - Soul Dungeon stage used for farming
+ * @param totalSouls  - Total souls still needed
+ * @param runsPerDay  - Number of Soul Dungeon runs the player completes per day
+ * @returns Broken-down time estimate, or null if the stage is invalid or
+ *          runsPerDay is zero
+ */
+export function getTimeToCraft(
+  stageNumber: number,
+  totalSouls: number,
+  runsPerDay: number,
+): TimeToCraft | null {
+  if (runsPerDay <= 0) return null;
+  const runsNeeded = getRunsNeeded(stageNumber, totalSouls);
+  if (runsNeeded === Infinity) return null;
+  if (runsNeeded === 0) return { days: 0, hours: 0, minutes: 0, totalHours: 0 };
+
+  const totalHours = (runsNeeded * 24) / runsPerDay;
+  const totalMinutes = Math.ceil(totalHours * 60);
+
+  const days = Math.floor(totalMinutes / (60 * 24));
+  const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
+  const minutes = totalMinutes % 60;
+
+  return { days, hours, minutes, totalHours };
+}
