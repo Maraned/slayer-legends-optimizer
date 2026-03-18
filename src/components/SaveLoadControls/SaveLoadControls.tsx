@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 
 import { Dialog } from '@/components/Dialog';
+import { useAutoSave } from '@/hooks/useAutoSave';
 import { useSaveLoad } from '@/hooks/useSaveLoad';
 
 /**
@@ -11,6 +12,7 @@ import { useSaveLoad } from '@/hooks/useSaveLoad';
  */
 export function SaveLoadControls({ collapsed = false }: { collapsed?: boolean }) {
   const { exportSave, importSave, resetSave } = useSaveLoad();
+  const lastSavedAt = useAutoSave();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [importError, setImportError] = useState<string | null>(null);
   const [resetOpen, setResetOpen] = useState(false);
@@ -38,6 +40,10 @@ export function SaveLoadControls({ collapsed = false }: { collapsed?: boolean })
     'flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:opacity-50';
   const btnSecondary = `${btnBase} text-gray-300 hover:bg-gray-700 hover:text-white`;
   const btnDanger = `${btnBase} text-red-400 hover:bg-red-900/40 hover:text-red-300`;
+
+  const savedLabel = lastSavedAt
+    ? `Auto-saved at ${lastSavedAt.toLocaleTimeString()}`
+    : 'Not saved yet';
 
   return (
     <div className="flex flex-col gap-1">
@@ -157,6 +163,17 @@ export function SaveLoadControls({ collapsed = false }: { collapsed?: boolean })
           </button>
         </div>
       </Dialog>
+
+      {/* Auto-save status */}
+      {!collapsed && (
+        <p
+          className="mt-1 px-1 text-xs text-gray-500"
+          aria-live="polite"
+          aria-label={savedLabel}
+        >
+          {savedLabel}
+        </p>
+      )}
     </div>
   );
 }
