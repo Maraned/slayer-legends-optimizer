@@ -127,3 +127,14 @@ export {
   calculateDamage,
   calculateDamageDetailed,
 } from './damage-formula';
+
+export type {
+  EnhancementStatConfig,
+  EnhancementEfficiency,
+  RankedEnhancementTarget,
+} from './enhancement-optimizer';
+export {
+  calculateEnhancementEfficiency,
+  calculateAllEnhancementEfficiencies,
+  rankEnhancementTargets,
+} from './enhancement-optimizer';
