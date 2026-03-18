@@ -4,8 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
-import { SaveActions } from '@/components/SaveActions/SaveActions';
-import { JsonImportDialog } from '@/components/JsonImportDialog/JsonImportDialog';
+import { SaveLoadControls } from '@/components/SaveLoadControls';
 
 interface NavItem {
   label: string;
@@ -204,36 +203,10 @@ export function Sidebar() {
         </nav>
 
         {/* Footer */}
-        <div className={`border-t border-gray-700 ${collapsed ? 'px-2 py-3' : 'px-2 py-3'}`}>
-          <SaveActions collapsed={collapsed} />
-          <JsonImportDialog
-            trigger={
-              <button
-                className="ml-auto p-1.5 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-                title="Import save (JSON)"
-                aria-label="Import save from JSON file"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="17 8 12 3 7 8" />
-                  <line x1="12" y1="3" x2="12" y2="15" />
-                </svg>
-              </button>
-            }
-          />
+        <div className="px-2 py-3 border-t border-gray-700">
+          <SaveLoadControls collapsed={collapsed} />
           {!collapsed && (
-            <p className="text-xs text-gray-500 px-3 pt-1">Optimizer v1.0</p>
+            <p className="mt-2 px-1 text-xs text-gray-500">Optimizer v1.0</p>
           )}
         </div>
       </aside>
