@@ -27,8 +27,8 @@ const navItems: NavItem[] = [
     ),
   },
   {
-    label: 'Character',
-    href: '/character',
+    label: 'Characters',
+    href: '/characters',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="12" cy="8" r="4" />
@@ -49,8 +49,8 @@ const navItems: NavItem[] = [
     ),
   },
   {
-    label: 'Constellation',
-    href: '/constellation',
+    label: 'Constellations',
+    href: '/constellations',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
@@ -109,8 +109,8 @@ const navItems: NavItem[] = [
     ),
   },
   {
-    label: 'Stage',
-    href: '/stage',
+    label: 'Stages',
+    href: '/stages',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M3 6l9-4 9 4v12l-9 4-9-4V6z" />
@@ -120,11 +120,25 @@ const navItems: NavItem[] = [
     ),
   },
   {
-    label: 'Appearance',
-    href: '/appearance',
+    label: 'Sprites',
+    href: '/sprites',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        <circle cx="12" cy="12" r="3" />
+        <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Tree of Memory',
+    href: '/tree-of-memory',
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 22V12" />
+        <path d="M12 12C12 8 8 5 5 7" />
+        <path d="M12 12C12 8 16 5 19 7" />
+        <path d="M12 17C12 13 7 11 4 13" />
+        <path d="M12 17C12 13 17 11 20 13" />
       </svg>
     ),
   },
