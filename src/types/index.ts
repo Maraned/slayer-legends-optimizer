@@ -157,6 +157,7 @@ export type {
   SoulRewardRange,
   SoulDungeonBoss,
   SoulDungeonStage,
+  SoulConversionRatio,
   SoulsData,
 } from './souls';
 
