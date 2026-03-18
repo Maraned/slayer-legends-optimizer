@@ -22,6 +22,8 @@ import type {
   FarmingBonuses,
   ItemDropRate,
   StageResourceRates,
+  NormalizedItemScore,
+  RankedStage,
   CompanionAdvancementSlice,
 } from '../types/stage-rates';
 
@@ -222,6 +224,106 @@ export function rankStagesByResource(
   });
 
   return rates;
+}
+
+/**
+ * Normalises a list of StageResourceRates by computing per-resource scores
+ * relative to the best stage in the set, adds a composite overall score, and
+ * assigns 1-based rank positions ordered by composite score descending.
+ *
+ * Normalisation formula (for each scalar metric M):
+ *   normalizedScore = M / max(M across all stages)   — in [0, 1]
+ *   Special case: if max(M) === 0, all scores for that metric are 0.
+ *
+ * Composite score:
+ *   compositeScore = (normalizedExpScore + normalizedGoldScore) / 2
+ *
+ * Item scores are computed per-item across the full stage set: each stage's
+ * expectedQtyPerEnergy for a given item is divided by the maximum
+ * expectedQtyPerEnergy for that item across all stages that drop it.
+ * Stages that do not drop a given item receive a normalizedScore of 0.
+ *
+ * @param rates - Array of StageResourceRates (order is irrelevant; output is
+ *                sorted by compositeScore descending).
+ * @returns Array of RankedStage sorted by compositeScore descending, with
+ *          1-based rank assigned after sorting.
+ */
+export function normalizeStageRankings(
+  rates: StageResourceRates[],
+): RankedStage[] {
+  if (rates.length === 0) return [];
+
+  // ------------------------------------------------------------------
+  // 1. Compute scalar maxima
+  // ------------------------------------------------------------------
+  let maxExp = 0;
+  let maxGold = 0;
+
+  for (const r of rates) {
+    if (r.expPerEnergy > maxExp) maxExp = r.expPerEnergy;
+    if (r.goldPerEnergy > maxGold) maxGold = r.goldPerEnergy;
+  }
+
+  // ------------------------------------------------------------------
+  // 2. Compute per-item maxima across all stages
+  // ------------------------------------------------------------------
+  const itemMaxQty = new Map<string, number>();
+  const itemNameMap = new Map<string, string>();
+
+  for (const r of rates) {
+    for (const drop of r.itemDrops) {
+      const current = itemMaxQty.get(drop.itemId) ?? 0;
+      if (drop.expectedQtyPerEnergy > current) {
+        itemMaxQty.set(drop.itemId, drop.expectedQtyPerEnergy);
+      }
+      if (!itemNameMap.has(drop.itemId)) {
+        itemNameMap.set(drop.itemId, drop.itemName);
+      }
+    }
+  }
+
+  const allItemIds = Array.from(itemMaxQty.keys());
+
+  // ------------------------------------------------------------------
+  // 3. Build RankedStage entries (rank assigned after sort)
+  // ------------------------------------------------------------------
+  const ranked: RankedStage[] = rates.map((r) => {
+    const normalizedExpScore = maxExp > 0 ? r.expPerEnergy / maxExp : 0;
+    const normalizedGoldScore = maxGold > 0 ? r.goldPerEnergy / maxGold : 0;
+    const compositeScore = (normalizedExpScore + normalizedGoldScore) / 2;
+
+    const normalizedItemScores: NormalizedItemScore[] = allItemIds.map(
+      (itemId) => {
+        const drop = r.itemDrops.find((d) => d.itemId === itemId);
+        const qty = drop ? drop.expectedQtyPerEnergy : 0;
+        const maxQty = itemMaxQty.get(itemId) ?? 0;
+        return {
+          itemId,
+          itemName: itemNameMap.get(itemId) ?? itemId,
+          normalizedScore: maxQty > 0 ? qty / maxQty : 0,
+        };
+      },
+    );
+
+    return {
+      ...r,
+      rank: 0, // placeholder; assigned after sort
+      normalizedExpScore,
+      normalizedGoldScore,
+      normalizedItemScores,
+      compositeScore,
+    };
+  });
+
+  // ------------------------------------------------------------------
+  // 4. Sort by compositeScore descending, then assign ranks
+  // ------------------------------------------------------------------
+  ranked.sort((a, b) => b.compositeScore - a.compositeScore);
+  ranked.forEach((entry, i) => {
+    entry.rank = i + 1;
+  });
+
+  return ranked;
 }
 
 // ---------------------------------------------------------------------------

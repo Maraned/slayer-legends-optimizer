@@ -129,6 +129,68 @@ export interface StageResourceRates {
 }
 
 // ---------------------------------------------------------------------------
+// Stage ranking and normalization outputs
+// ---------------------------------------------------------------------------
+
+/**
+ * Normalized score for a single item drop across the ranked stage set.
+ * Score is in [0, 1] where 1 = best expectedQtyPerEnergy for that item.
+ */
+export interface NormalizedItemScore {
+  /** Canonical item identifier */
+  itemId: string;
+  /** Display name of the item */
+  itemName: string;
+  /**
+   * Normalized score for this item relative to the best stage for that item.
+   * 0 = stage does not drop this item; 1 = highest drop rate in the set.
+   */
+  normalizedScore: number;
+}
+
+/**
+ * A stage rate entry extended with rank position, per-resource normalized
+ * scores, and a composite overall score.
+ *
+ * Produced by `normalizeStageRankings()` from a list of `StageResourceRates`.
+ */
+export interface RankedStage extends StageResourceRates {
+  /**
+   * 1-based rank position ordered by compositeScore descending.
+   * Rank 1 = best overall stage in the evaluated set.
+   */
+  rank: number;
+
+  /**
+   * EXP efficiency relative to the best stage in the set.
+   * = expPerEnergy / max(expPerEnergy across all stages), in [0, 1].
+   * 0 when no stage has expPerEnergy > 0.
+   */
+  normalizedExpScore: number;
+
+  /**
+   * Gold efficiency relative to the best stage in the set.
+   * = goldPerEnergy / max(goldPerEnergy across all stages), in [0, 1].
+   * 0 when no stage has goldPerEnergy > 0.
+   */
+  normalizedGoldScore: number;
+
+  /**
+   * Per-item normalized drop scores for every item that drops in at least
+   * one stage in the evaluated set.
+   * Stages that do not drop a given item receive a normalizedScore of 0.
+   */
+  normalizedItemScores: NormalizedItemScore[];
+
+  /**
+   * Composite overall score in [0, 1], computed as the simple average of
+   * normalizedExpScore and normalizedGoldScore.
+   * Used to determine rank order and identify the best overall stage.
+   */
+  compositeScore: number;
+}
+
+// ---------------------------------------------------------------------------
 // Bonus aggregation helpers (input shape from save state)
 // ---------------------------------------------------------------------------
 

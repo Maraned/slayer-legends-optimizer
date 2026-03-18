@@ -171,6 +171,8 @@ export type {
   FarmingBonuses,
   ItemDropRate,
   StageResourceRates,
+  NormalizedItemScore,
+  RankedStage,
   CompanionAdvancementSlice,
 } from './stage-rates';
 
