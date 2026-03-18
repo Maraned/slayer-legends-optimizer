@@ -44,3 +44,18 @@ export {
 
 export type { AtkSources } from './atk-aggregation';
 export { aggregateAtk, aggregateAtkDetailed } from './atk-aggregation';
+
+export {
+  expBonusFromAppearance,
+  goldBonusFromAppearance,
+  expBonusFromCompanions,
+  goldBonusFromCompanions,
+  goldBonusFromPromotion,
+  expBonusFromConstellation,
+  goldBonusFromConstellation,
+  expBonusFromMemoryTree,
+  goldBonusFromMemoryTree,
+  aggregateFarmingBonuses,
+} from './bonus-aggregator';
+
+export type { AggregateFarmingBonusesInput } from './bonus-aggregator';
