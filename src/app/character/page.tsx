@@ -7,6 +7,7 @@ import { Select } from '@/components/Select/Select';
 import { LatentPowerGrid } from '@/components/LatentPowerGrid/LatentPowerGrid';
 import { GrowthStrInput } from '@/components/GrowthStrInput';
 import { GrowthHpInput } from '@/components/GrowthHpInput';
+import { GrowthVitInput } from '@/components/GrowthVitInput';
 import { PromotionTierSelector } from '@/components/PromotionTierSelector/PromotionTierSelector';
 import { segmentCost } from '@/lib/gold-calculator';
 import {
@@ -184,17 +185,7 @@ export default function CharacterPage() {
             <div className="flex flex-col gap-4">
               <GrowthStrInput />
               <GrowthHpInput />
-              <NumberInput
-                label="VIT Level"
-                value={character.growthStats.VIT.level}
-                onChange={(level) =>
-                  setGrowthStats({
-                    ...character.growthStats,
-                    VIT: { ...character.growthStats.VIT, level },
-                  })
-                }
-                min={0}
-              />
+              <GrowthVitInput />
             </div>
           </section>
 
