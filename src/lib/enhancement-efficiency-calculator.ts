@@ -275,3 +275,61 @@ export function highestEfficiencyStat(
 
   return best;
 }
+
+// ---------------------------------------------------------------------------
+// Priority ordering (3.5.3)
+// ---------------------------------------------------------------------------
+
+/**
+ * A single entry in the priority-ordered enhancement list.
+ */
+export interface PrioritizedEnhancementStat {
+  /** The stat identifier. */
+  stat: keyof EnhancementEfficiencyResult;
+  /**
+   * Damage-gain-per-gold efficiency score for this stat.
+   * Zero means the stat is maxed, has no gold cost, or does not affect damage.
+   */
+  efficiency: number;
+  /**
+   * 1-based rank position.
+   * Stats with positive efficiency are ranked before zero-efficiency stats.
+   */
+  rank: number;
+}
+
+/**
+ * Produces a full priority ordering of all enhanceable damage stats.
+ *
+ * Sorting rules:
+ *   1. Stats with positive efficiency before zero-efficiency stats.
+ *   2. Among positive-efficiency stats: descending efficiency.
+ *   3. Among zero-efficiency stats: ascending stat key (alphabetical, for
+ *      determinism).
+ *
+ * @param result - Efficiency scores from `calculateEnhancementEfficiencies`
+ * @returns Array of all stats sorted by priority, each annotated with a rank
+ */
+export function priorityOrderEnhancementStats(
+  result: EnhancementEfficiencyResult,
+): PrioritizedEnhancementStat[] {
+  const statKeys = Object.keys(result) as Array<keyof EnhancementEfficiencyResult>;
+
+  const sorted = statKeys
+    .map((stat) => ({ stat, efficiency: result[stat] }))
+    .sort((a, b) => {
+      // Zero-efficiency stats trail positive-efficiency stats
+      if (a.efficiency <= 0 && b.efficiency <= 0) {
+        return a.stat < b.stat ? -1 : a.stat > b.stat ? 1 : 0;
+      }
+      if (a.efficiency <= 0) return 1;
+      if (b.efficiency <= 0) return -1;
+      // Both positive — higher efficiency is higher priority
+      return b.efficiency - a.efficiency;
+    });
+
+  return sorted.map((entry, index) => ({
+    ...entry,
+    rank: index + 1,
+  }));
+}
