@@ -146,9 +146,11 @@ export type {
   EnhancementGoldCosts,
   EnhancementEfficiencyInputs,
   EnhancementEfficiencyResult,
+  PrioritizedEnhancementStat,
 } from './enhancement-efficiency-calculator';
 export {
   calcEfficiency,
   calculateEnhancementEfficiencies,
   highestEfficiencyStat,
+  priorityOrderEnhancementStats,
 } from './enhancement-efficiency-calculator';
