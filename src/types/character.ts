@@ -62,10 +62,19 @@ export interface GrowthStats {
 export type LatentPowerStatKey = 'STR' | 'HP' | 'CRI' | 'LUK' | 'VIT';
 
 /**
- * One latent power page containing a level/value for each of the 5 stats.
+ * A single latent power cell entry tracking the player-input level.
+ * Source: CHARACTER sheet LATENT POWER section, one cell per stat per page.
+ */
+export interface LatentPowerCellEntry {
+  /** Player's current level for this latent power cell */
+  level: number;
+}
+
+/**
+ * One latent power page containing a level entry for each of the 5 stats.
  * Source: CHARACTER sheet LATENT POWER section, one entry per page column.
  */
-export type LatentPowerPageEntry = Record<LatentPowerStatKey, number>;
+export type LatentPowerPageEntry = Record<LatentPowerStatKey, LatentPowerCellEntry>;
 
 /**
  * All 5 latent power pages (Ⅰ–Ⅴ), each with a 5-stat grid.

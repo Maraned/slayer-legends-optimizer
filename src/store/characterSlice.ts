@@ -45,11 +45,11 @@ export const DEFAULT_CHARACTER: CharacterState = {
   },
   latentPower: {
     pages: [
-      { STR: 0, HP: 0, CRI: 0, LUK: 0, VIT: 0 },
-      { STR: 0, HP: 0, CRI: 0, LUK: 0, VIT: 0 },
-      { STR: 0, HP: 0, CRI: 0, LUK: 0, VIT: 0 },
-      { STR: 0, HP: 0, CRI: 0, LUK: 0, VIT: 0 },
-      { STR: 0, HP: 0, CRI: 0, LUK: 0, VIT: 0 },
+      { STR: { level: 0 }, HP: { level: 0 }, CRI: { level: 0 }, LUK: { level: 0 }, VIT: { level: 0 } },
+      { STR: { level: 0 }, HP: { level: 0 }, CRI: { level: 0 }, LUK: { level: 0 }, VIT: { level: 0 } },
+      { STR: { level: 0 }, HP: { level: 0 }, CRI: { level: 0 }, LUK: { level: 0 }, VIT: { level: 0 } },
+      { STR: { level: 0 }, HP: { level: 0 }, CRI: { level: 0 }, LUK: { level: 0 }, VIT: { level: 0 } },
+      { STR: { level: 0 }, HP: { level: 0 }, CRI: { level: 0 }, LUK: { level: 0 }, VIT: { level: 0 } },
     ],
   },
   promotion: {

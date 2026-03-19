@@ -13,9 +13,9 @@ export function LatentPowerGrid() {
   const latentPower = useUserSaveStore((s: UserSaveStore) => s.character.latentPower);
   const setLatentPower = useUserSaveStore((s: UserSaveStore) => s.setLatentPower);
 
-  function handleChange(pageIndex: number, stat: LatentPowerStatKey, value: number) {
+  function handleChange(pageIndex: number, stat: LatentPowerStatKey, level: number) {
     const updatedPages = latentPower.pages.map((page: LatentPowerPageEntry, i: number) =>
-      i === pageIndex ? { ...page, [stat]: value } : page,
+      i === pageIndex ? { ...page, [stat]: { ...page[stat], level } } : page,
     ) as LatentPower['pages'];
 
     setLatentPower({ pages: updatedPages });
@@ -30,9 +30,9 @@ export function LatentPowerGrid() {
           <NumberInput
             key={stat}
             label={stat}
-            value={page[stat]}
+            value={page[stat].level}
             min={0}
-            onChange={(value) => handleChange(pageIndex, stat, value)}
+            onChange={(level) => handleChange(pageIndex, stat, level)}
           />
         ))}
       </div>
