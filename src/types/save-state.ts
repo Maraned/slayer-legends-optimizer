@@ -57,20 +57,6 @@ export interface ConstellationState {
   farmingMode: string;
 }
 
-/**
- * Player's Black Orb / elemental power configuration.
- * Placeholder for MAR-23 (1.2.8 Define types for black orb data).
- * Shape: elemental damage sources enabled/disabled, element accessory selections,
- * and AMP (Amplification) values per element.
- */
-export interface BlackOrbState {
-  /** Enabled elemental damage sources, keyed by source ID */
-  enabledSources: Record<string, boolean>;
-  /** Selected element accessory ID per slot, keyed by slot ID */
-  elementAccessories: Record<string, string>;
-  /** AMP value per element */
-  ampValues: Record<string, number>;
-}
 
 /**
  * Player's selected stage and related farming preferences.
