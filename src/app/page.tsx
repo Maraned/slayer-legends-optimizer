@@ -1,3 +1,6 @@
+import SoulRequirementsLookup from '@/components/SoulRequirementsLookup';
+import { ConstellationBuffSummary } from '@/components/ConstellationBuffSummary/ConstellationBuffSummary';
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -29,6 +32,9 @@ export default function Home() {
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {/* Navigation cards will be added in issue #128 */}
             </div>
+            <div className="mt-6">
+              <SoulRequirementsLookup />
+            </div>
           </section>
 
           {/* Info panel */}
@@ -47,7 +53,7 @@ export default function Home() {
               <div className="text-sm text-gray-500">—</div>
             </section>
 
-            {/* Constellation buff summary — content added in #130 */}
+            {/* Constellation buff summary */}
             <section
               className="bg-white rounded-lg border border-gray-200 p-4"
               aria-labelledby="constellation-summary-heading"
@@ -58,7 +64,7 @@ export default function Home() {
               >
                 Constellation Buffs
               </h2>
-              <div className="text-sm text-gray-500">—</div>
+              <ConstellationBuffSummary />
             </section>
           </aside>
         </div>
