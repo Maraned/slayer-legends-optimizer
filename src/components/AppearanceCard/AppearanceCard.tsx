@@ -1,7 +1,8 @@
 'use client';
 
-import type { AppearanceBonusTotals, BonusType, ClothingItem } from '@/types/appearance';
+import type { AppearanceBonusTotals, BonusType, ClothingCategory, ClothingItem } from '@/types/appearance';
 import { Card } from '@/components/Card';
+import { Tabs } from '@/components/Tabs';
 import { Toggle } from '@/components/Toggle';
 
 interface AppearanceCardProps {
@@ -25,12 +26,63 @@ const BONUS_TYPE_LABELS: Record<BonusType, string> = {
   'Death Strike %': 'Death Strike %',
 };
 
+const CATEGORY_LABELS: Record<ClothingCategory, string> = {
+  hat: 'Hats',
+  top: 'Tops',
+  bottom: 'Bottoms',
+  shoes: 'Shoes',
+  acc: 'Accessories',
+};
+
+const CATEGORY_ORDER: ClothingCategory[] = ['hat', 'top', 'bottom', 'shoes', 'acc'];
+
 function formatEffectValue(bonusType: BonusType, value: number): string {
   const percentTypes: BonusType[] = ['Dodge', 'Extra EXP', 'Monster Gold', 'Accuracy', 'Crit %', 'Death Strike %'];
   if (percentTypes.includes(bonusType)) {
     return `+${value}%`;
   }
   return `+${value}`;
+}
+
+function CategoryItemList({
+  items,
+  onToggleOwned,
+}: {
+  items: ClothingItem[];
+  onToggleOwned: (id: string) => void;
+}) {
+  if (items.length === 0) {
+    return <p className="text-sm text-[var(--color-foreground)]/50 italic">No items in this category.</p>;
+  }
+
+  return (
+    <div className="flex flex-col gap-2">
+      {items.map((item) => (
+        <div
+          key={item.id}
+          className="flex items-center justify-between gap-4 rounded-md border border-gray-200 bg-gray-50 px-3 py-2 dark:border-gray-700 dark:bg-gray-800"
+        >
+          <div className="flex flex-col gap-0.5 min-w-0">
+            <span className="text-sm font-medium text-[var(--color-foreground)] truncate">
+              {item.name}
+            </span>
+            <span className="text-xs text-[var(--color-foreground)]/50">
+              {BONUS_TYPE_LABELS[item.bonusType]}
+              {' · '}
+              {formatEffectValue(item.bonusType, item.effectValue)}
+            </span>
+          </div>
+          <Toggle
+            checked={item.owned}
+            onCheckedChange={() => onToggleOwned(item.id)}
+            label="Owned"
+            size="sm"
+            id={`appearance-owned-${item.id}`}
+          />
+        </div>
+      ))}
+    </div>
+  );
 }
 
 function BonusTotalsSection({ bonusTotals }: { bonusTotals: AppearanceBonusTotals }) {
@@ -61,6 +113,16 @@ function BonusTotalsSection({ bonusTotals }: { bonusTotals: AppearanceBonusTotal
 export function AppearanceCard({ items, bonusTotals, onToggleOwned, className = '' }: AppearanceCardProps) {
   const ownedCount = items.filter((item) => item.owned).length;
 
+  const tabs = CATEGORY_ORDER.map((category) => {
+    const categoryItems = items.filter((item) => item.category === category);
+    const categoryOwned = categoryItems.filter((item) => item.owned).length;
+    return {
+      value: category,
+      label: `${CATEGORY_LABELS[category]} (${categoryOwned}/${categoryItems.length})`,
+      content: <CategoryItemList items={categoryItems} onToggleOwned={onToggleOwned} />,
+    };
+  });
+
   return (
     <div className={`flex flex-col gap-4 ${className}`}>
       <Card
@@ -69,32 +131,7 @@ export function AppearanceCard({ items, bonusTotals, onToggleOwned, className = 
         {items.length === 0 ? (
           <p className="text-sm text-[var(--color-foreground)]/50 italic">No clothing items available.</p>
         ) : (
-          <div className="flex flex-col gap-2">
-            {items.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-center justify-between gap-4 rounded-md border border-gray-200 bg-gray-50 px-3 py-2 dark:border-gray-700 dark:bg-gray-800"
-              >
-                <div className="flex flex-col gap-0.5 min-w-0">
-                  <span className="text-sm font-medium text-[var(--color-foreground)] truncate">
-                    {item.name}
-                  </span>
-                  <span className="text-xs text-[var(--color-foreground)]/50">
-                    {BONUS_TYPE_LABELS[item.bonusType]}
-                    {' · '}
-                    {formatEffectValue(item.bonusType, item.effectValue)}
-                  </span>
-                </div>
-                <Toggle
-                  checked={item.owned}
-                  onCheckedChange={() => onToggleOwned(item.id)}
-                  label="Owned"
-                  size="sm"
-                  id={`appearance-owned-${item.id}`}
-                />
-              </div>
-            ))}
-          </div>
+          <Tabs tabs={tabs} defaultValue="hat" />
         )}
       </Card>
 
