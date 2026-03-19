@@ -8,6 +8,7 @@ import { LatentPowerGrid } from '@/components/LatentPowerGrid/LatentPowerGrid';
 import { GrowthStrInput } from '@/components/GrowthStrInput';
 import { GrowthHpInput } from '@/components/GrowthHpInput';
 import { PromotionTierSelector } from '@/components/PromotionTierSelector/PromotionTierSelector';
+import { EnhancementRanking } from '@/components/EnhancementRanking';
 import { segmentCost } from '@/lib/gold-calculator';
 import {
   buildGrowthKnowledgeIndex,
@@ -305,6 +306,20 @@ export default function CharacterPage() {
               </tfoot>
             </table>
           </div>
+        </section>
+
+        {/* Enhancement Priority */}
+        <section
+          aria-labelledby="enhancement-priority-heading"
+          className="bg-white rounded-lg border border-gray-200 p-6 dark:bg-gray-900 dark:border-gray-700"
+        >
+          <h2
+            id="enhancement-priority-heading"
+            className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4"
+          >
+            Enhancement Priority — Efficiency Ranking
+          </h2>
+          <EnhancementRanking />
         </section>
 
         {/* Latent Power */}
