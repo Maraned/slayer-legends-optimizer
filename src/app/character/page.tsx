@@ -7,11 +7,10 @@ import { Select } from '@/components/Select/Select';
 import { LatentPowerGrid } from '@/components/LatentPowerGrid/LatentPowerGrid';
 import { GrowthStrInput } from '@/components/GrowthStrInput';
 import { GrowthHpInput } from '@/components/GrowthHpInput';
+import { PromotionTierSelector } from '@/components/PromotionTierSelector/PromotionTierSelector';
 import { segmentCost } from '@/lib/gold-calculator';
 import {
   buildGrowthKnowledgeIndex,
-  buildPromotionBonusIndex,
-  buildPromotionIndex,
   buildSlayerLevelIndex,
 } from '@/lib/character-data-lookups';
 import { useCalculatorInputsStore } from '@/store/useCalculatorInputsStore';
@@ -53,7 +52,6 @@ export default function CharacterPage() {
   const character = useUserSaveStore((s: UserSaveStore) => s.character);
   const setEnhanceableStats = useUserSaveStore((s: UserSaveStore) => s.setEnhanceableStats);
   const setGrowthStats = useUserSaveStore((s: UserSaveStore) => s.setGrowthStats);
-  const setPromotion = useUserSaveStore((s: UserSaveStore) => s.setPromotion);
   const setSlayerLevel = useUserSaveStore((s: UserSaveStore) => s.setSlayerLevel);
   const setGrowingKnowledge = useUserSaveStore((s: UserSaveStore) => s.setGrowingKnowledge);
 
@@ -65,24 +63,8 @@ export default function CharacterPage() {
   );
 
   const slayerLevelIndex = useMemo(() => buildSlayerLevelIndex(characterData.SLAYER_LEVEL), []);
-  const promotionIndex = useMemo(() => buildPromotionIndex(characterData.PROMOTION), []);
-  const promotionBonusIndex = useMemo(
-    () => buildPromotionBonusIndex(characterData.PROMOTION_BONUS),
-    [],
-  );
   const growthKnowledgeIndex = useMemo(
     () => buildGrowthKnowledgeIndex(characterData.GROWTH_KNOWLEDGE),
-    [],
-  );
-
-  const promotionOptions = useMemo(
-    () => [
-      { value: '0', label: 'None' },
-      ...characterData.PROMOTION.map((p) => ({
-        value: String(p.tier),
-        label: `Tier ${p.tier} — ${p.rank}`,
-      })),
-    ],
     [],
   );
 
@@ -100,28 +82,11 @@ export default function CharacterPage() {
     setSlayerLevel({ level, expRequiredForNext: entry?.expRequired ?? 0 });
   }
 
-  function handlePromotionChange(value: string) {
-    const tier = parseInt(value, 10);
-    if (tier === 0) {
-      setPromotion({ tier: 0, atkBonusPct: 0, monsterGoldBonusPct: 0, abilities: [] });
-      return;
-    }
-    const bonus = promotionBonusIndex[tier];
-    setPromotion({
-      tier,
-      atkBonusPct: bonus?.extraAtkPercent ?? 0,
-      monsterGoldBonusPct: bonus?.monsterGoldPercent ?? 0,
-      abilities: character.promotion.abilities,
-    });
-  }
-
   function handleGrowingKnowledgeChange(value: string) {
     const grade = parseInt(value, 10);
     const entry = growthKnowledgeIndex[grade];
     setGrowingKnowledge({ grade, atkEffectPct: entry?.atkEffectMultiplier ?? 1 });
   }
-
-  const currentPromotion = promotionIndex[character.promotion.tier];
 
   const totalGoldCost = ENHANCE_STAT_ORDER.reduce((total, stat) => {
     const entry = character.enhanceableStats[stat];
@@ -202,7 +167,7 @@ export default function CharacterPage() {
           </section>
         </div>
 
-        {/* Second row: Growth + Promotions */}
+        {/* Second row: Growth + Promotion Tier Selector */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
           {/* Growth */}
@@ -233,57 +198,8 @@ export default function CharacterPage() {
             </div>
           </section>
 
-          {/* Promotions */}
-          <section
-            aria-labelledby="promotions-heading"
-            className="bg-white rounded-lg border border-gray-200 p-6 dark:bg-gray-900 dark:border-gray-700"
-          >
-            <h2
-              id="promotions-heading"
-              className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4"
-            >
-              Promotions
-            </h2>
-            <div className="flex flex-col gap-4">
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-[var(--color-foreground)]">Tier</label>
-                <Select
-                  value={String(character.promotion.tier)}
-                  onValueChange={handlePromotionChange}
-                  options={promotionOptions}
-                  aria-label="Promotion tier"
-                />
-              </div>
-              {character.promotion.tier > 0 && currentPromotion && (
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-500 dark:text-gray-400">ATK bonus</span>
-                    <span className="font-mono font-medium tabular-nums text-gray-900 dark:text-gray-100">
-                      +{(currentPromotion.atkBonus * 100).toFixed(0)}%
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-500 dark:text-gray-400">HP bonus</span>
-                    <span className="font-mono font-medium tabular-nums text-gray-900 dark:text-gray-100">
-                      +{(currentPromotion.hpBonus * 100).toFixed(0)}%
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-500 dark:text-gray-400">Extra ATK %</span>
-                    <span className="font-mono font-medium tabular-nums text-gray-900 dark:text-gray-100">
-                      +{(character.promotion.atkBonusPct * 100).toFixed(0)}%
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-500 dark:text-gray-400">Monster gold %</span>
-                    <span className="font-mono font-medium tabular-nums text-gray-900 dark:text-gray-100">
-                      +{(character.promotion.monsterGoldBonusPct * 100).toFixed(0)}%
-                    </span>
-                  </div>
-                </div>
-              )}
-            </div>
-          </section>
+          {/* Promotion Tier Selector */}
+          <PromotionTierSelector />
         </div>
 
         {/* Enhancement Manual Calculator */}
