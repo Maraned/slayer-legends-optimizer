@@ -1,6 +1,42 @@
 import SoulRequirementsLookup from '@/components/SoulRequirementsLookup';
 import { ConstellationBuffSummary } from '@/components/ConstellationBuffSummary/ConstellationBuffSummary';
 import { version } from '../../package.json';
+import Link from 'next/link';
+import { Card } from '@/components/Card';
+
+const SECTION_GROUPS = [
+  {
+    label: 'Characters',
+    items: [
+      { label: 'Characters', href: '/characters', description: 'View and manage your characters' },
+      { label: 'Skills', href: '/skills', description: 'Skill trees and mastery' },
+      { label: 'Companions', href: '/companions', description: 'Companion management and advancement' },
+      { label: 'Familiars', href: '/familiars', description: 'Familiar collection and upgrades' },
+      { label: 'Sprites', href: '/sprites', description: 'Character appearance customization' },
+    ],
+  },
+  {
+    label: 'Equipment',
+    items: [
+      { label: 'Equipment', href: '/equipment', description: 'Weapons and accessories management' },
+      { label: 'Cube Optimizer', href: '/cube-optimizer', description: 'Weapon tier optimization' },
+    ],
+  },
+  {
+    label: 'World',
+    items: [
+      { label: 'Stages', href: '/stages', description: 'Dungeon and stage farming' },
+      { label: 'Constellations', href: '/constellations', description: 'Star and zodiac progression' },
+    ],
+  },
+  {
+    label: 'Optimizer',
+    items: [
+      { label: 'Black Orb', href: '/black-orb', description: 'Elemental damage and amplification' },
+      { label: 'Tree of Memory', href: '/tree-of-memory', description: 'Memory and skill tree progression' },
+    ],
+  },
+];
 
 export default function Home() {
   return (
@@ -19,19 +55,32 @@ export default function Home() {
 
       <div className="max-w-5xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Navigation section — links added in #128 */}
+          {/* Navigation section */}
           <section
             className="lg:col-span-2"
             aria-labelledby="nav-section-heading"
           >
-            <h2
-              id="nav-section-heading"
-              className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3"
-            >
-              Sections
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {/* Navigation cards will be added in issue #128 */}
+            <div className="space-y-8">
+              {SECTION_GROUPS.map((group) => (
+                <div key={group.label}>
+                  <h2
+                    id="nav-section-heading"
+                    className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3"
+                  >
+                    {group.label}
+                  </h2>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {group.items.map((item) => (
+                      <Link key={item.href} href={item.href} className="block group">
+                        <Card className="h-full transition-shadow group-hover:shadow-md">
+                          <p className="font-medium text-gray-900 dark:text-gray-100">{item.label}</p>
+                          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{item.description}</p>
+                        </Card>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
             <div className="mt-6">
               <SoulRequirementsLookup />
