@@ -1,0 +1,1 @@
+export { GrowthVitInput } from './GrowthVitInput';
