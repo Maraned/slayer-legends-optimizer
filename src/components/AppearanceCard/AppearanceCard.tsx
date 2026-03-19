@@ -2,8 +2,8 @@
 
 import type { AppearanceBonusTotals, BonusType, ClothingCategory, ClothingItem } from '@/types/appearance';
 import { Card } from '@/components/Card';
+import { Checkbox } from '@/components/Checkbox';
 import { Tabs } from '@/components/Tabs';
-import { Toggle } from '@/components/Toggle';
 
 interface AppearanceCardProps {
   items: ClothingItem[];
@@ -72,11 +72,10 @@ function CategoryItemList({
               {formatEffectValue(item.bonusType, item.effectValue)}
             </span>
           </div>
-          <Toggle
+          <Checkbox
             checked={item.owned}
             onCheckedChange={() => onToggleOwned(item.id)}
             label="Owned"
-            size="sm"
             id={`appearance-owned-${item.id}`}
           />
         </div>
