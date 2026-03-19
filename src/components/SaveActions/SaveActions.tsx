@@ -23,7 +23,7 @@ export function SaveActions({ collapsed }: { collapsed: boolean }) {
   function handleExport() {
     const state = Object.fromEntries(
       STATE_KEYS.map((key) => [key, store[key]]),
-    ) as UserSaveState;
+    ) as unknown as UserSaveState;
     exportSaveStateAsJson(state);
   }
 
