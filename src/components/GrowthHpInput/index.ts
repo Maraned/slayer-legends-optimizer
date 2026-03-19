@@ -1,0 +1,1 @@
+export { GrowthHpInput } from './GrowthHpInput';

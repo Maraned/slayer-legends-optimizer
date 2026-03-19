@@ -1,4 +1,5 @@
 import { GrowthStrInput } from '@/components/GrowthStrInput';
+import { GrowthHpInput } from '@/components/GrowthHpInput';
 
 export default function CharacterPage() {
   return (
@@ -20,6 +21,7 @@ export default function CharacterPage() {
             Growth
           </h2>
           <GrowthStrInput />
+          <GrowthHpInput />
         </section>
       </div>
     </div>
