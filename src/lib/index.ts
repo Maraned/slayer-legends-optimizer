@@ -99,7 +99,6 @@ export {
 
 export type { AggregateFarmingBonusesInput } from './bonus-aggregator';
 
-
 export type { AtkStateInputs, AtkGameTables } from './atk-state';
 export { atkSourcesFromState } from './atk-state';
 
@@ -136,3 +135,20 @@ export {
   calculateExpectedDamage,
   calculateExpectedDamageDetailed,
 } from './total-expected-damage';
+
+export type { ExpectedDamageInputs as ExpectedDamageCalculatorInputs } from './expected-damage-calculator';
+export {
+  calcDamageFactor,
+} from './expected-damage-calculator';
+
+export type {
+  EnhancementStatBonuses,
+  EnhancementGoldCosts,
+  EnhancementEfficiencyInputs,
+  EnhancementEfficiencyResult,
+} from './enhancement-efficiency-calculator';
+export {
+  calcEfficiency,
+  calculateEnhancementEfficiencies,
+  highestEfficiencyStat,
+} from './enhancement-efficiency-calculator';
