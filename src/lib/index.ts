@@ -138,3 +138,11 @@ export {
   calculateAllEnhancementEfficiencies,
   rankEnhancementTargets,
 } from './enhancement-optimizer';
+
+export type { ExpectedDamageInputs } from './total-expected-damage';
+export {
+  calcCritDmgMultiplier,
+  calcCritExpectedMultiplier,
+  calculateExpectedDamage,
+  calculateExpectedDamageDetailed,
+} from './total-expected-damage';
