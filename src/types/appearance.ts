@@ -16,6 +16,11 @@ export type BonusType =
   | 'Death Strike %';
 
 /**
+ * Clothing categories corresponding to the slot/type of the item.
+ */
+export type ClothingCategory = 'hat' | 'top' | 'bottom' | 'shoes' | 'acc';
+
+/**
  * A single clothing item from the APPEARANCE sheet.
  * Corresponds to one row in the APPEARANCE data range (rows 6–64).
  */
@@ -24,6 +29,8 @@ export interface ClothingItem {
   id: string;
   /** Display name of the clothing item (CLOTHING column) */
   name: string;
+  /** Category / slot this item belongs to */
+  category: ClothingCategory;
   /** The stat this item boosts (BONUS TYPE column) */
   bonusType: BonusType;
   /** The numeric bonus value when owned (EFFECT column, e.g. 3.0, 0.05) */
