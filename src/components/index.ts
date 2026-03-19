@@ -1,4 +1,5 @@
 export { NumberInput } from './NumberInput';
+export { SlayerLevelInput } from './SlayerLevelInput/SlayerLevelInput';
 export { EfficiencyMeter } from './EfficiencyMeter';
 export type { EfficiencyMeterProps, EfficiencyVariant } from './EfficiencyMeter';
 export { CostDisplay, CURRENCY_COLORS, CURRENCY_SYMBOLS } from './CostDisplay';
