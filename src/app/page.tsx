@@ -1,5 +1,6 @@
 import SoulRequirementsLookup from '@/components/SoulRequirementsLookup';
 import { ConstellationBuffSummary } from '@/components/ConstellationBuffSummary/ConstellationBuffSummary';
+import { version } from '../../package.json';
 
 export default function Home() {
   return (
@@ -39,7 +40,7 @@ export default function Home() {
 
           {/* Info panel */}
           <aside className="flex flex-col gap-4">
-            {/* Version display — content added in #129 */}
+            {/* Version display */}
             <section
               className="bg-white rounded-lg border border-gray-200 p-4"
               aria-labelledby="version-heading"
@@ -50,7 +51,7 @@ export default function Home() {
               >
                 Version
               </h2>
-              <div className="text-sm text-gray-500">—</div>
+              <div className="text-sm text-gray-500">v{version}</div>
             </section>
 
             {/* Constellation buff summary */}
