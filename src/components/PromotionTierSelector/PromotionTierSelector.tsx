@@ -1,0 +1,111 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
+import { Select } from '@/components/Select/Select';
+import type { SelectOption } from '@/components/Select/Select';
+import { loadCharacterMathsData } from '@/lib/data-loader';
+import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
+import type { PromotionBonusEntry, PromotionEntry } from '@/types/character-data';
+
+function formatPct(value: number): string {
+  return `+${(value * 100).toFixed(0)}%`;
+}
+
+export function PromotionTierSelector() {
+  const promotion = useUserSaveStore((s: UserSaveStore) => s.character.promotion);
+  const setPromotion = useUserSaveStore((s: UserSaveStore) => s.setPromotion);
+
+  const [promotionEntries, setPromotionEntries] = useState<PromotionEntry[]>([]);
+  const [promotionBonusEntries, setPromotionBonusEntries] = useState<PromotionBonusEntry[]>([]);
+
+  useEffect(() => {
+    loadCharacterMathsData().then((data) => {
+      setPromotionEntries(data.PROMOTION);
+      setPromotionBonusEntries(data.PROMOTION_BONUS);
+    });
+  }, []);
+
+  const options: SelectOption[] = [
+    { value: '0', label: 'Not promoted' },
+    ...promotionEntries.map((entry) => ({
+      value: String(entry.tier),
+      label: `Tier ${entry.tier} – ${entry.rank}`,
+    })),
+  ];
+
+  function handleTierChange(value: string) {
+    const tier = Number(value);
+    const bonusEntry = promotionBonusEntries.find((b) => b.tier === tier);
+    setPromotion({
+      tier,
+      atkBonusPct: bonusEntry?.extraAtkPercent ?? 0,
+      monsterGoldBonusPct: bonusEntry?.monsterGoldPercent ?? 0,
+      abilities: promotion.abilities,
+    });
+  }
+
+  const currentEntry = promotionEntries.find((e) => e.tier === promotion.tier);
+  const currentBonusEntry = promotionBonusEntries.find((b) => b.tier === promotion.tier);
+
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+      <h2 className="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">
+        Promotion
+      </h2>
+
+      <label className="mb-5 flex flex-col gap-1.5">
+        <span className="text-xs font-medium uppercase tracking-wide text-gray-600 dark:text-gray-400">
+          Promotion Tier
+        </span>
+        <Select
+          value={String(promotion.tier)}
+          onValueChange={handleTierChange}
+          options={options}
+          placeholder="Select promotion tier"
+          aria-label="Promotion tier"
+        />
+      </label>
+
+      {promotion.tier > 0 && currentEntry && currentBonusEntry && (
+        <div className="grid grid-cols-2 gap-3">
+          <div className="rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-900/20">
+            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-blue-700 dark:text-blue-400">
+              ATK Bonus
+            </p>
+            <p className="text-xl font-bold text-blue-900 dark:text-blue-200">
+              {formatPct(currentEntry.atkBonus)}
+            </p>
+          </div>
+
+          <div className="rounded-lg bg-green-50 px-4 py-3 dark:bg-green-900/20">
+            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-green-700 dark:text-green-400">
+              HP Bonus
+            </p>
+            <p className="text-xl font-bold text-green-900 dark:text-green-200">
+              {formatPct(currentEntry.hpBonus)}
+            </p>
+          </div>
+
+          <div className="rounded-lg bg-purple-50 px-4 py-3 dark:bg-purple-900/20">
+            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-purple-700 dark:text-purple-400">
+              Extra ATK
+            </p>
+            <p className="text-xl font-bold text-purple-900 dark:text-purple-200">
+              {formatPct(currentBonusEntry.extraAtkPercent)}
+            </p>
+          </div>
+
+          <div className="rounded-lg bg-amber-50 px-4 py-3 dark:bg-amber-900/20">
+            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-amber-700 dark:text-amber-400">
+              Monster Gold
+            </p>
+            <p className="text-xl font-bold text-amber-900 dark:text-amber-200">
+              {formatPct(currentBonusEntry.monsterGoldPercent)}
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
