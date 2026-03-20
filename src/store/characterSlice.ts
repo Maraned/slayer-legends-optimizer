@@ -54,6 +54,8 @@ export const DEFAULT_CHARACTER: CharacterState = {
   },
   promotion: {
     tier: 0,
+    atkBonus: 0,
+    hpBonus: 0,
     atkBonusPct: 0,
     monsterGoldBonusPct: 0,
     abilities: [],

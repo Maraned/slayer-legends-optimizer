@@ -67,17 +67,17 @@ export function PromotionTierSelector() {
 
   function handleTierChange(value: string) {
     const tier = Number(value);
+    const entry = promotionEntries.find((e) => e.tier === tier);
     const bonusEntry = promotionBonusEntries.find((b) => b.tier === tier);
     setPromotion({
       tier,
+      atkBonus: entry?.atkBonus ?? 0,
+      hpBonus: entry?.hpBonus ?? 0,
       atkBonusPct: bonusEntry?.extraAtkPercent ?? 0,
       monsterGoldBonusPct: bonusEntry?.monsterGoldPercent ?? 0,
       abilities: promotion.abilities,
     });
   }
-
-  const currentEntry = promotionEntries.find((e) => e.tier === promotion.tier);
-  const currentBonusEntry = promotionBonusEntries.find((b) => b.tier === promotion.tier);
 
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
@@ -98,7 +98,7 @@ export function PromotionTierSelector() {
         />
       </label>
 
-      {promotion.tier > 0 && currentEntry && currentBonusEntry && (
+      {promotion.tier > 0 && (
         <>
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-900/20">
@@ -106,7 +106,7 @@ export function PromotionTierSelector() {
                 ATK Bonus
               </p>
               <p className="text-xl font-bold text-blue-900 dark:text-blue-200">
-                {formatPct(currentEntry.atkBonus)}
+                {formatPct(promotion.atkBonus)}
               </p>
             </div>
 
@@ -115,7 +115,7 @@ export function PromotionTierSelector() {
                 HP Bonus
               </p>
               <p className="text-xl font-bold text-green-900 dark:text-green-200">
-                {formatPct(currentEntry.hpBonus)}
+                {formatPct(promotion.hpBonus)}
               </p>
             </div>
 
@@ -124,7 +124,7 @@ export function PromotionTierSelector() {
                 Extra ATK
               </p>
               <p className="text-xl font-bold text-purple-900 dark:text-purple-200">
-                {formatPct(currentBonusEntry.extraAtkPercent)}
+                {formatPct(promotion.atkBonusPct)}
               </p>
             </div>
 
@@ -133,7 +133,7 @@ export function PromotionTierSelector() {
                 Monster Gold
               </p>
               <p className="text-xl font-bold text-amber-900 dark:text-amber-200">
-                {formatPct(currentBonusEntry.monsterGoldPercent)}
+                {formatPct(promotion.monsterGoldBonusPct)}
               </p>
             </div>
           </div>
