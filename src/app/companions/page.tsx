@@ -1,18 +1,43 @@
 'use client';
 
 import { CompanionCard } from '@/components/CompanionCard/CompanionCard';
-import { useUserSaveStore } from '@/store/useUserSaveStore';
+import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
+import type { CompanionName } from '@/types/companions';
+import spritesData from '@/data/sprites.json';
+import type { SpritesData } from '@/types/sprites';
+
+const sprites = spritesData as unknown as SpritesData;
+
+const COMPANION_ORDER: CompanionName[] = ['Ellie', 'Zeke', 'Miho', 'Luna'];
 
 export default function CompanionsPage() {
-  const { companions } = useUserSaveStore();
+  const companions = useUserSaveStore((s: UserSaveStore) => s.companions);
+  const setCompanion = useUserSaveStore((s: UserSaveStore) => s.setCompanion);
 
   return (
-    <div className="p-6">
-      <h1 className="mb-6 text-2xl font-bold text-[var(--color-foreground)]">Companions</h1>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {companions.map((companion) => (
-          <CompanionCard key={companion.name} companion={companion} />
-        ))}
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <header className="bg-white border-b border-gray-200 px-6 py-8 dark:bg-gray-900 dark:border-gray-700">
+        <div className="max-w-5xl mx-auto">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Companions</h1>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Manage your companion skins and advancement</p>
+        </div>
+      </header>
+
+      <div className="max-w-5xl mx-auto px-6 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {COMPANION_ORDER.map((name, index) => {
+            const companion = companions[index];
+            const skins = sprites.companionSkins[name] ?? [];
+            return (
+              <CompanionCard
+                key={name}
+                companion={companion}
+                skins={skins}
+                onSkinChange={(skin) => setCompanion(index, { ...companion, skin })}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
