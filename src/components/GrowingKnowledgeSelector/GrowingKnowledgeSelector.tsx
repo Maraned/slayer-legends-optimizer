@@ -34,7 +34,7 @@ export function GrowingKnowledgeSelector() {
           Growing Knowledge
         </span>
         <span className="text-xs text-[var(--color-foreground)]/50">
-          ×{multiplier.toFixed(2)} ATK multiplier
+          +{((multiplier - 1) * 100).toFixed(0)}% ATK effect
         </span>
       </div>
       <NumberInput
