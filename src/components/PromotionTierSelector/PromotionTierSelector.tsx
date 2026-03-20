@@ -6,7 +6,37 @@ import { Select } from '@/components/Select/Select';
 import type { SelectOption } from '@/components/Select/Select';
 import { loadCharacterMathsData } from '@/lib/data-loader';
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
+import type { BonusType, ClothingItem } from '@/types/appearance';
 import type { PromotionBonusEntry, PromotionEntry } from '@/types/character-data';
+
+const PROMOTION_RELEVANT_BONUS_TYPES: BonusType[] = ['Extra ATK', 'Extra HP', 'Monster Gold'];
+
+function PromotionItemWarnings({ items }: { items: ClothingItem[] }) {
+  const unownedRelevant = items.filter(
+    (item) => PROMOTION_RELEVANT_BONUS_TYPES.includes(item.bonusType) && !item.owned,
+  );
+
+  if (unownedRelevant.length === 0) return null;
+
+  return (
+    <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3 dark:border-amber-700/50 dark:bg-amber-900/20">
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-amber-800 dark:text-amber-400">
+        Unowned promotion-relevant items
+      </p>
+      <ul className="flex flex-col gap-1">
+        {unownedRelevant.map((item) => (
+          <li key={item.id} className="flex items-center justify-between text-xs text-amber-900 dark:text-amber-300">
+            <span>{item.name}</span>
+            <span className="font-medium text-amber-700 dark:text-amber-400">{item.bonusType}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-2 text-xs text-amber-700 dark:text-amber-500">
+        Mark these as owned on the Appearance page to maximise your promotion bonuses.
+      </p>
+    </div>
+  );
+}
 
 function formatPct(value: number): string {
   return `+${(value * 100).toFixed(0)}%`;
@@ -15,6 +45,7 @@ function formatPct(value: number): string {
 export function PromotionTierSelector() {
   const promotion = useUserSaveStore((s: UserSaveStore) => s.character.promotion);
   const setPromotion = useUserSaveStore((s: UserSaveStore) => s.setPromotion);
+  const appearanceItems = useUserSaveStore((s: UserSaveStore) => s.appearance.items);
 
   const [promotionEntries, setPromotionEntries] = useState<PromotionEntry[]>([]);
   const [promotionBonusEntries, setPromotionBonusEntries] = useState<PromotionBonusEntry[]>([]);
@@ -68,43 +99,47 @@ export function PromotionTierSelector() {
       </label>
 
       {promotion.tier > 0 && currentEntry && currentBonusEntry && (
-        <div className="grid grid-cols-2 gap-3">
-          <div className="rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-900/20">
-            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-blue-700 dark:text-blue-400">
-              ATK Bonus
-            </p>
-            <p className="text-xl font-bold text-blue-900 dark:text-blue-200">
-              {formatPct(currentEntry.atkBonus)}
-            </p>
+        <>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-900/20">
+              <p className="mb-1 text-xs font-medium uppercase tracking-wide text-blue-700 dark:text-blue-400">
+                ATK Bonus
+              </p>
+              <p className="text-xl font-bold text-blue-900 dark:text-blue-200">
+                {formatPct(currentEntry.atkBonus)}
+              </p>
+            </div>
+
+            <div className="rounded-lg bg-green-50 px-4 py-3 dark:bg-green-900/20">
+              <p className="mb-1 text-xs font-medium uppercase tracking-wide text-green-700 dark:text-green-400">
+                HP Bonus
+              </p>
+              <p className="text-xl font-bold text-green-900 dark:text-green-200">
+                {formatPct(currentEntry.hpBonus)}
+              </p>
+            </div>
+
+            <div className="rounded-lg bg-purple-50 px-4 py-3 dark:bg-purple-900/20">
+              <p className="mb-1 text-xs font-medium uppercase tracking-wide text-purple-700 dark:text-purple-400">
+                Extra ATK
+              </p>
+              <p className="text-xl font-bold text-purple-900 dark:text-purple-200">
+                {formatPct(currentBonusEntry.extraAtkPercent)}
+              </p>
+            </div>
+
+            <div className="rounded-lg bg-amber-50 px-4 py-3 dark:bg-amber-900/20">
+              <p className="mb-1 text-xs font-medium uppercase tracking-wide text-amber-700 dark:text-amber-400">
+                Monster Gold
+              </p>
+              <p className="text-xl font-bold text-amber-900 dark:text-amber-200">
+                {formatPct(currentBonusEntry.monsterGoldPercent)}
+              </p>
+            </div>
           </div>
 
-          <div className="rounded-lg bg-green-50 px-4 py-3 dark:bg-green-900/20">
-            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-green-700 dark:text-green-400">
-              HP Bonus
-            </p>
-            <p className="text-xl font-bold text-green-900 dark:text-green-200">
-              {formatPct(currentEntry.hpBonus)}
-            </p>
-          </div>
-
-          <div className="rounded-lg bg-purple-50 px-4 py-3 dark:bg-purple-900/20">
-            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-purple-700 dark:text-purple-400">
-              Extra ATK
-            </p>
-            <p className="text-xl font-bold text-purple-900 dark:text-purple-200">
-              {formatPct(currentBonusEntry.extraAtkPercent)}
-            </p>
-          </div>
-
-          <div className="rounded-lg bg-amber-50 px-4 py-3 dark:bg-amber-900/20">
-            <p className="mb-1 text-xs font-medium uppercase tracking-wide text-amber-700 dark:text-amber-400">
-              Monster Gold
-            </p>
-            <p className="text-xl font-bold text-amber-900 dark:text-amber-200">
-              {formatPct(currentBonusEntry.monsterGoldPercent)}
-            </p>
-          </div>
-        </div>
+          <PromotionItemWarnings items={appearanceItems} />
+        </>
       )}
     </div>
   );
