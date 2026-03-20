@@ -31,13 +31,23 @@ export function SlayerLevelInput() {
     });
   }
 
+  const isMaxLevel = slayerLevel.level >= SLAYER_LEVEL_MAX;
+
   return (
-    <NumberInput
-      label="Slayer Level"
-      value={slayerLevel.level}
-      onChange={handleChange}
-      min={SLAYER_LEVEL_MIN}
-      max={SLAYER_LEVEL_MAX}
-    />
+    <div className="flex flex-col gap-4">
+      <NumberInput
+        label="Level"
+        value={slayerLevel.level}
+        onChange={handleChange}
+        min={SLAYER_LEVEL_MIN}
+        max={SLAYER_LEVEL_MAX}
+      />
+      <div className="flex items-center justify-between text-sm">
+        <span className="text-gray-500 dark:text-gray-400">EXP to next level</span>
+        <span className="font-mono font-medium tabular-nums text-gray-900 dark:text-gray-100">
+          {isMaxLevel ? '—' : slayerLevel.expRequiredForNext.toLocaleString()}
+        </span>
+      </div>
+    </div>
   );
 }
