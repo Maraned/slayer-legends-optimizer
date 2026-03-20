@@ -1,6 +1,7 @@
 import type { AdvancementStep, BuffType, Companion, Element, SpecialBuffs } from '@/types/companions';
 import type { CompanionSkin } from '@/types/sprites';
 import { Select } from '@/components/Select/Select';
+import { NumberInput } from '@/components/NumberInput';
 
 const ELEMENTS: Element[] = ['Fire', 'Water', 'Wind', 'Earth', 'Lightning'];
 
@@ -11,6 +12,7 @@ export interface CompanionCardProps {
   skins: CompanionSkin[];
   onSkinChange: (skin: string) => void;
   onElementChange?: (element: Element) => void;
+  onLevelChange: (level: number) => void;
   className?: string;
 }
 
@@ -58,7 +60,7 @@ function AdvancementStepRow({ step }: { step: AdvancementStep }) {
   );
 }
 
-export function CompanionCard({ companion, skins, onSkinChange, onElementChange, className = '' }: CompanionCardProps) {
+export function CompanionCard({ companion, skins, onSkinChange, onElementChange, onLevelChange, className = '' }: CompanionCardProps) {
   const { name, skin, element, level, advancementSteps, specialBuffs } = companion;
   const specialBuffEntries = getSpecialBuffEntries(specialBuffs);
   const skinOptions = skins.map((s) => ({ value: s.name, label: s.name }));
@@ -77,7 +79,6 @@ export function CompanionCard({ companion, skins, onSkinChange, onElementChange,
             options={elementOptions}
             aria-label="Element"
           />
-          <span className="text-xs text-gray-500 dark:text-gray-400">Lv. {level}</span>
         </div>
       </div>
 
@@ -91,6 +92,16 @@ export function CompanionCard({ companion, skins, onSkinChange, onElementChange,
           onValueChange={onSkinChange}
           options={skinOptions}
           aria-label={`${name} skin`}
+        />
+      </div>
+
+      {/* Level input */}
+      <div className="border-b border-gray-200 px-4 py-3 dark:border-gray-700">
+        <NumberInput
+          label="Level"
+          value={level}
+          onChange={onLevelChange}
+          min={1}
         />
       </div>
 
