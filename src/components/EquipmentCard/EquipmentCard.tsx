@@ -7,13 +7,15 @@ import type {
   EquipmentState,
   LevelMultiplier,
   SoulWeapon,
+  SoulWeaponData,
   Weapon,
 } from '@/types/equipment';
 import { WeaponTier } from '@/types/equipment';
-import { getLevelMultiplierIndex } from '@/lib/data-loader';
+import { getLevelMultiplierIndex, loadSoulWeapons } from '@/lib/data-loader';
 import { Card } from '@/components/Card';
 import { Checkbox } from '@/components/Checkbox';
 import { NumberInput } from '@/components/NumberInput';
+import { Select } from '@/components/Select';
 import { Tabs } from '@/components/Tabs';
 import { Toggle } from '@/components/Toggle';
 
@@ -288,6 +290,15 @@ function AccessoriesTab({
   );
 }
 
+const ELEMENT_COLORS: Record<string, string> = {
+  Fire: 'text-red-500 dark:text-red-400',
+  Water: 'text-blue-500 dark:text-blue-400',
+  Earth: 'text-amber-600 dark:text-amber-400',
+  Wind: 'text-green-500 dark:text-green-400',
+  Light: 'text-yellow-500 dark:text-yellow-300',
+  Dark: 'text-purple-500 dark:text-purple-400',
+};
+
 function SoulWeaponTab({
   soulWeapon,
   onChange,
@@ -295,17 +306,65 @@ function SoulWeaponTab({
   soulWeapon: SoulWeapon;
   onChange: (soulWeapon: SoulWeapon) => void;
 }) {
+  const [availableWeapons, setAvailableWeapons] = useState<SoulWeaponData[]>([]);
+
+  useEffect(() => {
+    loadSoulWeapons().then(setAvailableWeapons).catch(() => {});
+  }, []);
+
+  const elementGroups = availableWeapons.reduce<Record<string, SoulWeaponData[]>>((acc, w) => {
+    (acc[w.element] ??= []).push(w);
+    return acc;
+  }, {});
+
+  const selectorGroups = Object.entries(elementGroups).map(([element, weapons]) => ({
+    label: element,
+    options: weapons.map((w) => ({
+      value: w.id,
+      label: `${w.name} (${w.tier})`,
+    })),
+  }));
+
+  const selectedData = availableWeapons.find((w) => w.name === soulWeapon.name);
+
+  function handleSelect(id: string) {
+    const data = availableWeapons.find((w) => w.id === id);
+    if (!data) return;
+    onChange({
+      ...soulWeapon,
+      name: data.name,
+      element: data.element,
+      effects: [
+        { description: data.specialEffect },
+        { description: `Crit Rate +${data.critRateBonus}%` },
+        { description: `Crit DMG +${data.critDmgBonus}%` },
+        { description: `${data.element} DMG +${data.elementBonus}%` },
+      ],
+    });
+  }
+
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between">
-        <div className="flex flex-col gap-0.5">
-          <span className="text-sm font-semibold text-[var(--color-foreground)]">
-            {soulWeapon.name || 'Soul Weapon'}
+      <div className="flex flex-col gap-1.5">
+        <label className="text-xs font-semibold uppercase tracking-wide text-[var(--color-foreground)]/50">
+          Soul Weapon
+        </label>
+        <Select
+          value={selectedData?.id ?? ''}
+          onValueChange={handleSelect}
+          placeholder="Select soul weapon…"
+          groups={selectorGroups}
+          aria-label="Soul Weapon selector"
+        />
+        {soulWeapon.element && (
+          <span className={`text-xs font-medium ${ELEMENT_COLORS[soulWeapon.element] ?? ''}`}>
+            {soulWeapon.element}
+            {selectedData && ` · ${selectedData.acquisitionMethod}`}
           </span>
-          {soulWeapon.element && (
-            <span className="text-xs text-[var(--color-foreground)]/50">{soulWeapon.element}</span>
-          )}
-        </div>
+        )}
+      </div>
+
+      <div className="flex items-center justify-between">
         <NumberInput
           label="Engraving"
           value={soulWeapon.engravingProgress}
