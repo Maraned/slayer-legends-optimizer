@@ -1,21 +1,19 @@
-import type { AdvancementStep, BuffType, Companion, CompanionName, Element, SpecialBuffs } from '@/types/companions';
+import type { AdvancementStep, BuffType, Companion, Element, SpecialBuffs } from '@/types/companions';
 import type { CompanionSkin } from '@/types/sprites';
 import { Select } from '@/components/Select/Select';
+
+const ELEMENTS: Element[] = ['Fire', 'Water', 'Wind', 'Earth', 'Lightning'];
+
+const elementOptions = ELEMENTS.map((e) => ({ value: e, label: e }));
 
 export interface CompanionCardProps {
   companion: Companion;
   skins: CompanionSkin[];
   onSkinChange: (skin: string) => void;
+  onElementChange?: (element: Element) => void;
   className?: string;
 }
 
-const elementClasses: Record<Element, string> = {
-  Fire: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
-  Water: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
-  Wind: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
-  Earth: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
-  Lightning: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
-};
 
 const buffTypeClasses: Record<BuffType, string> = {
   'Extra ATK': 'text-red-600 dark:text-red-400',
@@ -60,7 +58,7 @@ function AdvancementStepRow({ step }: { step: AdvancementStep }) {
   );
 }
 
-export function CompanionCard({ companion, skins, onSkinChange, className = '' }: CompanionCardProps) {
+export function CompanionCard({ companion, skins, onSkinChange, onElementChange, className = '' }: CompanionCardProps) {
   const { name, skin, element, level, advancementSteps, specialBuffs } = companion;
   const specialBuffEntries = getSpecialBuffEntries(specialBuffs);
   const skinOptions = skins.map((s) => ({ value: s.name, label: s.name }));
@@ -73,11 +71,12 @@ export function CompanionCard({ companion, skins, onSkinChange, className = '' }
       <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3 dark:border-gray-700">
         <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{name}</h2>
         <div className="flex items-center gap-2">
-          <span
-            className={`rounded px-2 py-0.5 text-xs font-medium ${elementClasses[element]}`}
-          >
-            {element}
-          </span>
+          <Select
+            value={element}
+            onValueChange={(v) => onElementChange?.(v as Element)}
+            options={elementOptions}
+            aria-label="Element"
+          />
           <span className="text-xs text-gray-500 dark:text-gray-400">Lv. {level}</span>
         </div>
       </div>

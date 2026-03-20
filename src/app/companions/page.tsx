@@ -2,7 +2,7 @@
 
 import { CompanionCard } from '@/components/CompanionCard/CompanionCard';
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
-import type { CompanionName } from '@/types/companions';
+import type { CompanionName, Element } from '@/types/companions';
 import spritesData from '@/data/sprites.json';
 import type { SpritesData } from '@/types/sprites';
 
@@ -34,6 +34,7 @@ export default function CompanionsPage() {
                 companion={companion}
                 skins={skins}
                 onSkinChange={(skin) => setCompanion(index, { ...companion, skin })}
+                onElementChange={(element: Element) => setCompanion(index, { ...companion, element })}
               />
             );
           })}
