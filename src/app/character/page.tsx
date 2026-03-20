@@ -191,9 +191,9 @@ export default function CharacterPage() {
                 />
               </div>
               <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-500 dark:text-gray-400">ATK effect multiplier</span>
+                <span className="text-gray-500 dark:text-gray-400">ATK effect</span>
                 <span className="font-mono font-medium tabular-nums text-gray-900 dark:text-gray-100">
-                  ×{character.growingKnowledge.atkEffectPct.toFixed(2)}
+                  +{((character.growingKnowledge.atkEffectPct - 1) * 100).toFixed(0)}%
                 </span>
               </div>
             </div>
