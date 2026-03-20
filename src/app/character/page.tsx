@@ -392,7 +392,7 @@ export default function CharacterPage() {
                   >
                     Total
                   </td>
-                  <td className="pt-3 text-right font-mono font-semibold tabular-nums text-gray-900 dark:text-gray-100">
+                  <td className="pt-3 pl-4 text-right font-mono font-semibold tabular-nums text-gray-900 dark:text-gray-100">
                     {formatGold(totalGoldCost)}
                   </td>
                 </tr>

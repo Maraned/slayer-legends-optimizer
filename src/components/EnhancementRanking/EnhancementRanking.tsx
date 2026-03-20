@@ -9,6 +9,7 @@ import type { RankedEnhancementTarget } from '@/lib/enhancement-optimizer';
 import type { EnhanceableStatKey } from '@/types/character';
 import { ENHANCEABLE_STAT_LABELS } from '@/components/StatDisplay/StatDisplay';
 import { NumberInput } from '@/components/NumberInput';
+import { segmentCost } from '@/lib/gold-calculator';
 
 /**
  * Stat bonus granted per enhancement level (percentage points).
@@ -78,6 +79,16 @@ export function EnhancementRanking() {
         })),
       ),
     [enhanceableStats, enhanceMultiplier],
+  );
+
+  const totalGoldNeeded = useMemo(
+    () =>
+      (Object.keys(goldEnhancementTargets) as EnhanceableStatKey[]).reduce((total, stat) => {
+        const currentLevel = enhanceableStats[stat].currentLevel;
+        const target = goldEnhancementTargets[stat];
+        return total + (target > currentLevel ? segmentCost(currentLevel, target) : 0);
+      }, 0),
+    [enhanceableStats, goldEnhancementTargets],
   );
 
   const maxStatGainPerGold = useMemo(
@@ -169,6 +180,14 @@ export function EnhancementRanking() {
           </div>
         );
       })}
+      <div className="mt-3 flex items-center justify-between rounded-md border-t border-gray-200 pt-3 dark:border-gray-700">
+        <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+          Total gold needed
+        </span>
+        <span className="font-mono text-sm font-semibold tabular-nums text-gray-900 dark:text-gray-100">
+          {formatGold(totalGoldNeeded)}
+        </span>
+      </div>
     </div>
   );
 }
