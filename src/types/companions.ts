@@ -123,6 +123,8 @@ export interface Companion {
   level: number;
   /** Current promotion stage (0–14). Drives cube cost calculation. */
   promotionStage: number;
+  /** Companion advancement tier (0 = base, 7 = fully advanced) */
+  advancement: number;
   /** All 14 advancement steps and their buff data */
   advancementSteps: AdvancementStep[];
   /** Companion-specific special passive buffs */
