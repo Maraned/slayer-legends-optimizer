@@ -24,6 +24,7 @@ export interface CompanionCardProps {
   onPromotionStageChange: (stage: number) => void;
   onAdvancementChange: (advancement: number) => void;
   onAdvancementStepBuffTypeChange?: (step: AdvancementStepOrdinal, buffType: BuffType) => void;
+  onSpecialBuffChange?: (key: string, value: number) => void;
   className?: string;
 }
 
@@ -52,20 +53,20 @@ function formatPercent(value: number): string {
   return `${pct % 1 === 0 ? pct.toFixed(0) : pct.toFixed(1)}%`;
 }
 
-function getSpecialBuffEntries(specialBuffs: SpecialBuffs): { label: string; value: number }[] {
+function getSpecialBuffEntries(specialBuffs: SpecialBuffs): { label: string; key: string; value: number }[] {
   switch (specialBuffs.companion) {
     case 'Ellie':
-      return [{ label: "Wind's Song", value: specialBuffs.windsSong }];
+      return [{ label: "Wind's Song", key: 'windsSong', value: specialBuffs.windsSong }];
     case 'Zeke':
       return [
-        { label: 'Blade Dance', value: specialBuffs.bladeDance },
-        { label: 'Wisdom', value: specialBuffs.wisdom },
-        { label: 'Soul Catch', value: specialBuffs.soulCatch },
+        { label: 'Blade Dance', key: 'bladeDance', value: specialBuffs.bladeDance },
+        { label: 'Wisdom', key: 'wisdom', value: specialBuffs.wisdom },
+        { label: 'Soul Catch', key: 'soulCatch', value: specialBuffs.soulCatch },
       ];
     case 'Miho':
-      return [{ label: 'Red Greed', value: specialBuffs.redGreed }];
+      return [{ label: 'Red Greed', key: 'redGreed', value: specialBuffs.redGreed }];
     case 'Luna':
-      return [{ label: 'Deep Sea Song', value: specialBuffs.deepSeaSong }];
+      return [{ label: 'Deep Sea Song', key: 'deepSeaSong', value: specialBuffs.deepSeaSong }];
   }
 }
 
@@ -225,7 +226,7 @@ function AdvancementTrack({ advancement, onChange }: { advancement: number; onCh
   );
 }
 
-export function CompanionCard({ companion, skins, onSkinChange, onElementChange, onLevelChange, onPromotionStageChange, onAdvancementChange, onAdvancementStepBuffTypeChange, className = '' }: CompanionCardProps) {
+export function CompanionCard({ companion, skins, onSkinChange, onElementChange, onLevelChange, onPromotionStageChange, onAdvancementChange, onAdvancementStepBuffTypeChange, onSpecialBuffChange, className = '' }: CompanionCardProps) {
   const { name, skin, element, level, promotionStage, advancement, advancementSteps, specialBuffs } = companion;
   const cubeCost = promotionStage > 0 ? CUBE_COSTS_PER_STAGE[promotionStage] * level : 0;
   const specialBuffEntries = getSpecialBuffEntries(specialBuffs);
@@ -326,16 +327,25 @@ export function CompanionCard({ companion, skins, onSkinChange, onElementChange,
           <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
             Special Buffs
           </h3>
-          <div className="space-y-1">
-            {specialBuffEntries.map(({ label, value }) => (
+          <div className="space-y-2">
+            {specialBuffEntries.map(({ label, key, value }) => (
               <div
                 key={label}
-                className="flex items-center justify-between rounded px-2 py-1 text-xs bg-gray-50 dark:bg-gray-800/60"
+                className="flex items-center justify-between rounded px-2 py-1.5 text-xs bg-gray-50 dark:bg-gray-800/60"
               >
                 <span className="text-gray-700 dark:text-gray-300">{label}</span>
-                <span className="tabular-nums font-semibold text-gray-900 dark:text-gray-100">
-                  +{formatPercent(value)}
-                </span>
+                {onSpecialBuffChange ? (
+                  <NumberInput
+                    value={value}
+                    onChange={(v) => onSpecialBuffChange(key, v)}
+                    min={0}
+                    step={0.01}
+                  />
+                ) : (
+                  <span className="tabular-nums font-semibold text-gray-900 dark:text-gray-100">
+                    +{formatPercent(value)}
+                  </span>
+                )}
               </div>
             ))}
           </div>

@@ -46,6 +46,12 @@ export default function CompanionsPage() {
                     ),
                   })
                 }
+                onSpecialBuffChange={(key, value) =>
+                  setCompanion(index, {
+                    ...companion,
+                    specialBuffs: { ...companion.specialBuffs, [key]: value },
+                  })
+                }
               />
             );
           })}
