@@ -8,6 +8,28 @@ import {
   ENHANCEABLE_STAT_UNITS,
 } from '@/components/StatDisplay/StatDisplay';
 
+/**
+ * Stat bonus granted per enhancement level (percentage points).
+ * Each level adds this many percentage points to the stat.
+ */
+const BONUS_PER_LEVEL: Record<EnhanceableStatKey, number> = {
+  ATK: 0.001,
+  CRIT_DMG: 0.005,
+  CRIT_PCT: 0.001,
+  DEATH_STRIKE: 0.005,
+  DEATH_STRIKE_PCT: 0.001,
+  HP: 0.001,
+  HP_RECOVERY: 0.001,
+};
+
+function formatBonus(stat: EnhanceableStatKey, level: number): string {
+  if (level <= 0) return '—';
+  const bonus = level * BONUS_PER_LEVEL[stat];
+  const formatted =
+    bonus >= 100 ? bonus.toFixed(1) : bonus >= 10 ? bonus.toFixed(2) : bonus.toFixed(3);
+  return `+${formatted}%`;
+}
+
 const STAT_ORDER: EnhanceableStatKey[] = [
   'ATK',
   'CRIT_PCT',
@@ -35,12 +57,15 @@ export function EnhanceSection() {
 
   return (
     <div className="space-y-1">
-      <div className="grid grid-cols-[1fr_auto_auto_auto] items-center gap-x-4 px-3 pb-2">
+      <div className="grid grid-cols-[1fr_auto_auto_auto_auto] items-center gap-x-4 px-3 pb-2">
         <span className="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
           Stat
         </span>
         <span className="w-28 text-center text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
           Current Lvl
+        </span>
+        <span className="w-24 text-right text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+          Bonus
         </span>
         <span className="w-28 text-center text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
           Max Lvl
@@ -59,7 +84,7 @@ export function EnhanceSection() {
         return (
           <div
             key={stat}
-            className="grid grid-cols-[1fr_auto_auto_auto] items-center gap-x-4 rounded-md bg-gray-50 px-3 py-2 dark:bg-gray-800/50"
+            className="grid grid-cols-[1fr_auto_auto_auto_auto] items-center gap-x-4 rounded-md bg-gray-50 px-3 py-2 dark:bg-gray-800/50"
           >
             <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
               {label}
@@ -75,6 +100,10 @@ export function EnhanceSection() {
               max={entry.maxLevel > 0 ? entry.maxLevel : undefined}
               className="w-28"
             />
+
+            <span className="w-24 text-right font-mono text-sm tabular-nums text-gray-600 dark:text-gray-400">
+              {formatBonus(stat, entry.currentLevel)}
+            </span>
 
             <NumberInput
               value={entry.maxLevel}

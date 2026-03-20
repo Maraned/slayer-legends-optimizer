@@ -41,6 +41,28 @@ const ENHANCE_STAT_ORDER: EnhanceableStatKey[] = [
   'HP_RECOVERY',
 ];
 
+/**
+ * Stat bonus granted per enhancement level (percentage points).
+ * Each level adds this many percentage points to the stat.
+ */
+const BONUS_PER_LEVEL: Record<EnhanceableStatKey, number> = {
+  ATK: 0.001,
+  CRIT_DMG: 0.005,
+  CRIT_PCT: 0.001,
+  DEATH_STRIKE: 0.005,
+  DEATH_STRIKE_PCT: 0.001,
+  HP: 0.001,
+  HP_RECOVERY: 0.001,
+};
+
+function formatBonus(stat: EnhanceableStatKey, level: number): string {
+  if (level <= 0) return '—';
+  const bonus = level * BONUS_PER_LEVEL[stat];
+  const formatted =
+    bonus >= 100 ? bonus.toFixed(1) : bonus >= 10 ? bonus.toFixed(2) : bonus.toFixed(3);
+  return `+${formatted}%`;
+}
+
 function formatGold(gold: number): string {
   if (gold <= 0) return '—';
   if (gold >= 1e12) return `${(gold / 1e12).toFixed(2)}T`;
@@ -215,6 +237,9 @@ export default function CharacterPage() {
                   <th className="pb-3 text-center font-semibold text-gray-700 dark:text-gray-300 px-2">
                     Current Level
                   </th>
+                  <th className="pb-3 text-right font-semibold text-gray-700 dark:text-gray-300 px-2">
+                    Bonus Preview
+                  </th>
                   <th className="pb-3 text-center font-semibold text-gray-700 dark:text-gray-300 px-2">
                     Max Level
                   </th>
@@ -256,6 +281,21 @@ export default function CharacterPage() {
                           min={0}
                         />
                       </td>
+                      <td className="py-3 px-2 text-right font-mono tabular-nums whitespace-nowrap text-sm">
+                        {target > entry.currentLevel ? (
+                          <span className="text-gray-400 dark:text-gray-500">
+                            <span>{formatBonus(stat, entry.currentLevel)}</span>
+                            <span className="mx-1 text-gray-300 dark:text-gray-600">→</span>
+                            <span className="text-green-600 dark:text-green-400">
+                              {formatBonus(stat, target)}
+                            </span>
+                          </span>
+                        ) : (
+                          <span className="text-gray-600 dark:text-gray-400">
+                            {formatBonus(stat, entry.currentLevel)}
+                          </span>
+                        )}
+                      </td>
                       <td className="py-3 px-2 text-center">
                         <NumberInput
                           value={entry.maxLevel}
@@ -285,7 +325,7 @@ export default function CharacterPage() {
               <tfoot>
                 <tr className="border-t-2 border-gray-200 dark:border-gray-700">
                   <td
-                    colSpan={4}
+                    colSpan={5}
                     className="pt-3 font-semibold text-gray-900 dark:text-gray-100"
                   >
                     Total
