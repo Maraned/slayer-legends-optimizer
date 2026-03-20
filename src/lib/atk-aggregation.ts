@@ -13,6 +13,7 @@
  * Tier 2 – Additive percentage pool: all %-based bonuses pooled before
  * multiplying. Pooling means each source adds to a shared bucket; a +9% and a
  * +4% bonus together yield ×1.13, not ×1.09 × 1.04.
+ *   - Class growth ATK% (class level × per-level bonus)
  *   - Promotion ATK% (PROMOTION table)
  *   - Promotion Bonus ATK% (PROMOTION_BONUS table)
  *   - Companion Extra ATK% (unlocked advancement steps)
@@ -42,6 +43,8 @@ export interface AtkSources {
   weaponAtk: number;
   /** Flat ATK bonus from STR growth stat. */
   growthStrAtk: number;
+  /** Additive ATK% from class level growth (class level × per-level bonus). */
+  classAtkPct: number;
   /** Additive ATK% from PROMOTION table (e.g. 0.09 = +9%). */
   promotionAtkPct: number;
   /** Additive extra ATK% from PROMOTION_BONUS table. */
@@ -69,7 +72,8 @@ export interface AtkSources {
  *
  * Formula:
  *   absoluteBase      = weaponAtk + growthStrAtk
- *   additivePctTotal  = promotionAtkPct + promotionBonusAtkPct
+ *   additivePctTotal  = classAtkPct
+ *                     + promotionAtkPct + promotionBonusAtkPct
  *                     + companionsAtkPct + tomAtkPct
  *                     + appearanceAtkPct + constellationAtkPct
  *                     + sanctuaryAtkPct
@@ -82,6 +86,7 @@ export function aggregateAtk(sources: AtkSources): number {
   const absoluteBase = sources.weaponAtk + sources.growthStrAtk;
 
   const additivePctTotal =
+    sources.classAtkPct +
     sources.promotionAtkPct +
     sources.promotionBonusAtkPct +
     sources.companionsAtkPct +
@@ -113,6 +118,7 @@ export function aggregateAtkDetailed(sources: AtkSources): {
   const absoluteBase = sources.weaponAtk + sources.growthStrAtk;
 
   const additivePctTotal =
+    sources.classAtkPct +
     sources.promotionAtkPct +
     sources.promotionBonusAtkPct +
     sources.companionsAtkPct +

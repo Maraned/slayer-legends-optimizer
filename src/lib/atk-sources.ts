@@ -151,6 +151,27 @@ export function calcGrowingKnowledgeMultiplier(
 }
 
 // ---------------------------------------------------------------------------
+// Class growth ATK bonus
+// ---------------------------------------------------------------------------
+
+/**
+ * Calculate the ATK% contribution from class level growth.
+ *
+ * Each class grants `atkBonusPctPerLevel` percentage points of ATK per class
+ * level (sourced from CUBE_OPTIMIZER_DATA CLASSES table).
+ *
+ * @param classLevel           - Current class level
+ * @param atkBonusPctPerLevel  - Per-level ATK bonus for this class
+ * @returns ATK percentage points from class growth (e.g. 5 = +5% ATK)
+ */
+export function calcClassAtkBonus(
+  classLevel: number,
+  atkBonusPctPerLevel: number,
+): number {
+  return classLevel * atkBonusPctPerLevel;
+}
+
+// ---------------------------------------------------------------------------
 // Companion Extra ATK buffs
 // ---------------------------------------------------------------------------
 
