@@ -119,8 +119,10 @@ export interface Companion {
   skin: string;
   /** Elemental affinity */
   element: Element;
-  /** Current companion level */
+  /** Current companion level (1–14, corresponding to advancement steps) */
   level: number;
+  /** Current promotion stage (0–14). Drives cube cost calculation. */
+  promotionStage: number;
   /** All 14 advancement steps and their buff data */
   advancementSteps: AdvancementStep[];
   /** Companion-specific special passive buffs */
@@ -144,6 +146,11 @@ export type CompanionsState = [Companion, Companion, Companion, Companion];
 export interface CompanionsData {
   /** Semantic version of this data file (e.g. "1.0.0"). */
   dataVersion: string;
+  /**
+   * Cube cost per level at each promotion stage (index = stage 0–14).
+   * Total cube cost = CUBE_COSTS_PER_STAGE[promotionStage] * level.
+   */
+  CUBE_COSTS_PER_STAGE: number[];
   /** All four companion definitions (Ellie, Zeke, Miho, Luna) */
   COMPANIONS: Companion[];
 }
