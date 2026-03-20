@@ -41,6 +41,12 @@ function getRankBadgeClasses(rank: number, isMaxed: boolean): string {
   return 'bg-gray-100 text-gray-600 dark:bg-gray-700/50 dark:text-gray-400';
 }
 
+function getEfficiencyBarColor(relativeEfficiency: number): string {
+  if (relativeEfficiency >= 67) return 'bg-green-500';
+  if (relativeEfficiency >= 34) return 'bg-yellow-500';
+  return 'bg-red-500';
+}
+
 /**
  * Displays all 7 enhanceable stats ranked by efficiency (stat gain per gold).
  *
@@ -70,35 +76,68 @@ export function EnhancementRanking() {
     [enhanceableStats, enhanceMultiplier],
   );
 
+  const maxStatGainPerGold = useMemo(
+    () =>
+      ranked.reduce(
+        (max, entry) => (!entry.isMaxed ? Math.max(max, entry.statGainPerGold) : max),
+        0,
+      ),
+    [ranked],
+  );
+
   return (
     <div className="space-y-1">
-      {ranked.map((entry: RankedEnhancementTarget) => (
-        <div
-          key={entry.statKey}
-          className="flex items-center gap-3 rounded-md bg-gray-50 px-3 py-2 dark:bg-gray-800/50"
-        >
-          <span
-            className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold ${getRankBadgeClasses(entry.rank, entry.isMaxed)}`}
-            aria-label={`Rank ${entry.rank}`}
+      {ranked.map((entry: RankedEnhancementTarget) => {
+        const relativeEfficiency =
+          !entry.isMaxed && maxStatGainPerGold > 0
+            ? (entry.statGainPerGold / maxStatGainPerGold) * 100
+            : 0;
+
+        return (
+          <div
+            key={entry.statKey}
+            className="flex items-center gap-3 rounded-md bg-gray-50 px-3 py-2 dark:bg-gray-800/50"
           >
-            {entry.rank}
-          </span>
-
-          <span className="flex-1 text-sm font-medium text-gray-900 dark:text-gray-100">
-            {ENHANCEABLE_STAT_LABELS[entry.statKey]}
-          </span>
-
-          {entry.isMaxed ? (
-            <span className="rounded px-1.5 py-0.5 text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
-              MAX
+            <span
+              className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold ${getRankBadgeClasses(entry.rank, entry.isMaxed)}`}
+              aria-label={`Rank ${entry.rank}`}
+            >
+              {entry.rank}
             </span>
-          ) : (
-            <span className="text-xs tabular-nums text-gray-500 dark:text-gray-400">
-              {formatGold(entry.goldCostForNextLevel)} / next lvl
+
+            <span className="flex-1 text-sm font-medium text-gray-900 dark:text-gray-100">
+              {ENHANCEABLE_STAT_LABELS[entry.statKey]}
             </span>
-          )}
-        </div>
-      ))}
+
+            {entry.isMaxed ? (
+              <span className="rounded px-1.5 py-0.5 text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                MAX
+              </span>
+            ) : (
+              <div className="flex items-center gap-2">
+                <div
+                  className="flex items-center gap-1.5"
+                  aria-label={`Efficiency: ${Math.round(relativeEfficiency)}%`}
+                  title={`Efficiency score: ${Math.round(relativeEfficiency)}% of best`}
+                >
+                  <div className="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700">
+                    <div
+                      className={`h-full rounded-full ${getEfficiencyBarColor(relativeEfficiency)}`}
+                      style={{ width: `${relativeEfficiency}%` }}
+                    />
+                  </div>
+                  <span className="text-xs tabular-nums text-gray-500 dark:text-gray-400 w-8 text-right">
+                    {Math.round(relativeEfficiency)}%
+                  </span>
+                </div>
+                <span className="text-xs tabular-nums text-gray-500 dark:text-gray-400">
+                  {formatGold(entry.goldCostForNextLevel)} / next lvl
+                </span>
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
