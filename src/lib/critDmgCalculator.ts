@@ -126,7 +126,11 @@ export function critDmgFromWeaponTier(critDmgBonusPct: number): number {
  */
 export function critDmgFromSoulWeapon(effects: SoulWeaponEffect[]): number {
   return effects.reduce((sum, effect) => {
-    if (effect.value != null && /crit\s*dmg/i.test(effect.description)) {
+    if (
+      effect.engravingProgress >= 100 &&
+      effect.value != null &&
+      /crit\s*dmg/i.test(effect.description)
+    ) {
       return sum + effect.value;
     }
     return sum;

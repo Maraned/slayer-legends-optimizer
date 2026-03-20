@@ -54,6 +54,8 @@ export interface SoulWeaponEffect {
   description: string;
   /** Numeric value of the effect (percentage or flat), if applicable */
   value?: number;
+  /** Engraving progress toward unlocking this effect (0–100) */
+  engravingProgress: number;
 }
 
 /**
