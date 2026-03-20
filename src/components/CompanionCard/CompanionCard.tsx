@@ -28,6 +28,18 @@ export interface CompanionCardProps {
 }
 
 
+const BUFF_TYPE_ORDER: BuffType[] = ['Extra ATK', 'Extra EXP', 'Monster Gold', 'Extra HP'];
+
+function calcBuffTotals(advancementSteps: AdvancementStep[], level: number): Partial<Record<BuffType, number>> {
+  const totals: Partial<Record<BuffType, number>> = {};
+  for (const step of advancementSteps) {
+    if (stepIndex(step) <= level) {
+      totals[step.buffType] = (totals[step.buffType] ?? 0) + step.buffValue;
+    }
+  }
+  return totals;
+}
+
 const buffTypeClasses: Record<BuffType, string> = {
   'Extra ATK': 'text-red-600 dark:text-red-400',
   'Extra EXP': 'text-blue-600 dark:text-blue-400',
@@ -218,6 +230,8 @@ export function CompanionCard({ companion, skins, onSkinChange, onElementChange,
   const cubeCost = promotionStage > 0 ? CUBE_COSTS_PER_STAGE[promotionStage] * level : 0;
   const specialBuffEntries = getSpecialBuffEntries(specialBuffs);
   const skinOptions = skins.map((s) => ({ value: s.name, label: s.name }));
+  const buffTotals = calcBuffTotals(advancementSteps, level);
+  const activeBuffTypes = BUFF_TYPE_ORDER.filter((type) => (buffTotals[type] ?? 0) > 0);
 
   return (
     <div
@@ -325,6 +339,30 @@ export function CompanionCard({ companion, skins, onSkinChange, onElementChange,
               </div>
             ))}
           </div>
+        </section>
+
+        {/* Calculated Buff Totals */}
+        <section>
+          <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+            Buff Totals
+          </h3>
+          {activeBuffTypes.length > 0 ? (
+            <div className="space-y-1">
+              {activeBuffTypes.map((type) => (
+                <div
+                  key={type}
+                  className="flex items-center justify-between rounded px-2 py-1 text-xs bg-gray-50 dark:bg-gray-800/60"
+                >
+                  <span className={`font-medium ${buffTypeClasses[type]}`}>{type}</span>
+                  <span className="tabular-nums font-semibold text-gray-900 dark:text-gray-100">
+                    +{formatPercent(buffTotals[type]!)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-xs text-gray-400 dark:text-gray-500">No unlocked buffs</p>
+          )}
         </section>
       </div>
     </div>
