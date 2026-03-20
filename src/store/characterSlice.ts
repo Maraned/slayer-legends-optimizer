@@ -65,6 +65,7 @@ export const DEFAULT_CHARACTER: CharacterState = {
   growingKnowledge: {
     grade: 1,
     atkEffectPct: 0,
+    superhumanObtained: false,
   },
 };
 
