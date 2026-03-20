@@ -41,6 +41,11 @@ export interface EnhancementStatConfig {
    * Use 0 to indicate no cap (treated as never maxed).
    */
   maxLevel: number;
+  /**
+   * Number of enhancement levels applied in a single step.
+   * Matches the CHARACTER sheet "Enhance Multiplier" (D5). Default is 1.
+   */
+  enhanceSteps?: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -113,13 +118,14 @@ export function calculateEnhancementEfficiency(
     };
   }
 
+  const steps = config.enhanceSteps ?? 1;
   const goldCostForNextLevel = segmentCost(
     config.currentLevel,
-    config.currentLevel + 1,
+    config.currentLevel + steps,
   );
 
   const statGainPerGold =
-    goldCostForNextLevel > 0 ? config.bonusPerLevel / goldCostForNextLevel : 0;
+    goldCostForNextLevel > 0 ? (config.bonusPerLevel * steps) / goldCostForNextLevel : 0;
 
   return {
     statKey: config.statKey,

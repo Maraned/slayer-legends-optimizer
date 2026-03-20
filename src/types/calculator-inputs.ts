@@ -41,4 +41,11 @@ export interface CalculatorInputsState {
    * (stored in CharacterState.enhanceableStats) to this target.
    */
   goldEnhancementTargets: GoldEnhancementTargets;
+
+  /**
+   * Number of enhancement levels applied in a single button press.
+   * Matches the CHARACTER sheet "Enhance Multiplier" (D5).
+   * Default is 1 (one level at a time).
+   */
+  enhanceMultiplier: number;
 }

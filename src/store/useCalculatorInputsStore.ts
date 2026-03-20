@@ -20,6 +20,7 @@ const DEFAULT_CALCULATOR_INPUTS: CalculatorInputsState = {
   sanctuaryLevel: 0,
   classLevel: 1,
   goldEnhancementTargets: { ...DEFAULT_GOLD_ENHANCEMENT_TARGETS },
+  enhanceMultiplier: 1,
 };
 
 export interface CalculatorInputsActions {
@@ -27,6 +28,7 @@ export interface CalculatorInputsActions {
   setClassLevel: (level: number) => void;
   setGoldEnhancementTarget: (stat: EnhanceableStatKey, level: number) => void;
   setGoldEnhancementTargets: (targets: GoldEnhancementTargets) => void;
+  setEnhanceMultiplier: (multiplier: number) => void;
   reset: () => void;
 }
 
@@ -44,6 +46,8 @@ export const useCalculatorInputsStore = create<CalculatorInputsStore>()((set) =>
     })),
 
   setGoldEnhancementTargets: (goldEnhancementTargets) => set({ goldEnhancementTargets }),
+
+  setEnhanceMultiplier: (enhanceMultiplier) => set({ enhanceMultiplier }),
 
   reset: () => set({ ...DEFAULT_CALCULATOR_INPUTS }),
 }));
