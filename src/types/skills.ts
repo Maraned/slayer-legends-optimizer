@@ -63,6 +63,12 @@ export interface SkillSlot {
 export type ElementalMultipliers = Record<Element, number>;
 
 /**
+ * Whether elemental multipliers are auto-calculated (locked at default 1.0)
+ * or manually entered by the player.
+ */
+export type ElementalMultipliersMode = 'auto' | 'manual';
+
+/**
  * Player proficiency level and derived bonus.
  * Source: SKILLS sheet, proficiency section.
  */
@@ -82,6 +88,8 @@ export interface SkillsState {
   slots: SkillSlot[];
   /** Per-element damage multiplier inputs */
   elementalMultipliers: ElementalMultipliers;
+  /** Whether elemental multipliers are auto or manually entered */
+  elementalMultipliersMode: ElementalMultipliersMode;
   /** Player proficiency */
   proficiency: Proficiency;
 }

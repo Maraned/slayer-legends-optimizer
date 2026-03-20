@@ -2,6 +2,7 @@ import { create } from 'zustand';
 
 import type {
   ElementalMultipliers,
+  ElementalMultipliersMode,
   Proficiency,
   SkillSlot,
   SkillsState,
@@ -20,6 +21,7 @@ const DEFAULT_SKILLS_STATE: SkillsState = {
     Earth: 1,
     Lightning: 1,
   },
+  elementalMultipliersMode: 'auto',
   proficiency: {
     level: 0,
     bonus: 0,
@@ -37,6 +39,8 @@ export interface SkillsActions {
   setSlot: (index: number, slot: SkillSlot) => void;
   /** Update all elemental damage multipliers */
   setElementalMultipliers: (multipliers: ElementalMultipliers) => void;
+  /** Update the elemental multipliers mode (auto or manual) */
+  setElementalMultipliersMode: (mode: ElementalMultipliersMode) => void;
   /** Update the player's proficiency level and bonus */
   setProficiency: (proficiency: Proficiency) => void;
   /** Replace the entire skills state (e.g. on JSON import) */
@@ -64,6 +68,8 @@ export const useSkillsStore = create<SkillsStore>()((set) => ({
     }),
 
   setElementalMultipliers: (elementalMultipliers) => set({ elementalMultipliers }),
+
+  setElementalMultipliersMode: (elementalMultipliersMode) => set({ elementalMultipliersMode }),
 
   setProficiency: (proficiency) => set({ proficiency }),
 
