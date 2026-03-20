@@ -232,6 +232,8 @@ const ACCESSORY_CATEGORY_LABELS: Record<AccessoryCategory, string> = {
   accessory: 'Accessory',
 };
 
+const ACCESSORY_CATEGORY_ORDER: AccessoryCategory[] = ['class', 'relic', 'accessory'];
+
 function AccessoriesTab({
   accessories,
   onChange,
@@ -252,40 +254,64 @@ function AccessoriesTab({
     );
   }
 
-  return (
-    <div className="flex flex-col gap-3">
-      {accessories.map((accessory, index) => (
-        <div
-          key={accessory.name}
-          className="flex items-start justify-between gap-4 rounded-md border border-gray-200 bg-gray-50 px-3 py-2 dark:border-gray-700 dark:bg-gray-800"
-        >
-          <div className="flex flex-col gap-1 min-w-0">
-            <span className="text-sm font-semibold text-[var(--color-foreground)] truncate">
-              {accessory.name}
-            </span>
-            <span className="text-xs text-[var(--color-foreground)]/50">
-              {ACCESSORY_CATEGORY_LABELS[accessory.category]}
-              {accessory.bonusType && ` · ${accessory.bonusType}`}
-            </span>
-          </div>
+  const categoryGroups = ACCESSORY_CATEGORY_ORDER.map((category) => ({
+    category,
+    accessories: accessories.filter((a) => a.category === category),
+  })).filter((g) => g.accessories.length > 0);
 
-          <div className="flex items-center gap-4 shrink-0">
-            <NumberInput
-              label="Level"
-              value={accessory.level}
-              onChange={(val) => updateAccessory(index, { level: val })}
-              min={0}
-            />
-            <Toggle
-              checked={accessory.owned}
-              onCheckedChange={(checked) => updateAccessory(index, { owned: checked })}
-              label="Owned"
-              size="sm"
-              id={`accessory-owned-${index}`}
-            />
+  return (
+    <div className="flex flex-col gap-4">
+      {categoryGroups.map(({ category, accessories: categoryAccessories }) => {
+        const ownedCount = categoryAccessories.filter((a) => a.owned).length;
+        return (
+          <div key={category} className="flex flex-col gap-2">
+            <div className="flex items-center gap-2 border-b border-gray-200 pb-1 dark:border-gray-700">
+              <span className="text-xs font-semibold uppercase tracking-wide text-[var(--color-foreground)]/60">
+                {ACCESSORY_CATEGORY_LABELS[category]}
+              </span>
+              <span className="text-xs text-[var(--color-foreground)]/40">
+                ({ownedCount}/{categoryAccessories.length})
+              </span>
+            </div>
+            {categoryAccessories.map((accessory) => {
+              const globalIndex = accessories.indexOf(accessory);
+              return (
+                <div
+                  key={accessory.name}
+                  className="flex items-start justify-between gap-4 rounded-md border border-gray-200 bg-gray-50 px-3 py-2 dark:border-gray-700 dark:bg-gray-800"
+                >
+                  <div className="flex flex-col gap-1 min-w-0">
+                    <span className="text-sm font-semibold text-[var(--color-foreground)] truncate">
+                      {accessory.name}
+                    </span>
+                    {accessory.bonusType && (
+                      <span className="text-xs text-[var(--color-foreground)]/50">
+                        {accessory.bonusType}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-4 shrink-0">
+                    <NumberInput
+                      label="Level"
+                      value={accessory.level}
+                      onChange={(val) => updateAccessory(globalIndex, { level: val })}
+                      min={0}
+                    />
+                    <Toggle
+                      checked={accessory.owned}
+                      onCheckedChange={(checked) => updateAccessory(globalIndex, { owned: checked })}
+                      label="Owned"
+                      size="sm"
+                      id={`accessory-owned-${globalIndex}`}
+                    />
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -474,7 +500,7 @@ export function EquipmentCard({ equipment, onChange, className = '' }: Equipment
     },
     {
       value: 'accessories',
-      label: `Accessories${equipment.accessories.length > 0 ? ` (${equipment.accessories.length})` : ''}`,
+      label: `Accessories${equipment.accessories.length > 0 ? ` (${equipment.accessories.filter((a) => a.owned).length}/${equipment.accessories.length})` : ''}`,
       content: (
         <AccessoriesTab
           accessories={equipment.accessories}
