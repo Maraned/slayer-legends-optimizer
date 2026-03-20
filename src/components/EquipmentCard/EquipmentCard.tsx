@@ -91,13 +91,28 @@ function WeaponsTab({
                     {weapon.name}
                   </span>
                   <div className="flex items-center gap-4 shrink-0">
-                    <NumberInput
-                      label="Level"
-                      value={weapon.enhanceLevel}
-                      onChange={(val) => updateWeapon(globalIndex, { enhanceLevel: val })}
-                      min={0}
-                      max={weapon.maxLevel}
-                    />
+                    <div className="flex flex-col gap-1">
+                      <span className="text-sm font-medium text-[var(--color-foreground)] select-none">
+                        Enhance
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <NumberInput
+                          value={weapon.enhanceLevel}
+                          onChange={(val) => updateWeapon(globalIndex, { enhanceLevel: val })}
+                          min={0}
+                          max={weapon.maxLevel > 0 ? weapon.maxLevel : undefined}
+                        />
+                        {weapon.maxLevel > 0 && weapon.enhanceLevel >= weapon.maxLevel ? (
+                          <span className="rounded px-1.5 py-0.5 text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                            MAX
+                          </span>
+                        ) : weapon.maxLevel > 0 ? (
+                          <span className="text-xs tabular-nums text-[var(--color-foreground)]/50">
+                            / {weapon.maxLevel}
+                          </span>
+                        ) : null}
+                      </div>
+                    </div>
                     <Checkbox
                       checked={weapon.owned}
                       onCheckedChange={(checked) => updateWeapon(globalIndex, { owned: checked })}
