@@ -68,6 +68,14 @@ export interface GrowthStatConfigEntry {
   growthFactor: number;
 }
 
+/** One row of the ABILITY_OPTIONS table. */
+export interface PromotionAbilityOptionEntry {
+  /** Internal ability ID (e.g. "extra-atk"). */
+  id: string;
+  /** Display name of the ability (e.g. "Extra ATK(%)"). */
+  name: string;
+}
+
 /** Root shape of character-maths-data.json. */
 export interface CharacterMathsData {
   /** Semantic version of this data file (e.g. "1.0.0"). */
@@ -77,4 +85,5 @@ export interface CharacterMathsData {
   PROMOTION_BONUS: PromotionBonusEntry[];
   GROWTH_KNOWLEDGE: GrowthKnowledgeEntry[];
   GROWTH_STATS: GrowthStatConfigEntry[];
+  ABILITY_OPTIONS: PromotionAbilityOptionEntry[];
 }

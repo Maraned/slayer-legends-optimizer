@@ -16494,5 +16494,13 @@
     { "stat": "STR", "growthFactor": 1 },
     { "stat": "HP", "growthFactor": 1 },
     { "stat": "VIT", "growthFactor": 1 }
+  ],
+  "ABILITY_OPTIONS": [
+    { "id": "extra-atk", "name": "Extra ATK(%)" },
+    { "id": "monster-gold", "name": "Monster Gold(%)" },
+    { "id": "extra-hp", "name": "Extra HP(%)" },
+    { "id": "extra-exp", "name": "Extra EXP(%)" },
+    { "id": "crit-hit", "name": "CRIT HIT(%)" },
+    { "id": "crit-dmg", "name": "CRIT DMG(%)" }
   ]
 }
