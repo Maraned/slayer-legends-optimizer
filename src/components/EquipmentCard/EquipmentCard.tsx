@@ -1,18 +1,44 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import type {
   Accessory,
   AccessoryCategory,
   EquipmentState,
+  LevelMultiplier,
   SoulWeapon,
   Weapon,
 } from '@/types/equipment';
 import { WeaponTier } from '@/types/equipment';
+import { getLevelMultiplierIndex } from '@/lib/data-loader';
 import { Card } from '@/components/Card';
 import { Checkbox } from '@/components/Checkbox';
 import { NumberInput } from '@/components/NumberInput';
 import { Tabs } from '@/components/Tabs';
 import { Toggle } from '@/components/Toggle';
+
+function formatGold(gold: number): string {
+  if (gold <= 0) return '—';
+  if (gold >= 1e12) return `${(gold / 1e12).toFixed(2)}T`;
+  if (gold >= 1e9) return `${(gold / 1e9).toFixed(2)}B`;
+  if (gold >= 1e6) return `${(gold / 1e6).toFixed(2)}M`;
+  if (gold >= 1e3) return `${(gold / 1e3).toFixed(2)}K`;
+  return gold.toFixed(0);
+}
+
+function calcEnhanceCost(
+  levelIndex: Record<number, LevelMultiplier>,
+  fromLevel: number,
+  toLevel: number,
+): number {
+  if (toLevel <= fromLevel || toLevel <= 0) return 0;
+  let total = 0;
+  for (let lvl = fromLevel + 1; lvl <= toLevel; lvl++) {
+    const entry = levelIndex[lvl];
+    if (entry) total += entry.goldCost;
+  }
+  return total;
+}
 
 export interface EquipmentCardProps {
   /** Current equipment state */
@@ -46,9 +72,11 @@ const WEAPON_TIER_ORDER: WeaponTier[] = [
 function WeaponsTab({
   weapons,
   onChange,
+  levelIndex,
 }: {
   weapons: Weapon[];
   onChange: (weapons: Weapon[]) => void;
+  levelIndex: Record<number, LevelMultiplier> | null;
 }) {
   function updateWeapon(index: number, patch: Partial<Weapon>) {
     const updated = weapons.map((w, i) => (i === index ? { ...w, ...patch } : w));
@@ -112,6 +140,11 @@ function WeaponsTab({
                           </span>
                         ) : null}
                       </div>
+                      {levelIndex && weapon.maxLevel > 0 && weapon.enhanceLevel < weapon.maxLevel && (
+                        <span className="text-xs tabular-nums text-[var(--color-foreground)]/50">
+                          {formatGold(calcEnhanceCost(levelIndex, weapon.enhanceLevel, weapon.maxLevel))} to max
+                        </span>
+                      )}
                     </div>
                     <Checkbox
                       checked={weapon.owned}
@@ -263,6 +296,12 @@ function SoulWeaponTab({
 }
 
 export function EquipmentCard({ equipment, onChange, className = '' }: EquipmentCardProps) {
+  const [levelIndex, setLevelIndex] = useState<Record<number, LevelMultiplier> | null>(null);
+
+  useEffect(() => {
+    getLevelMultiplierIndex().then(setLevelIndex).catch(() => {});
+  }, []);
+
   const tabs = [
     {
       value: 'weapons',
@@ -271,6 +310,7 @@ export function EquipmentCard({ equipment, onChange, className = '' }: Equipment
         <WeaponsTab
           weapons={equipment.weapons}
           onChange={(weapons) => onChange({ ...equipment, weapons })}
+          levelIndex={levelIndex}
         />
       ),
     },
