@@ -371,6 +371,48 @@ function SoulWeaponTab({
         )}
       </div>
 
+      {selectedData && (
+        <div className="flex flex-col gap-1">
+          <span className="text-xs font-semibold uppercase tracking-wide text-[var(--color-foreground)]/50">
+            Effects
+          </span>
+          <ul className="flex flex-col gap-1">
+            <li className="flex items-center justify-between rounded px-2 py-1 text-xs bg-gray-50 dark:bg-gray-800">
+              <span className="text-[var(--color-foreground)]/60">Base DMG</span>
+              <span className="font-semibold tabular-nums text-[var(--color-foreground)]">
+                {selectedData.baseDamage.toLocaleString()}
+              </span>
+            </li>
+            <li className="flex items-center justify-between rounded px-2 py-1 text-xs bg-gray-50 dark:bg-gray-800">
+              <span className="text-[var(--color-foreground)]/60">Crit Rate</span>
+              <span className="font-semibold tabular-nums text-[var(--color-foreground)]">
+                +{selectedData.critRateBonus}%
+              </span>
+            </li>
+            <li className="flex items-center justify-between rounded px-2 py-1 text-xs bg-gray-50 dark:bg-gray-800">
+              <span className="text-[var(--color-foreground)]/60">Crit DMG</span>
+              <span className="font-semibold tabular-nums text-[var(--color-foreground)]">
+                +{selectedData.critDmgBonus}%
+              </span>
+            </li>
+            <li className="flex items-center justify-between rounded px-2 py-1 text-xs bg-gray-50 dark:bg-gray-800">
+              <span className="text-[var(--color-foreground)]/60">{selectedData.element} DMG</span>
+              <span className="font-semibold tabular-nums text-[var(--color-foreground)]">
+                +{selectedData.elementBonus}%
+              </span>
+            </li>
+            {selectedData.specialEffect && (
+              <li className="flex items-start gap-1.5 rounded px-2 py-1 text-xs bg-gray-50 dark:bg-gray-800">
+                <span className="shrink-0 font-semibold text-[var(--color-foreground)]/60">
+                  Special:
+                </span>
+                <span className="text-[var(--color-foreground)]/80">{selectedData.specialEffect}</span>
+              </li>
+            )}
+          </ul>
+        </div>
+      )}
+
       {soulWeapon.effects.length > 0 && (
         <div className="flex flex-col gap-1">
           <span className="text-xs font-semibold uppercase tracking-wide text-[var(--color-foreground)]/50">
