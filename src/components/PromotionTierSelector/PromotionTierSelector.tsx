@@ -7,7 +7,8 @@ import type { SelectOption } from '@/components/Select/Select';
 import { loadCharacterMathsData } from '@/lib/data-loader';
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
 import type { BonusType, ClothingItem } from '@/types/appearance';
-import type { PromotionBonusEntry, PromotionEntry } from '@/types/character-data';
+import type { PromotionAbilityOptionEntry, PromotionBonusEntry, PromotionEntry } from '@/types/character-data';
+import type { PromotionAbility } from '@/types/character';
 
 const PROMOTION_RELEVANT_BONUS_TYPES: BonusType[] = ['Extra ATK', 'Extra HP', 'Monster Gold'];
 
@@ -49,11 +50,13 @@ export function PromotionTierSelector() {
 
   const [promotionEntries, setPromotionEntries] = useState<PromotionEntry[]>([]);
   const [promotionBonusEntries, setPromotionBonusEntries] = useState<PromotionBonusEntry[]>([]);
+  const [abilityOptions, setAbilityOptions] = useState<PromotionAbilityOptionEntry[]>([]);
 
   useEffect(() => {
     loadCharacterMathsData().then((data) => {
       setPromotionEntries(data.PROMOTION);
       setPromotionBonusEntries(data.PROMOTION_BONUS);
+      setAbilityOptions(data.ABILITY_OPTIONS);
     });
   }, []);
 
@@ -77,6 +80,13 @@ export function PromotionTierSelector() {
       monsterGoldBonusPct: bonusEntry?.monsterGoldPercent ?? 0,
       abilities: promotion.abilities,
     });
+  }
+
+  function handleAbilityToggle(option: PromotionAbilityOptionEntry, checked: boolean) {
+    const next: PromotionAbility[] = checked
+      ? [...promotion.abilities, { id: option.id, name: option.name }]
+      : promotion.abilities.filter((a) => a.id !== option.id);
+    setPromotion({ ...promotion, abilities: next });
   }
 
   return (
@@ -137,6 +147,35 @@ export function PromotionTierSelector() {
               </p>
             </div>
           </div>
+
+          {abilityOptions.length > 0 && (
+            <div className="mt-4">
+              <p className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-600 dark:text-gray-400">
+                Promotion Abilities
+              </p>
+              <ul className="flex flex-col gap-2">
+                {abilityOptions.map((option) => {
+                  const checked = promotion.abilities.some((a) => a.id === option.id);
+                  return (
+                    <li key={option.id}>
+                      <label className="flex cursor-pointer items-center gap-2.5">
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={(e) => handleAbilityToggle(option, e.target.checked)}
+                          className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
+                          aria-label={option.name}
+                        />
+                        <span className="text-sm text-gray-700 dark:text-gray-300">
+                          {option.name}
+                        </span>
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
 
           <PromotionItemWarnings items={appearanceItems} />
         </>
