@@ -15,6 +15,7 @@ import type {
 import type {
   EquipmentData,
   LevelMultiplier,
+  SoulWeaponData,
 } from '@/types/equipment';
 import type { CharacterMathsData } from '@/types/character-data';
 
@@ -28,6 +29,7 @@ let stageSummaryIndexCache: StageSummaryIndex | null = null;
 
 let equipmentDataCache: EquipmentData | null = null;
 let levelMultiplierIndexCache: Record<number, LevelMultiplier> | null = null;
+let soulWeaponsCache: SoulWeaponData[] | null = null;
 
 let characterDataCache: CharacterMathsData | null = null;
 
@@ -128,6 +130,16 @@ export async function getLevelMultiplierIndex(): Promise<Record<number, LevelMul
 }
 
 /**
+ * Load and cache the list of all available soul weapons.
+ */
+export async function loadSoulWeapons(): Promise<SoulWeaponData[]> {
+  if (soulWeaponsCache) return soulWeaponsCache;
+  const data = await loadEquipmentData();
+  soulWeaponsCache = data.soulWeapons;
+  return soulWeaponsCache;
+}
+
+/**
  * Retrieve a level multiplier entry by enhancement level.
  *
  * @param index - A level-multiplier index from {@link getLevelMultiplierIndex}
@@ -169,5 +181,6 @@ export function clearDataCaches(): void {
   stageSummaryIndexCache = null;
   equipmentDataCache = null;
   levelMultiplierIndexCache = null;
+  soulWeaponsCache = null;
   characterDataCache = null;
 }

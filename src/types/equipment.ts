@@ -171,11 +171,39 @@ export interface EquipmentState {
 }
 
 /**
+ * A soul weapon entry from the game data (equipment.json).
+ */
+export interface SoulWeaponData {
+  /** Unique identifier */
+  id: string;
+  /** Display name */
+  name: string;
+  /** Elemental affinity */
+  element: SoulElement;
+  /** Rarity tier label (e.g. "Epic", "Legendary", "Mythic") */
+  tier: string;
+  /** Base damage stat */
+  baseDamage: number;
+  /** Crit rate bonus % */
+  critRateBonus: number;
+  /** Crit damage bonus % */
+  critDmgBonus: number;
+  /** Element damage bonus % */
+  elementBonus: number;
+  /** Special effect description */
+  specialEffect: string;
+  /** How to obtain this soul weapon */
+  acquisitionMethod: string;
+}
+
+/**
  * Root shape of the EQUIPMENT_DATA JSON file (game data).
  */
 export interface EquipmentData {
   /** Semantic version of this data file (e.g. "1.0.0"). */
   dataVersion: string;
+  /** All available soul weapons from Soul Dungeon */
+  soulWeapons: SoulWeaponData[];
   /** Sorted ascending by level; contains entries for levels 1–1400 */
   levelMultipliers: LevelMultiplier[];
   costFactors: CostFactors;

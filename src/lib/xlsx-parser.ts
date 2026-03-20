@@ -650,7 +650,7 @@ export function parseXlsxBuffer(buffer: ArrayBuffer): XlsxParseResult {
       warnings.push('EquipmentData: CostFactors sheet not found; equipment data is incomplete');
     }
     if (levelMultipliers && costFactors) {
-      equipmentData = { dataVersion: '1.0.0', levelMultipliers, costFactors };
+      equipmentData = { dataVersion: '1.0.0', soulWeapons: [], levelMultipliers, costFactors };
     }
   }
 
