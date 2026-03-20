@@ -335,12 +335,19 @@ function SoulWeaponTab({
       name: data.name,
       element: data.element,
       effects: [
-        { description: data.specialEffect },
-        { description: `Crit Rate +${data.critRateBonus}%` },
-        { description: `Crit DMG +${data.critDmgBonus}%` },
-        { description: `${data.element} DMG +${data.elementBonus}%` },
+        { description: data.specialEffect, engravingProgress: 0 },
+        { description: `Crit Rate +${data.critRateBonus}%`, engravingProgress: 0 },
+        { description: `Crit DMG +${data.critDmgBonus}%`, engravingProgress: 0 },
+        { description: `${data.element} DMG +${data.elementBonus}%`, engravingProgress: 0 },
       ],
     });
+  }
+
+  function updateEffectProgress(index: number, progress: number) {
+    const effects = soulWeapon.effects.map((e, i) =>
+      i === index ? { ...e, engravingProgress: progress } : e
+    );
+    onChange({ ...soulWeapon, effects });
   }
 
   return (
@@ -364,34 +371,37 @@ function SoulWeaponTab({
         )}
       </div>
 
-      <div className="flex items-center justify-between">
-        <NumberInput
-          label="Engraving"
-          value={soulWeapon.engravingProgress}
-          onChange={(val) => onChange({ ...soulWeapon, engravingProgress: val })}
-          min={0}
-        />
-      </div>
-
       {soulWeapon.effects.length > 0 && (
         <div className="flex flex-col gap-1">
           <span className="text-xs font-semibold uppercase tracking-wide text-[var(--color-foreground)]/50">
-            Effects
+            Engraving Progress
           </span>
-          <ul className="flex flex-col gap-1">
-            {soulWeapon.effects.map((effect, i) => (
-              <li
-                key={i}
-                className="flex items-center justify-between rounded px-2 py-1 text-xs bg-gray-50 dark:bg-gray-800"
-              >
-                <span className="text-[var(--color-foreground)]/80">{effect.description}</span>
-                {effect.value !== undefined && (
-                  <span className="font-semibold tabular-nums text-[var(--color-foreground)]">
-                    {effect.value}
+          <ul className="flex flex-col gap-1.5">
+            {soulWeapon.effects.map((effect, i) => {
+              const unlocked = effect.engravingProgress >= 100;
+              return (
+                <li
+                  key={i}
+                  className={`flex items-center justify-between rounded px-2 py-1.5 text-xs bg-gray-50 dark:bg-gray-800 ${unlocked ? '' : 'opacity-50'}`}
+                >
+                  <span className="text-[var(--color-foreground)]/80 flex-1 pr-2">
+                    {effect.description}
+                    {effect.value !== undefined && (
+                      <span className="font-semibold tabular-nums text-[var(--color-foreground)] ml-1">
+                        {effect.value}
+                      </span>
+                    )}
                   </span>
-                )}
-              </li>
-            ))}
+                  <NumberInput
+                    label="Progress"
+                    value={effect.engravingProgress}
+                    onChange={(val) => updateEffectProgress(i, val)}
+                    min={0}
+                    max={100}
+                  />
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}
