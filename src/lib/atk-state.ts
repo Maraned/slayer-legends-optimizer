@@ -16,7 +16,7 @@ import type {
   GrowthKnowledgeEntry,
 } from '../types/character-data';
 import type { Weapon, LevelMultiplier } from '../types/equipment';
-import type { CubeWeapon } from '../types/cube-optimizer';
+import type { CubeClass, CubeWeapon } from '../types/cube-optimizer';
 import type { TOMNode } from '../types/tom';
 import type { AppearanceBonusTotals } from '../types/appearance';
 import type { ConstellationBuffTotals } from '../types/constellation';
@@ -24,6 +24,7 @@ import type { DemonSanctuaryEntry } from '../types/familiars';
 import type { CompanionsState } from '../types/companions';
 import type { AtkSources } from './atk-aggregation';
 import {
+  calcClassAtkBonus,
   calcWeaponAtk,
   calcGrowthStrAtk,
   calcPromotionAtkPct,
@@ -47,6 +48,10 @@ import {
  * to ATK. Pass values directly from the Zustand store selectors.
  */
 export interface AtkStateInputs {
+  /** Selected class identifier (matches CubeClass.id in cube-optimizer-data). */
+  classId: string;
+  /** Current class level. */
+  classLevel: number;
   /** STR, HP, VIT growth levels and pre-computed bonuses (CHARACTER sheet). */
   growthStats: GrowthStats;
   /** Current promotion tier (1–10). */
@@ -88,6 +93,8 @@ export interface AtkGameTables {
   levelMultipliers: LevelMultiplier[];
   /** Weapon definitions from cube-optimizer-data.json. */
   cubeWeapons: CubeWeapon[];
+  /** Class definitions from cube-optimizer-data.json. */
+  cubeClasses: CubeClass[];
 }
 
 // ---------------------------------------------------------------------------
@@ -156,9 +163,13 @@ export function atkSourcesFromState(
     data.cubeWeapons,
   );
 
+  const selectedClass =
+    data.cubeClasses.find((c) => c.id === inputs.classId) ?? data.cubeClasses[0];
+
   return {
     weaponAtk: calcWeaponAtk(baseAtk, enhanceLevel, data.levelMultipliers),
     growthStrAtk: calcGrowthStrAtk(inputs.growthStats),
+    classAtkPct: calcClassAtkBonus(inputs.classLevel, selectedClass?.atkBonusPctPerLevel ?? 0),
     promotionAtkPct: calcPromotionAtkPct(
       inputs.promotionTier,
       data.promotionTable,
