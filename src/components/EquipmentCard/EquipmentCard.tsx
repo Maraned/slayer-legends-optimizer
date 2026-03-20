@@ -113,8 +113,9 @@ function WeaponsTab({
               return (
                 <div
                   key={weapon.name}
-                  className="flex items-center justify-between gap-4 rounded-md border border-gray-200 bg-gray-50 px-3 py-2 dark:border-gray-700 dark:bg-gray-800"
+                  className="flex flex-col gap-2 rounded-md border border-gray-200 bg-gray-50 px-3 py-2 dark:border-gray-700 dark:bg-gray-800"
                 >
+                  <div className="flex items-center justify-between gap-4">
                   <span className="text-sm font-medium text-[var(--color-foreground)] truncate min-w-0">
                     {weapon.name}
                   </span>
@@ -169,6 +170,31 @@ function WeaponsTab({
                       id={`weapon-equipped-${weapon.name}`}
                     />
                   </div>
+                  </div>
+                  {(weapon.equipEffect || weapon.ownedEffect) && (
+                    <div className="flex flex-col gap-1">
+                      {weapon.equipEffect && (
+                        <div className="flex items-start gap-1.5 text-xs">
+                          <span className="shrink-0 font-semibold text-[var(--color-foreground)]/60">
+                            Equip:
+                          </span>
+                          <span className="text-[var(--color-foreground)]/80">
+                            {weapon.equipEffect}
+                          </span>
+                        </div>
+                      )}
+                      {weapon.ownedEffect && (
+                        <div className="flex items-start gap-1.5 text-xs">
+                          <span className="shrink-0 font-semibold text-[var(--color-foreground)]/60">
+                            Owned:
+                          </span>
+                          <span className="text-[var(--color-foreground)]/80">
+                            {weapon.ownedEffect}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               );
             })}
