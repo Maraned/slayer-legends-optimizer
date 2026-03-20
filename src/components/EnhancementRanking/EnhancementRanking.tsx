@@ -8,6 +8,7 @@ import { rankEnhancementTargets } from '@/lib/enhancement-optimizer';
 import type { RankedEnhancementTarget } from '@/lib/enhancement-optimizer';
 import type { EnhanceableStatKey } from '@/types/character';
 import { ENHANCEABLE_STAT_LABELS } from '@/components/StatDisplay/StatDisplay';
+import { NumberInput } from '@/components/NumberInput';
 
 /**
  * Stat bonus granted per enhancement level (percentage points).
@@ -55,7 +56,10 @@ function getEfficiencyBarColor(relativeEfficiency: number): string {
  */
 export function EnhancementRanking() {
   const enhanceableStats = useUserSaveStore((s: UserSaveStore) => s.character.enhanceableStats);
+  const setEnhanceableStats = useUserSaveStore((s: UserSaveStore) => s.setEnhanceableStats);
   const enhanceMultiplier = useCalculatorInputsStore((s: CalculatorInputsStore) => s.enhanceMultiplier);
+  const goldEnhancementTargets = useCalculatorInputsStore((s: CalculatorInputsStore) => s.goldEnhancementTargets);
+  const setGoldEnhancementTarget = useCalculatorInputsStore((s: CalculatorInputsStore) => s.setGoldEnhancementTarget);
 
   const ranked = useMemo(
     () =>
@@ -92,11 +96,13 @@ export function EnhancementRanking() {
           !entry.isMaxed && maxStatGainPerGold > 0
             ? (entry.statGainPerGold / maxStatGainPerGold) * 100
             : 0;
+        const statEntry = enhanceableStats[entry.statKey];
+        const targetLevel = goldEnhancementTargets[entry.statKey];
 
         return (
           <div
             key={entry.statKey}
-            className="flex items-center gap-3 rounded-md bg-gray-50 px-3 py-2 dark:bg-gray-800/50"
+            className="flex flex-wrap items-center gap-3 rounded-md bg-gray-50 px-3 py-2 dark:bg-gray-800/50"
           >
             <span
               className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold ${getRankBadgeClasses(entry.rank, entry.isMaxed)}`}
@@ -105,16 +111,36 @@ export function EnhancementRanking() {
               {entry.rank}
             </span>
 
-            <span className="flex-1 text-sm font-medium text-gray-900 dark:text-gray-100">
+            <span className="w-28 text-sm font-medium text-gray-900 dark:text-gray-100">
               {ENHANCEABLE_STAT_LABELS[entry.statKey]}
             </span>
+
+            <div className="flex items-center gap-2">
+              <NumberInput
+                label="Current"
+                value={statEntry.currentLevel}
+                onChange={(val) =>
+                  setEnhanceableStats({
+                    ...enhanceableStats,
+                    [entry.statKey]: { ...statEntry, currentLevel: val },
+                  })
+                }
+                min={0}
+              />
+              <NumberInput
+                label="Target"
+                value={targetLevel}
+                onChange={(val) => setGoldEnhancementTarget(entry.statKey, val)}
+                min={0}
+              />
+            </div>
 
             {entry.isMaxed ? (
               <span className="rounded px-1.5 py-0.5 text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
                 MAX
               </span>
             ) : (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 ml-auto">
                 <div
                   className="flex items-center gap-1.5"
                   aria-label={`Efficiency: ${Math.round(relativeEfficiency)}%`}
