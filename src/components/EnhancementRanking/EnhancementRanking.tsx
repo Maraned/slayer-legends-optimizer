@@ -156,8 +156,13 @@ export function EnhancementRanking() {
                     {Math.round(relativeEfficiency)}%
                   </span>
                 </div>
-                <span className="text-xs tabular-nums text-gray-500 dark:text-gray-400">
-                  {formatGold(entry.goldCostForNextLevel)} / next lvl
+                <span
+                  className="text-xs tabular-nums text-gray-500 dark:text-gray-400"
+                  title="Gold cost per 1 stat unit gained"
+                >
+                  {entry.statGainPerGold > 0
+                    ? `${formatGold(1 / entry.statGainPerGold)} / stat`
+                    : '—'}
                 </span>
               </div>
             )}
