@@ -9,6 +9,7 @@ import { GrowthStrInput } from '@/components/GrowthStrInput';
 import { GrowthHpInput } from '@/components/GrowthHpInput';
 import { GrowthVitInput } from '@/components/GrowthVitInput';
 import { PromotionTierSelector } from '@/components/PromotionTierSelector/PromotionTierSelector';
+import { ClassSelector } from '@/components/ClassSelector/ClassSelector';
 import { EnhancementRanking } from '@/components/EnhancementRanking';
 import { FarmingBonusSummary } from '@/components/FarmingBonusSummary/FarmingBonusSummary';
 import { SlayerLevelInput } from '@/components/SlayerLevelInput';
@@ -239,6 +240,11 @@ export default function CharacterPage() {
 
           {/* Promotion Tier Selector */}
           <PromotionTierSelector />
+        </div>
+
+        {/* Third row: Class Selector */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <ClassSelector />
         </div>
 
         {/* Farming Bonuses */}
