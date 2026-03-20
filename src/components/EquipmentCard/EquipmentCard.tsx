@@ -7,7 +7,9 @@ import type {
   SoulWeapon,
   Weapon,
 } from '@/types/equipment';
+import { WeaponTier } from '@/types/equipment';
 import { Card } from '@/components/Card';
+import { Checkbox } from '@/components/Checkbox';
 import { NumberInput } from '@/components/NumberInput';
 import { Tabs } from '@/components/Tabs';
 import { Toggle } from '@/components/Toggle';
@@ -20,6 +22,26 @@ export interface EquipmentCardProps {
   /** Additional class names for the Card wrapper */
   className?: string;
 }
+
+const WEAPON_TIER_ORDER: WeaponTier[] = [
+  WeaponTier.Common4,
+  WeaponTier.Common3,
+  WeaponTier.Common2,
+  WeaponTier.Common1,
+  WeaponTier.Uncommon3,
+  WeaponTier.Uncommon2,
+  WeaponTier.Uncommon1,
+  WeaponTier.Rare2,
+  WeaponTier.Rare1,
+  WeaponTier.Epic2,
+  WeaponTier.Epic1,
+  WeaponTier.Unique,
+  WeaponTier.Legend,
+  WeaponTier.Mythic,
+  WeaponTier.Ancient,
+  WeaponTier.Celestial,
+  WeaponTier.Immortal,
+];
 
 function WeaponsTab({
   weapons,
@@ -39,38 +61,56 @@ function WeaponsTab({
     );
   }
 
-  return (
-    <div className="flex flex-col gap-3">
-      {weapons.map((weapon, index) => (
-        <div
-          key={weapon.name}
-          className="flex items-start justify-between gap-4 rounded-md border border-gray-200 bg-gray-50 px-3 py-2 dark:border-gray-700 dark:bg-gray-800"
-        >
-          <div className="flex flex-col gap-1 min-w-0">
-            <span className="text-sm font-semibold text-[var(--color-foreground)] truncate">
-              {weapon.name}
-            </span>
-            <span className="text-xs text-[var(--color-foreground)]/50">{weapon.tier}</span>
-          </div>
+  const tierGroups = WEAPON_TIER_ORDER.map((tier) => ({
+    tier,
+    weapons: weapons.filter((w) => w.tier === tier),
+  })).filter((g) => g.weapons.length > 0);
 
-          <div className="flex items-center gap-4 shrink-0">
-            <NumberInput
-              label="Level"
-              value={weapon.enhanceLevel}
-              onChange={(val) => updateWeapon(index, { enhanceLevel: val })}
-              min={0}
-              max={weapon.maxLevel}
-            />
-            <Toggle
-              checked={weapon.owned}
-              onCheckedChange={(checked) => updateWeapon(index, { owned: checked })}
-              label="Owned"
-              size="sm"
-              id={`weapon-owned-${index}`}
-            />
+  return (
+    <div className="flex flex-col gap-4">
+      {tierGroups.map(({ tier, weapons: tierWeapons }) => {
+        const ownedCount = tierWeapons.filter((w) => w.owned).length;
+        return (
+          <div key={tier} className="flex flex-col gap-2">
+            <div className="flex items-center gap-2 border-b border-gray-200 pb-1 dark:border-gray-700">
+              <span className="text-xs font-semibold uppercase tracking-wide text-[var(--color-foreground)]/60">
+                {tier}
+              </span>
+              <span className="text-xs text-[var(--color-foreground)]/40">
+                ({ownedCount}/{tierWeapons.length})
+              </span>
+            </div>
+            {tierWeapons.map((weapon) => {
+              const globalIndex = weapons.indexOf(weapon);
+              return (
+                <div
+                  key={weapon.name}
+                  className="flex items-center justify-between gap-4 rounded-md border border-gray-200 bg-gray-50 px-3 py-2 dark:border-gray-700 dark:bg-gray-800"
+                >
+                  <span className="text-sm font-medium text-[var(--color-foreground)] truncate min-w-0">
+                    {weapon.name}
+                  </span>
+                  <div className="flex items-center gap-4 shrink-0">
+                    <NumberInput
+                      label="Level"
+                      value={weapon.enhanceLevel}
+                      onChange={(val) => updateWeapon(globalIndex, { enhanceLevel: val })}
+                      min={0}
+                      max={weapon.maxLevel}
+                    />
+                    <Checkbox
+                      checked={weapon.owned}
+                      onCheckedChange={(checked) => updateWeapon(globalIndex, { owned: checked })}
+                      label="Owned"
+                      id={`weapon-owned-${weapon.name}`}
+                    />
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -195,7 +235,7 @@ export function EquipmentCard({ equipment, onChange, className = '' }: Equipment
   const tabs = [
     {
       value: 'weapons',
-      label: `Weapons${equipment.weapons.length > 0 ? ` (${equipment.weapons.length})` : ''}`,
+      label: `Weapons${equipment.weapons.length > 0 ? ` (${equipment.weapons.filter((w) => w.owned).length}/${equipment.weapons.length})` : ''}`,
       content: (
         <WeaponsTab
           weapons={equipment.weapons}
