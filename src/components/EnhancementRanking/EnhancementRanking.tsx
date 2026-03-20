@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
+import { useCalculatorInputsStore, type CalculatorInputsStore } from '@/store/useCalculatorInputsStore';
 import { rankEnhancementTargets } from '@/lib/enhancement-optimizer';
 import type { RankedEnhancementTarget } from '@/lib/enhancement-optimizer';
 import type { EnhanceableStatKey } from '@/types/character';
@@ -48,6 +49,7 @@ function getRankBadgeClasses(rank: number, isMaxed: boolean): string {
  */
 export function EnhancementRanking() {
   const enhanceableStats = useUserSaveStore((s: UserSaveStore) => s.character.enhanceableStats);
+  const enhanceMultiplier = useCalculatorInputsStore((s: CalculatorInputsStore) => s.enhanceMultiplier);
 
   const ranked = useMemo(
     () =>
@@ -62,9 +64,10 @@ export function EnhancementRanking() {
           bonusPerLevel: BONUS_PER_LEVEL[key],
           currentLevel: entry.currentLevel,
           maxLevel: entry.maxLevel,
+          enhanceSteps: enhanceMultiplier,
         })),
       ),
-    [enhanceableStats],
+    [enhanceableStats, enhanceMultiplier],
   );
 
   return (

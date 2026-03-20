@@ -63,6 +63,12 @@ export default function CharacterPage() {
   const setGoldEnhancementTarget = useCalculatorInputsStore(
     (s: CalculatorInputsStore) => s.setGoldEnhancementTarget,
   );
+  const enhanceMultiplier = useCalculatorInputsStore(
+    (s: CalculatorInputsStore) => s.enhanceMultiplier,
+  );
+  const setEnhanceMultiplier = useCalculatorInputsStore(
+    (s: CalculatorInputsStore) => s.setEnhanceMultiplier,
+  );
 
   const slayerLevelIndex = useMemo(() => buildSlayerLevelIndex(characterData.SLAYER_LEVEL), []);
   const growthKnowledgeIndex = useMemo(
@@ -310,6 +316,14 @@ export default function CharacterPage() {
           >
             Enhancement Priority — Efficiency Ranking
           </h2>
+          <div className="mb-4">
+            <NumberInput
+              label="Enhance Multiplier"
+              value={enhanceMultiplier}
+              onChange={setEnhanceMultiplier}
+              min={1}
+            />
+          </div>
           <EnhancementRanking />
         </section>
 
