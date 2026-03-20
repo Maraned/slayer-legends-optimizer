@@ -12,6 +12,7 @@ import { PromotionTierSelector } from '@/components/PromotionTierSelector/Promot
 import { ClassSelector } from '@/components/ClassSelector/ClassSelector';
 import { EnhancementRanking } from '@/components/EnhancementRanking';
 import { FarmingBonusSummary } from '@/components/FarmingBonusSummary/FarmingBonusSummary';
+import { TotalAtkDisplay } from '@/components/TotalAtkDisplay';
 import { SlayerLevelInput } from '@/components/SlayerLevelInput';
 import { Toggle } from '@/components/Toggle/Toggle';
 import { segmentCost } from '@/lib/gold-calculator';
@@ -402,6 +403,9 @@ export default function CharacterPage() {
             </table>
           </div>
         </section>
+
+        {/* Total ATK */}
+        <TotalAtkDisplay />
 
         {/* Enhancement Priority */}
         <section

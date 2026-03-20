@@ -1,0 +1,1 @@
+export { TotalAtkDisplay } from './TotalAtkDisplay';
