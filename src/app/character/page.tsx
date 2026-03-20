@@ -11,6 +11,7 @@ import { GrowthVitInput } from '@/components/GrowthVitInput';
 import { PromotionTierSelector } from '@/components/PromotionTierSelector/PromotionTierSelector';
 import { EnhancementRanking } from '@/components/EnhancementRanking';
 import { FarmingBonusSummary } from '@/components/FarmingBonusSummary/FarmingBonusSummary';
+import { SlayerLevelInput } from '@/components/SlayerLevelInput';
 import { segmentCost } from '@/lib/gold-calculator';
 import { rankEnhancementTargets } from '@/lib/enhancement-optimizer';
 import type { RankedEnhancementTarget } from '@/lib/enhancement-optimizer';
@@ -79,7 +80,6 @@ export default function CharacterPage() {
   const character = useUserSaveStore((s: UserSaveStore) => s.character);
   const setEnhanceableStats = useUserSaveStore((s: UserSaveStore) => s.setEnhanceableStats);
   const setGrowthStats = useUserSaveStore((s: UserSaveStore) => s.setGrowthStats);
-  const setSlayerLevel = useUserSaveStore((s: UserSaveStore) => s.setSlayerLevel);
   const setGrowingKnowledge = useUserSaveStore((s: UserSaveStore) => s.setGrowingKnowledge);
 
   const goldEnhancementTargets = useCalculatorInputsStore(
@@ -95,7 +95,6 @@ export default function CharacterPage() {
     (s: CalculatorInputsStore) => s.setEnhanceMultiplier,
   );
 
-  const slayerLevelIndex = useMemo(() => buildSlayerLevelIndex(characterData.SLAYER_LEVEL), []);
   const growthKnowledgeIndex = useMemo(
     () => buildGrowthKnowledgeIndex(characterData.GROWTH_KNOWLEDGE),
     [],
@@ -109,11 +108,6 @@ export default function CharacterPage() {
       })),
     [],
   );
-
-  function handleSlayerLevelChange(level: number) {
-    const entry = slayerLevelIndex[level];
-    setSlayerLevel({ level, expRequiredForNext: entry?.expRequired ?? 0 });
-  }
 
   function handleGrowingKnowledgeChange(value: string) {
     const grade = parseInt(value, 10);
@@ -172,21 +166,7 @@ export default function CharacterPage() {
             >
               Slayer Level
             </h2>
-            <div className="flex flex-col gap-4">
-              <NumberInput
-                label="Level"
-                value={character.slayerLevel.level}
-                onChange={handleSlayerLevelChange}
-                min={1}
-                max={4002}
-              />
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-500 dark:text-gray-400">EXP to next level</span>
-                <span className="font-mono font-medium tabular-nums text-gray-900 dark:text-gray-100">
-                  {character.slayerLevel.expRequiredForNext.toLocaleString()}
-                </span>
-              </div>
-            </div>
+            <SlayerLevelInput />
           </section>
 
           {/* Growing Knowledge */}
