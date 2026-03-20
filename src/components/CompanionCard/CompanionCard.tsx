@@ -1,7 +1,11 @@
-import type { AdvancementStep, BuffType, Companion, Element, SpecialBuffs } from '@/types/companions';
+import type { AdvancementStep, BuffType, Companion, CompanionName, Element, SpecialBuffs } from '@/types/companions';
+import type { CompanionSkin } from '@/types/sprites';
+import { Select } from '@/components/Select/Select';
 
 export interface CompanionCardProps {
   companion: Companion;
+  skins: CompanionSkin[];
+  onSkinChange: (skin: string) => void;
   className?: string;
 }
 
@@ -56,9 +60,10 @@ function AdvancementStepRow({ step }: { step: AdvancementStep }) {
   );
 }
 
-export function CompanionCard({ companion, className = '' }: CompanionCardProps) {
-  const { name, element, level, advancementSteps, specialBuffs } = companion;
+export function CompanionCard({ companion, skins, onSkinChange, className = '' }: CompanionCardProps) {
+  const { name, skin, element, level, advancementSteps, specialBuffs } = companion;
   const specialBuffEntries = getSpecialBuffEntries(specialBuffs);
+  const skinOptions = skins.map((s) => ({ value: s.name, label: s.name }));
 
   return (
     <div
@@ -75,6 +80,19 @@ export function CompanionCard({ companion, className = '' }: CompanionCardProps)
           </span>
           <span className="text-xs text-gray-500 dark:text-gray-400">Lv. {level}</span>
         </div>
+      </div>
+
+      {/* Skin selector */}
+      <div className="border-b border-gray-200 px-4 py-3 dark:border-gray-700">
+        <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+          Skin
+        </label>
+        <Select
+          value={skin}
+          onValueChange={onSkinChange}
+          options={skinOptions}
+          aria-label={`${name} skin`}
+        />
       </div>
 
       <div className="space-y-4 p-4">
