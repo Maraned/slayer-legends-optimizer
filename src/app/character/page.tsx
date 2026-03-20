@@ -10,6 +10,7 @@ import { GrowthHpInput } from '@/components/GrowthHpInput';
 import { GrowthVitInput } from '@/components/GrowthVitInput';
 import { PromotionTierSelector } from '@/components/PromotionTierSelector/PromotionTierSelector';
 import { EnhancementRanking } from '@/components/EnhancementRanking';
+import { FarmingBonusSummary } from '@/components/FarmingBonusSummary/FarmingBonusSummary';
 import { segmentCost } from '@/lib/gold-calculator';
 import {
   buildGrowthKnowledgeIndex,
@@ -193,6 +194,9 @@ export default function CharacterPage() {
           {/* Promotion Tier Selector */}
           <PromotionTierSelector />
         </div>
+
+        {/* Farming Bonuses */}
+        <FarmingBonusSummary />
 
         {/* Enhancement Manual Calculator */}
         <section
