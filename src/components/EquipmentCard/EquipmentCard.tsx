@@ -303,7 +303,7 @@ function AccessoriesTab({
                       onCheckedChange={(checked) => updateAccessory(globalIndex, { owned: checked })}
                       label="Owned"
                       size="sm"
-                      id={`accessory-owned-${globalIndex}`}
+                      id={`accessory-owned-${accessory.name}`}
                     />
                   </div>
                 </div>
