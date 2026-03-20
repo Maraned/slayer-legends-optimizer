@@ -109,7 +109,17 @@ export interface PromotionAbility {
 export interface Promotion {
   /** Current promotion tier (integer, e.g. 1–10) */
   tier: number;
-  /** Cumulative ATK% bonus from this promotion tier (from PROMOTION BONUS table) */
+  /**
+   * Additive ATK% bonus at this promotion tier (from PROMOTION table).
+   * e.g. 0.09 = +9% ATK at Tier 3 (Silver).
+   */
+  atkBonus: number;
+  /**
+   * Additive HP% bonus at this promotion tier (from PROMOTION table).
+   * e.g. 0.07 = +7% HP at Tier 3 (Silver).
+   */
+  hpBonus: number;
+  /** Cumulative Extra ATK% bonus from this promotion tier (from PROMOTION BONUS table) */
   atkBonusPct: number;
   /** Cumulative Monster Gold% bonus from this promotion tier (from PROMOTION BONUS table) */
   monsterGoldBonusPct: number;
