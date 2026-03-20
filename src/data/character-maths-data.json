@@ -16489,5 +16489,10 @@
       "grade": 91,
       "atkEffectMultiplier": 5.5
     }
+  ],
+  "GROWTH_STATS": [
+    { "stat": "STR", "growthFactor": 1 },
+    { "stat": "HP", "growthFactor": 1 },
+    { "stat": "VIT", "growthFactor": 1 }
   ]
 }
