@@ -10,6 +10,7 @@ interface NumberInputProps {
   max?: number;
   step?: number;
   label?: string;
+  ariaLabel?: string;
   id?: string;
   disabled?: boolean;
   className?: string;
@@ -22,6 +23,7 @@ export function NumberInput({
   max,
   step = 1,
   label,
+  ariaLabel,
   id: idProp,
   disabled = false,
   className = '',
@@ -69,7 +71,7 @@ export function NumberInput({
           type="button"
           onClick={handleDecrement}
           disabled={disabled || atMin}
-          aria-label={`Decrease ${label ?? 'value'}`}
+          aria-label={`Decrease ${ariaLabel ?? label ?? 'value'}`}
           className="flex h-8 w-8 items-center justify-center rounded-l border border-r-0 border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
         >
           −
@@ -89,7 +91,7 @@ export function NumberInput({
           type="button"
           onClick={handleIncrement}
           disabled={disabled || atMax}
-          aria-label={`Increase ${label ?? 'value'}`}
+          aria-label={`Increase ${ariaLabel ?? label ?? 'value'}`}
           className="flex h-8 w-8 items-center justify-center rounded-r border border-l-0 border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
         >
           +

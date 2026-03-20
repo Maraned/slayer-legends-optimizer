@@ -340,6 +340,7 @@ export function CompanionCard({ companion, skins, onSkinChange, onElementChange,
                     onChange={(v) => onSpecialBuffChange(key, v)}
                     min={0}
                     step={0.01}
+                    ariaLabel={label}
                   />
                 ) : (
                   <span className="tabular-nums font-semibold text-gray-900 dark:text-gray-100">
