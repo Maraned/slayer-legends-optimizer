@@ -28,6 +28,12 @@ export interface CalculatorInputsState {
   sanctuaryLevel: number;
 
   /**
+   * Selected class identifier (matches CubeClass.id in cube-optimizer-data).
+   * Determines the per-level ATK and CRIT DMG bonuses for this character.
+   */
+  classId: string;
+
+  /**
    * Current class level.
    * Feeds `critDmgFromClassGrowth` in the CRIT DMG source calculation.
    * Class levels are separate from the slayer level stored in CharacterState.
