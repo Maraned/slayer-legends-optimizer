@@ -56,6 +56,18 @@ export interface GrowthKnowledgeEntry {
   atkEffectMultiplier: number;
 }
 
+/** One row of the GROWTH_STATS table. */
+export interface GrowthStatConfigEntry {
+  /** Growth stat key ('STR', 'HP', or 'VIT'). */
+  stat: string;
+  /**
+   * Multiplier applied to the growth level to compute the stat bonus.
+   * Source: CHARACTER MATHSDATA column AF.
+   * bonus = level × growthFactor
+   */
+  growthFactor: number;
+}
+
 /** Root shape of character-maths-data.json. */
 export interface CharacterMathsData {
   /** Semantic version of this data file (e.g. "1.0.0"). */
@@ -64,4 +76,5 @@ export interface CharacterMathsData {
   PROMOTION: PromotionEntry[];
   PROMOTION_BONUS: PromotionBonusEntry[];
   GROWTH_KNOWLEDGE: GrowthKnowledgeEntry[];
+  GROWTH_STATS: GrowthStatConfigEntry[];
 }
