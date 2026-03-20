@@ -12,6 +12,8 @@ import { PromotionTierSelector } from '@/components/PromotionTierSelector/Promot
 import { EnhancementRanking } from '@/components/EnhancementRanking';
 import { FarmingBonusSummary } from '@/components/FarmingBonusSummary/FarmingBonusSummary';
 import { segmentCost } from '@/lib/gold-calculator';
+import { rankEnhancementTargets } from '@/lib/enhancement-optimizer';
+import type { RankedEnhancementTarget } from '@/lib/enhancement-optimizer';
 import {
   buildGrowthKnowledgeIndex,
   buildSlayerLevelIndex,
@@ -118,6 +120,26 @@ export default function CharacterPage() {
     const entry = growthKnowledgeIndex[grade];
     setGrowingKnowledge({ grade, atkEffectPct: entry?.atkEffectMultiplier ?? 1 });
   }
+
+  const rankedStats = useMemo(
+    () =>
+      rankEnhancementTargets(
+        ENHANCE_STAT_ORDER.map((stat) => {
+          const entry = character.enhanceableStats[stat];
+          return {
+            statKey: stat,
+            bonusPerLevel: BONUS_PER_LEVEL[stat],
+            currentLevel: entry.currentLevel,
+            maxLevel: entry.maxLevel,
+            enhanceSteps: enhanceMultiplier,
+          };
+        }),
+      ).reduce<Record<string, RankedEnhancementTarget>>((acc, entry) => {
+        acc[entry.statKey] = entry;
+        return acc;
+      }, {}),
+    [character.enhanceableStats, enhanceMultiplier],
+  );
 
   const totalGoldCost = ENHANCE_STAT_ORDER.reduce((total, stat) => {
     const entry = character.enhanceableStats[stat];
@@ -241,6 +263,9 @@ export default function CharacterPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <th className="pb-3 text-center font-semibold text-gray-700 dark:text-gray-300 pr-2">
+                    Priority
+                  </th>
                   <th className="pb-3 text-left font-semibold text-gray-700 dark:text-gray-300 pr-4">
                     Stat
                   </th>
@@ -275,6 +300,26 @@ export default function CharacterPage() {
 
                   return (
                     <tr key={stat}>
+                      <td className="py-3 pr-2 text-center">
+                        {(() => {
+                          const ranked = rankedStats[stat];
+                          const rank = ranked?.rank ?? 0;
+                          const maxed = ranked?.isMaxed ?? false;
+                          let badgeClass = 'bg-gray-100 text-gray-600 dark:bg-gray-700/50 dark:text-gray-400';
+                          if (maxed) badgeClass = 'bg-gray-200 text-gray-500 dark:bg-gray-700 dark:text-gray-400';
+                          else if (rank === 1) badgeClass = 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300';
+                          else if (rank === 2) badgeClass = 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300';
+                          else if (rank === 3) badgeClass = 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-300';
+                          return (
+                            <span
+                              className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold ${badgeClass}`}
+                              aria-label={`Rank ${rank}`}
+                            >
+                              {rank}
+                            </span>
+                          );
+                        })()}
+                      </td>
                       <td className="py-3 pr-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
                         {ENHANCE_STAT_LABELS[stat]}
                         {isMaxed && (
@@ -342,7 +387,7 @@ export default function CharacterPage() {
               <tfoot>
                 <tr className="border-t-2 border-gray-200 dark:border-gray-700">
                   <td
-                    colSpan={5}
+                    colSpan={7}
                     className="pt-3 font-semibold text-gray-900 dark:text-gray-100"
                   >
                     Total
