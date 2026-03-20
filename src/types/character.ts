@@ -143,6 +143,8 @@ export interface GrowingKnowledge {
    * Looked up via: =VLOOKUP(F17, CHARACTER_MATHSDATA!M3:N93, 2, 0)
    */
   atkEffectPct: number;
+  /** Whether the Superhuman status has been obtained */
+  superhumanObtained: boolean;
 }
 
 /**

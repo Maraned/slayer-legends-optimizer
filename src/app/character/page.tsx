@@ -12,6 +12,7 @@ import { PromotionTierSelector } from '@/components/PromotionTierSelector/Promot
 import { EnhancementRanking } from '@/components/EnhancementRanking';
 import { FarmingBonusSummary } from '@/components/FarmingBonusSummary/FarmingBonusSummary';
 import { SlayerLevelInput } from '@/components/SlayerLevelInput';
+import { Toggle } from '@/components/Toggle/Toggle';
 import { segmentCost } from '@/lib/gold-calculator';
 import { rankEnhancementTargets } from '@/lib/enhancement-optimizer';
 import type { RankedEnhancementTarget } from '@/lib/enhancement-optimizer';
@@ -112,7 +113,7 @@ export default function CharacterPage() {
   function handleGrowingKnowledgeChange(value: string) {
     const grade = parseInt(value, 10);
     const entry = growthKnowledgeIndex[grade];
-    setGrowingKnowledge({ grade, atkEffectPct: entry?.atkEffectMultiplier ?? 1 });
+    setGrowingKnowledge({ ...character.growingKnowledge, grade, atkEffectPct: entry?.atkEffectMultiplier ?? 1 });
   }
 
   const rankedStats = useMemo(
@@ -195,6 +196,21 @@ export default function CharacterPage() {
                 <span className="font-mono font-medium tabular-nums text-gray-900 dark:text-gray-100">
                   +{((character.growingKnowledge.atkEffectPct - 1) * 100).toFixed(0)}%
                 </span>
+              </div>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-gray-500 dark:text-gray-400">Superhuman</span>
+                <Toggle
+                  id="superhuman-toggle"
+                  checked={character.growingKnowledge.superhumanObtained}
+                  onCheckedChange={(checked) =>
+                    setGrowingKnowledge({
+                      ...character.growingKnowledge,
+                      superhumanObtained: checked,
+                    })
+                  }
+                  label={character.growingKnowledge.superhumanObtained ? 'Obtained' : 'Not Obtained'}
+                  size="sm"
+                />
               </div>
             </div>
           </section>

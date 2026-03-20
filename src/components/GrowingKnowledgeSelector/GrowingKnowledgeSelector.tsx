@@ -13,8 +13,9 @@ const MIN_GRADE = 1;
 const MAX_GRADE = GROWTH_KNOWLEDGE.length;
 
 export function GrowingKnowledgeSelector() {
-  const grade = useUserSaveStore((state) => state.character.growingKnowledge.grade);
+  const growingKnowledge = useUserSaveStore((state) => state.character.growingKnowledge);
   const setGrowingKnowledge = useUserSaveStore((state) => state.setGrowingKnowledge);
+  const grade = growingKnowledge.grade;
 
   const entry = GROWTH_KNOWLEDGE.find((e) => e.grade === grade);
   const multiplier = entry?.atkEffectMultiplier ?? 1;
@@ -22,6 +23,7 @@ export function GrowingKnowledgeSelector() {
   function handleGradeChange(newGrade: number) {
     const newEntry = GROWTH_KNOWLEDGE.find((e) => e.grade === newGrade);
     setGrowingKnowledge({
+      ...growingKnowledge,
       grade: newGrade,
       atkEffectPct: newEntry?.atkEffectMultiplier ?? 1,
     });
