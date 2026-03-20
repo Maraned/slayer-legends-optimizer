@@ -4,6 +4,7 @@ import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
 import type { LatentPower, LatentPowerPageEntry, LatentPowerStatKey } from '@/types/character';
 import { NumberInput } from '@/components/NumberInput';
 import { Tabs } from '@/components/Tabs/Tabs';
+import { LatentPowerReplacementRanking } from './LatentPowerReplacementRanking';
 
 const STAT_KEYS: LatentPowerStatKey[] = ['STR', 'HP', 'CRI', 'LUK', 'VIT'];
 
@@ -46,6 +47,12 @@ export function LatentPowerGrid() {
       </div>
       <div className="p-4">
         <Tabs tabs={tabs} defaultValue="0" />
+      </div>
+      <div className="border-t border-gray-200 px-4 py-3 dark:border-gray-700">
+        <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
+          Replacement Priority Ranking
+        </h3>
+        <LatentPowerReplacementRanking />
       </div>
     </div>
   );
