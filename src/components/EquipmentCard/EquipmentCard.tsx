@@ -73,20 +73,20 @@ function WeaponsTab({
   weapons,
   onChange,
   levelIndex,
+  awakenedOrrLevel,
+  onAwakenedOrrLevelChange,
 }: {
   weapons: Weapon[];
   onChange: (weapons: Weapon[]) => void;
   levelIndex: Record<number, LevelMultiplier> | null;
+  awakenedOrrLevel: number;
+  onAwakenedOrrLevelChange: (level: number) => void;
 }) {
+  const effectiveMaxLevel = 200 + 50 * awakenedOrrLevel;
+
   function updateWeapon(index: number, patch: Partial<Weapon>) {
     const updated = weapons.map((w, i) => (i === index ? { ...w, ...patch } : w));
     onChange(updated);
-  }
-
-  if (weapons.length === 0) {
-    return (
-      <p className="text-sm text-[var(--color-foreground)]/50 italic">No weapons configured.</p>
-    );
   }
 
   const tierGroups = WEAPON_TIER_ORDER.map((tier) => ({
@@ -96,6 +96,24 @@ function WeaponsTab({
 
   return (
     <div className="flex flex-col gap-4">
+      <div className="flex items-center justify-between rounded-md border border-gray-200 bg-gray-50 px-3 py-2 dark:border-gray-700 dark:bg-gray-800">
+        <div className="flex flex-col gap-0.5">
+          <span className="text-sm font-semibold text-[var(--color-foreground)]">Awakened ORR</span>
+          <span className="text-xs text-[var(--color-foreground)]/50">
+            Max enhance level: {effectiveMaxLevel}
+          </span>
+        </div>
+        <NumberInput
+          label="Level"
+          value={awakenedOrrLevel}
+          onChange={onAwakenedOrrLevelChange}
+          min={0}
+          max={20}
+        />
+      </div>
+      {weapons.length === 0 && (
+        <p className="text-sm text-[var(--color-foreground)]/50 italic">No weapons configured.</p>
+      )}
       {tierGroups.map(({ tier, weapons: tierWeapons }) => {
         const ownedCount = tierWeapons.filter((w) => w.owned).length;
         return (
@@ -110,6 +128,7 @@ function WeaponsTab({
             </div>
             {tierWeapons.map((weapon) => {
               const globalIndex = weapons.indexOf(weapon);
+              const weaponMaxLevel = effectiveMaxLevel;
               return (
                 <div
                   key={weapon.name}
@@ -129,21 +148,21 @@ function WeaponsTab({
                           value={weapon.enhanceLevel}
                           onChange={(val) => updateWeapon(globalIndex, { enhanceLevel: val })}
                           min={0}
-                          max={weapon.maxLevel > 0 ? weapon.maxLevel : undefined}
+                          max={weaponMaxLevel > 0 ? weaponMaxLevel : undefined}
                         />
-                        {weapon.maxLevel > 0 && weapon.enhanceLevel >= weapon.maxLevel ? (
+                        {weaponMaxLevel > 0 && weapon.enhanceLevel >= weaponMaxLevel ? (
                           <span className="rounded px-1.5 py-0.5 text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
                             MAX
                           </span>
-                        ) : weapon.maxLevel > 0 ? (
+                        ) : weaponMaxLevel > 0 ? (
                           <span className="text-xs tabular-nums text-[var(--color-foreground)]/50">
-                            / {weapon.maxLevel}
+                            / {weaponMaxLevel}
                           </span>
                         ) : null}
                       </div>
-                      {levelIndex && weapon.maxLevel > 0 && weapon.enhanceLevel < weapon.maxLevel && (
+                      {levelIndex && weaponMaxLevel > 0 && weapon.enhanceLevel < weaponMaxLevel && (
                         <span className="text-xs tabular-nums text-[var(--color-foreground)]/50">
-                          {formatGold(calcEnhanceCost(levelIndex, weapon.enhanceLevel, weapon.maxLevel))} to max
+                          {formatGold(calcEnhanceCost(levelIndex, weapon.enhanceLevel, weaponMaxLevel))} to max
                         </span>
                       )}
                     </div>
@@ -337,6 +356,8 @@ export function EquipmentCard({ equipment, onChange, className = '' }: Equipment
           weapons={equipment.weapons}
           onChange={(weapons) => onChange({ ...equipment, weapons })}
           levelIndex={levelIndex}
+          awakenedOrrLevel={equipment.awakenedOrrLevel}
+          onAwakenedOrrLevelChange={(awakenedOrrLevel) => onChange({ ...equipment, awakenedOrrLevel })}
         />
       ),
     },
