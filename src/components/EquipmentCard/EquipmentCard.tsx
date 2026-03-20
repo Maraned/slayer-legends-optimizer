@@ -119,6 +119,22 @@ function WeaponsTab({
                       label="Owned"
                       id={`weapon-owned-${weapon.name}`}
                     />
+                    <Checkbox
+                      checked={weapon.equipped}
+                      onCheckedChange={(checked) => {
+                        if (checked) {
+                          const updated = weapons.map((w, i) => ({
+                            ...w,
+                            equipped: i === globalIndex,
+                          }));
+                          onChange(updated);
+                        } else {
+                          updateWeapon(globalIndex, { equipped: false });
+                        }
+                      }}
+                      label="Equipped"
+                      id={`weapon-equipped-${weapon.name}`}
+                    />
                   </div>
                 </div>
               );
