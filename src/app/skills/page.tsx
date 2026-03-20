@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 
 import { NumberInput } from '@/components/NumberInput';
 import { Toggle } from '@/components/Toggle/Toggle';
+import { CritDmgDisplay } from '@/components/CritDmgDisplay/CritDmgDisplay';
 import { useSkillsStore, type SkillsStore } from '@/store/useSkillsStore';
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
 import type { Element } from '@/types/companions';
@@ -111,6 +112,8 @@ export default function SkillsPage() {
             </div>
           </div>
         </div>
+
+        <CritDmgDisplay />
       </div>
     </div>
   );
