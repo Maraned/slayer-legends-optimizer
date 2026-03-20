@@ -8,6 +8,8 @@ export interface EquipmentSliceActions {
 
   /** Mark a weapon as owned or unowned by name */
   setWeaponOwned: (name: string, owned: boolean) => void;
+  /** Set a weapon as equipped by name; unequips all other weapons */
+  setWeaponEquipped: (name: string, equipped: boolean) => void;
   /** Update the enhance level of a weapon by name */
   setWeaponEnhanceLevel: (name: string, enhanceLevel: number) => void;
   /** Apply a partial update to a weapon by name */
@@ -41,6 +43,16 @@ export const createEquipmentSlice: StateCreator<
       equipment: {
         ...state.equipment,
         weapons: state.equipment.weapons.map((w) => (w.name === name ? { ...w, owned } : w)),
+      },
+    })),
+
+  setWeaponEquipped: (name, equipped) =>
+    set((state) => ({
+      equipment: {
+        ...state.equipment,
+        weapons: state.equipment.weapons.map((w) =>
+          w.name === name ? { ...w, equipped } : equipped ? { ...w, equipped: false } : w,
+        ),
       },
     })),
 

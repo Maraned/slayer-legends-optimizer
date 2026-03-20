@@ -32,6 +32,8 @@ export interface Weapon {
   tier: WeaponTier;
   /** Whether the player owns this weapon */
   owned: boolean;
+  /** Whether this weapon is currently equipped */
+  equipped: boolean;
   /** Current enhancement level */
   enhanceLevel: number;
   /** Maximum enhancement level for this tier */
