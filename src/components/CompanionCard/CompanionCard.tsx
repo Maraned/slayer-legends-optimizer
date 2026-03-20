@@ -8,6 +8,7 @@ const MAX_PROMOTION_STAGE = companionsData.CUBE_COSTS_PER_STAGE.length - 1;
 const CUBE_COSTS_PER_STAGE = companionsData.CUBE_COSTS_PER_STAGE;
 
 const MAX_LEVEL = 14;
+const MAX_ADVANCEMENT = 7;
 const ELEMENTS: Element[] = ['Fire', 'Water', 'Wind', 'Earth', 'Lightning'];
 
 const elementOptions = ELEMENTS.map((e) => ({ value: e, label: e }));
@@ -19,6 +20,7 @@ export interface CompanionCardProps {
   onElementChange?: (element: Element) => void;
   onLevelChange: (level: number) => void;
   onPromotionStageChange: (stage: number) => void;
+  onAdvancementChange: (advancement: number) => void;
   className?: string;
 }
 
@@ -127,8 +129,75 @@ function LevelProgress({ level }: { level: number }) {
   );
 }
 
-export function CompanionCard({ companion, skins, onSkinChange, onElementChange, onLevelChange, onPromotionStageChange, className = '' }: CompanionCardProps) {
-  const { name, skin, element, level, promotionStage, advancementSteps, specialBuffs } = companion;
+function AdvancementTrack({ advancement, onChange }: { advancement: number; onChange: (value: number) => void }) {
+  const isMax = advancement >= MAX_ADVANCEMENT;
+
+  function handleClick(step: number) {
+    onChange(advancement === step ? step - 1 : step);
+  }
+
+  return (
+    <div className="space-y-2">
+      <div className="flex items-center justify-between text-xs">
+        <span className="text-gray-500 dark:text-gray-400">Advancement</span>
+        <span className={`font-semibold tabular-nums ${isMax ? 'text-yellow-500 dark:text-yellow-400' : 'text-gray-700 dark:text-gray-300'}`}>
+          {isMax ? 'MAX' : `${advancement} / ${MAX_ADVANCEMENT}`}
+        </span>
+      </div>
+      <div className="flex items-center gap-1" role="group" aria-label="Advancement steps">
+        {Array.from({ length: MAX_ADVANCEMENT }, (_, i) => {
+          const step = i + 1;
+          const filled = step <= advancement;
+          const isLast = step === MAX_ADVANCEMENT;
+          return (
+            <button
+              key={step}
+              type="button"
+              onClick={() => handleClick(step)}
+              aria-label={`Advancement step ${step}${filled ? ' (completed)' : ''}`}
+              aria-pressed={filled}
+              className={[
+                'flex-1 flex flex-col items-center gap-0.5 rounded py-1.5 transition-all',
+                'focus-visible:outline-2 focus-visible:outline-offset-1',
+                filled
+                  ? isLast
+                    ? 'focus-visible:outline-yellow-400'
+                    : 'focus-visible:outline-blue-500'
+                  : 'focus-visible:outline-gray-400',
+              ].join(' ')}
+            >
+              <span
+                className={[
+                  'w-6 h-6 rounded-full border-2 flex items-center justify-center text-[10px] font-bold transition-all',
+                  filled
+                    ? isLast
+                      ? 'bg-yellow-400 border-yellow-400 text-yellow-900'
+                      : 'bg-blue-500 border-blue-500 text-white'
+                    : 'bg-transparent border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500',
+                ].join(' ')}
+              >
+                {step}
+              </span>
+              {i < MAX_ADVANCEMENT - 1 && (
+                <span className="sr-only">—</span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+      {/* Connector bar */}
+      <div className="relative h-1 mx-3 bg-gray-200 dark:bg-gray-700 rounded-full" aria-hidden="true">
+        <div
+          className={`absolute inset-y-0 left-0 rounded-full transition-all duration-300 ${isMax ? 'bg-yellow-400' : 'bg-blue-500'}`}
+          style={{ width: `${(advancement / MAX_ADVANCEMENT) * 100}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+export function CompanionCard({ companion, skins, onSkinChange, onElementChange, onLevelChange, onPromotionStageChange, onAdvancementChange, className = '' }: CompanionCardProps) {
+  const { name, skin, element, level, promotionStage, advancement, advancementSteps, specialBuffs } = companion;
   const cubeCost = promotionStage > 0 ? CUBE_COSTS_PER_STAGE[promotionStage] * level : 0;
   const specialBuffEntries = getSpecialBuffEntries(specialBuffs);
   const skinOptions = skins.map((s) => ({ value: s.name, label: s.name }));
@@ -194,6 +263,11 @@ export function CompanionCard({ companion, skins, onSkinChange, onElementChange,
             {cubeCost.toLocaleString()}
           </span>
         </div>
+      </div>
+
+      {/* Advancement Track */}
+      <div className="border-b border-gray-200 px-4 py-3 dark:border-gray-700">
+        <AdvancementTrack advancement={advancement} onChange={onAdvancementChange} />
       </div>
 
       <div className="space-y-4 p-4">

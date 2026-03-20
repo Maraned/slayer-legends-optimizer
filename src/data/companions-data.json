@@ -8,6 +8,7 @@
       "element": "Wind",
       "level": 1,
       "promotionStage": 0,
+      "advancement": 0,
       "advancementSteps": [
         {
           "step": "1st",
@@ -91,6 +92,7 @@
       "element": "Fire",
       "level": 1,
       "promotionStage": 0,
+      "advancement": 0,
       "advancementSteps": [
         {
           "step": "1st",
@@ -176,6 +178,7 @@
       "element": "Earth",
       "level": 1,
       "promotionStage": 0,
+      "advancement": 0,
       "advancementSteps": [
         {
           "step": "1st",
@@ -259,6 +262,7 @@
       "element": "Water",
       "level": 1,
       "promotionStage": 0,
+      "advancement": 0,
       "advancementSteps": [
         {
           "step": "1st",
