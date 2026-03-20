@@ -1,4 +1,4 @@
-import type { AdvancementStep, BuffType, Companion, Element, SpecialBuffs } from '@/types/companions';
+import type { AdvancementStep, AdvancementStepOrdinal, BuffType, Companion, Element, SpecialBuffs } from '@/types/companions';
 import type { CompanionSkin } from '@/types/sprites';
 import { Select } from '@/components/Select/Select';
 import { NumberInput } from '@/components/NumberInput';
@@ -10,8 +10,10 @@ const CUBE_COSTS_PER_STAGE = companionsData.CUBE_COSTS_PER_STAGE;
 const MAX_LEVEL = 14;
 const MAX_ADVANCEMENT = 7;
 const ELEMENTS: Element[] = ['Fire', 'Water', 'Wind', 'Earth', 'Lightning'];
+const BUFF_TYPES: BuffType[] = ['Extra ATK', 'Extra EXP', 'Monster Gold', 'Extra HP'];
 
 const elementOptions = ELEMENTS.map((e) => ({ value: e, label: e }));
+const buffTypeOptions = BUFF_TYPES.map((b) => ({ value: b, label: b }));
 
 export interface CompanionCardProps {
   companion: Companion;
@@ -21,6 +23,7 @@ export interface CompanionCardProps {
   onLevelChange: (level: number) => void;
   onPromotionStageChange: (stage: number) => void;
   onAdvancementChange: (advancement: number) => void;
+  onAdvancementStepBuffTypeChange?: (step: AdvancementStepOrdinal, buffType: BuffType) => void;
   className?: string;
 }
 
@@ -59,16 +62,24 @@ function stepIndex(step: AdvancementStep): number {
   return ordinals.indexOf(step.step) + 1;
 }
 
-function AdvancementStepRow({ step, unlocked }: { step: AdvancementStep; unlocked: boolean }) {
+function AdvancementStepRow({
+  step,
+  unlocked,
+  onBuffTypeChange,
+}: {
+  step: AdvancementStep;
+  unlocked: boolean;
+  onBuffTypeChange?: (buffType: BuffType) => void;
+}) {
   return (
     <div
-      className={`flex items-center justify-between rounded px-2 py-1 text-xs transition-opacity ${
+      className={`flex items-center gap-1.5 rounded px-2 py-1 text-xs transition-opacity ${
         unlocked
           ? 'bg-gray-50 dark:bg-gray-800/60'
           : 'bg-gray-50/50 dark:bg-gray-800/30 opacity-40'
       }`}
     >
-      <span className="w-4 shrink-0 mr-1 flex items-center justify-center">
+      <span className="w-4 shrink-0 flex items-center justify-center">
         {unlocked ? (
           <svg className="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -80,10 +91,16 @@ function AdvancementStepRow({ step, unlocked }: { step: AdvancementStep; unlocke
         )}
       </span>
       <span className="w-8 shrink-0 text-gray-400 dark:text-gray-500">{step.step}</span>
-      <span className={`flex-1 mx-2 font-medium ${buffTypeClasses[step.buffType]}`}>
-        {step.buffType}
-      </span>
-      <span className="tabular-nums font-semibold text-gray-900 dark:text-gray-100">
+      <div className={`flex-1 ${buffTypeClasses[step.buffType]}`}>
+        <Select
+          value={step.buffType}
+          onValueChange={(v) => onBuffTypeChange?.(v as BuffType)}
+          options={buffTypeOptions}
+          aria-label={`Buff type for ${step.step} advancement step`}
+          disabled={!onBuffTypeChange}
+        />
+      </div>
+      <span className="tabular-nums font-semibold text-gray-900 dark:text-gray-100 shrink-0">
         +{formatPercent(step.buffValue)}
       </span>
     </div>
@@ -196,7 +213,7 @@ function AdvancementTrack({ advancement, onChange }: { advancement: number; onCh
   );
 }
 
-export function CompanionCard({ companion, skins, onSkinChange, onElementChange, onLevelChange, onPromotionStageChange, onAdvancementChange, className = '' }: CompanionCardProps) {
+export function CompanionCard({ companion, skins, onSkinChange, onElementChange, onLevelChange, onPromotionStageChange, onAdvancementChange, onAdvancementStepBuffTypeChange, className = '' }: CompanionCardProps) {
   const { name, skin, element, level, promotionStage, advancement, advancementSteps, specialBuffs } = companion;
   const cubeCost = promotionStage > 0 ? CUBE_COSTS_PER_STAGE[promotionStage] * level : 0;
   const specialBuffEntries = getSpecialBuffEntries(specialBuffs);
@@ -279,7 +296,12 @@ export function CompanionCard({ companion, skins, onSkinChange, onElementChange,
             </h3>
             <div className="space-y-1">
               {advancementSteps.map((step) => (
-                <AdvancementStepRow key={step.step} step={step} unlocked={stepIndex(step) <= level} />
+                <AdvancementStepRow
+                  key={step.step}
+                  step={step}
+                  unlocked={stepIndex(step) <= level}
+                  onBuffTypeChange={(buffType) => onAdvancementStepBuffTypeChange?.(step.step, buffType)}
+                />
               ))}
             </div>
           </section>

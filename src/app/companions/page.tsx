@@ -2,7 +2,7 @@
 
 import { CompanionCard } from '@/components/CompanionCard/CompanionCard';
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
-import type { CompanionName, Element } from '@/types/companions';
+import type { AdvancementStepOrdinal, BuffType, CompanionName, Element } from '@/types/companions';
 import spritesData from '@/data/sprites.json';
 import type { SpritesData } from '@/types/sprites';
 
@@ -38,6 +38,14 @@ export default function CompanionsPage() {
                 onLevelChange={(level) => setCompanion(index, { ...companion, level })}
                 onPromotionStageChange={(promotionStage) => setCompanion(index, { ...companion, promotionStage })}
                 onAdvancementChange={(advancement) => setCompanion(index, { ...companion, advancement })}
+                onAdvancementStepBuffTypeChange={(step: AdvancementStepOrdinal, buffType: BuffType) =>
+                  setCompanion(index, {
+                    ...companion,
+                    advancementSteps: companion.advancementSteps.map((s) =>
+                      s.step === step ? { ...s, buffType } : s
+                    ),
+                  })
+                }
               />
             );
           })}
