@@ -36,6 +36,7 @@ export default function CompanionsPage() {
                 onSkinChange={(skin) => setCompanion(index, { ...companion, skin })}
                 onElementChange={(element: Element) => setCompanion(index, { ...companion, element })}
                 onLevelChange={(level) => setCompanion(index, { ...companion, level })}
+                onPromotionStageChange={(promotionStage) => setCompanion(index, { ...companion, promotionStage })}
               />
             );
           })}

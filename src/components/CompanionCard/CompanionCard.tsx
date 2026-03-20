@@ -2,6 +2,10 @@ import type { AdvancementStep, BuffType, Companion, Element, SpecialBuffs } from
 import type { CompanionSkin } from '@/types/sprites';
 import { Select } from '@/components/Select/Select';
 import { NumberInput } from '@/components/NumberInput';
+import companionsData from '@/data/companions-data.json';
+
+const MAX_PROMOTION_STAGE = companionsData.CUBE_COSTS_PER_STAGE.length - 1;
+const CUBE_COSTS_PER_STAGE = companionsData.CUBE_COSTS_PER_STAGE;
 
 const MAX_LEVEL = 14;
 const ELEMENTS: Element[] = ['Fire', 'Water', 'Wind', 'Earth', 'Lightning'];
@@ -14,6 +18,7 @@ export interface CompanionCardProps {
   onSkinChange: (skin: string) => void;
   onElementChange?: (element: Element) => void;
   onLevelChange: (level: number) => void;
+  onPromotionStageChange: (stage: number) => void;
   className?: string;
 }
 
@@ -122,8 +127,9 @@ function LevelProgress({ level }: { level: number }) {
   );
 }
 
-export function CompanionCard({ companion, skins, onSkinChange, onElementChange, onLevelChange, className = '' }: CompanionCardProps) {
-  const { name, skin, element, level, advancementSteps, specialBuffs } = companion;
+export function CompanionCard({ companion, skins, onSkinChange, onElementChange, onLevelChange, onPromotionStageChange, className = '' }: CompanionCardProps) {
+  const { name, skin, element, level, promotionStage, advancementSteps, specialBuffs } = companion;
+  const cubeCost = promotionStage > 0 ? CUBE_COSTS_PER_STAGE[promotionStage] * level : 0;
   const specialBuffEntries = getSpecialBuffEntries(specialBuffs);
   const skinOptions = skins.map((s) => ({ value: s.name, label: s.name }));
 
@@ -171,6 +177,23 @@ export function CompanionCard({ companion, skins, onSkinChange, onElementChange,
           />
         </div>
         <LevelProgress level={level} />
+      </div>
+
+      {/* Promotion stage input + cube cost display */}
+      <div className="border-b border-gray-200 px-4 py-3 dark:border-gray-700">
+        <NumberInput
+          label="Promotion Stage"
+          value={promotionStage}
+          onChange={onPromotionStageChange}
+          min={0}
+          max={MAX_PROMOTION_STAGE}
+        />
+        <div className="mt-2 flex items-center justify-between rounded px-2 py-1.5 text-xs bg-amber-50 dark:bg-amber-900/20">
+          <span className="text-amber-700 dark:text-amber-400 font-medium">Cube Cost</span>
+          <span className="tabular-nums font-semibold text-amber-900 dark:text-amber-200">
+            {cubeCost.toLocaleString()}
+          </span>
+        </div>
       </div>
 
       <div className="space-y-4 p-4">
