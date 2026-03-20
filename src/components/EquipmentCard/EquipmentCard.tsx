@@ -278,34 +278,36 @@ function AccessoriesTab({
               return (
                 <div
                   key={accessory.name}
-                  className="flex items-start justify-between gap-4 rounded-md border border-gray-200 bg-gray-50 px-3 py-2 dark:border-gray-700 dark:bg-gray-800"
+                  className="flex flex-col gap-2 rounded-md border border-gray-200 bg-gray-50 px-3 py-2 dark:border-gray-700 dark:bg-gray-800"
                 >
-                  <div className="flex flex-col gap-1 min-w-0">
-                    <span className="text-sm font-semibold text-[var(--color-foreground)] truncate">
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="text-sm font-semibold text-[var(--color-foreground)] truncate min-w-0">
                       {accessory.name}
                     </span>
-                    {accessory.bonusType && (
-                      <span className="text-xs text-[var(--color-foreground)]/50">
-                        {accessory.bonusType}
+                    <div className="flex items-center gap-4 shrink-0">
+                      <NumberInput
+                        label="Level"
+                        value={accessory.level}
+                        onChange={(val) => updateAccessory(globalIndex, { level: val })}
+                        min={0}
+                      />
+                      <Toggle
+                        checked={accessory.owned}
+                        onCheckedChange={(checked) => updateAccessory(globalIndex, { owned: checked })}
+                        label="Owned"
+                        size="sm"
+                        id={`accessory-owned-${accessory.name}`}
+                      />
+                    </div>
+                  </div>
+                  {accessory.effect && (
+                    <div className="flex items-start gap-1.5 text-xs">
+                      <span className="shrink-0 font-semibold text-[var(--color-foreground)]/60">
+                        {accessory.bonusType ?? 'Effect'}:
                       </span>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-4 shrink-0">
-                    <NumberInput
-                      label="Level"
-                      value={accessory.level}
-                      onChange={(val) => updateAccessory(globalIndex, { level: val })}
-                      min={0}
-                    />
-                    <Toggle
-                      checked={accessory.owned}
-                      onCheckedChange={(checked) => updateAccessory(globalIndex, { owned: checked })}
-                      label="Owned"
-                      size="sm"
-                      id={`accessory-owned-${accessory.name}`}
-                    />
-                  </div>
+                      <span className="text-[var(--color-foreground)]/80">{accessory.effect}</span>
+                    </div>
+                  )}
                 </div>
               );
             })}
