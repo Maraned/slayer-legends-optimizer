@@ -256,6 +256,9 @@ export default function CharacterPage() {
                   <th className="pb-3 text-center font-semibold text-gray-700 dark:text-gray-300 px-2">
                     Target Level
                   </th>
+                  <th className="pb-3 text-right font-semibold text-gray-700 dark:text-gray-300 px-2">
+                    Next Lvl Cost
+                  </th>
                   <th className="pb-3 text-right font-semibold text-gray-700 dark:text-gray-300 pl-4">
                     Gold Cost
                   </th>
@@ -268,6 +271,7 @@ export default function CharacterPage() {
                   const goldCost =
                     target > entry.currentLevel ? segmentCost(entry.currentLevel, target) : 0;
                   const isMaxed = entry.maxLevel > 0 && entry.currentLevel >= entry.maxLevel;
+                  const nextLevelCost = isMaxed ? 0 : segmentCost(entry.currentLevel, entry.currentLevel + 1);
 
                   return (
                     <tr key={stat}>
@@ -324,6 +328,9 @@ export default function CharacterPage() {
                           onChange={(val) => setGoldEnhancementTarget(stat, val)}
                           min={0}
                         />
+                      </td>
+                      <td className="py-3 px-2 text-right font-mono tabular-nums whitespace-nowrap text-gray-500 dark:text-gray-400">
+                        {isMaxed ? '—' : formatGold(nextLevelCost)}
                       </td>
                       <td className="py-3 pl-4 text-right font-mono tabular-nums whitespace-nowrap text-gray-900 dark:text-gray-100">
                         {formatGold(goldCost)}
