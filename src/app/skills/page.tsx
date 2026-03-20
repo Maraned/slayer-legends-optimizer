@@ -1,8 +1,11 @@
 'use client';
 
+import { useMemo } from 'react';
+
 import { NumberInput } from '@/components/NumberInput';
 import { Toggle } from '@/components/Toggle/Toggle';
 import { useSkillsStore, type SkillsStore } from '@/store/useSkillsStore';
+import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
 import type { Element } from '@/types/companions';
 
 const ELEMENTS: Element[] = ['Fire', 'Water', 'Wind', 'Earth', 'Lightning'];
@@ -29,6 +32,24 @@ export default function SkillsPage() {
   const setElementalMultipliers = useSkillsStore((s: SkillsStore) => s.setElementalMultipliers);
   const setElementalMultipliersMode = useSkillsStore((s: SkillsStore) => s.setElementalMultipliersMode);
 
+  const damageSources = useUserSaveStore((s: UserSaveStore) => s.blackOrb.damageSources);
+  const elementAccessories = useUserSaveStore((s: UserSaveStore) => s.blackOrb.elementAccessories);
+
+  const autoMultipliers = useMemo<Record<Element, number>>(() => {
+    const result = { ...DEFAULT_MULTIPLIERS };
+    for (const src of damageSources) {
+      if (src.active) {
+        result[src.element] = (result[src.element] ?? 1) + src.damagePercent;
+      }
+    }
+    for (const acc of elementAccessories) {
+      if (acc.owned) {
+        result[acc.element] = (result[acc.element] ?? 1) + acc.bonusValue;
+      }
+    }
+    return result;
+  }, [damageSources, elementAccessories]);
+
   const isAuto = elementalMultipliersMode === 'auto';
 
   function handleModeToggle(manual: boolean) {
@@ -42,6 +63,8 @@ export default function SkillsPage() {
   function handleElementChange(element: Element, value: number) {
     setElementalMultipliers({ ...elementalMultipliers, [element]: value });
   }
+
+  const displayMultipliers = isAuto ? autoMultipliers : elementalMultipliers;
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -68,7 +91,7 @@ export default function SkillsPage() {
           <div className="px-6 py-5">
             {isAuto && (
               <p className="mb-4 text-xs text-gray-500 dark:text-gray-400">
-                Values are set to default (×1.0). Enable manual mode to enter custom multipliers.
+                Values are automatically calculated from your Black Orb configuration. Enable manual mode to enter custom multipliers.
               </p>
             )}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
@@ -76,7 +99,7 @@ export default function SkillsPage() {
                 <div key={element} className="flex flex-col gap-2">
                   <span className={`text-sm font-medium ${ELEMENT_COLORS[element]}`}>{element}</span>
                   <NumberInput
-                    value={elementalMultipliers[element]}
+                    value={displayMultipliers[element]}
                     onChange={(value) => handleElementChange(element, value)}
                     min={0}
                     step={0.01}
