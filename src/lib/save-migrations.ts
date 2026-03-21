@@ -11,7 +11,7 @@
  * only needs to handle one step.
  */
 
-export const CURRENT_SAVE_VERSION = 1;
+export const CURRENT_SAVE_VERSION = 2;
 
 type PartialSave = Record<string, unknown>;
 type MigrationFn = (state: PartialSave) => PartialSave;
@@ -21,9 +21,15 @@ type MigrationFn = (state: PartialSave) => PartialSave;
  * migrations[2] transforms a v1 save into a v2 save, and so on.
  */
 const migrations: Record<number, MigrationFn> = {
-  // No migrations yet — version 1 is the initial release.
-  // Future example:
-  // 2: (state) => ({ ...state, newField: defaultValue }),
+  // v1 → v2: add ampMode and manualAmp fields to blackOrb state.
+  2: (state) => ({
+    ...state,
+    blackOrb: {
+      ...(state.blackOrb as Record<string, unknown>),
+      ampMode: 'auto',
+      manualAmp: {},
+    },
+  }),
 };
 
 /**
