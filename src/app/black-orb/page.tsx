@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 
 import { NumberInput } from '@/components/NumberInput';
+import { Toggle } from '@/components/Toggle/Toggle';
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
 import type { Element } from '@/types/companions';
 
@@ -61,8 +62,11 @@ export default function BlackOrbPage() {
   const toggleDamageSource = useUserSaveStore((s: UserSaveStore) => s.toggleDamageSource);
   const setAccessoryOwned = useUserSaveStore((s: UserSaveStore) => s.setAccessoryOwned);
   const setAccessoryLevel = useUserSaveStore((s: UserSaveStore) => s.setAccessoryLevel);
+  const setAmpMode = useUserSaveStore((s: UserSaveStore) => s.setAmpMode);
+  const setManualAmpValue = useUserSaveStore((s: UserSaveStore) => s.setManualAmpValue);
 
-  const { damageSources, elementAccessories } = blackOrb;
+  const { damageSources, elementAccessories, ampMode, manualAmp } = blackOrb;
+  const isAuto = ampMode === 'auto';
 
   /** Set of elements that have a matching companion — these receive a 2× AMP multiplier */
   const companionElements = useMemo(
@@ -72,7 +76,7 @@ export default function BlackOrbPage() {
 
   /** Per-element AMP totals computed from active sources + owned accessories.
    *  Elements with a matching companion receive a 2× multiplier. */
-  const elementalAmp = useMemo(() => {
+  const autoElementalAmp = useMemo(() => {
     const result: Record<Element, number> = {
       Fire: 0,
       Water: 0,
@@ -101,6 +105,29 @@ export default function BlackOrbPage() {
 
     return result;
   }, [damageSources, elementAccessories, companionElements]);
+
+  /** Effective per-element AMP: auto-calculated or manually overridden */
+  const elementalAmp = useMemo<Record<Element, number>>(() => {
+    if (isAuto) return autoElementalAmp;
+    return {
+      Fire: manualAmp.Fire ?? 0,
+      Water: manualAmp.Water ?? 0,
+      Wind: manualAmp.Wind ?? 0,
+      Earth: manualAmp.Earth ?? 0,
+      Lightning: manualAmp.Lightning ?? 0,
+    };
+  }, [isAuto, autoElementalAmp, manualAmp]);
+
+  function handleAmpModeToggle(manual: boolean) {
+    const nextMode = manual ? 'manual' : 'auto';
+    setAmpMode(nextMode);
+    // When switching to manual, initialise with current auto values
+    if (manual) {
+      for (const element of ELEMENTS) {
+        setManualAmpValue(element, autoElementalAmp[element]);
+      }
+    }
+  }
 
   const totalAmp = useMemo(
     () => Object.values(elementalAmp).reduce((sum, v) => sum + v, 0),
@@ -165,9 +192,24 @@ export default function BlackOrbPage() {
 
         {/* Per-element AMP breakdown */}
         <section aria-labelledby="elemental-amp-heading">
-          <h2 id="elemental-amp-heading" className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
-            Elemental AMP
-          </h2>
+          <div className="flex items-center justify-between mb-3">
+            <h2 id="elemental-amp-heading" className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+              Elemental AMP
+            </h2>
+            <Toggle
+              id="amp-mode-toggle"
+              checked={!isAuto}
+              onCheckedChange={handleAmpModeToggle}
+              label={isAuto ? 'Auto' : 'Manual'}
+              size="sm"
+              aria-label="Toggle elemental AMP input mode"
+            />
+          </div>
+          {!isAuto && (
+            <p className="mb-3 text-xs text-gray-500 dark:text-gray-400">
+              Enter AMP values directly. These override the auto-calculated totals from your sources and accessories.
+            </p>
+          )}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
             {ELEMENTS.map((element) => {
               const amp = elementalAmp[element];
@@ -182,13 +224,27 @@ export default function BlackOrbPage() {
                   <p className={`mt-1 text-xs font-medium ${amp > 0 ? colors.text : 'text-gray-400 dark:text-gray-500'}`}>
                     {element}
                   </p>
-                  <p className={`mt-1 text-lg font-bold tabular-nums ${amp > 0 ? colors.text : 'text-gray-300 dark:text-gray-600'}`}>
-                    {amp > 0 ? formatPercent(amp) : '—'}
-                  </p>
-                  {isMatching && (
-                    <p className="mt-1 text-xs font-semibold text-purple-600 dark:text-purple-400">
-                      2× match
-                    </p>
+                  {isAuto ? (
+                    <>
+                      <p className={`mt-1 text-lg font-bold tabular-nums ${amp > 0 ? colors.text : 'text-gray-300 dark:text-gray-600'}`}>
+                        {amp > 0 ? formatPercent(amp) : '—'}
+                      </p>
+                      {isMatching && (
+                        <p className="mt-1 text-xs font-semibold text-purple-600 dark:text-purple-400">
+                          2× match
+                        </p>
+                      )}
+                    </>
+                  ) : (
+                    <div className="mt-2">
+                      <NumberInput
+                        value={manualAmp[element] ?? 0}
+                        onChange={(value) => setManualAmpValue(element, value)}
+                        min={0}
+                        step={0.01}
+                        ariaLabel={`${element} AMP override`}
+                      />
+                    </div>
                   )}
                 </div>
               );

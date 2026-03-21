@@ -54,6 +54,12 @@ export interface AmpCalculation {
 }
 
 /**
+ * Whether the Black Orb AMP values are auto-calculated from configured sources
+ * and accessories, or manually overridden by the player.
+ */
+export type BlackOrbAmpMode = 'auto' | 'manual';
+
+/**
  * Full black orb state: elemental configuration and computed AMP output.
  * Source: BLACK ORB sheet.
  */
@@ -64,6 +70,10 @@ export interface BlackOrbState {
   elementAccessories: ElementAccessory[];
   /** Computed AMP values derived from active sources and owned accessories */
   ampCalculation: AmpCalculation;
+  /** Whether AMP values are auto-calculated or manually overridden */
+  ampMode: BlackOrbAmpMode;
+  /** Manual per-element AMP overrides (used when ampMode === 'manual') */
+  manualAmp: Partial<Record<Element, number>>;
 }
 
 /**

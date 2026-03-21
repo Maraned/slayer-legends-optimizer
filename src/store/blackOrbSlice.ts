@@ -1,7 +1,8 @@
 import type { StateCreator } from 'zustand';
 
 import blackOrbData from '@/data/black-orb-maths-data.json';
-import type { BlackOrbState } from '@/types/black-orb';
+import type { BlackOrbAmpMode, BlackOrbState } from '@/types/black-orb';
+import type { Element } from '@/types/companions';
 
 export interface BlackOrbActions {
   /** Replace the entire black orb state */
@@ -12,6 +13,10 @@ export interface BlackOrbActions {
   setAccessoryOwned: (name: string, owned: boolean) => void;
   /** Update the level and bonus value of an element accessory by name */
   setAccessoryLevel: (name: string, level: number, bonusValue: number) => void;
+  /** Update the AMP calculation mode (auto or manual) */
+  setAmpMode: (mode: BlackOrbAmpMode) => void;
+  /** Update a single element's manual AMP override value */
+  setManualAmpValue: (element: Element, value: number) => void;
 }
 
 export type BlackOrbSlice = { blackOrb: BlackOrbState } & BlackOrbActions;
@@ -23,6 +28,8 @@ export const DEFAULT_BLACK_ORB: BlackOrbState = {
     elementalBonuses: {},
     totalAmp: 0,
   },
+  ampMode: 'auto',
+  manualAmp: {},
 };
 
 export const createBlackOrbSlice: StateCreator<BlackOrbSlice, [], [], BlackOrbSlice> = (set) => ({
@@ -57,6 +64,19 @@ export const createBlackOrbSlice: StateCreator<BlackOrbSlice, [], [], BlackOrbSl
         elementAccessories: state.blackOrb.elementAccessories.map((acc) =>
           acc.name === name ? { ...acc, level, bonusValue } : acc,
         ),
+      },
+    })),
+
+  setAmpMode: (ampMode) =>
+    set((state) => ({
+      blackOrb: { ...state.blackOrb, ampMode },
+    })),
+
+  setManualAmpValue: (element, value) =>
+    set((state) => ({
+      blackOrb: {
+        ...state.blackOrb,
+        manualAmp: { ...state.blackOrb.manualAmp, [element]: value },
       },
     })),
 });

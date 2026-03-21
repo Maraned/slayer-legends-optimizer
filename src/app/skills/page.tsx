@@ -54,10 +54,17 @@ export default function SkillsPage() {
     }
   }, [slots.length, setSlots]);
 
-  const damageSources = useUserSaveStore((s: UserSaveStore) => s.blackOrb.damageSources);
-  const elementAccessories = useUserSaveStore((s: UserSaveStore) => s.blackOrb.elementAccessories);
+  const blackOrb = useUserSaveStore((s: UserSaveStore) => s.blackOrb);
+  const { damageSources, elementAccessories, ampMode: blackOrbAmpMode, manualAmp: blackOrbManualAmp } = blackOrb;
 
   const autoMultipliers = useMemo<Record<Element, number>>(() => {
+    if (blackOrbAmpMode === 'manual') {
+      const result = { ...DEFAULT_MULTIPLIERS };
+      for (const element of ELEMENTS) {
+        result[element] = 1 + (blackOrbManualAmp[element] ?? 0);
+      }
+      return result;
+    }
     const result = { ...DEFAULT_MULTIPLIERS };
     for (const src of damageSources) {
       if (src.active) {
@@ -70,7 +77,7 @@ export default function SkillsPage() {
       }
     }
     return result;
-  }, [damageSources, elementAccessories]);
+  }, [blackOrbAmpMode, blackOrbManualAmp, damageSources, elementAccessories]);
 
   const isAuto = elementalMultipliersMode === 'auto';
 
