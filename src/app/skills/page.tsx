@@ -5,6 +5,7 @@ import { useEffect, useMemo } from 'react';
 import { NumberInput } from '@/components/NumberInput';
 import { Toggle } from '@/components/Toggle/Toggle';
 import { CritDmgDisplay } from '@/components/CritDmgDisplay/CritDmgDisplay';
+import { ProficiencyInput } from '@/components/ProficiencyInput';
 import { SkillSlotList } from '@/components/SkillSlotList/SkillSlotList';
 import { useSkillsStore, type SkillsStore } from '@/store/useSkillsStore';
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
@@ -141,6 +142,15 @@ export default function SkillsPage() {
         </div>
 
         <CritDmgDisplay />
+
+        <div className="bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+          <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+            <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Proficiency</h2>
+          </div>
+          <div className="px-6 py-5">
+            <ProficiencyInput />
+          </div>
+        </div>
       </div>
     </div>
   );
