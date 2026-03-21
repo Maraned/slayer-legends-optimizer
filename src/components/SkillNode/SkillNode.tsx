@@ -76,7 +76,14 @@ export function SkillNode({ node, onToggle, disabled = false, className = '' }: 
       <span className="text-xs text-gray-500 dark:text-gray-400">
         {nodeData.effectDescription}
         {nodeData.effectValue !== 0 && (
-          <span className="ml-1 font-semibold text-gray-700 dark:text-gray-300">
+          <span
+            className={[
+              'ml-1 font-semibold',
+              unlocked
+                ? 'text-blue-600 dark:text-blue-400'
+                : 'text-gray-700 dark:text-gray-300',
+            ].join(' ')}
+          >
             +{nodeData.effectValue}
           </span>
         )}
