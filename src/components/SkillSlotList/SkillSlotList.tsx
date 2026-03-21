@@ -1,0 +1,46 @@
+'use client';
+
+import { Select } from '@/components/Select/Select';
+import { useSkillsStore, type SkillsStore } from '@/store/useSkillsStore';
+import type { CompanionName } from '@/types/companions';
+import type { SkillSlot } from '@/types/skills';
+
+const COMPANION_NAMES: CompanionName[] = ['Ellie', 'Zeke', 'Miho', 'Luna'];
+
+const COMPANION_OPTIONS = [
+  { value: '', label: 'None' },
+  ...COMPANION_NAMES.map((name) => ({ value: name, label: name })),
+];
+
+export interface SkillSlotListProps {
+  slots: SkillSlot[];
+}
+
+export function SkillSlotList({ slots }: SkillSlotListProps) {
+  const setSlot = useSkillsStore((s: SkillsStore) => s.setSlot);
+
+  function handleCompanionChange(index: number, value: string) {
+    const companion = value === '' ? null : (value as CompanionName);
+    setSlot(index, { ...slots[index], companionName: companion });
+  }
+
+  return (
+    <div className="divide-y divide-gray-100 dark:divide-gray-800">
+      {slots.map((slot, index) => (
+        <div key={index} className="flex items-center gap-4 px-6 py-4">
+          <span className="w-16 text-sm font-medium text-gray-500 dark:text-gray-400 shrink-0">
+            Slot {index + 1}
+          </span>
+          <div className="w-48">
+            <Select
+              value={slot.companionName ?? ''}
+              onValueChange={(value) => handleCompanionChange(index, value)}
+              options={COMPANION_OPTIONS}
+              aria-label={`Companion for skill slot ${index + 1}`}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
