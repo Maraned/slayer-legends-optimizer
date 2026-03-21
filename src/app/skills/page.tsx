@@ -1,15 +1,27 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { NumberInput } from '@/components/NumberInput';
 import { Toggle } from '@/components/Toggle/Toggle';
 import { CritDmgDisplay } from '@/components/CritDmgDisplay/CritDmgDisplay';
+import { SkillSlotList } from '@/components/SkillSlotList/SkillSlotList';
 import { useSkillsStore, type SkillsStore } from '@/store/useSkillsStore';
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
 import type { Element } from '@/types/companions';
+import type { SkillSlot } from '@/types/skills';
 
 const ELEMENTS: Element[] = ['Fire', 'Water', 'Wind', 'Earth', 'Lightning'];
+
+const NUM_SKILL_SLOTS = 4;
+
+const DEFAULT_SLOT: SkillSlot = {
+  skillId: '',
+  level: 1,
+  companionName: null,
+  partnerBonusActive: false,
+  modifiedValue: 1,
+};
 
 const ELEMENT_COLORS: Record<Element, string> = {
   Fire: 'text-red-500',
@@ -28,10 +40,18 @@ const DEFAULT_MULTIPLIERS: Record<Element, number> = {
 };
 
 export default function SkillsPage() {
+  const slots = useSkillsStore((s: SkillsStore) => s.slots);
+  const setSlots = useSkillsStore((s: SkillsStore) => s.setSlots);
   const elementalMultipliers = useSkillsStore((s: SkillsStore) => s.elementalMultipliers);
   const elementalMultipliersMode = useSkillsStore((s: SkillsStore) => s.elementalMultipliersMode);
   const setElementalMultipliers = useSkillsStore((s: SkillsStore) => s.setElementalMultipliers);
   const setElementalMultipliersMode = useSkillsStore((s: SkillsStore) => s.setElementalMultipliersMode);
+
+  useEffect(() => {
+    if (slots.length === 0) {
+      setSlots(Array.from({ length: NUM_SKILL_SLOTS }, () => ({ ...DEFAULT_SLOT })));
+    }
+  }, [slots.length, setSlots]);
 
   const damageSources = useUserSaveStore((s: UserSaveStore) => s.blackOrb.damageSources);
   const elementAccessories = useUserSaveStore((s: UserSaveStore) => s.blackOrb.elementAccessories);
@@ -77,6 +97,13 @@ export default function SkillsPage() {
       </header>
 
       <div className="max-w-5xl mx-auto px-6 py-8 space-y-6">
+        <div className="bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+          <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+            <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Skill Slots</h2>
+          </div>
+          <SkillSlotList slots={slots} />
+        </div>
+
         <div className="bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700">
           <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
             <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Elemental Inputs</h2>
