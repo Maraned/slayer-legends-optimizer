@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
+import { MemoryNodeTree } from '@/components/MemoryNodeTree';
 import { useMemoryTreeSlice } from '@/store/useMemoryTreeSlice';
 import type { TOMNode, TOMNodeCategory, TOMResourceType } from '@/types/tom';
 import tomData from '@/data/tom-data.json';
@@ -51,9 +52,24 @@ function isPercentEffect(effectType: string): boolean {
   return ['Crit %', 'Crit DMG', 'Dodge', 'Accuracy', 'Extra EXP', 'Monster Gold', 'HP Recovery', 'Death Strike %', 'Cooldown Reduction'].includes(effectType);
 }
 
+type PageTab = 'summary' | 'tree';
+type TreeCategory = TOMNodeCategory;
+
+const TREE_CATEGORIES: TOMNodeCategory[] = ['Combat', 'Defense', 'Support', 'Utility', 'Passive'];
+
+const CATEGORY_TAB_ACTIVE: Record<TOMNodeCategory, string> = {
+  Combat: 'border-red-500 text-red-400 bg-gray-900 dark:bg-gray-900',
+  Defense: 'border-blue-500 text-blue-400 bg-gray-900 dark:bg-gray-900',
+  Support: 'border-green-500 text-green-400 bg-gray-900 dark:bg-gray-900',
+  Utility: 'border-yellow-500 text-yellow-400 bg-gray-900 dark:bg-gray-900',
+  Passive: 'border-purple-500 text-purple-400 bg-gray-900 dark:bg-gray-900',
+};
+
 export default function TreeOfMemoryPage() {
-  const { nodeLevels } = useMemoryTreeSlice();
+  const { nodeLevels, setNodeLevel } = useMemoryTreeSlice();
   const nodes = tomData.nodes as TOMNode[];
+  const [pageTab, setPageTab] = useState<PageTab>('summary');
+  const [treeCategory, setTreeCategory] = useState<TreeCategory>('Combat');
 
   const summary = useMemo(() => {
     const totalNodes = nodes.length;
@@ -142,6 +158,20 @@ export default function TreeOfMemoryPage() {
     });
   }, [nodes, nodeLevels]);
 
+  const categoryNodes = useMemo(
+    () => nodes.filter((n) => n.category === treeCategory),
+    [nodes, treeCategory],
+  );
+
+  function handleUpgrade(nodeId: string) {
+    const node = nodes.find((n) => n.id === nodeId);
+    if (!node) return;
+    const current = nodeLevels[nodeId] ?? 0;
+    if (current < node.maxLevel) {
+      setNodeLevel(nodeId, current + 1);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <header className="bg-white border-b border-gray-200 px-6 py-8 dark:bg-gray-900 dark:border-gray-700">
@@ -153,7 +183,61 @@ export default function TreeOfMemoryPage() {
         </div>
       </header>
 
+      {/* Page tab bar */}
+      <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-6">
+        <div className="max-w-5xl mx-auto flex gap-0">
+          {(['summary', 'tree'] as PageTab[]).map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setPageTab(tab)}
+              className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors cursor-pointer capitalize ${
+                pageTab === tab
+                  ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                  : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+              }`}
+            >
+              {tab === 'summary' ? 'Summary' : 'Node Tree'}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="max-w-5xl mx-auto px-6 py-8 space-y-6">
+        {/* Node Tree tab */}
+        {pageTab === 'tree' && (
+          <section aria-labelledby="node-tree-heading">
+            <div className="flex items-center justify-between mb-3">
+              <h2 id="node-tree-heading" className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                Node Tree
+              </h2>
+              {/* Category tabs */}
+              <div className="flex gap-1">
+                {TREE_CATEGORIES.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setTreeCategory(cat)}
+                    className={`px-3 py-1 text-xs font-medium rounded-full border transition-colors cursor-pointer ${
+                      treeCategory === cat
+                        ? CATEGORY_TAB_ACTIVE[cat]
+                        : 'border-gray-700 text-gray-400 hover:text-gray-200 dark:border-gray-700'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <MemoryNodeTree
+              nodes={categoryNodes}
+              nodeLevels={nodeLevels}
+              onUpgrade={handleUpgrade}
+            />
+          </section>
+        )}
+
+        {/* Summary tab */}
+        {pageTab === 'summary' && <>
+
         {/* Overall Progress */}
         <section aria-labelledby="summary-heading">
           <h2 id="summary-heading" className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
@@ -375,6 +459,8 @@ export default function TreeOfMemoryPage() {
             </table>
           </div>
         </section>
+
+        </>}
       </div>
     </div>
   );
