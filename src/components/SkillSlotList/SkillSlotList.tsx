@@ -1,6 +1,7 @@
 'use client';
 
 import { Select } from '@/components/Select/Select';
+import { Toggle } from '@/components/Toggle/Toggle';
 import { useSkillsStore, type SkillsStore } from '@/store/useSkillsStore';
 import type { CompanionName } from '@/types/companions';
 import type { SkillSlot } from '@/types/skills';
@@ -21,7 +22,15 @@ export function SkillSlotList({ slots }: SkillSlotListProps) {
 
   function handleCompanionChange(index: number, value: string) {
     const companion = value === '' ? null : (value as CompanionName);
-    setSlot(index, { ...slots[index], companionName: companion });
+    setSlot(index, {
+      ...slots[index],
+      companionName: companion,
+      partnerBonusActive: companion === null ? false : slots[index].partnerBonusActive,
+    });
+  }
+
+  function handlePartnerBonusChange(index: number, checked: boolean) {
+    setSlot(index, { ...slots[index], partnerBonusActive: checked });
   }
 
   return (
@@ -39,6 +48,15 @@ export function SkillSlotList({ slots }: SkillSlotListProps) {
               aria-label={`Companion for skill slot ${index + 1}`}
             />
           </div>
+          <Toggle
+            id={`partner-bonus-toggle-${index}`}
+            checked={slot.partnerBonusActive}
+            onCheckedChange={(checked) => handlePartnerBonusChange(index, checked)}
+            disabled={!slot.companionName}
+            label="Partner Bonus"
+            size="sm"
+            aria-label={`Partner bonus for skill slot ${index + 1}`}
+          />
         </div>
       ))}
     </div>
