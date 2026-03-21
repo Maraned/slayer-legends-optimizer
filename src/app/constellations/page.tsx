@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 
 import { ConstellationNode } from '@/components/ConstellationNode';
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
-import type { ConstellationBuffType, ZodiacConstellation } from '@/types/constellation';
+import type { ConstellationBuffType, FarmingMode, ZodiacConstellation } from '@/types/constellation';
 
 const BUFF_ORDER: ConstellationBuffType[] = [
   'ATK',
@@ -21,6 +21,33 @@ const BUFF_ORDER: ConstellationBuffType[] = [
   'Accuracy',
   'HP Recovery',
 ];
+
+const FARMING_MODES: FarmingMode[] = ['EXP', 'Gold', 'Boss', 'PvP', 'Idle'];
+
+const FARMING_MODE_LABELS: Record<FarmingMode, string> = {
+  EXP: 'EXP',
+  Gold: 'Gold',
+  Boss: 'Boss',
+  PvP: 'PvP',
+  Idle: 'Idle',
+};
+
+const FARMING_MODE_COLORS: Record<FarmingMode, string> = {
+  EXP: 'text-blue-600 dark:text-blue-400',
+  Gold: 'text-yellow-600 dark:text-yellow-400',
+  Boss: 'text-red-600 dark:text-red-400',
+  PvP: 'text-purple-600 dark:text-purple-400',
+  Idle: 'text-green-600 dark:text-green-400',
+};
+
+/** Maps each farming mode to the constellation buff types relevant to it */
+const FARMING_MODE_BUFFS: Record<FarmingMode, ConstellationBuffType[]> = {
+  EXP: ['Extra EXP'],
+  Gold: ['Monster Gold'],
+  Boss: ['ATK', 'Crit %', 'Crit DMG', 'Death Strike', 'Death Strike %', 'All Stats'],
+  PvP: ['Accuracy', 'Dodge'],
+  Idle: ['HP', 'DEF', 'HP Recovery'],
+};
 
 const ZODIAC_SYMBOLS: Record<ZodiacConstellation, string> = {
   Aries: '♈',
@@ -78,6 +105,29 @@ export default function ConstellationsPage() {
         (sum, c) => sum + c.nodes.reduce((s, n) => s + n.maxLevel * n.starCost, 0),
         0,
       ),
+    [constellations],
+  );
+
+  const farmingModeCosts = useMemo(
+    () =>
+      FARMING_MODES.map((mode) => {
+        const relevantBuffs = new Set(FARMING_MODE_BUFFS[mode]);
+        let starsNeeded = 0;
+        let starsSpent = 0;
+        let nodeCount = 0;
+
+        for (const c of constellations) {
+          for (const node of c.nodes) {
+            if (relevantBuffs.has(node.buffType)) {
+              nodeCount += 1;
+              starsNeeded += node.maxLevel * node.starCost;
+              starsSpent += node.level * node.starCost;
+            }
+          }
+        }
+
+        return { mode, nodeCount, starsNeeded, starsSpent };
+      }),
     [constellations],
   );
 
@@ -304,6 +354,76 @@ export default function ConstellationsPage() {
                     </div>
                   ))
                 )}
+              </div>
+            </section>
+
+            {/* Stars by farming mode */}
+            <section aria-labelledby="farming-mode-cost-heading">
+              <h2 id="farming-mode-cost-heading" className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
+                Stars by Farming Mode
+              </h2>
+              <div className="bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700 overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-200 dark:border-gray-700">
+                      <th className="px-6 py-3 text-left font-semibold text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                        Farming Mode
+                      </th>
+                      <th className="px-4 py-3 text-center font-semibold text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                        Nodes
+                      </th>
+                      <th className="px-4 py-3 text-right font-semibold text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                        Stars
+                      </th>
+                      <th className="px-4 py-3 text-left font-semibold text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                        Progress
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                    {farmingModeCosts.map(({ mode, nodeCount, starsNeeded, starsSpent }) => {
+                      const starsRemaining = starsNeeded - starsSpent;
+                      const progressPct = starsNeeded > 0 ? (starsSpent / starsNeeded) * 100 : 0;
+                      return (
+                        <tr key={mode}>
+                          <td className="px-6 py-4">
+                            <span className={`font-medium ${FARMING_MODE_COLORS[mode]}`}>
+                              {FARMING_MODE_LABELS[mode]}
+                            </span>
+                          </td>
+                          <td className="px-4 py-4 text-center text-gray-600 dark:text-gray-400">
+                            {nodeCount}
+                          </td>
+                          <td className="px-4 py-4 text-right">
+                            <div className="flex flex-col items-end gap-0.5">
+                              <span className="font-semibold tabular-nums text-gray-900 dark:text-gray-100">
+                                {starsSpent}/{starsNeeded} ★
+                              </span>
+                              {starsRemaining > 0 && starsSpent > 0 && (
+                                <span className="text-xs tabular-nums text-orange-500 dark:text-orange-400">
+                                  {starsRemaining} left
+                                </span>
+                              )}
+                              {starsRemaining === 0 && starsNeeded > 0 && (
+                                <span className="text-xs text-green-600 dark:text-green-400">
+                                  done
+                                </span>
+                              )}
+                            </div>
+                          </td>
+                          <td className="px-4 py-4">
+                            <div className="w-24 h-1.5 rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden">
+                              <div
+                                className="h-full rounded-full bg-yellow-400 transition-all"
+                                style={{ width: `${progressPct}%` }}
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
             </section>
 
