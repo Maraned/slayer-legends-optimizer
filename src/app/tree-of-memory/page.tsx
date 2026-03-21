@@ -159,7 +159,7 @@ export default function TreeOfMemoryPage() {
           <h2 id="summary-heading" className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
             Summary
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="bg-white rounded-lg border border-gray-200 px-6 py-5 dark:bg-gray-900 dark:border-gray-700">
               <p className="text-sm text-gray-500 dark:text-gray-400">Nodes Upgraded</p>
               <p className="mt-1 text-2xl font-bold text-gray-900 dark:text-gray-100">
@@ -195,6 +195,16 @@ export default function TreeOfMemoryPage() {
               </p>
               <p className="mt-3 text-xs text-gray-400 dark:text-gray-500">
                 {summary.totalNodes - summary.upgradedNodes} nodes remaining
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg border border-gray-200 px-6 py-5 dark:bg-gray-900 dark:border-gray-700">
+              <p className="text-sm text-gray-500 dark:text-gray-400">Bonus ATK</p>
+              <p className="mt-1 text-2xl font-bold text-green-600 dark:text-green-400">
+                +{formatNumber(summary.statBonuses['ATK'] ?? 0)}
+              </p>
+              <p className="mt-3 text-xs text-gray-400 dark:text-gray-500">
+                from memory tree
               </p>
             </div>
           </div>
