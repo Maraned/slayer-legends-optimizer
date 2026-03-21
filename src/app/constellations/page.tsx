@@ -136,6 +136,7 @@ export default function ConstellationsPage() {
                   const totalMaxLevel = c.nodes.reduce((sum, n) => sum + n.maxLevel, 0);
                   const nodesMaxed = c.nodes.filter((n) => n.level === n.maxLevel).length;
                   const starsNeeded = c.nodes.reduce((s, n) => s + n.maxLevel * n.starCost, 0);
+                  const starsToComplete = starsNeeded - c.starsSpent;
                   const isSelected = selectedZodiac === c.zodiac;
                   const progressPct = totalMaxLevel > 0 ? (totalLevel / totalMaxLevel) * 100 : 0;
 
@@ -181,6 +182,11 @@ export default function ConstellationsPage() {
                           Lv. {totalLevel}/{totalMaxLevel}
                           {nodesMaxed > 0 && ` · ${nodesMaxed} maxed`}
                         </p>
+                        {starsToComplete > 0 && (
+                          <p className="text-xs text-amber-500 dark:text-amber-400">
+                            {starsToComplete} ★ to max
+                          </p>
+                        )}
                       </div>
                       {/* Progress bar */}
                       <div className="h-1 rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden">
@@ -312,6 +318,7 @@ export default function ConstellationsPage() {
                   const totalMaxLevel = c.nodes.reduce((sum, n) => sum + n.maxLevel, 0);
                   const starsNeeded = c.nodes.reduce((s, n) => s + n.maxLevel * n.starCost, 0);
                   const starsProgress = starsNeeded > 0 ? (c.starsSpent / starsNeeded) * 100 : 0;
+                  const starsToComplete = starsNeeded - c.starsSpent;
                   return (
                     <div key={c.zodiac} className="flex items-center gap-4 px-6 py-3">
                       <span className="text-lg shrink-0" aria-hidden="true">
@@ -333,16 +340,23 @@ export default function ConstellationsPage() {
                           />
                         </div>
                       </div>
-                      <span
-                        className={`shrink-0 text-sm font-semibold tabular-nums ${
-                          c.starsSpent > 0
-                            ? 'text-yellow-600 dark:text-yellow-400'
-                            : 'text-gray-300 dark:text-gray-600'
-                        }`}
-                        aria-label={`${c.starsSpent} of ${starsNeeded} stars crafted`}
-                      >
-                        {c.starsSpent}/{starsNeeded} ★
-                      </span>
+                      <div className="shrink-0 text-right">
+                        <span
+                          className={`block text-sm font-semibold tabular-nums ${
+                            c.starsSpent > 0
+                              ? 'text-yellow-600 dark:text-yellow-400'
+                              : 'text-gray-300 dark:text-gray-600'
+                          }`}
+                          aria-label={`${c.starsSpent} of ${starsNeeded} stars crafted`}
+                        >
+                          {c.starsSpent}/{starsNeeded} ★
+                        </span>
+                        {starsToComplete > 0 && (
+                          <span className="block text-xs tabular-nums text-amber-500 dark:text-amber-400">
+                            {starsToComplete} ★ left
+                          </span>
+                        )}
+                      </div>
                     </div>
                   );
                 })}

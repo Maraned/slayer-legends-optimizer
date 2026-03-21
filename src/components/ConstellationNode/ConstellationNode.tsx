@@ -55,6 +55,7 @@ export function ConstellationNode({ node, onLevelChange, className = '' }: Const
   const isLocked = level === 0;
   const isMaxed = level === maxLevel;
   const totalValue = valuePerLevel * level;
+  const starsToMax = (maxLevel - level) * starCost;
 
   function handleIncrement() {
     if (!isMaxed) onLevelChange(id, level + 1);
@@ -78,6 +79,11 @@ export function ConstellationNode({ node, onLevelChange, className = '' }: Const
       <p className="text-xs opacity-70">
         Level {level}/{maxLevel} &middot; {starCost} ★ per level
       </p>
+      {!isMaxed && (
+        <p className="text-xs text-amber-300">
+          {starsToMax} ★ to max
+        </p>
+      )}
     </div>
   );
 
@@ -135,7 +141,16 @@ export function ConstellationNode({ node, onLevelChange, className = '' }: Const
                   : 'text-[var(--color-foreground)]'
             }`}
           >
-            {isMaxed ? 'MAX' : `${level}/${maxLevel}`}
+            {isMaxed ? (
+              'MAX'
+            ) : (
+              <span className="flex items-center gap-1">
+                <span>{level}/{maxLevel}</span>
+                <span className="text-amber-500 dark:text-amber-400">
+                  ({starsToMax}★)
+                </span>
+              </span>
+            )}
           </span>
 
           <div className="flex items-center gap-0.5">
