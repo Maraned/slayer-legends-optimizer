@@ -6,6 +6,8 @@ import { NumberInput } from '@/components/NumberInput';
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
 import type { Element } from '@/types/companions';
 
+const ELEMENT_MULTIPLIER = 2;
+
 const ELEMENTS: Element[] = ['Fire', 'Water', 'Wind', 'Earth', 'Lightning'];
 
 const ELEMENT_COLORS: Record<Element, { text: string; bg: string; border: string; badge: string }> = {
@@ -55,13 +57,21 @@ function formatPercent(value: number): string {
 
 export default function BlackOrbPage() {
   const blackOrb = useUserSaveStore((s: UserSaveStore) => s.blackOrb);
+  const companions = useUserSaveStore((s: UserSaveStore) => s.companions);
   const toggleDamageSource = useUserSaveStore((s: UserSaveStore) => s.toggleDamageSource);
   const setAccessoryOwned = useUserSaveStore((s: UserSaveStore) => s.setAccessoryOwned);
   const setAccessoryLevel = useUserSaveStore((s: UserSaveStore) => s.setAccessoryLevel);
 
   const { damageSources, elementAccessories } = blackOrb;
 
-  /** Per-element AMP totals computed from active sources + owned accessories */
+  /** Set of elements that have a matching companion — these receive a 2× AMP multiplier */
+  const companionElements = useMemo(
+    () => new Set(companions.map((c) => c.element)),
+    [companions],
+  );
+
+  /** Per-element AMP totals computed from active sources + owned accessories.
+   *  Elements with a matching companion receive a 2× multiplier. */
   const elementalAmp = useMemo(() => {
     const result: Record<Element, number> = {
       Fire: 0,
@@ -83,8 +93,14 @@ export default function BlackOrbPage() {
       }
     }
 
+    for (const element of ELEMENTS) {
+      if (companionElements.has(element) && result[element] > 0) {
+        result[element] *= ELEMENT_MULTIPLIER;
+      }
+    }
+
     return result;
-  }, [damageSources, elementAccessories]);
+  }, [damageSources, elementAccessories, companionElements]);
 
   const totalAmp = useMemo(
     () => Object.values(elementalAmp).reduce((sum, v) => sum + v, 0),
@@ -156,6 +172,7 @@ export default function BlackOrbPage() {
             {ELEMENTS.map((element) => {
               const amp = elementalAmp[element];
               const colors = ELEMENT_COLORS[element];
+              const isMatching = companionElements.has(element);
               return (
                 <div
                   key={element}
@@ -168,6 +185,11 @@ export default function BlackOrbPage() {
                   <p className={`mt-1 text-lg font-bold tabular-nums ${amp > 0 ? colors.text : 'text-gray-300 dark:text-gray-600'}`}>
                     {amp > 0 ? formatPercent(amp) : '—'}
                   </p>
+                  {isMatching && (
+                    <p className="mt-1 text-xs font-semibold text-purple-600 dark:text-purple-400">
+                      2× match
+                    </p>
+                  )}
                 </div>
               );
             })}
@@ -181,6 +203,7 @@ export default function BlackOrbPage() {
           const colors = ELEMENT_COLORS[element];
           const activeCount = sources.filter((s) => s.active).length;
           const ownedCount = accessories.filter((a) => a.owned).length;
+          const isMatching = companionElements.has(element);
 
           return (
             <section key={element} aria-labelledby={`${element}-heading`}>
@@ -195,6 +218,11 @@ export default function BlackOrbPage() {
                 <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${colors.badge}`}>
                   {formatPercent(elementalAmp[element])} AMP
                 </span>
+                {isMatching && (
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">
+                    2× companion match
+                  </span>
+                )}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
