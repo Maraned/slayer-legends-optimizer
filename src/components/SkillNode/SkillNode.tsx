@@ -1,5 +1,6 @@
 'use client';
 
+import { Toggle } from '@/components/Toggle/Toggle';
 import type { SkillMasteryNodeState } from '@/types/skills';
 
 export interface SkillNodeProps {
@@ -51,16 +52,27 @@ export function SkillNode({ node, onToggle, disabled = false, className = '' }: 
         .filter(Boolean)
         .join(' ')}
     >
-      <span
-        className={[
-          'font-medium leading-tight',
-          unlocked
-            ? 'text-blue-700 dark:text-blue-300'
-            : 'text-gray-900 dark:text-gray-100',
-        ].join(' ')}
-      >
-        {nodeData.name}
-      </span>
+      <div className="flex items-center justify-between gap-2">
+        <span
+          className={[
+            'font-medium leading-tight',
+            unlocked
+              ? 'text-blue-700 dark:text-blue-300'
+              : 'text-gray-900 dark:text-gray-100',
+          ].join(' ')}
+        >
+          {nodeData.name}
+        </span>
+        <div onClick={(e) => e.stopPropagation()}>
+          <Toggle
+            size="sm"
+            checked={unlocked}
+            onCheckedChange={(checked) => onToggle?.(nodeData.id, checked)}
+            disabled={disabled}
+            aria-label={`Unlock ${nodeData.name}`}
+          />
+        </div>
+      </div>
       <span className="text-xs text-gray-500 dark:text-gray-400">
         {nodeData.effectDescription}
         {nodeData.effectValue !== 0 && (
