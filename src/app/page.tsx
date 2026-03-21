@@ -9,7 +9,8 @@ const SECTION_GROUPS = [
     label: 'Characters',
     items: [
       { label: 'Characters', href: '/characters', description: 'View and manage your characters' },
-      { label: 'Skills', href: '/skills', description: 'Skill trees and mastery' },
+      { label: 'Skills', href: '/skills', description: 'Skill trees and elemental multipliers' },
+      { label: 'Skill Mastery', href: '/skill-mastery', description: 'Mastery node progression across 8 pages' },
       { label: 'Companions', href: '/companions', description: 'Companion management and advancement' },
       { label: 'Familiars', href: '/familiars', description: 'Familiar collection and upgrades' },
       { label: 'Sprites', href: '/sprites', description: 'Character appearance customization' },
