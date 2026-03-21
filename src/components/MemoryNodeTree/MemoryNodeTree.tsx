@@ -212,12 +212,15 @@ interface DetailPanelProps {
   node: TOMNode;
   level: number;
   isUnlockable: boolean;
+  nodeMap: Map<string, TOMNode>;
+  nodeLevels: Record<string, number>;
+  unlockedByIds: string[];
   onUpgrade?: (nodeId: string) => void;
   onLevelChange?: (nodeId: string, level: number) => void;
   onClose: () => void;
 }
 
-function NodeDetailPanel({ node, level, isUnlockable, onUpgrade, onLevelChange, onClose }: DetailPanelProps) {
+function NodeDetailPanel({ node, level, isUnlockable, nodeMap, nodeLevels, unlockedByIds, onUpgrade, onLevelChange, onClose }: DetailPanelProps) {
   const isMaxed = level >= node.maxLevel;
   const isLocked = !isUnlockable && level === 0;
   const nextLevelIndex = level; // 0-based into costs/levels
@@ -252,6 +255,63 @@ function NodeDetailPanel({ node, level, isUnlockable, onUpgrade, onLevelChange, 
           ✕
         </button>
       </div>
+
+      {/* Dependencies */}
+      {(node.dependsOn.length > 0 || unlockedByIds.length > 0) && (
+        <div className="mt-3 space-y-2">
+          {node.dependsOn.length > 0 && (
+            <div>
+              <p className="text-xs text-gray-500 mb-1">Requires</p>
+              <div className="flex flex-wrap gap-1.5">
+                {node.dependsOn.map((depId) => {
+                  const dep = nodeMap.get(depId);
+                  if (!dep) return null;
+                  const depLevel = nodeLevels[depId] ?? 0;
+                  const isDepMet = depLevel > 0;
+                  return (
+                    <span
+                      key={depId}
+                      className={`inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs ${
+                        isDepMet
+                          ? 'border-green-700/40 bg-green-900/20 text-green-400'
+                          : 'border-gray-700 bg-gray-800 text-gray-500'
+                      }`}
+                    >
+                      <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${isDepMet ? 'bg-green-400' : 'bg-gray-600'}`} />
+                      {dep.name}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+          {unlockedByIds.length > 0 && (
+            <div>
+              <p className="text-xs text-gray-500 mb-1">Unlocks</p>
+              <div className="flex flex-wrap gap-1.5">
+                {unlockedByIds.map((childId) => {
+                  const child = nodeMap.get(childId);
+                  if (!child) return null;
+                  const childLevel = nodeLevels[childId] ?? 0;
+                  const isChildUnlocked = childLevel > 0;
+                  return (
+                    <span
+                      key={childId}
+                      className={`inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs ${
+                        isChildUnlocked
+                          ? 'border-yellow-700/40 bg-yellow-900/20 text-yellow-400'
+                          : 'border-gray-700 bg-gray-800 text-gray-400'
+                      }`}
+                    >
+                      {child.name}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Level progress */}
       <div className="mt-3 flex items-center gap-2">
@@ -347,11 +407,29 @@ export function MemoryNodeTree({ nodes, nodeLevels, onUpgrade, onLevelChange }: 
 
   const nodeMap = useMemo(() => new Map(nodes.map((n) => [n.id, n])), [nodes]);
 
+  // Map from node ID → IDs of nodes that depend on it (children in tree)
+  const childrenMap = useMemo(() => {
+    const map = new Map<string, string[]>(nodes.map((n) => [n.id, []]));
+    for (const node of nodes) {
+      for (const dep of node.dependsOn) {
+        if (map.has(dep)) {
+          map.get(dep)!.push(node.id);
+        }
+      }
+    }
+    return map;
+  }, [nodes]);
+
   function isUnlockable(node: TOMNode): boolean {
     return node.dependsOn.every((dep) => (nodeLevels[dep] ?? 0) > 0);
   }
 
   const selectedNode = selectedId ? (nodeMap.get(selectedId) ?? null) : null;
+
+  const selectedUnlockedByIds = useMemo(
+    () => (selectedId ? (childrenMap.get(selectedId) ?? []) : []),
+    [selectedId, childrenMap],
+  );
 
   function handleSelect(id: string) {
     setSelectedId((prev) => (prev === id ? null : id));
@@ -394,12 +472,15 @@ export function MemoryNodeTree({ nodes, nodeLevels, onUpgrade, onLevelChange }: 
               const x2 = tp.x;
               const y2 = tp.y;
               const midY = (y1 + y2) / 2;
+              const isConnected =
+                selectedId !== null && (from === selectedId || to === selectedId);
               return (
                 <path
                   key={`${from}-${to}`}
                   d={`M${x1},${y1} C${x1},${midY} ${x2},${midY} ${x2},${y2}`}
-                  stroke="rgb(55,65,81)"
-                  strokeWidth={1.5}
+                  stroke={isConnected ? 'rgb(96,165,250)' : 'rgb(55,65,81)'}
+                  strokeWidth={isConnected ? 2 : 1.5}
+                  strokeOpacity={isConnected ? 1 : selectedId ? 0.3 : 1}
                   fill="none"
                 />
               );
@@ -439,6 +520,9 @@ export function MemoryNodeTree({ nodes, nodeLevels, onUpgrade, onLevelChange }: 
           node={selectedNode}
           level={nodeLevels[selectedNode.id] ?? 0}
           isUnlockable={isUnlockable(selectedNode)}
+          nodeMap={nodeMap}
+          nodeLevels={nodeLevels}
+          unlockedByIds={selectedUnlockedByIds}
           onUpgrade={onUpgrade}
           onLevelChange={onLevelChange}
           onClose={() => setSelectedId(null)}
