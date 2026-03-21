@@ -137,6 +137,10 @@ export interface SkillMasteryNodeData {
   effectDescription: string;
   /** Numeric value of the effect bonus */
   effectValue: number;
+  /** Mastery points required to unlock this node */
+  cost: number;
+  /** IDs of nodes that must be unlocked before this node can be unlocked */
+  requirements: string[];
 }
 
 /**
