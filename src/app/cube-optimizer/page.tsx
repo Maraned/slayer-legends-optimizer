@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useCallback } from 'react';
 
+import { Checkbox } from '@/components/Checkbox';
 import { NumberInput } from '@/components/NumberInput';
 import { Select } from '@/components/Select/Select';
 import type { SelectOption } from '@/components/Select/Select';
@@ -49,6 +50,7 @@ export default function CubeOptimizerPage() {
   const [weaponCurrentLevel, setWeaponCurrentLevel] = useState(1);
   const [weaponTargetLevel, setWeaponTargetLevel] = useState(1);
   const [calculationResult, setCalculationResult] = useState<CalculationResult | null>(null);
+  const [ownedWeaponIds, setOwnedWeaponIds] = useState<Set<string>>(new Set());
 
   const classId = useCalculatorInputsStore((s: CalculatorInputsStore) => s.classId);
   const classLevel = useCalculatorInputsStore((s: CalculatorInputsStore) => s.classLevel);
@@ -95,6 +97,18 @@ export default function CubeOptimizerPage() {
       totalCubeCost: weaponUpgradeCost + classCubeCost,
     });
   }, [classId, classLevel, selectedWeapon, weaponCurrentLevel, weaponTargetLevel, weaponUpgradeCost]);
+
+  function handleWeaponOwned(weaponId: string, owned: boolean) {
+    setOwnedWeaponIds((prev) => {
+      const next = new Set(prev);
+      if (owned) {
+        next.add(weaponId);
+      } else {
+        next.delete(weaponId);
+      }
+      return next;
+    });
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -271,6 +285,35 @@ export default function CubeOptimizerPage() {
             <ClassSelector />
           </section>
         </div>
+
+        {/* Weapon ownership */}
+        <section
+          aria-labelledby="weapon-ownership-heading"
+          className="bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700"
+        >
+          <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+            <h2
+              id="weapon-ownership-heading"
+              className="text-xs font-semibold text-gray-400 uppercase tracking-wider"
+            >
+              Weapon Ownership
+            </h2>
+            <span className="text-xs text-gray-400 dark:text-gray-500">
+              {ownedWeaponIds.size} / {WEAPONS.length} owned
+            </span>
+          </div>
+          <div className="p-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {WEAPONS.map((weapon) => (
+              <Checkbox
+                key={weapon.id}
+                id={`weapon-owned-${weapon.id}`}
+                label={weapon.name}
+                checked={ownedWeaponIds.has(weapon.id)}
+                onCheckedChange={(checked) => handleWeaponOwned(weapon.id, checked)}
+              />
+            ))}
+          </div>
+        </section>
 
         {/* Calculate button */}
         <div className="flex justify-end">
