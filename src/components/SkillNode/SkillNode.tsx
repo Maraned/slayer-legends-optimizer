@@ -81,6 +81,14 @@ export function SkillNode({ node, onToggle, disabled = false, className = '' }: 
           </span>
         )}
       </span>
+      <span className="text-xs text-amber-600 dark:text-amber-400">
+        Cost: {nodeData.cost} {nodeData.cost === 1 ? 'pt' : 'pts'}
+      </span>
+      {nodeData.requirements.length > 0 && (
+        <span className="text-xs text-gray-400 dark:text-gray-500">
+          Requires: {nodeData.requirements.length} {nodeData.requirements.length === 1 ? 'node' : 'nodes'}
+        </span>
+      )}
     </div>
   );
 }
