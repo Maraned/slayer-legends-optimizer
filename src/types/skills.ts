@@ -69,6 +69,12 @@ export type ElementalMultipliers = Record<Element, number>;
 export type ElementalMultipliersMode = 'auto' | 'manual';
 
 /**
+ * Whether a stat value is auto-calculated from the player's build inputs
+ * or manually overridden by the player.
+ */
+export type StatOverrideMode = 'auto' | 'manual';
+
+/**
  * Player proficiency level and derived bonus.
  * Source: SKILLS sheet, proficiency section.
  */
@@ -92,6 +98,14 @@ export interface SkillsState {
   elementalMultipliersMode: ElementalMultipliersMode;
   /** Player proficiency */
   proficiency: Proficiency;
+  /** Whether Total ATK is auto-calculated or manually overridden */
+  atkMode: StatOverrideMode;
+  /** Manual override value for Total ATK (used when atkMode === 'manual') */
+  manualAtkValue: number;
+  /** Whether Total CRIT DMG is auto-calculated or manually overridden */
+  critDmgMode: StatOverrideMode;
+  /** Manual override value for Total CRIT DMG % (used when critDmgMode === 'manual') */
+  manualCritDmgValue: number;
 }
 
 // ---------------------------------------------------------------------------

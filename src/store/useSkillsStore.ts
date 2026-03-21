@@ -6,6 +6,7 @@ import type {
   Proficiency,
   SkillSlot,
   SkillsState,
+  StatOverrideMode,
 } from '@/types/skills';
 
 // ---------------------------------------------------------------------------
@@ -26,6 +27,10 @@ const DEFAULT_SKILLS_STATE: SkillsState = {
     level: 0,
     bonus: 0,
   },
+  atkMode: 'auto',
+  manualAtkValue: 0,
+  critDmgMode: 'auto',
+  manualCritDmgValue: 0,
 };
 
 // ---------------------------------------------------------------------------
@@ -43,6 +48,14 @@ export interface SkillsActions {
   setElementalMultipliersMode: (mode: ElementalMultipliersMode) => void;
   /** Update the player's proficiency level and bonus */
   setProficiency: (proficiency: Proficiency) => void;
+  /** Update the ATK override mode (auto or manual) */
+  setAtkMode: (mode: StatOverrideMode) => void;
+  /** Update the manual ATK override value */
+  setManualAtkValue: (value: number) => void;
+  /** Update the CRIT DMG override mode (auto or manual) */
+  setCritDmgMode: (mode: StatOverrideMode) => void;
+  /** Update the manual CRIT DMG override value */
+  setManualCritDmgValue: (value: number) => void;
   /** Replace the entire skills state (e.g. on JSON import) */
   setSkills: (skills: SkillsState) => void;
   /** Reset skills state back to defaults */
@@ -72,6 +85,14 @@ export const useSkillsStore = create<SkillsStore>()((set) => ({
   setElementalMultipliersMode: (elementalMultipliersMode) => set({ elementalMultipliersMode }),
 
   setProficiency: (proficiency) => set({ proficiency }),
+
+  setAtkMode: (atkMode) => set({ atkMode }),
+
+  setManualAtkValue: (manualAtkValue) => set({ manualAtkValue }),
+
+  setCritDmgMode: (critDmgMode) => set({ critDmgMode }),
+
+  setManualCritDmgValue: (manualCritDmgValue) => set({ manualCritDmgValue }),
 
   setSkills: (skills) => set({ ...skills }),
 

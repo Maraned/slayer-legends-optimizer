@@ -9,6 +9,9 @@ import {
 } from '@/lib/critDmgCalculator';
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
 import { useCalculatorInputsStore, type CalculatorInputsStore } from '@/store/useCalculatorInputsStore';
+import { useSkillsStore, type SkillsStore } from '@/store/useSkillsStore';
+import { NumberInput } from '@/components/NumberInput';
+import { Toggle } from '@/components/Toggle/Toggle';
 import type { CubeClass, CubeWeapon } from '@/types/cube-optimizer';
 import type { TOMNode } from '@/types/tom';
 import cubeData from '@/data/cube-optimizer-data.json';
@@ -45,6 +48,13 @@ export function CritDmgDisplay() {
 
   const classId = useCalculatorInputsStore((s: CalculatorInputsStore) => s.classId);
   const classLevel = useCalculatorInputsStore((s: CalculatorInputsStore) => s.classLevel);
+
+  const critDmgMode = useSkillsStore((s: SkillsStore) => s.critDmgMode);
+  const manualCritDmgValue = useSkillsStore((s: SkillsStore) => s.manualCritDmgValue);
+  const setCritDmgMode = useSkillsStore((s: SkillsStore) => s.setCritDmgMode);
+  const setManualCritDmgValue = useSkillsStore((s: SkillsStore) => s.setManualCritDmgValue);
+
+  const isAuto = critDmgMode === 'auto';
 
   const breakdown = useMemo<CritDmgBreakdown>(() => {
     const selectedClass = CUBE_CLASSES.find((c) => c.id === classId) ?? CUBE_CLASSES[0];
@@ -91,10 +101,25 @@ export function CritDmgDisplay() {
     ([, value]) => value !== 0,
   );
 
+  function handleModeToggle(manual: boolean) {
+    setCritDmgMode(manual ? 'manual' : 'auto');
+    if (manual && manualCritDmgValue === 0) {
+      setManualCritDmgValue(parseFloat(total.toFixed(3)));
+    }
+  }
+
   return (
     <div className="bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700">
-      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
         <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">CRIT DMG</h2>
+        <Toggle
+          id="crit-dmg-mode-toggle"
+          checked={!isAuto}
+          onCheckedChange={handleModeToggle}
+          label={isAuto ? 'Auto' : 'Manual'}
+          size="sm"
+          aria-label="Toggle CRIT DMG input mode"
+        />
       </div>
       <div className="px-6 py-5">
         <div className="mb-4 rounded-lg bg-purple-50 px-4 py-3 dark:bg-purple-900/20">
@@ -102,32 +127,50 @@ export function CritDmgDisplay() {
             Total CRIT DMG
           </p>
           <p className="text-2xl font-bold text-purple-900 dark:text-purple-200">
-            {formatPct(total)}
+            {isAuto ? formatPct(total) : formatPct(manualCritDmgValue)}
           </p>
         </div>
 
-        {sourceEntries.length > 0 && (
-          <div className="space-y-1">
-            {sourceEntries.map(([source, value]) => (
-              <div
-                key={source}
-                className="flex items-center justify-between text-sm"
-              >
-                <span className="text-gray-500 dark:text-gray-400">
-                  {SOURCE_LABELS[source]}
-                </span>
-                <span className="font-mono tabular-nums text-gray-700 dark:text-gray-300">
-                  {formatPct(value)}
-                </span>
-              </div>
-            ))}
+        {!isAuto ? (
+          <div className="flex flex-col gap-3">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              Enter a custom Total CRIT DMG value. Disable manual mode to restore auto-calculation.
+            </p>
+            <NumberInput
+              label="Total CRIT DMG %"
+              value={manualCritDmgValue}
+              onChange={setManualCritDmgValue}
+              min={0}
+              step={0.001}
+              ariaLabel="Manual Total CRIT DMG override"
+            />
           </div>
-        )}
+        ) : (
+          <>
+            {sourceEntries.length > 0 && (
+              <div className="space-y-1">
+                {sourceEntries.map(([source, value]) => (
+                  <div
+                    key={source}
+                    className="flex items-center justify-between text-sm"
+                  >
+                    <span className="text-gray-500 dark:text-gray-400">
+                      {SOURCE_LABELS[source]}
+                    </span>
+                    <span className="font-mono tabular-nums text-gray-700 dark:text-gray-300">
+                      {formatPct(value)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
 
-        {sourceEntries.length === 0 && (
-          <p className="text-xs text-gray-400 dark:text-gray-500">
-            No CRIT DMG sources active. Configure your character, equipment, and progression to see contributions.
-          </p>
+            {sourceEntries.length === 0 && (
+              <p className="text-xs text-gray-400 dark:text-gray-500">
+                No CRIT DMG sources active. Configure your character, equipment, and progression to see contributions.
+              </p>
+            )}
+          </>
         )}
       </div>
     </div>
