@@ -12,6 +12,7 @@ import { PromotionTierSelector } from '@/components/PromotionTierSelector/Promot
 import { ClassSelector } from '@/components/ClassSelector/ClassSelector';
 import { EnhancementRanking } from '@/components/EnhancementRanking';
 import { FarmingBonusSummary } from '@/components/FarmingBonusSummary/FarmingBonusSummary';
+import { ElementalAmpSummary } from '@/components/ElementalAmpSummary/ElementalAmpSummary';
 import { TotalAtkDisplay } from '@/components/TotalAtkDisplay';
 import { CritDmgDisplay } from '@/components/CritDmgDisplay';
 import { SlayerLevelInput } from '@/components/SlayerLevelInput';
@@ -251,6 +252,9 @@ export default function CharacterPage() {
 
         {/* Farming Bonuses */}
         <FarmingBonusSummary />
+
+        {/* Elemental AMP */}
+        <ElementalAmpSummary />
 
         {/* Enhancement Manual Calculator */}
         <section
