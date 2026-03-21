@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 
 import { MemoryNodeTree } from '@/components/MemoryNodeTree';
+import { NumberInput } from '@/components/NumberInput';
 import { useMemoryTreeSlice } from '@/store/useMemoryTreeSlice';
 import type { TOMNode, TOMNodeCategory, TOMResourceType } from '@/types/tom';
 import tomData from '@/data/tom-data.json';
@@ -66,10 +67,11 @@ const CATEGORY_TAB_ACTIVE: Record<TOMNodeCategory, string> = {
 };
 
 export default function TreeOfMemoryPage() {
-  const { nodeLevels, setNodeLevel } = useMemoryTreeSlice();
+  const { nodeLevels, setNodeLevel, setAllNodeLevels } = useMemoryTreeSlice();
   const nodes = tomData.nodes as TOMNode[];
   const [pageTab, setPageTab] = useState<PageTab>('summary');
   const [treeCategory, setTreeCategory] = useState<TreeCategory>('Combat');
+  const [autoSetLevel, setAutoSetLevel] = useState(0);
 
   const summary = useMemo(() => {
     const totalNodes = nodes.length;
@@ -163,6 +165,11 @@ export default function TreeOfMemoryPage() {
     [nodes, treeCategory],
   );
 
+  const categoryMaxLevel = useMemo(
+    () => Math.max(...categoryNodes.map((n) => n.maxLevel), 0),
+    [categoryNodes],
+  );
+
   function handleUpgrade(nodeId: string) {
     const node = nodes.find((n) => n.id === nodeId);
     if (!node) return;
@@ -170,6 +177,14 @@ export default function TreeOfMemoryPage() {
     if (current < node.maxLevel) {
       setNodeLevel(nodeId, current + 1);
     }
+  }
+
+  function handleAutoSetCategory() {
+    const newLevels = { ...nodeLevels };
+    for (const node of categoryNodes) {
+      newLevels[node.id] = Math.min(autoSetLevel, node.maxLevel);
+    }
+    setAllNodeLevels(newLevels);
   }
 
   return (
@@ -226,6 +241,23 @@ export default function TreeOfMemoryPage() {
                   </button>
                 ))}
               </div>
+            </div>
+            {/* Auto-set level control */}
+            <div className="flex items-center gap-3 mb-3 rounded-lg border border-gray-700 bg-gray-900 px-4 py-2.5">
+              <span className="text-xs font-medium text-gray-400 whitespace-nowrap">Auto-set level</span>
+              <NumberInput
+                value={autoSetLevel}
+                onChange={setAutoSetLevel}
+                min={0}
+                max={categoryMaxLevel}
+                ariaLabel="Auto-set level for all nodes in category"
+              />
+              <button
+                onClick={handleAutoSetCategory}
+                className="ml-auto px-3 py-1.5 text-xs font-medium rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors cursor-pointer"
+              >
+                Apply to {treeCategory}
+              </button>
             </div>
             <MemoryNodeTree
               nodes={categoryNodes}
