@@ -21,6 +21,22 @@ const RESOURCE_ICONS: Record<TOMResourceType, string> = {
   Shards: '🔷',
 };
 
+/** Farm modes correspond to the farming-focused TOM effect types */
+type FarmMode = 'Extra EXP' | 'Monster Gold';
+
+const FARM_MODE_LABELS: Record<FarmMode, string> = {
+  'Extra EXP': 'Extra EXP',
+  'Monster Gold': 'Monster Gold',
+};
+
+const FARM_MODE_COLORS: Record<FarmMode, string> = {
+  'Extra EXP': 'text-blue-600 dark:text-blue-400',
+  'Monster Gold': 'text-yellow-600 dark:text-yellow-400',
+};
+
+const FARM_MODES: FarmMode[] = ['Extra EXP', 'Monster Gold'];
+const ALL_RESOURCES: TOMResourceType[] = ['Gold', 'Gems', 'Essence', 'Shards'];
+
 function formatNumber(n: number): string {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
   if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
@@ -95,6 +111,36 @@ export default function TreeOfMemoryPage() {
   }, [nodes, nodeLevels]);
 
   const hasProgress = summary.upgradedNodes > 0;
+
+  /**
+   * For each farm mode, compute:
+   *  - totalCost: total resources to max all nodes for that mode
+   *  - spentCost: resources already spent on those nodes (up to current level)
+   *  - nodeCount: number of nodes that grant this farming effect
+   */
+  const farmCostTable = useMemo(() => {
+    return FARM_MODES.map((mode) => {
+      const modeNodes = nodes.filter((node) =>
+        node.levels.some((lvl) => lvl.effectType === mode),
+      );
+
+      const totalCost: Partial<Record<TOMResourceType, number>> = {};
+      const spentCost: Partial<Record<TOMResourceType, number>> = {};
+
+      for (const node of modeNodes) {
+        const currentLevel = nodeLevels[node.id] ?? 0;
+        for (const cost of node.costs) {
+          const res = cost.resource as TOMResourceType;
+          totalCost[res] = (totalCost[res] ?? 0) + cost.amount;
+          if (cost.level <= currentLevel) {
+            spentCost[res] = (spentCost[res] ?? 0) + cost.amount;
+          }
+        }
+      }
+
+      return { mode, nodeCount: modeNodes.length, totalCost, spentCost };
+    });
+  }, [nodes, nodeLevels]);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -242,6 +288,73 @@ export default function TreeOfMemoryPage() {
             </div>
           </section>
         </div>
+        {/* Resource Cost by Farm Mode */}
+        <section aria-labelledby="farm-cost-heading">
+          <h2 id="farm-cost-heading" className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
+            Resource Cost by Farm Mode
+          </h2>
+          <div className="bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700 overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <th className="px-6 py-3 text-left font-semibold text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                    Farm Mode
+                  </th>
+                  <th className="px-4 py-3 text-center font-semibold text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                    Nodes
+                  </th>
+                  {ALL_RESOURCES.map((res) => (
+                    <th key={res} className="px-4 py-3 text-right font-semibold text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                      <span aria-hidden="true">{RESOURCE_ICONS[res]}</span> {res}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                {farmCostTable.map(({ mode, nodeCount, totalCost, spentCost }) => (
+                  <tr key={mode}>
+                    <td className="px-6 py-4">
+                      <span className={`font-medium ${FARM_MODE_COLORS[mode]}`}>
+                        {FARM_MODE_LABELS[mode]}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4 text-center text-gray-600 dark:text-gray-400">
+                      {nodeCount}
+                    </td>
+                    {ALL_RESOURCES.map((res) => {
+                      const total = totalCost[res] ?? 0;
+                      const spent = spentCost[res] ?? 0;
+                      const remaining = total - spent;
+                      return (
+                        <td key={res} className="px-4 py-4 text-right">
+                          {total === 0 ? (
+                            <span className="text-gray-300 dark:text-gray-600">—</span>
+                          ) : (
+                            <div className="flex flex-col items-end gap-0.5">
+                              <span className="font-semibold tabular-nums text-gray-900 dark:text-gray-100">
+                                {formatNumber(total)}
+                              </span>
+                              {remaining > 0 && remaining < total && (
+                                <span className="text-xs tabular-nums text-orange-500 dark:text-orange-400">
+                                  {formatNumber(remaining)} left
+                                </span>
+                              )}
+                              {remaining === 0 && total > 0 && (
+                                <span className="text-xs text-green-600 dark:text-green-400">
+                                  done
+                                </span>
+                              )}
+                            </div>
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
     </div>
   );
