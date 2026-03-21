@@ -72,6 +72,15 @@ export default function ConstellationsPage() {
     [constellations],
   );
 
+  const totalStarsNeeded = useMemo(
+    () =>
+      constellations.reduce(
+        (sum, c) => sum + c.nodes.reduce((s, n) => s + n.maxLevel * n.starCost, 0),
+        0,
+      ),
+    [constellations],
+  );
+
   const activeBuffs = BUFF_ORDER.filter(
     (type) => buffTotals[type] !== undefined && buffTotals[type]! > 0,
   );
@@ -126,6 +135,7 @@ export default function ConstellationsPage() {
                   const totalLevel = c.nodes.reduce((sum, n) => sum + n.level, 0);
                   const totalMaxLevel = c.nodes.reduce((sum, n) => sum + n.maxLevel, 0);
                   const nodesMaxed = c.nodes.filter((n) => n.level === n.maxLevel).length;
+                  const starsNeeded = c.nodes.reduce((s, n) => s + n.maxLevel * n.starCost, 0);
                   const isSelected = selectedZodiac === c.zodiac;
                   const progressPct = totalMaxLevel > 0 ? (totalLevel / totalMaxLevel) * 100 : 0;
 
@@ -149,14 +159,19 @@ export default function ConstellationsPage() {
                         <span className="text-2xl" aria-hidden="true">
                           {ZODIAC_SYMBOLS[c.zodiac]}
                         </span>
-                        {c.starsSpent > 0 && (
-                          <span className="flex items-center gap-0.5 text-xs font-medium text-yellow-600 dark:text-yellow-400">
-                            <svg viewBox="0 0 24 24" fill="currentColor" className="h-3 w-3" aria-hidden="true">
-                              <path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.563.563 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                            </svg>
-                            {c.starsSpent}
-                          </span>
-                        )}
+                        <span
+                          className={`flex items-center gap-0.5 text-xs font-medium ${
+                            c.starsSpent > 0
+                              ? 'text-yellow-600 dark:text-yellow-400'
+                              : 'text-gray-300 dark:text-gray-600'
+                          }`}
+                          aria-label={`${c.starsSpent} of ${starsNeeded} stars crafted`}
+                        >
+                          <svg viewBox="0 0 24 24" fill="currentColor" className="h-3 w-3" aria-hidden="true">
+                            <path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.563.563 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+                          </svg>
+                          <span className="tabular-nums">{c.starsSpent}/{starsNeeded}</span>
+                        </span>
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
@@ -237,14 +252,18 @@ export default function ConstellationsPage() {
                 </div>
 
                 <div className="bg-white rounded-lg border border-gray-200 px-6 py-5 dark:bg-gray-900 dark:border-gray-700">
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Stars Spent</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Stars Crafted</p>
                   <p className="mt-1 text-2xl font-bold text-yellow-600 dark:text-yellow-400">
                     {totalStarsSpent}
+                    <span className="ml-1 text-sm font-normal text-gray-400 dark:text-gray-500">/ {totalStarsNeeded}</span>
                     <span className="ml-1 text-base" aria-hidden="true">★</span>
                   </p>
-                  <p className="mt-3 text-xs text-gray-400 dark:text-gray-500">
-                    across all constellations
-                  </p>
+                  <div className="mt-3 h-1.5 rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-yellow-400 transition-all"
+                      style={{ width: `${totalStarsNeeded > 0 ? (totalStarsSpent / totalStarsNeeded) * 100 : 0}%` }}
+                    />
+                  </div>
                 </div>
 
                 <div className="bg-white rounded-lg border border-gray-200 px-6 py-5 dark:bg-gray-900 dark:border-gray-700">
@@ -285,13 +304,14 @@ export default function ConstellationsPage() {
             {/* Per-constellation breakdown */}
             <section aria-labelledby="per-constellation-heading">
               <h2 id="per-constellation-heading" className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
-                Level by Constellation
+                Stars Crafted by Constellation
               </h2>
               <div className="bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-800">
                 {constellations.map((c) => {
                   const totalLevel = c.nodes.reduce((sum, n) => sum + n.level, 0);
                   const totalMaxLevel = c.nodes.reduce((sum, n) => sum + n.maxLevel, 0);
-                  const progressPct = totalMaxLevel > 0 ? (totalLevel / totalMaxLevel) * 100 : 0;
+                  const starsNeeded = c.nodes.reduce((s, n) => s + n.maxLevel * n.starCost, 0);
+                  const starsProgress = starsNeeded > 0 ? (c.starsSpent / starsNeeded) * 100 : 0;
                   return (
                     <div key={c.zodiac} className="flex items-center gap-4 px-6 py-3">
                       <span className="text-lg shrink-0" aria-hidden="true">
@@ -308,8 +328,8 @@ export default function ConstellationsPage() {
                         </div>
                         <div className="h-1 rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden">
                           <div
-                            className="h-full rounded-full bg-blue-500 transition-all"
-                            style={{ width: `${progressPct}%` }}
+                            className="h-full rounded-full bg-yellow-400 transition-all"
+                            style={{ width: `${starsProgress}%` }}
                           />
                         </div>
                       </div>
@@ -319,8 +339,9 @@ export default function ConstellationsPage() {
                             ? 'text-yellow-600 dark:text-yellow-400'
                             : 'text-gray-300 dark:text-gray-600'
                         }`}
+                        aria-label={`${c.starsSpent} of ${starsNeeded} stars crafted`}
                       >
-                        {c.starsSpent > 0 ? `${c.starsSpent} ★` : '—'}
+                        {c.starsSpent}/{starsNeeded} ★
                       </span>
                     </div>
                   );
