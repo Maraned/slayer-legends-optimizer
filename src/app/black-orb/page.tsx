@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react';
 
+import { NumberInput } from '@/components/NumberInput';
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
 import type { Element } from '@/types/companions';
 
@@ -56,6 +57,7 @@ export default function BlackOrbPage() {
   const blackOrb = useUserSaveStore((s: UserSaveStore) => s.blackOrb);
   const toggleDamageSource = useUserSaveStore((s: UserSaveStore) => s.toggleDamageSource);
   const setAccessoryOwned = useUserSaveStore((s: UserSaveStore) => s.setAccessoryOwned);
+  const setAccessoryLevel = useUserSaveStore((s: UserSaveStore) => s.setAccessoryLevel);
 
   const { damageSources, elementAccessories } = blackOrb;
 
@@ -254,35 +256,42 @@ export default function BlackOrbPage() {
                   </div>
                   <ul className="divide-y divide-gray-100 dark:divide-gray-800">
                     {accessories.map((acc) => (
-                      <li key={acc.name}>
-                        <button
-                          onClick={() => setAccessoryOwned(acc.name, !acc.owned)}
-                          className={`w-full flex items-center justify-between px-4 py-3 text-left transition-colors cursor-pointer ${
-                            acc.owned
-                              ? `${colors.bg}`
-                              : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
-                          }`}
-                          aria-pressed={acc.owned}
-                          aria-label={`${acc.name}: ${formatPercent(acc.bonusValue)}, ${acc.owned ? 'owned' : 'not owned'}`}
-                        >
-                          <span className={`text-sm font-medium ${acc.owned ? 'text-gray-900 dark:text-gray-100' : 'text-gray-500 dark:text-gray-400'}`}>
+                      <li
+                        key={acc.name}
+                        className={`flex items-center justify-between px-4 py-3 gap-4 ${
+                          acc.owned ? colors.bg : ''
+                        }`}
+                      >
+                        <div className="flex flex-col gap-0.5 min-w-0">
+                          <span className={`text-sm font-medium truncate ${acc.owned ? 'text-gray-900 dark:text-gray-100' : 'text-gray-500 dark:text-gray-400'}`}>
                             {acc.name}
                           </span>
-                          <div className="flex items-center gap-2 shrink-0">
-                            <span className={`text-sm font-semibold tabular-nums ${acc.owned ? colors.text : 'text-gray-300 dark:text-gray-600'}`}>
-                              {formatPercent(acc.bonusValue)}
-                            </span>
-                            <span className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
+                          <span className={`text-xs tabular-nums ${acc.owned ? colors.text : 'text-gray-300 dark:text-gray-600'}`}>
+                            {formatPercent(acc.bonusValue)}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-3 shrink-0">
+                          <NumberInput
+                            label="Level"
+                            value={acc.level}
+                            onChange={(level) => setAccessoryLevel(acc.name, level, acc.bonusValue)}
+                            min={1}
+                          />
+                          <button
+                            onClick={() => setAccessoryOwned(acc.name, !acc.owned)}
+                            className={`w-4 h-4 rounded-full border-2 flex items-center justify-center cursor-pointer transition-colors ${
                               acc.owned
                                 ? `${colors.border} ${colors.bg}`
-                                : 'border-gray-300 dark:border-gray-600'
-                            }`} aria-hidden="true">
-                              {acc.owned && (
-                                <span className={`w-2 h-2 rounded-full ${colors.text.replace('text-', 'bg-')}`} />
-                              )}
-                            </span>
-                          </div>
-                        </button>
+                                : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
+                            }`}
+                            aria-pressed={acc.owned}
+                            aria-label={`${acc.name}: ${acc.owned ? 'owned' : 'not owned'}`}
+                          >
+                            {acc.owned && (
+                              <span className={`w-2 h-2 rounded-full ${colors.text.replace('text-', 'bg-')}`} aria-hidden="true" />
+                            )}
+                          </button>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -291,6 +300,7 @@ export default function BlackOrbPage() {
             </section>
           );
         })}
+
       </div>
     </div>
   );
