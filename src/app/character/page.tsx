@@ -13,6 +13,7 @@ import { ClassSelector } from '@/components/ClassSelector/ClassSelector';
 import { EnhancementRanking } from '@/components/EnhancementRanking';
 import { FarmingBonusSummary } from '@/components/FarmingBonusSummary/FarmingBonusSummary';
 import { TotalAtkDisplay } from '@/components/TotalAtkDisplay';
+import { CritDmgDisplay } from '@/components/CritDmgDisplay';
 import { SlayerLevelInput } from '@/components/SlayerLevelInput';
 import { Toggle } from '@/components/Toggle/Toggle';
 import { segmentCost } from '@/lib/gold-calculator';
@@ -404,8 +405,11 @@ export default function CharacterPage() {
           </div>
         </section>
 
-        {/* Total ATK */}
-        <TotalAtkDisplay />
+        {/* Total ATK and CRIT DMG */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <TotalAtkDisplay />
+          <CritDmgDisplay />
+        </div>
 
         {/* Enhancement Priority */}
         <section
