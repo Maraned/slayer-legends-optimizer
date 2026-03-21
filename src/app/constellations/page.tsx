@@ -123,9 +123,11 @@ export default function ConstellationsPage() {
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                 {constellations.map((c) => {
-                  const nodesUnlocked = c.nodes.filter((n) => n.level > 0).length;
+                  const totalLevel = c.nodes.reduce((sum, n) => sum + n.level, 0);
+                  const totalMaxLevel = c.nodes.reduce((sum, n) => sum + n.maxLevel, 0);
                   const nodesMaxed = c.nodes.filter((n) => n.level === n.maxLevel).length;
                   const isSelected = selectedZodiac === c.zodiac;
+                  const progressPct = totalMaxLevel > 0 ? (totalLevel / totalMaxLevel) * 100 : 0;
 
                   return (
                     <button
@@ -141,7 +143,7 @@ export default function ConstellationsPage() {
                             : 'border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 hover:border-gray-300 dark:hover:border-gray-600'
                       }`}
                       aria-pressed={isSelected}
-                      aria-label={`${c.zodiac} constellation, ${nodesUnlocked} of ${c.nodes.length} nodes unlocked`}
+                      aria-label={`${c.zodiac} constellation, level ${totalLevel} of ${totalMaxLevel}`}
                     >
                       <div className="flex items-center justify-between">
                         <span className="text-2xl" aria-hidden="true">
@@ -161,7 +163,7 @@ export default function ConstellationsPage() {
                           {c.zodiac}
                         </p>
                         <p className="text-xs text-gray-500 dark:text-gray-400">
-                          {nodesUnlocked}/{c.nodes.length} nodes
+                          Lv. {totalLevel}/{totalMaxLevel}
                           {nodesMaxed > 0 && ` · ${nodesMaxed} maxed`}
                         </p>
                       </div>
@@ -169,7 +171,7 @@ export default function ConstellationsPage() {
                       <div className="h-1 rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden">
                         <div
                           className="h-full rounded-full bg-blue-500 transition-all"
-                          style={{ width: `${(nodesUnlocked / c.nodes.length) * 100}%` }}
+                          style={{ width: `${progressPct}%` }}
                         />
                       </div>
                     </button>
@@ -283,11 +285,13 @@ export default function ConstellationsPage() {
             {/* Per-constellation breakdown */}
             <section aria-labelledby="per-constellation-heading">
               <h2 id="per-constellation-heading" className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
-                Stars Spent by Constellation
+                Level by Constellation
               </h2>
               <div className="bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-800">
                 {constellations.map((c) => {
-                  const nodesUnlocked = c.nodes.filter((n) => n.level > 0).length;
+                  const totalLevel = c.nodes.reduce((sum, n) => sum + n.level, 0);
+                  const totalMaxLevel = c.nodes.reduce((sum, n) => sum + n.maxLevel, 0);
+                  const progressPct = totalMaxLevel > 0 ? (totalLevel / totalMaxLevel) * 100 : 0;
                   return (
                     <div key={c.zodiac} className="flex items-center gap-4 px-6 py-3">
                       <span className="text-lg shrink-0" aria-hidden="true">
@@ -298,14 +302,14 @@ export default function ConstellationsPage() {
                           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                             {c.zodiac}
                           </span>
-                          <span className="text-xs text-gray-400 dark:text-gray-500">
-                            {nodesUnlocked}/{c.nodes.length} nodes
+                          <span className="text-xs tabular-nums font-medium text-gray-500 dark:text-gray-400">
+                            Lv. {totalLevel}/{totalMaxLevel}
                           </span>
                         </div>
                         <div className="h-1 rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden">
                           <div
                             className="h-full rounded-full bg-blue-500 transition-all"
-                            style={{ width: `${(nodesUnlocked / c.nodes.length) * 100}%` }}
+                            style={{ width: `${progressPct}%` }}
                           />
                         </div>
                       </div>
