@@ -74,11 +74,12 @@ function formatValue(value: number): string {
 export default function ConstellationsPage() {
   const constellation = useUserSaveStore((s: UserSaveStore) => s.constellation);
   const setNodeLevel = useUserSaveStore((s: UserSaveStore) => s.setNodeLevel);
+  const setFarmingMode = useUserSaveStore((s: UserSaveStore) => s.setFarmingMode);
 
   const [pageTab, setPageTab] = useState<PageTab>('grid');
   const [selectedZodiac, setSelectedZodiac] = useState<ZodiacConstellation | null>(null);
 
-  const { constellations, buffTotals } = constellation;
+  const { constellations, buffTotals, farmingMode } = constellation;
 
   const totalStarsSpent = useMemo(
     () => constellations.reduce((sum, c) => sum + c.starsSpent, 0),
@@ -339,21 +340,37 @@ export default function ConstellationsPage() {
               <h2 id="buff-totals-heading" className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
                 Buff Totals
               </h2>
+              {/* Farming mode selector */}
+              <div className="flex gap-1.5 flex-wrap mb-3" role="group" aria-label="Farming mode filter">
+                {FARMING_MODES.map((mode) => (
+                  <button
+                    key={mode}
+                    onClick={() => setFarmingMode(mode)}
+                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer ${
+                      farmingMode === mode
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-white text-gray-600 border border-gray-200 hover:border-blue-400 hover:text-blue-600 dark:bg-gray-900 dark:text-gray-400 dark:border-gray-700 dark:hover:border-blue-500 dark:hover:text-blue-400'
+                    }`}
+                    aria-pressed={farmingMode === mode}
+                  >
+                    {FARMING_MODE_LABELS[mode]}
+                  </button>
+                ))}
+              </div>
               <div className="bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-800">
-                {activeBuffs.length === 0 ? (
-                  <p className="px-6 py-4 text-sm text-gray-400 dark:text-gray-500 text-center">
-                    No constellation buffs active. Unlock nodes in the Zodiac Grid to see totals here.
-                  </p>
-                ) : (
-                  activeBuffs.map((buffType) => (
+                {FARMING_MODE_BUFFS[farmingMode].map((buffType) => {
+                  const value = buffTotals[buffType] ?? 0;
+                  return (
                     <div key={buffType} className="flex items-center justify-between px-6 py-3">
-                      <span className="text-sm text-gray-700 dark:text-gray-300">{buffType}</span>
-                      <span className="text-sm font-semibold tabular-nums text-gray-900 dark:text-gray-100">
-                        {formatValue(buffTotals[buffType]!)}
+                      <span className={`text-sm ${value > 0 ? 'text-gray-700 dark:text-gray-300' : 'text-gray-400 dark:text-gray-600'}`}>
+                        {buffType}
+                      </span>
+                      <span className={`text-sm font-semibold tabular-nums ${value > 0 ? 'text-gray-900 dark:text-gray-100' : 'text-gray-300 dark:text-gray-600'}`}>
+                        {formatValue(value)}
                       </span>
                     </div>
-                  ))
-                )}
+                  );
+                })}
               </div>
             </section>
 
