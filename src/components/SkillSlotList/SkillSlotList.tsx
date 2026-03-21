@@ -1,5 +1,6 @@
 'use client';
 
+import { NumberInput } from '@/components/NumberInput';
 import { Select } from '@/components/Select/Select';
 import { Toggle } from '@/components/Toggle/Toggle';
 import { useSkillsStore, type SkillsStore } from '@/store/useSkillsStore';
@@ -33,6 +34,10 @@ export function SkillSlotList({ slots }: SkillSlotListProps) {
     setSlot(index, { ...slots[index], partnerBonusActive: checked });
   }
 
+  function handleModifiedValueChange(index: number, value: number) {
+    setSlot(index, { ...slots[index], modifiedValue: value });
+  }
+
   return (
     <div className="divide-y divide-gray-100 dark:divide-gray-800">
       {slots.map((slot, index) => (
@@ -57,6 +62,16 @@ export function SkillSlotList({ slots }: SkillSlotListProps) {
             size="sm"
             aria-label={`Partner bonus for skill slot ${index + 1}`}
           />
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-gray-500 dark:text-gray-400 shrink-0">Modified Value</span>
+            <NumberInput
+              value={slot.modifiedValue}
+              onChange={(value) => handleModifiedValueChange(index, value)}
+              min={0}
+              step={0.01}
+              ariaLabel={`Modified skill value for slot ${index + 1}`}
+            />
+          </div>
         </div>
       ))}
     </div>
