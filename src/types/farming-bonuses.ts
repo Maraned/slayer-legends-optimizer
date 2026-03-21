@@ -54,6 +54,20 @@ export interface FarmingBonuses {
    * Example: 0.05 = +5% to rare drop rates.
    */
   rareDropRateBonus: number;
+
+  /**
+   * Total extra ATK bonus from all sources.
+   * Combines percentage bonuses (companions, character promotion, constellation, memory tree)
+   * and flat bonuses (appearance clothing).
+   */
+  extraAtkBonus: number;
+
+  /**
+   * Total HP Recovery bonus from all sources.
+   * Combines percentage bonuses (constellation, memory tree)
+   * and flat bonuses (appearance clothing).
+   */
+  hpRecoveryBonus: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -93,6 +107,34 @@ export interface MonsterGoldBreakdown {
 }
 
 /**
+ * Per-source breakdown of extraAtkBonus contributions.
+ */
+export interface ExtraAtkBreakdown {
+  /** From owned clothing items with 'Extra ATK' bonus type */
+  appearance: number;
+  /** From companion advancement steps with buffType 'Extra ATK' */
+  companions: number;
+  /** From character promotion tier extra ATK% (atkBonusPct) */
+  character: number;
+  /** From constellation star nodes with buffType 'ATK' or 'All Stats' */
+  constellation: number;
+  /** From TOM nodes with effectType 'ATK' */
+  memoryTree: number;
+}
+
+/**
+ * Per-source breakdown of hpRecoveryBonus contributions.
+ */
+export interface HpRecoveryBreakdown {
+  /** From owned clothing items with 'HP Recovery' bonus type */
+  appearance: number;
+  /** From constellation star nodes with buffType 'HP Recovery' */
+  constellation: number;
+  /** From TOM nodes with effectType 'HP Recovery' */
+  memoryTree: number;
+}
+
+/**
  * Full per-source breakdown of all farming bonus fields.
  * Use this for UI display of bonus contributions or debugging.
  */
@@ -101,6 +143,10 @@ export interface FarmingBonusBreakdown {
   extraExp: ExtraExpBreakdown;
   /** Per-source contributions to monsterGoldBonus */
   monsterGold: MonsterGoldBreakdown;
+  /** Per-source contributions to extraAtkBonus */
+  extraAtk: ExtraAtkBreakdown;
+  /** Per-source contributions to hpRecoveryBonus */
+  hpRecovery: HpRecoveryBreakdown;
   /** Aggregated totals ready for the stage-rate calculator */
   totals: FarmingBonuses;
 }

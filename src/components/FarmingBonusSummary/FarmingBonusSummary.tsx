@@ -15,44 +15,59 @@ function formatBonus(value: number): string {
   return `+${rounded % 1 === 0 ? rounded.toFixed(0) : rounded.toFixed(1)}%`;
 }
 
+function formatRaw(value: number): string {
+  const rounded = Math.round(value * 10) / 10;
+  return `+${rounded % 1 === 0 ? rounded.toFixed(0) : rounded.toFixed(1)}`;
+}
+
 interface SourceRowProps {
   label: string;
   value: number;
+  formatter?: (v: number) => string;
 }
 
-function SourceRow({ label, value }: SourceRowProps) {
+function SourceRow({ label, value, formatter = formatBonus }: SourceRowProps) {
   if (value === 0) return null;
   return (
     <div className="flex items-center justify-between rounded px-2 py-1 text-xs bg-gray-50 dark:bg-gray-800/60">
       <span className="text-gray-500 dark:text-gray-400">{label}</span>
       <span className="tabular-nums font-medium text-gray-700 dark:text-gray-300">
-        {formatBonus(value)}
+        {formatter(value)}
       </span>
     </div>
   );
 }
 
-interface BonusTypeCardProps {
-  title: string;
-  total: number;
-  sources: { label: string; value: number }[];
+interface BonusSource {
+  label: string;
+  value: number;
+  formatter?: (v: number) => string;
 }
 
-function BonusTypeCard({ title, total, sources }: BonusTypeCardProps) {
+interface BonusTypeCardProps {
+  title: string;
+  total?: number;
+  totalFormatter?: (v: number) => string;
+  sources: BonusSource[];
+}
+
+function BonusTypeCard({ title, total, totalFormatter = formatBonus, sources }: BonusTypeCardProps) {
   const activeSources = sources.filter((s) => s.value > 0);
 
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{title}</span>
-        <span className="text-sm font-bold tabular-nums text-gray-900 dark:text-gray-100">
-          {formatBonus(total)}
-        </span>
+        {total !== undefined && (
+          <span className="text-sm font-bold tabular-nums text-gray-900 dark:text-gray-100">
+            {totalFormatter(total)}
+          </span>
+        )}
       </div>
       {activeSources.length > 0 ? (
         <div className="space-y-1">
           {activeSources.map((source) => (
-            <SourceRow key={source.label} label={source.label} value={source.value} />
+            <SourceRow key={source.label} label={source.label} value={source.value} formatter={source.formatter} />
           ))}
         </div>
       ) : (
@@ -121,6 +136,26 @@ export function FarmingBonusSummary() {
             { label: 'Character', value: breakdown.monsterGold.character },
             { label: 'Constellation', value: breakdown.monsterGold.constellation },
             { label: 'Memory Tree', value: breakdown.monsterGold.memoryTree },
+          ]}
+        />
+
+        <BonusTypeCard
+          title="Extra ATK"
+          sources={[
+            { label: 'Appearance', value: breakdown.extraAtk.appearance, formatter: formatRaw },
+            { label: 'Companions', value: breakdown.extraAtk.companions, formatter: formatBonus },
+            { label: 'Character', value: breakdown.extraAtk.character, formatter: formatBonus },
+            { label: 'Constellation', value: breakdown.extraAtk.constellation, formatter: formatRaw },
+            { label: 'Memory Tree', value: breakdown.extraAtk.memoryTree, formatter: formatBonus },
+          ]}
+        />
+
+        <BonusTypeCard
+          title="HP Recovery"
+          sources={[
+            { label: 'Appearance', value: breakdown.hpRecovery.appearance, formatter: formatRaw },
+            { label: 'Constellation', value: breakdown.hpRecovery.constellation, formatter: formatRaw },
+            { label: 'Memory Tree', value: breakdown.hpRecovery.memoryTree, formatter: formatBonus },
           ]}
         />
       </div>

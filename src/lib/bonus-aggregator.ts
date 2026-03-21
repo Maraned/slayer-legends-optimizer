@@ -36,6 +36,8 @@ import type {
   FarmingBonusBreakdown,
   ExtraExpBreakdown,
   MonsterGoldBreakdown,
+  ExtraAtkBreakdown,
+  HpRecoveryBreakdown,
 } from '../types/farming-bonuses';
 
 // ---------------------------------------------------------------------------
@@ -198,6 +200,127 @@ export function goldBonusFromMemoryTree(tomNodes: TOMNode[]): number {
 }
 
 // ---------------------------------------------------------------------------
+// Extra ATK sources
+// ---------------------------------------------------------------------------
+
+/**
+ * Returns the Extra ATK bonus from owned clothing items.
+ *
+ * @param bonusTotals - AppearanceBonusTotals from AppearanceState.bonusTotals.
+ */
+export function extraAtkBonusFromAppearance(
+  bonusTotals: AppearanceBonusTotals,
+): number {
+  return bonusTotals['Extra ATK'] ?? 0;
+}
+
+/**
+ * Sums Extra ATK buff values across all four companions' advancement steps.
+ *
+ * @param companions - CompanionsState tuple (all four companions).
+ */
+export function extraAtkBonusFromCompanions(companions: CompanionsState): number {
+  let total = 0;
+  for (const companion of companions) {
+    for (const step of companion.advancementSteps) {
+      if (step.buffType === 'Extra ATK') {
+        total += step.buffValue;
+      }
+    }
+  }
+  return total;
+}
+
+/**
+ * Returns the Extra ATK% bonus from the character's current promotion tier.
+ *
+ * @param promotion - Promotion state from CharacterState.promotion.
+ */
+export function extraAtkBonusFromPromotion(promotion: Promotion): number {
+  return promotion.atkBonusPct;
+}
+
+/**
+ * Returns the ATK bonus from the pre-aggregated constellation buff totals.
+ * Includes contributions from 'ATK' and 'All Stats' node types.
+ *
+ * @param buffTotals - ConstellationBuffTotals from ConstellationSheetState.buffTotals.
+ */
+export function extraAtkBonusFromConstellation(
+  buffTotals: ConstellationBuffTotals,
+): number {
+  return (buffTotals['ATK'] ?? 0) + (buffTotals['All Stats'] ?? 0);
+}
+
+/**
+ * Sums the ATK bonus fraction from all TOM nodes with effectType 'ATK'.
+ *
+ * @param tomNodes - Array of TOMNode objects with currentLevel populated.
+ */
+export function extraAtkBonusFromMemoryTree(tomNodes: TOMNode[]): number {
+  let total = 0;
+  for (const node of tomNodes) {
+    if (node.currentLevel === 0) continue;
+    for (const levelEntry of node.levels) {
+      if (
+        levelEntry.effectType === 'ATK' &&
+        levelEntry.level <= node.currentLevel
+      ) {
+        total += levelEntry.effectValue;
+      }
+    }
+  }
+  return total;
+}
+
+// ---------------------------------------------------------------------------
+// HP Recovery sources
+// ---------------------------------------------------------------------------
+
+/**
+ * Returns the HP Recovery bonus from owned clothing items.
+ *
+ * @param bonusTotals - AppearanceBonusTotals from AppearanceState.bonusTotals.
+ */
+export function hpRecoveryBonusFromAppearance(
+  bonusTotals: AppearanceBonusTotals,
+): number {
+  return bonusTotals['HP Recovery'] ?? 0;
+}
+
+/**
+ * Returns the HP Recovery bonus from the pre-aggregated constellation buff totals.
+ *
+ * @param buffTotals - ConstellationBuffTotals from ConstellationSheetState.buffTotals.
+ */
+export function hpRecoveryBonusFromConstellation(
+  buffTotals: ConstellationBuffTotals,
+): number {
+  return buffTotals['HP Recovery'] ?? 0;
+}
+
+/**
+ * Sums the HP Recovery bonus fraction from all TOM nodes with effectType 'HP Recovery'.
+ *
+ * @param tomNodes - Array of TOMNode objects with currentLevel populated.
+ */
+export function hpRecoveryBonusFromMemoryTree(tomNodes: TOMNode[]): number {
+  let total = 0;
+  for (const node of tomNodes) {
+    if (node.currentLevel === 0) continue;
+    for (const levelEntry of node.levels) {
+      if (
+        levelEntry.effectType === 'HP Recovery' &&
+        levelEntry.level <= node.currentLevel
+      ) {
+        total += levelEntry.effectValue;
+      }
+    }
+  }
+  return total;
+}
+
+// ---------------------------------------------------------------------------
 // Merge utility
 // ---------------------------------------------------------------------------
 
@@ -215,12 +338,16 @@ export function mergeFarmingBonuses(
     monsterGoldBonus: 0,
     dropRateBonus: 0,
     rareDropRateBonus: 0,
+    extraAtkBonus: 0,
+    hpRecoveryBonus: 0,
   };
   for (const src of sources) {
     result.extraExpBonus += src.extraExpBonus ?? 0;
     result.monsterGoldBonus += src.monsterGoldBonus ?? 0;
     result.dropRateBonus += src.dropRateBonus ?? 0;
     result.rareDropRateBonus += src.rareDropRateBonus ?? 0;
+    result.extraAtkBonus += src.extraAtkBonus ?? 0;
+    result.hpRecoveryBonus += src.hpRecoveryBonus ?? 0;
   }
   return result;
 }
@@ -302,6 +429,22 @@ export function aggregateFarmingBonuses(
     memoryTree: goldBonusFromMemoryTree(tomNodes),
   };
 
+  // --- Extra ATK breakdown --------------------------------------------------
+  const extraAtk: ExtraAtkBreakdown = {
+    appearance: extraAtkBonusFromAppearance(appearanceBonusTotals),
+    companions: companions ? extraAtkBonusFromCompanions(companions) : 0,
+    character: promotion ? extraAtkBonusFromPromotion(promotion) : 0,
+    constellation: extraAtkBonusFromConstellation(constellationBuffTotals),
+    memoryTree: extraAtkBonusFromMemoryTree(tomNodes),
+  };
+
+  // --- HP Recovery breakdown ------------------------------------------------
+  const hpRecovery: HpRecoveryBreakdown = {
+    appearance: hpRecoveryBonusFromAppearance(appearanceBonusTotals),
+    constellation: hpRecoveryBonusFromConstellation(constellationBuffTotals),
+    memoryTree: hpRecoveryBonusFromMemoryTree(tomNodes),
+  };
+
   // --- Totals ---------------------------------------------------------------
   const totals: FarmingBonuses = {
     extraExpBonus:
@@ -317,7 +460,17 @@ export function aggregateFarmingBonuses(
       monsterGold.memoryTree,
     dropRateBonus: 0,
     rareDropRateBonus: 0,
+    extraAtkBonus:
+      extraAtk.appearance +
+      extraAtk.companions +
+      extraAtk.character +
+      extraAtk.constellation +
+      extraAtk.memoryTree,
+    hpRecoveryBonus:
+      hpRecovery.appearance +
+      hpRecovery.constellation +
+      hpRecovery.memoryTree,
   };
 
-  return { extraExp, monsterGold, totals };
+  return { extraExp, monsterGold, extraAtk, hpRecovery, totals };
 }
