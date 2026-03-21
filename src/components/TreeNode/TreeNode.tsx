@@ -1,6 +1,7 @@
 'use client';
 
 import type { TOMNode, TOMNodeCategory, TOMNodeCost } from '@/types/tom';
+import { NumberInput } from '@/components/NumberInput';
 
 export type TreeNodeState = 'locked' | 'available' | 'maxed';
 
@@ -14,6 +15,8 @@ export interface TreeNodeProps {
   isUnlockable?: boolean;
   /** Called when the user clicks the upgrade button */
   onUpgrade?: (nodeId: string) => void;
+  /** Called when the user changes the level directly via the level input */
+  onLevelChange?: (nodeId: string, level: number) => void;
   className?: string;
 }
 
@@ -43,7 +46,7 @@ function getNodeState(node: TOMNode, isUnlockable: boolean): TreeNodeState {
  * Displays a single Tree of Memory node with its name, category, level
  * progress, next-upgrade cost, and an upgrade action.
  */
-export function TreeNode({ node, isUnlockable = true, onUpgrade, className = '' }: TreeNodeProps) {
+export function TreeNode({ node, isUnlockable = true, onUpgrade, onLevelChange, className = '' }: TreeNodeProps) {
   const state = getNodeState(node, isUnlockable);
   const isLocked = state === 'locked';
   const isMaxed = state === 'maxed';
@@ -117,19 +120,30 @@ export function TreeNode({ node, isUnlockable = true, onUpgrade, className = '' 
         <div className="text-center text-xs font-medium text-yellow-400">Max Level</div>
       )}
 
-      {/* Upgrade button */}
-      {!isMaxed && (
-        <button
-          disabled={isLocked || !onUpgrade}
-          onClick={() => onUpgrade?.(node.id)}
-          className={`mt-0.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-            isLocked
-              ? 'cursor-not-allowed bg-gray-700 text-gray-500'
-              : 'cursor-pointer bg-blue-600 text-white hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50'
-          }`}
-        >
-          {node.currentLevel === 0 ? 'Unlock' : 'Upgrade'}
-        </button>
+      {/* Level input or upgrade button */}
+      {onLevelChange ? (
+        <NumberInput
+          value={node.currentLevel}
+          onChange={(level) => onLevelChange(node.id, level)}
+          min={0}
+          max={node.maxLevel}
+          ariaLabel={`Level for ${node.name}`}
+          disabled={isLocked}
+        />
+      ) : (
+        !isMaxed && (
+          <button
+            disabled={isLocked || !onUpgrade}
+            onClick={() => onUpgrade?.(node.id)}
+            className={`mt-0.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+              isLocked
+                ? 'cursor-not-allowed bg-gray-700 text-gray-500'
+                : 'cursor-pointer bg-blue-600 text-white hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50'
+            }`}
+          >
+            {node.currentLevel === 0 ? 'Unlock' : 'Upgrade'}
+          </button>
+        )
       )}
     </div>
   );

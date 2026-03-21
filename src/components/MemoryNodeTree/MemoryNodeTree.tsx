@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 
 import type { TOMEffectType, TOMNode, TOMNodeCategory } from '@/types/tom';
+import { NumberInput } from '@/components/NumberInput';
 
 // ── Layout constants ──────────────────────────────────────────────────────────
 const NODE_W = 108;
@@ -212,10 +213,11 @@ interface DetailPanelProps {
   level: number;
   isUnlockable: boolean;
   onUpgrade?: (nodeId: string) => void;
+  onLevelChange?: (nodeId: string, level: number) => void;
   onClose: () => void;
 }
 
-function NodeDetailPanel({ node, level, isUnlockable, onUpgrade, onClose }: DetailPanelProps) {
+function NodeDetailPanel({ node, level, isUnlockable, onUpgrade, onLevelChange, onClose }: DetailPanelProps) {
   const isMaxed = level >= node.maxLevel;
   const isLocked = !isUnlockable && level === 0;
   const nextLevelIndex = level; // 0-based into costs/levels
@@ -307,20 +309,17 @@ function NodeDetailPanel({ node, level, isUnlockable, onUpgrade, onClose }: Deta
         </div>
       )}
 
-      {/* Upgrade button */}
-      {!isMaxed && (
-        <button
-          disabled={isLocked || !onUpgrade}
-          onClick={() => onUpgrade?.(node.id)}
-          className={`mt-3 w-full rounded-md py-1.5 text-xs font-medium transition-colors ${
-            isLocked
-              ? 'cursor-not-allowed bg-gray-800 text-gray-600'
-              : 'cursor-pointer bg-blue-600 text-white hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50'
-          }`}
-        >
-          {level === 0 ? 'Unlock' : 'Upgrade'}
-        </button>
-      )}
+      {/* Level input */}
+      <div className="mt-3">
+        <NumberInput
+          value={level}
+          onChange={(newLevel) => onLevelChange?.(node.id, newLevel)}
+          min={0}
+          max={node.maxLevel}
+          ariaLabel={`Level for ${node.name}`}
+          disabled={isLocked || !onLevelChange}
+        />
+      </div>
     </div>
   );
 }
@@ -334,9 +333,11 @@ export interface MemoryNodeTreeProps {
   nodeLevels: Record<string, number>;
   /** Called when the user triggers an upgrade action */
   onUpgrade?: (nodeId: string) => void;
+  /** Called when the user sets a level directly via the level input */
+  onLevelChange?: (nodeId: string, level: number) => void;
 }
 
-export function MemoryNodeTree({ nodes, nodeLevels, onUpgrade }: MemoryNodeTreeProps) {
+export function MemoryNodeTree({ nodes, nodeLevels, onUpgrade, onLevelChange }: MemoryNodeTreeProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const { positions, canvasWidth, canvasHeight, edges } = useMemo(
@@ -439,6 +440,7 @@ export function MemoryNodeTree({ nodes, nodeLevels, onUpgrade }: MemoryNodeTreeP
           level={nodeLevels[selectedNode.id] ?? 0}
           isUnlockable={isUnlockable(selectedNode)}
           onUpgrade={onUpgrade}
+          onLevelChange={onLevelChange}
           onClose={() => setSelectedId(null)}
         />
       )}

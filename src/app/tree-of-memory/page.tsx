@@ -231,6 +231,7 @@ export default function TreeOfMemoryPage() {
               nodes={categoryNodes}
               nodeLevels={nodeLevels}
               onUpgrade={handleUpgrade}
+              onLevelChange={setNodeLevel}
             />
           </section>
         )}
