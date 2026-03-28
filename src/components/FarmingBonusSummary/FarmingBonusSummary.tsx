@@ -8,6 +8,7 @@ import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
 import { useStagesStore, type StagesStore, type FarmingBonusMode } from '@/store/useStagesStore';
 import { aggregateFarmingBonuses } from '@/lib/bonus-aggregator';
 import { calcSpiritAtkBonus } from '@/components/SpiritBuffToggles/SpiritBuffToggles';
+import { calcScrollBlessingBonuses } from '@/components/ScrollBlessingToggles/ScrollBlessingToggles';
 import type { TOMState } from '@/types/tom';
 import tomDataRaw from '@/data/tom-data.json';
 
@@ -131,6 +132,7 @@ export function FarmingBonusSummary() {
   );
   const nodeLevels = useUserSaveStore((s: UserSaveStore) => s.memoryTree.nodeLevels);
   const spiritBuffs = useUserSaveStore((s: UserSaveStore) => s.stageSelection.spiritBuffs);
+  const scrollBlessings = useUserSaveStore((s: UserSaveStore) => s.stageSelection.scrollBlessings);
 
   const extraExpMode = useStagesStore((s: StagesStore) => s.extraExpMode);
   const manualExtraExpBonus = useStagesStore((s: StagesStore) => s.manualExtraExpBonus);
@@ -172,17 +174,25 @@ export function FarmingBonusSummary() {
   const spiritAtkBonus = useMemo(() => calcSpiritAtkBonus(spiritBuffs), [spiritBuffs]);
   const totalExtraAtkBonus = breakdown.totals.extraAtkBonus + spiritAtkBonus;
 
+  const scrollBlessingBonuses = useMemo(
+    () => calcScrollBlessingBonuses(scrollBlessings),
+    [scrollBlessings],
+  );
+  const totalExtraExpBonus = breakdown.totals.extraExpBonus + scrollBlessingBonuses.extraExpBonus;
+  const totalMonsterGoldBonus =
+    breakdown.totals.monsterGoldBonus + scrollBlessingBonuses.monsterGoldBonus;
+
   function handleExtraExpToggle(manual: boolean) {
     setExtraExpMode(manual ? 'manual' : 'auto');
     if (manual && manualExtraExpBonus === 0) {
-      setManualExtraExpBonus(parseFloat((breakdown.totals.extraExpBonus * 100).toFixed(1)));
+      setManualExtraExpBonus(parseFloat((totalExtraExpBonus * 100).toFixed(1)));
     }
   }
 
   function handleMonsterGoldToggle(manual: boolean) {
     setMonsterGoldMode(manual ? 'manual' : 'auto');
     if (manual && manualMonsterGoldBonus === 0) {
-      setManualMonsterGoldBonus(parseFloat((breakdown.totals.monsterGoldBonus * 100).toFixed(1)));
+      setManualMonsterGoldBonus(parseFloat((totalMonsterGoldBonus * 100).toFixed(1)));
     }
   }
 
@@ -215,7 +225,7 @@ export function FarmingBonusSummary() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <BonusTypeCard
           title="Extra EXP"
-          autoTotal={breakdown.totals.extraExpBonus}
+          autoTotal={totalExtraExpBonus}
           mode={extraExpMode}
           manualValue={manualExtraExpBonus}
           toggleId="extra-exp-mode-toggle"
@@ -227,12 +237,13 @@ export function FarmingBonusSummary() {
             { label: 'Companions', value: breakdown.extraExp.companions },
             { label: 'Constellation', value: breakdown.extraExp.constellation },
             { label: 'Memory Tree', value: breakdown.extraExp.memoryTree },
+            { label: 'Scroll Blessings', value: scrollBlessingBonuses.extraExpBonus },
           ]}
         />
 
         <BonusTypeCard
           title="Monster Gold"
-          autoTotal={breakdown.totals.monsterGoldBonus}
+          autoTotal={totalMonsterGoldBonus}
           mode={monsterGoldMode}
           manualValue={manualMonsterGoldBonus}
           toggleId="monster-gold-mode-toggle"
@@ -245,6 +256,7 @@ export function FarmingBonusSummary() {
             { label: 'Character', value: breakdown.monsterGold.character },
             { label: 'Constellation', value: breakdown.monsterGold.constellation },
             { label: 'Memory Tree', value: breakdown.monsterGold.memoryTree },
+            { label: 'Scroll Blessings', value: scrollBlessingBonuses.monsterGoldBonus },
           ]}
         />
 
