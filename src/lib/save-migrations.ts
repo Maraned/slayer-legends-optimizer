@@ -11,7 +11,7 @@
  * only needs to handle one step.
  */
 
-export const CURRENT_SAVE_VERSION = 5;
+export const CURRENT_SAVE_VERSION = 6;
 
 type PartialSave = Record<string, unknown>;
 type MigrationFn = (state: PartialSave) => PartialSave;
@@ -54,6 +54,20 @@ const migrations: Record<number, MigrationFn> = {
       spiritBuffs: {
         todd: { active: false, skillLevel: 1 },
         luga: { active: false, skillLevel: 1 },
+      },
+    },
+  }),
+  // v5 → v6: add scrollBlessings to stageSelection.
+  6: (state) => ({
+    ...state,
+    stageSelection: {
+      ...(state.stageSelection as Record<string, unknown>),
+      scrollBlessings: {
+        gold: false,
+        exp: false,
+        cubes: false,
+        equipment: false,
+        hotTime: false,
       },
     },
   }),

@@ -53,5 +53,12 @@ export const DEFAULT_STATE: UserSaveState = {
       todd: { active: false, skillLevel: 1 },
       luga: { active: false, skillLevel: 1 },
     },
+    scrollBlessings: {
+      gold: false,
+      exp: false,
+      cubes: false,
+      equipment: false,
+      hotTime: false,
+    },
   },
 };

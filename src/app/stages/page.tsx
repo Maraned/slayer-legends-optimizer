@@ -9,6 +9,7 @@ import { SoulWeaponSection } from '@/components/SoulWeaponSection/SoulWeaponSect
 import { SWCraftingRequirements } from '@/components/SWCraftingRequirements/SWCraftingRequirements';
 import { OfflineHuntRates } from '@/components/OfflineHuntRates/OfflineHuntRates';
 import { SpiritBuffToggles } from '@/components/SpiritBuffToggles/SpiritBuffToggles';
+import { ScrollBlessingToggles } from '@/components/ScrollBlessingToggles/ScrollBlessingToggles';
 import { useUserSaveStore } from '@/store/useUserSaveStore';
 import type { Stage, Area } from '@/types/stage';
 import stageDataRaw from '@/data/stage-data.json';
@@ -218,6 +219,9 @@ export default function StagesPage() {
 
         {/* Spirit Buffs */}
         <SpiritBuffToggles />
+
+        {/* Scroll Blessings */}
+        <ScrollBlessingToggles />
 
         {/* Offline Hunt Rates */}
         <OfflineHuntRates />
