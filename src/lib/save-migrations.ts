@@ -11,7 +11,7 @@
  * only needs to handle one step.
  */
 
-export const CURRENT_SAVE_VERSION = 2;
+export const CURRENT_SAVE_VERSION = 3;
 
 type PartialSave = Record<string, unknown>;
 type MigrationFn = (state: PartialSave) => PartialSave;
@@ -28,6 +28,14 @@ const migrations: Record<number, MigrationFn> = {
       ...(state.blackOrb as Record<string, unknown>),
       ampMode: 'auto',
       manualAmp: {},
+    },
+  }),
+  // v2 → v3: add currentFarmStageId to stageSelection.
+  3: (state) => ({
+    ...state,
+    stageSelection: {
+      ...(state.stageSelection as Record<string, unknown>),
+      currentFarmStageId: 1,
     },
   }),
 };

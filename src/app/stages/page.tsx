@@ -3,7 +3,9 @@
 import { useMemo, useState } from 'react';
 
 import { Select } from '@/components/Select/Select';
+import { NumberInput } from '@/components/NumberInput';
 import { FarmingBonusSummary } from '@/components/FarmingBonusSummary/FarmingBonusSummary';
+import { useUserSaveStore } from '@/store/useUserSaveStore';
 import type { Stage, Area } from '@/types/stage';
 import stageDataRaw from '@/data/stage-data.json';
 
@@ -14,6 +16,10 @@ export default function StagesPage() {
   const [selectedAreaId, setSelectedAreaId] = useState('');
   const [selectedZoneId, setSelectedZoneId] = useState('');
   const [selectedStageId, setSelectedStageId] = useState('');
+
+  const currentFarmStageId = useUserSaveStore((s) => s.stageSelection.currentFarmStageId);
+  const setStageSelection = useUserSaveStore((s) => s.setStageSelection);
+  const stageSelection = useUserSaveStore((s) => s.stageSelection);
 
   const areaOptions = useMemo(
     () => AREAS.map((area) => ({ value: area.id, label: area.name })),
@@ -74,7 +80,7 @@ export default function StagesPage() {
             Basic Details
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <div className="flex flex-col gap-1">
               <label
                 htmlFor="area-select"
@@ -128,6 +134,15 @@ export default function StagesPage() {
               />
             </div>
           </div>
+
+          <NumberInput
+            id="current-farm-stage"
+            label="Current Farm Stage"
+            value={currentFarmStageId}
+            onChange={(value) => setStageSelection({ ...stageSelection, currentFarmStageId: value })}
+            min={1}
+            max={2000}
+          />
 
           {selectedStage && (
             <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-800">

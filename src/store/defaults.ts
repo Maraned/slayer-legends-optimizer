@@ -47,5 +47,6 @@ export const DEFAULT_STATE: UserSaveState = {
 
   stageSelection: {
     selectedStageId: 1,
+    currentFarmStageId: 1,
   },
 };
