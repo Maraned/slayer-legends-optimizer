@@ -5,6 +5,7 @@ import { useMemo, useState } from 'react';
 import { Select } from '@/components/Select/Select';
 import { NumberInput } from '@/components/NumberInput';
 import { FarmingBonusSummary } from '@/components/FarmingBonusSummary/FarmingBonusSummary';
+import { SoulWeaponSection } from '@/components/SoulWeaponSection/SoulWeaponSection';
 import { useUserSaveStore } from '@/store/useUserSaveStore';
 import type { Stage, Area } from '@/types/stage';
 import stageDataRaw from '@/data/stage-data.json';
@@ -200,6 +201,9 @@ export default function StagesPage() {
             </div>
           )}
         </section>
+
+        {/* Soul Weapon */}
+        <SoulWeaponSection />
 
         {/* Farming Bonuses */}
         <FarmingBonusSummary />

@@ -11,6 +11,8 @@ export interface StagesState {
   manualExtraAtkBonus: number;
   hpRecoveryMode: FarmingBonusMode;
   manualHpRecoveryBonus: number;
+  currentSoulWeaponId: string;
+  targetSoulWeaponId: string;
 }
 
 export interface StagesActions {
@@ -22,6 +24,8 @@ export interface StagesActions {
   setManualExtraAtkBonus: (value: number) => void;
   setHpRecoveryMode: (mode: FarmingBonusMode) => void;
   setManualHpRecoveryBonus: (value: number) => void;
+  setCurrentSoulWeaponId: (id: string) => void;
+  setTargetSoulWeaponId: (id: string) => void;
 }
 
 export type StagesStore = StagesState & StagesActions;
@@ -35,6 +39,8 @@ const DEFAULT_STAGES_STATE: StagesState = {
   manualExtraAtkBonus: 0,
   hpRecoveryMode: 'auto',
   manualHpRecoveryBonus: 0,
+  currentSoulWeaponId: '',
+  targetSoulWeaponId: '',
 };
 
 export const useStagesStore = create<StagesStore>()((set) => ({
@@ -48,4 +54,6 @@ export const useStagesStore = create<StagesStore>()((set) => ({
   setManualExtraAtkBonus: (manualExtraAtkBonus) => set({ manualExtraAtkBonus }),
   setHpRecoveryMode: (hpRecoveryMode) => set({ hpRecoveryMode }),
   setManualHpRecoveryBonus: (manualHpRecoveryBonus) => set({ manualHpRecoveryBonus }),
+  setCurrentSoulWeaponId: (currentSoulWeaponId) => set({ currentSoulWeaponId }),
+  setTargetSoulWeaponId: (targetSoulWeaponId) => set({ targetSoulWeaponId }),
 }));
