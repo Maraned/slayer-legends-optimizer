@@ -7,6 +7,7 @@ import { Toggle } from '@/components/Toggle/Toggle';
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
 import { useStagesStore, type StagesStore, type FarmingBonusMode } from '@/store/useStagesStore';
 import { aggregateFarmingBonuses } from '@/lib/bonus-aggregator';
+import { calcSpiritAtkBonus } from '@/components/SpiritBuffToggles/SpiritBuffToggles';
 import type { TOMState } from '@/types/tom';
 import tomDataRaw from '@/data/tom-data.json';
 
@@ -129,6 +130,7 @@ export function FarmingBonusSummary() {
     (s: UserSaveStore) => s.constellation.buffTotals,
   );
   const nodeLevels = useUserSaveStore((s: UserSaveStore) => s.memoryTree.nodeLevels);
+  const spiritBuffs = useUserSaveStore((s: UserSaveStore) => s.stageSelection.spiritBuffs);
 
   const extraExpMode = useStagesStore((s: StagesStore) => s.extraExpMode);
   const manualExtraExpBonus = useStagesStore((s: StagesStore) => s.manualExtraExpBonus);
@@ -167,6 +169,9 @@ export function FarmingBonusSummary() {
     [appearanceBonusTotals, companions, promotion, constellationBuffTotals, tomNodes],
   );
 
+  const spiritAtkBonus = useMemo(() => calcSpiritAtkBonus(spiritBuffs), [spiritBuffs]);
+  const totalExtraAtkBonus = breakdown.totals.extraAtkBonus + spiritAtkBonus;
+
   function handleExtraExpToggle(manual: boolean) {
     setExtraExpMode(manual ? 'manual' : 'auto');
     if (manual && manualExtraExpBonus === 0) {
@@ -184,7 +189,7 @@ export function FarmingBonusSummary() {
   function handleExtraAtkToggle(manual: boolean) {
     setExtraAtkMode(manual ? 'manual' : 'auto');
     if (manual && manualExtraAtkBonus === 0) {
-      setManualExtraAtkBonus(parseFloat((breakdown.totals.extraAtkBonus * 100).toFixed(1)));
+      setManualExtraAtkBonus(parseFloat((totalExtraAtkBonus * 100).toFixed(1)));
     }
   }
 
@@ -245,7 +250,7 @@ export function FarmingBonusSummary() {
 
         <BonusTypeCard
           title="Extra ATK"
-          autoTotal={breakdown.totals.extraAtkBonus}
+          autoTotal={totalExtraAtkBonus}
           mode={extraAtkMode}
           manualValue={manualExtraAtkBonus}
           toggleId="extra-atk-mode-toggle"
@@ -258,6 +263,7 @@ export function FarmingBonusSummary() {
             { label: 'Character', value: breakdown.extraAtk.character, formatter: formatBonus },
             { label: 'Constellation', value: breakdown.extraAtk.constellation, formatter: formatRaw },
             { label: 'Memory Tree', value: breakdown.extraAtk.memoryTree, formatter: formatBonus },
+            { label: 'Spirit Buffs', value: spiritAtkBonus, formatter: formatBonus },
           ]}
         />
 
