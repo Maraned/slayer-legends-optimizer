@@ -47,14 +47,20 @@ function formatRate(value: number): string {
   return value.toFixed(1);
 }
 
+interface ResourceScore {
+  label: string;
+  score: number;
+}
+
 interface BestStageCardProps {
   title: string;
   stageLabel: string;
   metricLabel: string;
   metricValue: string;
+  scores: ResourceScore[];
 }
 
-function BestStageCard({ title, stageLabel, metricLabel, metricValue }: BestStageCardProps) {
+function BestStageCard({ title, stageLabel, metricLabel, metricValue, scores }: BestStageCardProps) {
   return (
     <div className="flex flex-col gap-1.5 rounded-lg border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/60 px-3 py-3">
       <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
@@ -69,6 +75,26 @@ function BestStageCard({ title, stageLabel, metricLabel, metricValue }: BestStag
           {metricValue}
         </span>
       </span>
+      {scores.length > 0 && (
+        <div className="mt-1 space-y-1 pt-1.5 border-t border-gray-100 dark:border-gray-700/60">
+          {scores.map(({ label, score }) => (
+            <div key={label} className="flex items-center gap-1.5">
+              <span className="text-[10px] text-gray-400 dark:text-gray-500 w-12 shrink-0">
+                {label}
+              </span>
+              <div className="flex-1 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-blue-400 dark:bg-blue-500 rounded-full"
+                  style={{ width: `${score * 100}%` }}
+                />
+              </div>
+              <span className="text-[10px] tabular-nums text-gray-400 dark:text-gray-500 w-7 text-right">
+                {(score * 100).toFixed(0)}%
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -143,6 +169,11 @@ export function BestStagesSection() {
     [rates],
   );
 
+  const bestGoldStage = useMemo(
+    () => findBestStage(rates, (r) => r.goldPerEnergy),
+    [rates],
+  );
+
   const bestCubesStage = useMemo(
     () => findBestStage(rates, (r) => getSummedDropRate(r, CUBES_PATTERN)),
     [rates],
@@ -158,6 +189,34 @@ export function BestStagesSection() {
     [rates],
   );
 
+  // Maxima for normalization (each best stage defines the 1.0 reference)
+  const maxExp = bestExpStage?.expPerEnergy ?? 0;
+  const maxGold = bestGoldStage?.goldPerEnergy ?? 0;
+  const maxCubes = bestCubesStage ? getSummedDropRate(bestCubesStage, CUBES_PATTERN) : 0;
+  const maxStones = bestStonesStage ? getSummedDropRate(bestStonesStage, STONES_PATTERN) : 0;
+  const maxDiamonds = bestDiamondsStage
+    ? getSummedDropRate(bestDiamondsStage, DIAMONDS_PATTERN)
+    : 0;
+
+  function getResourceScores(rate: StageResourceRates): ResourceScore[] {
+    return [
+      { label: 'EXP', score: maxExp > 0 ? rate.expPerEnergy / maxExp : 0 },
+      { label: 'Gold', score: maxGold > 0 ? rate.goldPerEnergy / maxGold : 0 },
+      {
+        label: 'Cubes',
+        score: maxCubes > 0 ? getSummedDropRate(rate, CUBES_PATTERN) / maxCubes : 0,
+      },
+      {
+        label: 'Stones',
+        score: maxStones > 0 ? getSummedDropRate(rate, STONES_PATTERN) / maxStones : 0,
+      },
+      {
+        label: 'Diamonds',
+        score: maxDiamonds > 0 ? getSummedDropRate(rate, DIAMONDS_PATTERN) / maxDiamonds : 0,
+      },
+    ];
+  }
+
   return (
     <section
       aria-labelledby="best-stages-heading"
@@ -170,13 +229,24 @@ export function BestStagesSection() {
         Best Stages
       </h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         {bestExpStage && (
           <BestStageCard
             title="EXP"
             stageLabel={bestExpStage.stageLabel}
             metricLabel="EXP / energy"
             metricValue={formatRate(bestExpStage.expPerEnergy)}
+            scores={getResourceScores(bestExpStage)}
+          />
+        )}
+
+        {bestGoldStage && (
+          <BestStageCard
+            title="Gold"
+            stageLabel={bestGoldStage.stageLabel}
+            metricLabel="Gold / energy"
+            metricValue={formatRate(bestGoldStage.goldPerEnergy)}
+            scores={getResourceScores(bestGoldStage)}
           />
         )}
 
@@ -186,6 +256,7 @@ export function BestStagesSection() {
             stageLabel={bestCubesStage.stageLabel}
             metricLabel="Shards / energy"
             metricValue={formatRate(getSummedDropRate(bestCubesStage, CUBES_PATTERN))}
+            scores={getResourceScores(bestCubesStage)}
           />
         )}
 
@@ -195,6 +266,7 @@ export function BestStagesSection() {
             stageLabel={bestStonesStage.stageLabel}
             metricLabel="Stones / energy"
             metricValue={formatRate(getSummedDropRate(bestStonesStage, STONES_PATTERN))}
+            scores={getResourceScores(bestStonesStage)}
           />
         )}
 
@@ -204,6 +276,7 @@ export function BestStagesSection() {
             stageLabel={bestDiamondsStage.stageLabel}
             metricLabel="Crystals / energy"
             metricValue={formatRate(getSummedDropRate(bestDiamondsStage, DIAMONDS_PATTERN))}
+            scores={getResourceScores(bestDiamondsStage)}
           />
         )}
 
@@ -213,6 +286,7 @@ export function BestStagesSection() {
             stageLabel={`Soul Stage ${BEST_SOULS_STAGE.stageNumber}`}
             metricLabel="Souls / energy"
             metricValue={BEST_SOULS_STAGE.avgSoulsPerEnergy.toFixed(2)}
+            scores={[]}
           />
         )}
       </div>
