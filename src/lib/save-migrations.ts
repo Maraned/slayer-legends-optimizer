@@ -11,7 +11,7 @@
  * only needs to handle one step.
  */
 
-export const CURRENT_SAVE_VERSION = 3;
+export const CURRENT_SAVE_VERSION = 4;
 
 type PartialSave = Record<string, unknown>;
 type MigrationFn = (state: PartialSave) => PartialSave;
@@ -36,6 +36,14 @@ const migrations: Record<number, MigrationFn> = {
     stageSelection: {
       ...(state.stageSelection as Record<string, unknown>),
       currentFarmStageId: 1,
+    },
+  }),
+  // v3 → v4: add offlineHuntIdleHours to stageSelection.
+  4: (state) => ({
+    ...state,
+    stageSelection: {
+      ...(state.stageSelection as Record<string, unknown>),
+      offlineHuntIdleHours: 0,
     },
   }),
 };

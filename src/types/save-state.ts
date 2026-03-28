@@ -67,6 +67,8 @@ export interface StageSelectionState {
   selectedStageId: Stage['id'];
   /** Numeric ID of the stage the player is currently farming */
   currentFarmStageId: Stage['id'];
+  /** Number of idle hours for Offline Hunt calculations */
+  offlineHuntIdleHours: number;
 }
 
 // ---------------------------------------------------------------------------
