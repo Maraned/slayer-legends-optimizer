@@ -272,6 +272,7 @@ export function FarmingBonusSummary() {
           inputLabel="HP Recovery %"
           sources={[
             { label: 'Appearance', value: breakdown.hpRecovery.appearance, formatter: formatRaw },
+            { label: 'Companions', value: breakdown.hpRecovery.companions, formatter: formatBonus },
             { label: 'Constellation', value: breakdown.hpRecovery.constellation, formatter: formatRaw },
             { label: 'Memory Tree', value: breakdown.hpRecovery.memoryTree, formatter: formatBonus },
           ]}
