@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 
 import { Select } from '@/components/Select/Select';
+import { getSoulConversionRatio, rankStagesBySoulsPerEnergy } from '@/lib/souls';
 import type { SoulWeaponData } from '@/types/equipment';
 import type { SoulDungeonStage } from '@/types/souls';
 import equipmentDataRaw from '@/data/equipment.json';
@@ -10,6 +11,7 @@ import soulsDataRaw from '@/data/souls-data.json';
 
 const SOUL_WEAPONS = equipmentDataRaw.soulWeapons as unknown as SoulWeaponData[];
 const SOUL_DUNGEON = soulsDataRaw.SOUL_DUNGEON as unknown as SoulDungeonStage[];
+const BEST_STAGE_RATIO = rankStagesBySoulsPerEnergy()[0];
 
 const TIER_COLORS: Record<string, string> = {
   Epic: 'text-purple-600 dark:text-purple-400',
@@ -58,6 +60,16 @@ export function SWCraftingRequirements() {
     () => SOUL_DUNGEON.find((s) => s.soulWeaponId === targetSWId) ?? null,
     [targetSWId],
   );
+
+  const stageRatio = useMemo(
+    () => (requiredStage ? getSoulConversionRatio(requiredStage.stage) : null),
+    [requiredStage],
+  );
+
+  const vsBestPercent = useMemo(() => {
+    if (!stageRatio || !BEST_STAGE_RATIO || BEST_STAGE_RATIO.avgSoulsPerEnergy === 0) return null;
+    return (stageRatio.avgSoulsPerEnergy / BEST_STAGE_RATIO.avgSoulsPerEnergy) * 100;
+  }, [stageRatio]);
 
   return (
     <section
@@ -166,6 +178,57 @@ export function SWCraftingRequirements() {
               <StatRow label="DEF" value={requiredStage.boss.def.toLocaleString()} />
             </dl>
           </div>
+
+          {/* VS Best Overall */}
+          {stageRatio && BEST_STAGE_RATIO && vsBestPercent !== null && (
+            <div className="border-t border-gray-100 dark:border-gray-800 pt-5">
+              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+                VS Best Overall
+              </p>
+              <div className="space-y-3">
+                <div>
+                  <div className="flex justify-between text-xs mb-1.5">
+                    <span className="text-gray-500 dark:text-gray-400">
+                      Stage {stageRatio.stageNumber} souls/energy
+                    </span>
+                    <span
+                      className={`font-semibold ${
+                        vsBestPercent >= 90
+                          ? 'text-green-600 dark:text-green-400'
+                          : vsBestPercent >= 70
+                            ? 'text-amber-600 dark:text-amber-400'
+                            : 'text-red-600 dark:text-red-400'
+                      }`}
+                    >
+                      {vsBestPercent.toFixed(1)}%
+                    </span>
+                  </div>
+                  <div className="h-2 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                    <div
+                      className={`h-full rounded-full transition-all ${
+                        vsBestPercent >= 90
+                          ? 'bg-green-500'
+                          : vsBestPercent >= 70
+                            ? 'bg-amber-500'
+                            : 'bg-red-500'
+                      }`}
+                      style={{ width: `${Math.min(100, vsBestPercent)}%` }}
+                    />
+                  </div>
+                </div>
+                <dl className="grid grid-cols-2 gap-4">
+                  <StatRow
+                    label="This Stage (souls/energy)"
+                    value={stageRatio.avgSoulsPerEnergy.toFixed(2)}
+                  />
+                  <StatRow
+                    label={`Best: Stage ${BEST_STAGE_RATIO.stageNumber} (souls/energy)`}
+                    value={BEST_STAGE_RATIO.avgSoulsPerEnergy.toFixed(2)}
+                  />
+                </dl>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
