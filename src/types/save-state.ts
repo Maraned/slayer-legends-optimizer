@@ -59,6 +59,25 @@ export interface ConstellationState {
 
 
 /**
+ * Scroll Blessing toggle states for the five available blessings.
+ * Each blessing multiplies the corresponding farming rate when active.
+ *
+ * Multipliers when active:
+ *   gold      ×3 → adds +200% to Monster Gold
+ *   exp       ×3 → adds +200% to Extra EXP
+ *   cubes     ×3 → adds +200% to drop rate
+ *   equipment ×2 → adds +100% to drop rate
+ *   hotTime   ×2 → adds +100% to both EXP and Gold
+ */
+export interface ScrollBlessingsState {
+  gold: boolean;
+  exp: boolean;
+  cubes: boolean;
+  equipment: boolean;
+  hotTime: boolean;
+}
+
+/**
  * Per-spirit buff toggle and skill level state.
  */
 export interface SpiritBuff {
@@ -89,6 +108,8 @@ export interface StageSelectionState {
   offlineHuntIdleHours: number;
   /** Spirit buff toggle states for stage farming calculations */
   spiritBuffs: SpiritBuffsState;
+  /** Scroll Blessing toggle states for stage farming calculations */
+  scrollBlessings: ScrollBlessingsState;
 }
 
 // ---------------------------------------------------------------------------

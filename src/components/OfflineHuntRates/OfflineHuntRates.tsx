@@ -7,6 +7,7 @@ import { useStagesStore, type StagesStore } from '@/store/useStagesStore';
 import { calculateStageResourceRates } from '@/lib/stage-calculator';
 import { aggregateFarmingBonuses } from '@/lib/bonus-aggregator';
 import { calcSpiritAtkBonus } from '@/components/SpiritBuffToggles/SpiritBuffToggles';
+import { calcScrollBlessingBonuses } from '@/components/ScrollBlessingToggles/ScrollBlessingToggles';
 import type { Stage } from '@/types/stage';
 import type { TOMState } from '@/types/tom';
 import stageDataRaw from '@/data/stage-data.json';
@@ -36,6 +37,9 @@ export function OfflineHuntRates() {
   );
   const spiritBuffs = useUserSaveStore(
     (s: UserSaveStore) => s.stageSelection.spiritBuffs,
+  );
+  const scrollBlessings = useUserSaveStore(
+    (s: UserSaveStore) => s.stageSelection.scrollBlessings,
   );
 
   const appearanceBonusTotals = useUserSaveStore(
@@ -71,17 +75,19 @@ export function OfflineHuntRates() {
       constellationBuffTotals,
       tomNodes,
     });
+    const scrollBlessingBonuses = calcScrollBlessingBonuses(scrollBlessings);
     return {
       ...breakdown.totals,
       extraExpBonus:
         extraExpMode === 'manual'
           ? manualExtraExpBonus / 100
-          : breakdown.totals.extraExpBonus,
+          : breakdown.totals.extraExpBonus + scrollBlessingBonuses.extraExpBonus,
       monsterGoldBonus:
         monsterGoldMode === 'manual'
           ? manualMonsterGoldBonus / 100
-          : breakdown.totals.monsterGoldBonus,
+          : breakdown.totals.monsterGoldBonus + scrollBlessingBonuses.monsterGoldBonus,
       extraAtkBonus: breakdown.totals.extraAtkBonus + calcSpiritAtkBonus(spiritBuffs),
+      dropRateBonus: breakdown.totals.dropRateBonus + scrollBlessingBonuses.dropRateBonus,
     };
   }, [
     appearanceBonusTotals,
@@ -94,6 +100,7 @@ export function OfflineHuntRates() {
     monsterGoldMode,
     manualMonsterGoldBonus,
     spiritBuffs,
+    scrollBlessings,
   ]);
 
   const rates = useMemo(() => {
