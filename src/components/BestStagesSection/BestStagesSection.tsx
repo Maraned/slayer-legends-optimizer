@@ -7,7 +7,7 @@ import { useStagesStore, type StagesStore } from '@/store/useStagesStore';
 import { aggregateFarmingBonuses } from '@/lib/bonus-aggregator';
 import { calcSpiritAtkBonus } from '@/components/SpiritBuffToggles/SpiritBuffToggles';
 import { calcScrollBlessingBonuses } from '@/components/ScrollBlessingToggles/ScrollBlessingToggles';
-import { calculateStageResourceRates } from '@/lib/stage-calculator';
+import { calculateStageResourceRates, normalizeStageRankings } from '@/lib/stage-calculator';
 import { rankStagesBySoulsPerEnergy } from '@/lib/souls';
 import type { Stage } from '@/types/stage';
 import type { StageResourceRates } from '@/types/stage-rates';
@@ -164,6 +164,11 @@ export function BestStagesSection() {
     [bonuses],
   );
 
+  const bestOverallStage = useMemo(
+    () => normalizeStageRankings(rates)[0] ?? null,
+    [rates],
+  );
+
   const bestExpStage = useMemo(
     () => findBestStage(rates, (r) => r.expPerEnergy),
     [rates],
@@ -230,6 +235,16 @@ export function BestStagesSection() {
       </h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {bestOverallStage && (
+          <BestStageCard
+            title="Overall"
+            stageLabel={bestOverallStage.stageLabel}
+            metricLabel="Score"
+            metricValue={`${(bestOverallStage.compositeScore * 100).toFixed(1)}%`}
+            scores={getResourceScores(bestOverallStage)}
+          />
+        )}
+
         {bestExpStage && (
           <BestStageCard
             title="EXP"
