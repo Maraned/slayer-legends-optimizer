@@ -65,6 +65,8 @@ export interface ConstellationState {
 export interface StageSelectionState {
   /** Numeric ID of the currently selected farming stage */
   selectedStageId: Stage['id'];
+  /** Numeric ID of the stage the player is currently farming */
+  currentFarmStageId: Stage['id'];
 }
 
 // ---------------------------------------------------------------------------
