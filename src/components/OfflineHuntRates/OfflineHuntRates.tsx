@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 
 import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
 import { useStagesStore, type StagesStore } from '@/store/useStagesStore';
-import { calculateStageResourceRates } from '@/lib/stage-calculator';
+import { calculateStageResourceRates, rankStagesByResource } from '@/lib/stage-calculator';
 import { aggregateFarmingBonuses } from '@/lib/bonus-aggregator';
 import { calcSpiritAtkBonus } from '@/components/SpiritBuffToggles/SpiritBuffToggles';
 import { calcScrollBlessingBonuses } from '@/components/ScrollBlessingToggles/ScrollBlessingToggles';
@@ -108,6 +108,16 @@ export function OfflineHuntRates() {
     return calculateStageResourceRates(stage, bonuses);
   }, [stage, bonuses]);
 
+  const bestGoldRates = useMemo(
+    () => rankStagesByResource(STAGES, bonuses, 'gold')[0] ?? null,
+    [bonuses],
+  );
+
+  const vsGoldPercent = useMemo(() => {
+    if (!rates || !bestGoldRates || bestGoldRates.goldPerEnergy === 0) return null;
+    return (rates.goldPerEnergy / bestGoldRates.goldPerEnergy) * 100;
+  }, [rates, bestGoldRates]);
+
   if (!rates) return null;
 
   const goldPerMinute = rates.goldPerRun * OFFLINE_HUNT_RUNS_PER_MINUTE;
@@ -170,6 +180,62 @@ export function OfflineHuntRates() {
           </>
         )}
       </dl>
+
+      {bestGoldRates && vsGoldPercent !== null && (
+        <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
+          <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+            VS Best Gold
+          </p>
+          <div className="space-y-3">
+            <div>
+              <div className="flex justify-between text-xs mb-1.5">
+                <span className="text-gray-500 dark:text-gray-400">
+                  Stage {rates.stageLabel} gold/energy
+                </span>
+                <span
+                  className={`font-semibold ${
+                    vsGoldPercent >= 90
+                      ? 'text-green-600 dark:text-green-400'
+                      : vsGoldPercent >= 70
+                        ? 'text-amber-600 dark:text-amber-400'
+                        : 'text-red-600 dark:text-red-400'
+                  }`}
+                >
+                  {vsGoldPercent.toFixed(1)}%
+                </span>
+              </div>
+              <div className="h-2 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+                <div
+                  className={`h-full rounded-full transition-all ${
+                    vsGoldPercent >= 90
+                      ? 'bg-green-500'
+                      : vsGoldPercent >= 70
+                        ? 'bg-amber-500'
+                        : 'bg-red-500'
+                  }`}
+                  style={{ width: `${Math.min(100, vsGoldPercent)}%` }}
+                />
+              </div>
+            </div>
+            <dl className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-0.5">
+                <dt className="text-xs text-gray-500 dark:text-gray-400">This Stage (gold/energy)</dt>
+                <dd className="text-sm font-semibold tabular-nums text-gray-900 dark:text-gray-100">
+                  {formatAmount(rates.goldPerEnergy)}
+                </dd>
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <dt className="text-xs text-gray-500 dark:text-gray-400">
+                  Best: Stage {bestGoldRates.stageLabel} (gold/energy)
+                </dt>
+                <dd className="text-sm font-semibold tabular-nums text-gray-900 dark:text-gray-100">
+                  {formatAmount(bestGoldRates.goldPerEnergy)}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      )}
 
       {rates.itemDrops.length > 0 && (
         <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
