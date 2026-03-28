@@ -6,6 +6,7 @@ import { Checkbox } from '@/components/Checkbox';
 import { ClassSelector } from '@/components/ClassSelector/ClassSelector';
 import { CritDmgSelector } from '@/components/CritDmgSelector/CritDmgSelector';
 import { WeaponSelector } from '@/components/WeaponSelector/WeaponSelector';
+import { segmentCost } from '@/lib/gold-calculator';
 import { useCalculatorInputsStore } from '@/store/useCalculatorInputsStore';
 import type { CalculatorInputsStore } from '@/store/useCalculatorInputsStore';
 import cubeData from '@/data/cube-optimizer-data.json';
@@ -24,6 +25,9 @@ interface CalculationResult {
   classToLevel: number;
   classCubeCost: number;
   totalCubeCost: number;
+  critDmgFromLevel: number;
+  critDmgToLevel: number;
+  critDmgGoldCost: number;
 }
 
 function formatNumber(n: number): string {
@@ -59,6 +63,12 @@ export default function CubeOptimizerPage() {
   const weaponTargetLevel = useCalculatorInputsStore(
     (s: CalculatorInputsStore) => s.weaponTargetLevel,
   );
+  const critDmgCurrentLevel = useCalculatorInputsStore(
+    (s: CalculatorInputsStore) => s.critDmgCurrentLevel,
+  );
+  const critDmgTargetLevel = useCalculatorInputsStore(
+    (s: CalculatorInputsStore) => s.critDmgTargetLevel,
+  );
 
   const selectedWeapon = useMemo(
     () => WEAPONS.find((w) => w.id === weaponId) ?? WEAPONS[0],
@@ -73,6 +83,7 @@ export default function CubeOptimizerPage() {
   const handleCalculate = useCallback(() => {
     const selectedClass = CLASSES.find((c) => c.id === classId) ?? CLASSES[0];
     const classCubeCost = calcRangeCost(selectedClass.cubeCostPerLevel, classCurrentLevel - 1, classLevel - 1);
+    const critDmgGoldCost = segmentCost(critDmgCurrentLevel, critDmgTargetLevel);
     setCalculationResult({
       weaponName: `${selectedWeapon.name} (Tier ${selectedWeapon.tier})`,
       weaponFromLevel: weaponCurrentLevel,
@@ -83,8 +94,11 @@ export default function CubeOptimizerPage() {
       classToLevel: classLevel,
       classCubeCost,
       totalCubeCost: weaponUpgradeCost + classCubeCost,
+      critDmgFromLevel: critDmgCurrentLevel,
+      critDmgToLevel: critDmgTargetLevel,
+      critDmgGoldCost,
     });
-  }, [classId, classCurrentLevel, classLevel, selectedWeapon, weaponCurrentLevel, weaponTargetLevel, weaponUpgradeCost]);
+  }, [classId, classCurrentLevel, classLevel, selectedWeapon, weaponCurrentLevel, weaponTargetLevel, weaponUpgradeCost, critDmgCurrentLevel, critDmgTargetLevel]);
 
   function handleWeaponOwned(weaponId: string, owned: boolean) {
     setOwnedWeaponIds((prev) => {
@@ -392,7 +406,7 @@ export default function CubeOptimizerPage() {
             >
               Results
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="rounded-lg border border-gray-200 bg-white px-6 py-5 dark:bg-gray-900 dark:border-gray-700">
                 <p className="text-sm text-gray-500 dark:text-gray-400">Weapon Cubes</p>
                 <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900 dark:text-gray-100">
@@ -416,6 +430,18 @@ export default function CubeOptimizerPage() {
                 <p className="mt-2 text-xs text-gray-400 dark:text-gray-500">
                   {calculationResult.className} · Lv {calculationResult.classFromLevel} →{' '}
                   {calculationResult.classToLevel}
+                </p>
+              </div>
+
+              <div className="rounded-lg border border-purple-200 bg-purple-50 px-6 py-5 dark:bg-purple-900/20 dark:border-purple-800">
+                <p className="text-sm text-purple-700 dark:text-purple-400">CRIT DMG Gold</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-purple-900 dark:text-purple-100">
+                  {calculationResult.critDmgGoldCost > 0
+                    ? formatNumber(calculationResult.critDmgGoldCost)
+                    : '—'}
+                </p>
+                <p className="mt-2 text-xs text-purple-600 dark:text-purple-500">
+                  Lv {calculationResult.critDmgFromLevel} → {calculationResult.critDmgToLevel}
                 </p>
               </div>
 
