@@ -34,7 +34,12 @@ export interface CalculatorInputsState {
   classId: string;
 
   /**
-   * Current class level.
+   * Current class level. The cost calculation starts from this level.
+   */
+  classCurrentLevel: number;
+
+  /**
+   * Target class level. The cost calculation ends at this level.
    * Feeds `critDmgFromClassGrowth` in the CRIT DMG source calculation.
    * Class levels are separate from the slayer level stored in CharacterState.
    */

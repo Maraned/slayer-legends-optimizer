@@ -18,8 +18,10 @@ function formatPct(value: number): string {
 
 export function ClassSelector() {
   const classId = useCalculatorInputsStore((s: CalculatorInputsStore) => s.classId);
+  const classCurrentLevel = useCalculatorInputsStore((s: CalculatorInputsStore) => s.classCurrentLevel);
   const classLevel = useCalculatorInputsStore((s: CalculatorInputsStore) => s.classLevel);
   const setClassId = useCalculatorInputsStore((s: CalculatorInputsStore) => s.setClassId);
+  const setClassCurrentLevel = useCalculatorInputsStore((s: CalculatorInputsStore) => s.setClassCurrentLevel);
   const setClassLevel = useCalculatorInputsStore((s: CalculatorInputsStore) => s.setClassLevel);
 
   const selectedClass = useMemo(
@@ -34,6 +36,11 @@ export function ClassSelector() {
 
   const atkBonus = classLevel * selectedClass.atkBonusPctPerLevel;
   const critDmgBonus = classLevel * selectedClass.critDmgBonusPctPerLevel;
+
+  function handleClassCurrentLevel(level: number) {
+    setClassCurrentLevel(level);
+    if (classLevel < level) setClassLevel(level);
+  }
 
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
@@ -53,13 +60,22 @@ export function ClassSelector() {
           />
         </label>
 
-        <NumberInput
-          label="Class Level"
-          value={classLevel}
-          onChange={setClassLevel}
-          min={1}
-          max={selectedClass.maxLevel}
-        />
+        <div className="grid grid-cols-2 gap-3">
+          <NumberInput
+            label="Current Level"
+            value={classCurrentLevel}
+            onChange={handleClassCurrentLevel}
+            min={1}
+            max={selectedClass.maxLevel}
+          />
+          <NumberInput
+            label="Target Level"
+            value={classLevel}
+            onChange={setClassLevel}
+            min={classCurrentLevel}
+            max={selectedClass.maxLevel}
+          />
+        </div>
 
         <div className="grid grid-cols-2 gap-3">
           <div className="rounded-lg bg-blue-50 px-4 py-3 dark:bg-blue-900/20">

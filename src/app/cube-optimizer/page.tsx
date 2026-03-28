@@ -31,6 +31,10 @@ function formatNumber(n: number): string {
   return n.toLocaleString();
 }
 
+function formatPct(value: number): string {
+  return `+${value.toFixed(2)}%`;
+}
+
 function calcRangeCost(costPerLevel: number[], fromLevel: number, toLevel: number): number {
   let total = 0;
   for (let i = fromLevel; i < toLevel; i++) {
@@ -45,6 +49,7 @@ export default function CubeOptimizerPage() {
   const [ownedClassIds, setOwnedClassIds] = useState<Set<string>>(new Set());
 
   const classId = useCalculatorInputsStore((s: CalculatorInputsStore) => s.classId);
+  const classCurrentLevel = useCalculatorInputsStore((s: CalculatorInputsStore) => s.classCurrentLevel);
   const classLevel = useCalculatorInputsStore((s: CalculatorInputsStore) => s.classLevel);
   const weaponId = useCalculatorInputsStore((s: CalculatorInputsStore) => s.weaponId);
   const weaponCurrentLevel = useCalculatorInputsStore(
@@ -66,19 +71,19 @@ export default function CubeOptimizerPage() {
 
   const handleCalculate = useCallback(() => {
     const selectedClass = CLASSES.find((c) => c.id === classId) ?? CLASSES[0];
-    const classCubeCost = calcRangeCost(selectedClass.cubeCostPerLevel, 0, classLevel - 1);
+    const classCubeCost = calcRangeCost(selectedClass.cubeCostPerLevel, classCurrentLevel - 1, classLevel - 1);
     setCalculationResult({
       weaponName: `${selectedWeapon.name} (Tier ${selectedWeapon.tier})`,
       weaponFromLevel: weaponCurrentLevel,
       weaponToLevel: weaponTargetLevel,
       weaponCubeCost: weaponUpgradeCost,
       className: selectedClass.name,
-      classFromLevel: 1,
+      classFromLevel: classCurrentLevel,
       classToLevel: classLevel,
       classCubeCost,
       totalCubeCost: weaponUpgradeCost + classCubeCost,
     });
-  }, [classId, classLevel, selectedWeapon, weaponCurrentLevel, weaponTargetLevel, weaponUpgradeCost]);
+  }, [classId, classCurrentLevel, classLevel, selectedWeapon, weaponCurrentLevel, weaponTargetLevel, weaponUpgradeCost]);
 
   function handleWeaponOwned(weaponId: string, owned: boolean) {
     setOwnedWeaponIds((prev) => {
