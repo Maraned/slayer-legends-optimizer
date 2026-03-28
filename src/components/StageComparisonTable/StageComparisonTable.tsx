@@ -191,6 +191,7 @@ export function StageComparisonTable() {
           <tbody className="divide-y divide-gray-50 dark:divide-gray-800/60">
             {topStages.map((stage, index) => {
               const isCurrentFarm = stage.stageId === currentFarmStageId;
+              const isRecommended = index === 0;
               const scorePercent = (stage.compositeScore * 100).toFixed(1);
 
               return (
@@ -199,7 +200,9 @@ export function StageComparisonTable() {
                   className={`transition-colors ${
                     isCurrentFarm
                       ? 'bg-blue-50/60 dark:bg-blue-900/20'
-                      : 'hover:bg-gray-50 dark:hover:bg-gray-800/40'
+                      : isRecommended
+                        ? 'bg-green-50/60 dark:bg-green-900/20'
+                        : 'hover:bg-gray-50 dark:hover:bg-gray-800/40'
                   }`}
                 >
                   <td className="py-2.5 pr-3 text-xs font-medium text-gray-400 tabular-nums">
@@ -210,11 +213,18 @@ export function StageComparisonTable() {
                       className={`font-medium tabular-nums ${
                         isCurrentFarm
                           ? 'text-blue-700 dark:text-blue-300'
-                          : 'text-gray-900 dark:text-gray-100'
+                          : isRecommended
+                            ? 'text-green-700 dark:text-green-300'
+                            : 'text-gray-900 dark:text-gray-100'
                       }`}
                     >
                       {stage.stageLabel}
                     </span>
+                    {isRecommended && (
+                      <span className="ml-1.5 text-[10px] font-semibold text-green-600 dark:text-green-400 uppercase tracking-wide">
+                        best
+                      </span>
+                    )}
                     {isCurrentFarm && (
                       <span className="ml-1.5 text-[10px] font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide">
                         current
