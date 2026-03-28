@@ -8,6 +8,7 @@ import { FarmingBonusSummary } from '@/components/FarmingBonusSummary/FarmingBon
 import { SoulWeaponSection } from '@/components/SoulWeaponSection/SoulWeaponSection';
 import { SWCraftingRequirements } from '@/components/SWCraftingRequirements/SWCraftingRequirements';
 import { OfflineHuntRates } from '@/components/OfflineHuntRates/OfflineHuntRates';
+import { SpiritBuffToggles } from '@/components/SpiritBuffToggles/SpiritBuffToggles';
 import { useUserSaveStore } from '@/store/useUserSaveStore';
 import type { Stage, Area } from '@/types/stage';
 import stageDataRaw from '@/data/stage-data.json';
@@ -214,6 +215,9 @@ export default function StagesPage() {
             </div>
           )}
         </section>
+
+        {/* Spirit Buffs */}
+        <SpiritBuffToggles />
 
         {/* Offline Hunt Rates */}
         <OfflineHuntRates />

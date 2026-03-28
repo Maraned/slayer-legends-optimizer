@@ -59,6 +59,24 @@ export interface ConstellationState {
 
 
 /**
+ * Per-spirit buff toggle and skill level state.
+ */
+export interface SpiritBuff {
+  /** Whether this spirit buff is currently active */
+  active: boolean;
+  /** Skill level 1–5 (I–V) */
+  skillLevel: 1 | 2 | 3 | 4 | 5;
+}
+
+/**
+ * Spirit buff toggles for TODD, LUGA, and any future spirits.
+ */
+export interface SpiritBuffsState {
+  todd: SpiritBuff;
+  luga: SpiritBuff;
+}
+
+/**
  * Player's selected stage and related farming preferences.
  * Uses the Stage type defined in MAR-24 (1.2.9 Define types for stage data).
  */
@@ -69,6 +87,8 @@ export interface StageSelectionState {
   currentFarmStageId: Stage['id'];
   /** Number of idle hours for Offline Hunt calculations */
   offlineHuntIdleHours: number;
+  /** Spirit buff toggle states for stage farming calculations */
+  spiritBuffs: SpiritBuffsState;
 }
 
 // ---------------------------------------------------------------------------
