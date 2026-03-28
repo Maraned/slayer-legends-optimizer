@@ -54,4 +54,20 @@ export interface CalculatorInputsState {
    * Default is 1 (one level at a time).
    */
   enhanceMultiplier: number;
+
+  /**
+   * Selected weapon identifier (matches CubeWeapon.id in cube-optimizer-data).
+   * Determines the per-level cube costs and stat bonuses for the weapon.
+   */
+  weaponId: string;
+
+  /**
+   * Current weapon level. The cost calculation starts from this level.
+   */
+  weaponCurrentLevel: number;
+
+  /**
+   * Target weapon level. The cost calculation ends at this level.
+   */
+  weaponTargetLevel: number;
 }
