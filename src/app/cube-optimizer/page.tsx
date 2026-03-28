@@ -91,6 +91,16 @@ export default function CubeOptimizerPage() {
     });
   }
 
+  const enhanceTargets = useMemo(() => {
+    return WEAPONS.filter((w) => ownedWeaponIds.has(w.id))
+      .map((w) => {
+        const totalCost = w.cubeCostPerLevel.reduce((sum, c) => sum + c, 0);
+        const efficiency = totalCost > 0 ? w.critDmgBonusPct / totalCost : 0;
+        return { weapon: w, totalCubeCost: totalCost, efficiency };
+      })
+      .sort((a, b) => b.efficiency - a.efficiency);
+  }, [ownedWeaponIds]);
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Header */}
@@ -148,6 +158,81 @@ export default function CubeOptimizerPage() {
             ))}
           </div>
         </section>
+
+        {/* Enhance To Targets */}
+        {enhanceTargets.length > 0 && (
+          <section
+            aria-labelledby="enhance-targets-heading"
+            className="bg-white rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700"
+          >
+            <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+              <h2
+                id="enhance-targets-heading"
+                className="text-xs font-semibold text-gray-400 uppercase tracking-wider"
+              >
+                Enhance To Targets
+              </h2>
+              <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">
+                Owned weapons ranked by CRIT DMG efficiency — enhance in this order for the best return.
+              </p>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-50 dark:bg-gray-800">
+                    <th className="px-4 py-2.5 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider w-10">
+                      #
+                    </th>
+                    <th className="px-4 py-2.5 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                      Weapon
+                    </th>
+                    <th className="px-4 py-2.5 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                      Enhance To
+                    </th>
+                    <th className="px-4 py-2.5 text-right text-xs font-medium text-purple-600 dark:text-purple-400 uppercase tracking-wider">
+                      CRIT DMG
+                    </th>
+                    <th className="px-4 py-2.5 text-right text-xs font-medium text-amber-600 dark:text-amber-400 uppercase tracking-wider">
+                      Total Cubes
+                    </th>
+                    <th className="px-4 py-2.5 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                      Efficiency
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
+                  {enhanceTargets.map(({ weapon, totalCubeCost, efficiency }, idx) => (
+                    <tr
+                      key={weapon.id}
+                      className="bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800/60"
+                    >
+                      <td className="px-4 py-2.5 text-gray-400 dark:text-gray-500 font-medium tabular-nums">
+                        {idx + 1}
+                      </td>
+                      <td className="px-4 py-2.5 text-gray-800 dark:text-gray-200 font-medium">
+                        {weapon.name}
+                      </td>
+                      <td className="px-4 py-2.5 text-center">
+                        <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
+                          Lv {weapon.maxLevel}
+                        </span>
+                      </td>
+                      <td className="px-4 py-2.5 text-right tabular-nums text-purple-700 dark:text-purple-300 font-medium">
+                        {formatPct(weapon.critDmgBonusPct)}
+                      </td>
+                      <td className="px-4 py-2.5 text-right tabular-nums text-amber-700 dark:text-amber-300">
+                        {formatNumber(totalCubeCost)}
+                      </td>
+                      <td className="px-4 py-2.5 text-right tabular-nums text-gray-500 dark:text-gray-400 text-xs">
+                        {efficiency.toFixed(4)}%/cube
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
 
         {/* Calculate button */}
         <div className="flex justify-end">
