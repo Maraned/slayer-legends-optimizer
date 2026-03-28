@@ -19,6 +19,7 @@ const DEFAULT_GOLD_ENHANCEMENT_TARGETS: GoldEnhancementTargets = {
 const DEFAULT_CALCULATOR_INPUTS: CalculatorInputsState = {
   sanctuaryLevel: 0,
   classId: 'warrior',
+  classCurrentLevel: 1,
   classLevel: 1,
   goldEnhancementTargets: { ...DEFAULT_GOLD_ENHANCEMENT_TARGETS },
   enhanceMultiplier: 1,
@@ -30,6 +31,7 @@ const DEFAULT_CALCULATOR_INPUTS: CalculatorInputsState = {
 export interface CalculatorInputsActions {
   setSanctuaryLevel: (level: number) => void;
   setClassId: (id: string) => void;
+  setClassCurrentLevel: (level: number) => void;
   setClassLevel: (level: number) => void;
   setGoldEnhancementTarget: (stat: EnhanceableStatKey, level: number) => void;
   setGoldEnhancementTargets: (targets: GoldEnhancementTargets) => void;
@@ -47,6 +49,7 @@ export const useCalculatorInputsStore = create<CalculatorInputsStore>()((set) =>
 
   setSanctuaryLevel: (sanctuaryLevel) => set({ sanctuaryLevel }),
   setClassId: (classId) => set({ classId }),
+  setClassCurrentLevel: (classCurrentLevel) => set({ classCurrentLevel }),
   setClassLevel: (classLevel) => set({ classLevel }),
 
   setGoldEnhancementTarget: (stat, level) =>
