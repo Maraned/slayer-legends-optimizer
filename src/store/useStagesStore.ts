@@ -13,6 +13,7 @@ export interface StagesState {
   manualHpRecoveryBonus: number;
   currentSoulWeaponId: string;
   targetSoulWeaponId: string;
+  soulDungeonRunsPerDay: number;
 }
 
 export interface StagesActions {
@@ -26,6 +27,7 @@ export interface StagesActions {
   setManualHpRecoveryBonus: (value: number) => void;
   setCurrentSoulWeaponId: (id: string) => void;
   setTargetSoulWeaponId: (id: string) => void;
+  setSoulDungeonRunsPerDay: (value: number) => void;
 }
 
 export type StagesStore = StagesState & StagesActions;
@@ -41,6 +43,7 @@ const DEFAULT_STAGES_STATE: StagesState = {
   manualHpRecoveryBonus: 0,
   currentSoulWeaponId: '',
   targetSoulWeaponId: '',
+  soulDungeonRunsPerDay: 10,
 };
 
 export const useStagesStore = create<StagesStore>()((set) => ({
@@ -56,4 +59,5 @@ export const useStagesStore = create<StagesStore>()((set) => ({
   setManualHpRecoveryBonus: (manualHpRecoveryBonus) => set({ manualHpRecoveryBonus }),
   setCurrentSoulWeaponId: (currentSoulWeaponId) => set({ currentSoulWeaponId }),
   setTargetSoulWeaponId: (targetSoulWeaponId) => set({ targetSoulWeaponId }),
+  setSoulDungeonRunsPerDay: (soulDungeonRunsPerDay) => set({ soulDungeonRunsPerDay }),
 }));
