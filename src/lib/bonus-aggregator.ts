@@ -68,16 +68,17 @@ export function goldBonusFromAppearance(
 // ---------------------------------------------------------------------------
 
 /**
- * Sums Extra EXP buff values across all four companions' advancement steps.
+ * Sums Extra EXP buff values across all four companions' unlocked advancement steps.
+ * A step is unlocked when its position (1-based) is ≤ the companion's current level.
  *
  * @param companions - CompanionsState tuple (all four companions).
  */
 export function expBonusFromCompanions(companions: CompanionsState): number {
   let total = 0;
   for (const companion of companions) {
-    for (const step of companion.advancementSteps) {
-      if (step.buffType === 'Extra EXP') {
-        total += step.buffValue;
+    for (let i = 0; i < companion.advancementSteps.length; i++) {
+      if (i + 1 <= companion.level && companion.advancementSteps[i].buffType === 'Extra EXP') {
+        total += companion.advancementSteps[i].buffValue;
       }
     }
   }
@@ -85,16 +86,17 @@ export function expBonusFromCompanions(companions: CompanionsState): number {
 }
 
 /**
- * Sums Monster Gold buff values across all four companions' advancement steps.
+ * Sums Monster Gold buff values across all four companions' unlocked advancement steps.
+ * A step is unlocked when its position (1-based) is ≤ the companion's current level.
  *
  * @param companions - CompanionsState tuple (all four companions).
  */
 export function goldBonusFromCompanions(companions: CompanionsState): number {
   let total = 0;
   for (const companion of companions) {
-    for (const step of companion.advancementSteps) {
-      if (step.buffType === 'Monster Gold') {
-        total += step.buffValue;
+    for (let i = 0; i < companion.advancementSteps.length; i++) {
+      if (i + 1 <= companion.level && companion.advancementSteps[i].buffType === 'Monster Gold') {
+        total += companion.advancementSteps[i].buffValue;
       }
     }
   }
@@ -215,16 +217,35 @@ export function extraAtkBonusFromAppearance(
 }
 
 /**
- * Sums Extra ATK buff values across all four companions' advancement steps.
+ * Sums Extra ATK buff values across all four companions' unlocked advancement steps.
+ * A step is unlocked when its position (1-based) is ≤ the companion's current level.
  *
  * @param companions - CompanionsState tuple (all four companions).
  */
 export function extraAtkBonusFromCompanions(companions: CompanionsState): number {
   let total = 0;
   for (const companion of companions) {
-    for (const step of companion.advancementSteps) {
-      if (step.buffType === 'Extra ATK') {
-        total += step.buffValue;
+    for (let i = 0; i < companion.advancementSteps.length; i++) {
+      if (i + 1 <= companion.level && companion.advancementSteps[i].buffType === 'Extra ATK') {
+        total += companion.advancementSteps[i].buffValue;
+      }
+    }
+  }
+  return total;
+}
+
+/**
+ * Sums Extra HP buff values across all four companions' unlocked advancement steps.
+ * A step is unlocked when its position (1-based) is ≤ the companion's current level.
+ *
+ * @param companions - CompanionsState tuple (all four companions).
+ */
+export function hpBonusFromCompanions(companions: CompanionsState): number {
+  let total = 0;
+  for (const companion of companions) {
+    for (let i = 0; i < companion.advancementSteps.length; i++) {
+      if (i + 1 <= companion.level && companion.advancementSteps[i].buffType === 'Extra HP') {
+        total += companion.advancementSteps[i].buffValue;
       }
     }
   }
@@ -441,6 +462,7 @@ export function aggregateFarmingBonuses(
   // --- HP Recovery breakdown ------------------------------------------------
   const hpRecovery: HpRecoveryBreakdown = {
     appearance: hpRecoveryBonusFromAppearance(appearanceBonusTotals),
+    companions: companions ? hpBonusFromCompanions(companions) : 0,
     constellation: hpRecoveryBonusFromConstellation(constellationBuffTotals),
     memoryTree: hpRecoveryBonusFromMemoryTree(tomNodes),
   };
@@ -468,6 +490,7 @@ export function aggregateFarmingBonuses(
       extraAtk.memoryTree,
     hpRecoveryBonus:
       hpRecovery.appearance +
+      hpRecovery.companions +
       hpRecovery.constellation +
       hpRecovery.memoryTree,
   };

@@ -9,7 +9,7 @@
  *
  * Bonus sources covered:
  *   1. Appearance    — owned clothing items with 'Extra EXP' / 'Monster Gold' bonus type
- *   2. Companions    — advancement step buffs (Extra EXP, Monster Gold)
+ *   2. Companions    — unlocked advancement step buffs (Extra EXP, Monster Gold, Extra ATK, Extra HP)
  *   3. Character     — promotion tier cumulative Monster Gold bonus
  *   4. Constellation — star node buff totals for Extra EXP / Monster Gold
  *   5. Memory Tree   — TOM nodes whose effectType is Extra EXP / Monster Gold
@@ -128,6 +128,8 @@ export interface ExtraAtkBreakdown {
 export interface HpRecoveryBreakdown {
   /** From owned clothing items with 'HP Recovery' bonus type */
   appearance: number;
+  /** From companion advancement steps with buffType 'Extra HP' */
+  companions: number;
   /** From constellation star nodes with buffType 'HP Recovery' */
   constellation: number;
   /** From TOM nodes with effectType 'HP Recovery' */
