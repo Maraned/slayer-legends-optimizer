@@ -10,6 +10,7 @@ import { SWCraftingRequirements } from '@/components/SWCraftingRequirements/SWCr
 import { OfflineHuntRates } from '@/components/OfflineHuntRates/OfflineHuntRates';
 import { SpiritBuffToggles } from '@/components/SpiritBuffToggles/SpiritBuffToggles';
 import { ScrollBlessingToggles } from '@/components/ScrollBlessingToggles/ScrollBlessingToggles';
+import { BestStagesSection } from '@/components/BestStagesSection/BestStagesSection';
 import { useUserSaveStore } from '@/store/useUserSaveStore';
 import type { Stage, Area } from '@/types/stage';
 import stageDataRaw from '@/data/stage-data.json';
@@ -222,6 +223,9 @@ export default function StagesPage() {
 
         {/* Scroll Blessings */}
         <ScrollBlessingToggles />
+
+        {/* Best Stages */}
+        <BestStagesSection />
 
         {/* Offline Hunt Rates */}
         <OfflineHuntRates />
