@@ -20,6 +20,7 @@ export default function StagesPage() {
   const [selectedStageId, setSelectedStageId] = useState('');
 
   const currentFarmStageId = useUserSaveStore((s) => s.stageSelection.currentFarmStageId);
+  const offlineHuntIdleHours = useUserSaveStore((s) => s.stageSelection.offlineHuntIdleHours);
   const setStageSelection = useUserSaveStore((s) => s.setStageSelection);
   const stageSelection = useUserSaveStore((s) => s.stageSelection);
 
@@ -137,14 +138,24 @@ export default function StagesPage() {
             </div>
           </div>
 
-          <NumberInput
-            id="current-farm-stage"
-            label="Current Farm Stage"
-            value={currentFarmStageId}
-            onChange={(value) => setStageSelection({ ...stageSelection, currentFarmStageId: value })}
-            min={1}
-            max={2000}
-          />
+          <div className="flex flex-col sm:flex-row gap-4">
+            <NumberInput
+              id="current-farm-stage"
+              label="Current Farm Stage"
+              value={currentFarmStageId}
+              onChange={(value) => setStageSelection({ ...stageSelection, currentFarmStageId: value })}
+              min={1}
+              max={2000}
+            />
+            <NumberInput
+              id="offline-hunt-idle-hours"
+              label="Offline Hunt Idle Time (hours)"
+              value={offlineHuntIdleHours}
+              onChange={(value) => setStageSelection({ ...stageSelection, offlineHuntIdleHours: value })}
+              min={0}
+              max={72}
+            />
+          </div>
 
           {selectedStage && (
             <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-800">
