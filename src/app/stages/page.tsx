@@ -8,6 +8,7 @@ import { FarmingBonusSummary } from '@/components/FarmingBonusSummary/FarmingBon
 import { SoulWeaponSection } from '@/components/SoulWeaponSection/SoulWeaponSection';
 import { SWCraftingRequirements } from '@/components/SWCraftingRequirements/SWCraftingRequirements';
 import { OfflineHuntRates } from '@/components/OfflineHuntRates/OfflineHuntRates';
+import { StageComparisonTable } from '@/components/StageComparisonTable/StageComparisonTable';
 import { SpiritBuffToggles } from '@/components/SpiritBuffToggles/SpiritBuffToggles';
 import { ScrollBlessingToggles } from '@/components/ScrollBlessingToggles/ScrollBlessingToggles';
 import { BestStagesSection } from '@/components/BestStagesSection/BestStagesSection';
@@ -229,6 +230,9 @@ export default function StagesPage() {
 
         {/* Offline Hunt Rates */}
         <OfflineHuntRates />
+
+        {/* Stage Comparison Table */}
+        <StageComparisonTable />
 
         {/* Soul Weapon */}
         <SoulWeaponSection />
