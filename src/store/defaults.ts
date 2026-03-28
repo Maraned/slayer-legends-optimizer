@@ -49,5 +49,9 @@ export const DEFAULT_STATE: UserSaveState = {
     selectedStageId: 1,
     currentFarmStageId: 1,
     offlineHuntIdleHours: 0,
+    spiritBuffs: {
+      todd: { active: false, skillLevel: 1 },
+      luga: { active: false, skillLevel: 1 },
+    },
   },
 };

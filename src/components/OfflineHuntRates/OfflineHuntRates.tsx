@@ -6,6 +6,7 @@ import { useUserSaveStore, type UserSaveStore } from '@/store/useUserSaveStore';
 import { useStagesStore, type StagesStore } from '@/store/useStagesStore';
 import { calculateStageResourceRates } from '@/lib/stage-calculator';
 import { aggregateFarmingBonuses } from '@/lib/bonus-aggregator';
+import { calcSpiritAtkBonus } from '@/components/SpiritBuffToggles/SpiritBuffToggles';
 import type { Stage } from '@/types/stage';
 import type { TOMState } from '@/types/tom';
 import stageDataRaw from '@/data/stage-data.json';
@@ -32,6 +33,9 @@ export function OfflineHuntRates() {
   );
   const offlineHuntIdleHours = useUserSaveStore(
     (s: UserSaveStore) => s.stageSelection.offlineHuntIdleHours,
+  );
+  const spiritBuffs = useUserSaveStore(
+    (s: UserSaveStore) => s.stageSelection.spiritBuffs,
   );
 
   const appearanceBonusTotals = useUserSaveStore(
@@ -77,6 +81,7 @@ export function OfflineHuntRates() {
         monsterGoldMode === 'manual'
           ? manualMonsterGoldBonus / 100
           : breakdown.totals.monsterGoldBonus,
+      extraAtkBonus: breakdown.totals.extraAtkBonus + calcSpiritAtkBonus(spiritBuffs),
     };
   }, [
     appearanceBonusTotals,
@@ -88,6 +93,7 @@ export function OfflineHuntRates() {
     manualExtraExpBonus,
     monsterGoldMode,
     manualMonsterGoldBonus,
+    spiritBuffs,
   ]);
 
   const rates = useMemo(() => {

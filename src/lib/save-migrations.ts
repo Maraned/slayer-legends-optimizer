@@ -11,7 +11,7 @@
  * only needs to handle one step.
  */
 
-export const CURRENT_SAVE_VERSION = 4;
+export const CURRENT_SAVE_VERSION = 5;
 
 type PartialSave = Record<string, unknown>;
 type MigrationFn = (state: PartialSave) => PartialSave;
@@ -44,6 +44,17 @@ const migrations: Record<number, MigrationFn> = {
     stageSelection: {
       ...(state.stageSelection as Record<string, unknown>),
       offlineHuntIdleHours: 0,
+    },
+  }),
+  // v4 → v5: add spiritBuffs to stageSelection.
+  5: (state) => ({
+    ...state,
+    stageSelection: {
+      ...(state.stageSelection as Record<string, unknown>),
+      spiritBuffs: {
+        todd: { active: false, skillLevel: 1 },
+        luga: { active: false, skillLevel: 1 },
+      },
     },
   }),
 };
