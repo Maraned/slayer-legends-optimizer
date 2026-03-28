@@ -6,6 +6,7 @@ import { Select } from '@/components/Select/Select';
 import { NumberInput } from '@/components/NumberInput';
 import { FarmingBonusSummary } from '@/components/FarmingBonusSummary/FarmingBonusSummary';
 import { SoulWeaponSection } from '@/components/SoulWeaponSection/SoulWeaponSection';
+import { SWCraftingRequirements } from '@/components/SWCraftingRequirements/SWCraftingRequirements';
 import { useUserSaveStore } from '@/store/useUserSaveStore';
 import type { Stage, Area } from '@/types/stage';
 import stageDataRaw from '@/data/stage-data.json';
@@ -207,6 +208,9 @@ export default function StagesPage() {
 
         {/* Farming Bonuses */}
         <FarmingBonusSummary />
+
+        {/* Soul Weapon Crafting Requirements */}
+        <SWCraftingRequirements />
       </div>
     </div>
   );
