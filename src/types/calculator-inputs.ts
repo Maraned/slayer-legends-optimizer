@@ -75,4 +75,14 @@ export interface CalculatorInputsState {
    * Target weapon level. The cost calculation ends at this level.
    */
   weaponTargetLevel: number;
+
+  /**
+   * Current CRIT DMG enhancement level. The cost calculation starts from this level.
+   */
+  critDmgCurrentLevel: number;
+
+  /**
+   * Target CRIT DMG enhancement level. The cost calculation ends at this level.
+   */
+  critDmgTargetLevel: number;
 }

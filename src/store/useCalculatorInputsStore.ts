@@ -26,6 +26,8 @@ const DEFAULT_CALCULATOR_INPUTS: CalculatorInputsState = {
   weaponId: 'Common4',
   weaponCurrentLevel: 1,
   weaponTargetLevel: 1,
+  critDmgCurrentLevel: 0,
+  critDmgTargetLevel: 0,
 };
 
 export interface CalculatorInputsActions {
@@ -39,6 +41,8 @@ export interface CalculatorInputsActions {
   setWeaponId: (id: string) => void;
   setWeaponCurrentLevel: (level: number) => void;
   setWeaponTargetLevel: (level: number) => void;
+  setCritDmgCurrentLevel: (level: number) => void;
+  setCritDmgTargetLevel: (level: number) => void;
   reset: () => void;
 }
 
@@ -64,6 +68,9 @@ export const useCalculatorInputsStore = create<CalculatorInputsStore>()((set) =>
   setWeaponId: (weaponId) => set({ weaponId }),
   setWeaponCurrentLevel: (weaponCurrentLevel) => set({ weaponCurrentLevel }),
   setWeaponTargetLevel: (weaponTargetLevel) => set({ weaponTargetLevel }),
+
+  setCritDmgCurrentLevel: (critDmgCurrentLevel) => set({ critDmgCurrentLevel }),
+  setCritDmgTargetLevel: (critDmgTargetLevel) => set({ critDmgTargetLevel }),
 
   reset: () => set({ ...DEFAULT_CALCULATOR_INPUTS }),
 }));

@@ -4,6 +4,7 @@ import { useMemo, useState, useCallback } from 'react';
 
 import { Checkbox } from '@/components/Checkbox';
 import { ClassSelector } from '@/components/ClassSelector/ClassSelector';
+import { CritDmgSelector } from '@/components/CritDmgSelector/CritDmgSelector';
 import { WeaponSelector } from '@/components/WeaponSelector/WeaponSelector';
 import { useCalculatorInputsStore } from '@/store/useCalculatorInputsStore';
 import type { CalculatorInputsStore } from '@/store/useCalculatorInputsStore';
@@ -158,6 +159,11 @@ export default function CubeOptimizerPage() {
             <ClassSelector />
           </section>
         </div>
+
+        {/* CRIT DMG configuration */}
+        <section aria-labelledby="crit-dmg-config-heading">
+          <CritDmgSelector />
+        </section>
 
         {/* Weapon ownership */}
         <section
