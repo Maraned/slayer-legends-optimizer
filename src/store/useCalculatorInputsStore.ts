@@ -22,6 +22,9 @@ const DEFAULT_CALCULATOR_INPUTS: CalculatorInputsState = {
   classLevel: 1,
   goldEnhancementTargets: { ...DEFAULT_GOLD_ENHANCEMENT_TARGETS },
   enhanceMultiplier: 1,
+  weaponId: 'Common4',
+  weaponCurrentLevel: 1,
+  weaponTargetLevel: 1,
 };
 
 export interface CalculatorInputsActions {
@@ -31,6 +34,9 @@ export interface CalculatorInputsActions {
   setGoldEnhancementTarget: (stat: EnhanceableStatKey, level: number) => void;
   setGoldEnhancementTargets: (targets: GoldEnhancementTargets) => void;
   setEnhanceMultiplier: (multiplier: number) => void;
+  setWeaponId: (id: string) => void;
+  setWeaponCurrentLevel: (level: number) => void;
+  setWeaponTargetLevel: (level: number) => void;
   reset: () => void;
 }
 
@@ -51,6 +57,10 @@ export const useCalculatorInputsStore = create<CalculatorInputsStore>()((set) =>
   setGoldEnhancementTargets: (goldEnhancementTargets) => set({ goldEnhancementTargets }),
 
   setEnhanceMultiplier: (enhanceMultiplier) => set({ enhanceMultiplier }),
+
+  setWeaponId: (weaponId) => set({ weaponId }),
+  setWeaponCurrentLevel: (weaponCurrentLevel) => set({ weaponCurrentLevel }),
+  setWeaponTargetLevel: (weaponTargetLevel) => set({ weaponTargetLevel }),
 
   reset: () => set({ ...DEFAULT_CALCULATOR_INPUTS }),
 }));
