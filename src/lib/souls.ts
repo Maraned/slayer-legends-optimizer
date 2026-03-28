@@ -80,6 +80,53 @@ export function getAllDungeonStages(): SoulDungeonStage[] {
 }
 
 /**
+ * Returns the Soul Dungeon stage that unlocks the given soul weapon, or null
+ * if the weapon ID is not found in the stage data.
+ *
+ * @param weaponId - Soul weapon ID (e.g. "fire_blade")
+ */
+export function getStageForSoulWeapon(weaponId: string): SoulDungeonStage | null {
+  return DUNGEON_STAGES.find((s) => s.soulWeaponId === weaponId) ?? null;
+}
+
+/**
+ * Calculates the time needed to advance through the Soul Dungeon from the
+ * stage that unlocks `currentWeaponId` to the stage that unlocks
+ * `targetWeaponId`, given the number of Soul Dungeon runs the player
+ * completes per day.
+ *
+ * Assumes one run clears one stage (each stage is cleared once).
+ *
+ * @param currentWeaponId - Soul weapon ID for the player's current weapon
+ * @param targetWeaponId  - Soul weapon ID for the player's target weapon
+ * @param runsPerDay      - Number of Soul Dungeon runs per day
+ * @returns Broken-down time estimate, or null if either weapon ID is unknown,
+ *          the target is not ahead of the current weapon, or runsPerDay is zero
+ */
+export function getTimeToReachSoulWeapon(
+  currentWeaponId: string,
+  targetWeaponId: string,
+  runsPerDay: number,
+): TimeToCraft | null {
+  if (runsPerDay <= 0) return null;
+  const currentStage = getStageForSoulWeapon(currentWeaponId);
+  const targetStage = getStageForSoulWeapon(targetWeaponId);
+  if (!currentStage || !targetStage) return null;
+
+  const stagesRemaining = targetStage.stage - currentStage.stage;
+  if (stagesRemaining <= 0) return { days: 0, hours: 0, minutes: 0, totalHours: 0 };
+
+  const totalHours = (stagesRemaining * 24) / runsPerDay;
+  const totalMinutes = Math.ceil(totalHours * 60);
+
+  const days = Math.floor(totalMinutes / (60 * 24));
+  const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
+  const minutes = totalMinutes % 60;
+
+  return { days, hours, minutes, totalHours };
+}
+
+/**
  * Returns the maximum level for the Demon Altar.
  */
 export const DEMON_ALTAR_MAX_LEVEL = ALTAR_TABLE.length;
