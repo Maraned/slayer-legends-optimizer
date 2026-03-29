@@ -27,6 +27,7 @@ const SECTION_GROUPS = [
     label: 'World',
     items: [
       { label: 'Stages', href: '/stages', description: 'Dungeon and stage farming' },
+      { label: 'Stage Search', href: '/stage-search', description: 'Look up details for any stage' },
       { label: 'Constellations', href: '/constellations', description: 'Star and zodiac progression' },
     ],
   },
