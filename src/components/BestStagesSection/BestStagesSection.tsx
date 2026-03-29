@@ -55,12 +55,14 @@ interface ResourceScore {
 interface BestStageCardProps {
   title: string;
   stageLabel: string;
+  areaName?: string;
+  zoneName?: string;
   metricLabel: string;
   metricValue: string;
   scores: ResourceScore[];
 }
 
-function BestStageCard({ title, stageLabel, metricLabel, metricValue, scores }: BestStageCardProps) {
+function BestStageCard({ title, stageLabel, areaName, zoneName, metricLabel, metricValue, scores }: BestStageCardProps) {
   return (
     <div className="flex flex-col gap-1.5 rounded-lg border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/60 px-3 py-3">
       <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
@@ -69,6 +71,11 @@ function BestStageCard({ title, stageLabel, metricLabel, metricValue, scores }: 
       <span className="text-sm font-bold text-gray-900 dark:text-gray-100 tabular-nums">
         {stageLabel}
       </span>
+      {areaName && zoneName && (
+        <span className="text-[10px] text-gray-400 dark:text-gray-500 -mt-1">
+          {areaName} · {zoneName}
+        </span>
+      )}
       <span className="text-xs text-gray-500 dark:text-gray-400">
         {metricLabel}:{' '}
         <span className="tabular-nums font-medium text-gray-700 dark:text-gray-300">
@@ -239,6 +246,8 @@ export function BestStagesSection() {
           <BestStageCard
             title="Overall"
             stageLabel={bestOverallStage.stageLabel}
+            areaName={bestOverallStage.areaName}
+            zoneName={bestOverallStage.zoneName}
             metricLabel="Score"
             metricValue={`${(bestOverallStage.compositeScore * 100).toFixed(1)}%`}
             scores={getResourceScores(bestOverallStage)}
@@ -249,6 +258,8 @@ export function BestStagesSection() {
           <BestStageCard
             title="EXP"
             stageLabel={bestExpStage.stageLabel}
+            areaName={bestExpStage.areaName}
+            zoneName={bestExpStage.zoneName}
             metricLabel="EXP / energy"
             metricValue={formatRate(bestExpStage.expPerEnergy)}
             scores={getResourceScores(bestExpStage)}
@@ -259,6 +270,8 @@ export function BestStagesSection() {
           <BestStageCard
             title="Gold"
             stageLabel={bestGoldStage.stageLabel}
+            areaName={bestGoldStage.areaName}
+            zoneName={bestGoldStage.zoneName}
             metricLabel="Gold / energy"
             metricValue={formatRate(bestGoldStage.goldPerEnergy)}
             scores={getResourceScores(bestGoldStage)}
@@ -269,6 +282,8 @@ export function BestStagesSection() {
           <BestStageCard
             title="Cubes"
             stageLabel={bestCubesStage.stageLabel}
+            areaName={bestCubesStage.areaName}
+            zoneName={bestCubesStage.zoneName}
             metricLabel="Shards / energy"
             metricValue={formatRate(getSummedDropRate(bestCubesStage, CUBES_PATTERN))}
             scores={getResourceScores(bestCubesStage)}
@@ -279,6 +294,8 @@ export function BestStagesSection() {
           <BestStageCard
             title="Stones"
             stageLabel={bestStonesStage.stageLabel}
+            areaName={bestStonesStage.areaName}
+            zoneName={bestStonesStage.zoneName}
             metricLabel="Stones / energy"
             metricValue={formatRate(getSummedDropRate(bestStonesStage, STONES_PATTERN))}
             scores={getResourceScores(bestStonesStage)}
@@ -289,6 +306,8 @@ export function BestStagesSection() {
           <BestStageCard
             title="Diamonds"
             stageLabel={bestDiamondsStage.stageLabel}
+            areaName={bestDiamondsStage.areaName}
+            zoneName={bestDiamondsStage.zoneName}
             metricLabel="Crystals / energy"
             metricValue={formatRate(getSummedDropRate(bestDiamondsStage, DIAMONDS_PATTERN))}
             scores={getResourceScores(bestDiamondsStage)}

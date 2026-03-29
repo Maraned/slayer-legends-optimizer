@@ -78,6 +78,10 @@ export interface StageResourceRates {
   stageId: number;
   /** Human-readable stage label (e.g. "3-2-7") */
   stageLabel: string;
+  /** Display name of the area this stage belongs to */
+  areaName: string;
+  /** Display name of the zone this stage belongs to */
+  zoneName: string;
   /** Stamina cost per run */
   energyCost: number;
 
