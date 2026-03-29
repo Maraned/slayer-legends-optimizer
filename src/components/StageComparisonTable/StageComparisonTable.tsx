@@ -209,27 +209,34 @@ export function StageComparisonTable() {
                     {index + 1}
                   </td>
                   <td className="py-2.5 pr-4">
-                    <span
-                      className={`font-medium tabular-nums ${
-                        isCurrentFarm
-                          ? 'text-blue-700 dark:text-blue-300'
-                          : isRecommended
-                            ? 'text-green-700 dark:text-green-300'
-                            : 'text-gray-900 dark:text-gray-100'
-                      }`}
-                    >
-                      {stage.stageLabel}
-                    </span>
-                    {isRecommended && (
-                      <span className="ml-1.5 text-[10px] font-semibold text-green-600 dark:text-green-400 uppercase tracking-wide">
-                        best
+                    <div className="flex flex-col">
+                      <div>
+                        <span
+                          className={`font-medium tabular-nums ${
+                            isCurrentFarm
+                              ? 'text-blue-700 dark:text-blue-300'
+                              : isRecommended
+                                ? 'text-green-700 dark:text-green-300'
+                                : 'text-gray-900 dark:text-gray-100'
+                          }`}
+                        >
+                          {stage.stageLabel}
+                        </span>
+                        {isRecommended && (
+                          <span className="ml-1.5 text-[10px] font-semibold text-green-600 dark:text-green-400 uppercase tracking-wide">
+                            best
+                          </span>
+                        )}
+                        {isCurrentFarm && (
+                          <span className="ml-1.5 text-[10px] font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide">
+                            current
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-[10px] text-gray-400 dark:text-gray-500">
+                        {stage.areaName} · {stage.zoneName}
                       </span>
-                    )}
-                    {isCurrentFarm && (
-                      <span className="ml-1.5 text-[10px] font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide">
-                        current
-                      </span>
-                    )}
+                    </div>
                   </td>
                   <td className="py-2.5 pr-4 text-right tabular-nums text-gray-700 dark:text-gray-300">
                     {formatAmount(stage.goldPerEnergy)}

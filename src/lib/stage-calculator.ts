@@ -171,6 +171,8 @@ export function calculateStageResourceRates(
   return {
     stageId: stage.id,
     stageLabel: stage.label,
+    areaName: stage.areaName,
+    zoneName: stage.zoneName,
     energyCost,
     baseExpPerRun,
     baseGoldPerRun,
